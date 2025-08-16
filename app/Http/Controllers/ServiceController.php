@@ -12,32 +12,32 @@ class ServiceController extends Controller
             [
                 'title' => 'Barangay Clearance',
                 'description' => 'Request a clearance for employment, travel, or other legal needs.',
-                'icon' => '<i class="fa-solid fa-file-circle-check"></i>'
+                'icon' => '<i class="fa-solid fa-file-circle-check text-xl"></i>'
             ],
             [
                 'title' => 'Certificate of Residency',
                 'description' => 'Obtain a digital copy verifying your residency in the barangay.',
-                'icon' => '<i class="fa-solid fa-house-user"></i>'
+                'icon' => '<i class="fa-solid fa-house-user text-xl"></i>'
             ],
             [
                 'title' => 'Certificate of Indigency',
                 'description' => 'Request assistance documentation with quick verification.',
-                'icon' => '<i class="fa-solid fa-file-waveform"></i>'
+                'icon' => '<i class="fa-solid fa-file-waveform text-xl"></i>'
             ],
             [
                 'title' => 'Business Permit Endorsement',
                 'description' => 'Submit endorsements and track approvals online.',
-                'icon' => '<i class="fa-solid fa-id-card-clip"></i>'
+                'icon' => '<i class="fa-solid fa-id-card-clip text-xl"></i>'
             ],
             [
                 'title' => 'Barangay ID Scheduling',
                 'description' => 'Book an appointment for ID capture and issuance.',
-                'icon' => '<i class="fa-solid fa-calendar-check"></i>'
+                'icon' => '<i class="fa-solid fa-calendar-check text-xl"></i>'
             ],
             [
                 'title' => 'Document Authentication',
                 'description' => 'Have documents stamped and verified digitally.',
-                'icon' => '<i class="fa-solid fa-file-signature"></i>'
+                'icon' => '<i class="fa-solid fa-file-signature text-xl"></i>'
             ],
         ];
 
@@ -51,7 +51,6 @@ class ServiceController extends Controller
 
     public function showForm($service_slug)
     {
-        // Define the services
         $services = [
             'barangay-clearance' => [
                 'title' => 'Barangay Clearance',
@@ -61,7 +60,7 @@ class ServiceController extends Controller
 
                     'Proof of Residency (e.g., utility bill, lease agreement, or voter\'s ID)'
                 ],
-                'service_fee' => '100', // Example fee
+                'service_fee' => '100',
                 'processing_time' => '3-5 business days',
                 'icon' => '<i class="fas fa-check-circle"></i>'
             ],
@@ -73,7 +72,7 @@ class ServiceController extends Controller
                     'Proof of Residence (e.g., utility bill, lease agreement, or any other document that proves your residency)',
                     'Payment of community tax (if required)'
                 ],
-                'service_fee' => '50', // Example fee
+                'service_fee' => '50',
                 'processing_time' => '1-2 business days',
                 'icon' => '<i class="fas fa-id-card"></i>'
             ],
@@ -85,7 +84,7 @@ class ServiceController extends Controller
                     'Proof of Residency (e.g., utility bill, lease contract, or any valid proof of address)',
 
                 ],
-                'service_fee' => '100', // Example fee
+                'service_fee' => '100',
                 'processing_time' => '2-4 business days',
                 'icon' => '<i class="fas fa-home"></i>'
             ],
@@ -97,7 +96,7 @@ class ServiceController extends Controller
                     'Proof of Indigency (e.g., government aid certificate, low-income declaration, or certification from a social welfare office)',
 
                 ],
-                'service_fee' => '50', // Example fee
+                'service_fee' => '50',
                 'processing_time' => '3-5 business days',
                 'icon' => '<i class="fas fa-hand-holding-heart"></i>'
             ],
@@ -110,7 +109,7 @@ class ServiceController extends Controller
                     'Proof of Business Location (e.g., lease contract, title of property, or Barangay Business Permit)',
 
                 ],
-                'service_fee' => '200', // Example fee
+                'service_fee' => '200',
                 'processing_time' => '5-7 business days',
                 'icon' => '<i class="fas fa-clipboard-check"></i>'
             ],
@@ -122,7 +121,7 @@ class ServiceController extends Controller
                     'Barangay ID Application Form',
                     'Proof of Residency (e.g., utility bill, lease agreement)'
                 ],
-                'service_fee' => '50', // Example fee
+                'service_fee' => '50',
                 'processing_time' => '1-2 business days',
                 'icon' => '<i class="fas fa-calendar-alt"></i>'
             ],
@@ -134,16 +133,11 @@ class ServiceController extends Controller
                     'Valid government-issued ID (e.g., passport, driver\'s license)',
 
                 ],
-                'service_fee' => '100', // Example fee
+                'service_fee' => '100',
                 'processing_time' => '3-5 business days',
                 'icon' => '<i class="fas fa-file-signature"></i>'
             ]
         ];
-
-
-
-
-        // Check if the service exists, otherwise abort
         $service = $services[$service_slug] ?? null;
 
         if (!$service) {

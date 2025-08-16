@@ -105,31 +105,18 @@
             </p>
         </div> 
         
-<!-- Slick Carousel -->
-<div class="leadership-carousel slick-carousel">
-    <!-- Mission Card with Barangay Official's Image, Name, and Position -->
-    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
-        <div class="logo flex justify-center mb-6">
-            <img src="https://avatar.iran.liara.run/public/12" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+    <!-- Slick Carousel -->
+    <div class="leadership-carousel slick-carousel">
+        <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
+            <div class="logo flex justify-center mb-6">
+                <img src="https://avatar.iran.liara.run/public/12" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+            </div>
+            <div class="official-info text-center">
+                <p class="font-semibold text-blue-900">Juan Dela Cruz</p>
+                <p class="text-gray-600">Barangay Captain</p>
+            </div>
         </div>
-        <div class="official-info text-center">
-            <p class="font-semibold text-blue-900">Juan Dela Cruz</p>
-            <p class="text-gray-600">Barangay Captain</p>
-        </div>
-    </div>
-
-    <!-- Vision Card with Barangay Official's Image, Name, and Position -->
-    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
-        <div class="logo flex justify-center mb-6">
-            <img src="https://avatar.iran.liara.run/public/63" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
-        </div>
-        <div class="official-info text-center">
-            <p class="font-semibold text-green-900">Maria Santos</p>
-            <p class="text-gray-600">Barangay Vice-Captain</p>
-        </div>
-    </div>
-
-    <!-- Our Values Card with Barangay Official's Image, Name, and Position -->
+        
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
             <img src="https://avatar.iran.liara.run/public/17" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
@@ -140,7 +127,6 @@
         </div>
     </div>
 
-    <!-- Additional Official 1 -->
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
             <img src="https://avatar.iran.liara.run/public/21" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
@@ -151,7 +137,6 @@
         </div>
     </div>
 
-    <!-- Additional Official 2 -->
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
             <img src="https://avatar.iran.liara.run/public/29" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
@@ -162,7 +147,7 @@
         </div>
     </div>
 
-    <!-- Additional Official 3 -->
+ 
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
             <img src="https://avatar.iran.liara.run/public/35" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
@@ -173,7 +158,7 @@
         </div>
     </div>
     
-    <!-- Additional Official 4 -->
+
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
             <img src="https://avatar.iran.liara.run/public/41" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
@@ -192,20 +177,16 @@
 
 
 </x-layout>
-<!-- Add jQuery and Slick CSS/JS -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.leadership-carousel').slick({
-            slidesToShow: 4,  // Number of cards per slide
-            slidesToScroll: 4,  // Number of cards to scroll at a time
-            autoplay: true,  // Enable autoplay
-            autoplaySpeed: 2000,  // Speed of autoplay (3 seconds)
-            dots: true,  // Show navigation dots
-            arrows: false,  // Disable arrows
-            infinite: true,  // Enable infinite scrolling
+            slidesToShow: 4,  
+            slidesToScroll: 4,  
+            autoplay: true,  
+            autoplaySpeed: 2000,  
+            dots: false, 
+            arrows: false,  
+            infinite: true,  
             responsive: [     
                 {
                     breakpoint: 1024,

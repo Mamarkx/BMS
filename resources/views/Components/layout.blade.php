@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Add jQuery and Slick CSS/JS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
       @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,14 +23,13 @@
       .hero-section {
         position: relative;
       }
-  /* Hero section overlays */
 .hero-overlay-left {
-  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); /* Mobile: effectively hidden (zero width) */
-  background-color: transparent; /* Mobile: transparent */
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); 
+  background-color: transparent; 
 }
 
 .hero-overlay-right {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); /* Mobile: full screen */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); 
   background-color: rgba(8, 10, 18, 0.7); 
 
 }
@@ -34,12 +37,12 @@
 @media (min-width: 1024px) {
   /* lg breakpoint */
   .hero-overlay-left {
-    clip-path: polygon(0% 0%, 30% 0%, 70% 100%, 0% 100%); /* Large: slanted left */
-    background-color: #c7d7ee; /* Large: light blue */
+    clip-path: polygon(0% 0%, 30% 0%, 70% 100%, 0% 100%); 
+    background-color: #c7d7ee; 
   }
 
   .hero-overlay-right {
-    clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 70% 100%); /* Large: slanted right */
+    clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 70% 100%); 
   }
 }
       .reveal-section {
@@ -65,23 +68,21 @@
             max-width: 900px;
         }
         .step-icon-bg {
-            background-color: #e0f2fe; /* blue-100 */
+            background-color: #e0f2fe; 
         }
         .step-icon-color {
-            color: #2563eb; /* blue-600 */
+            color: #2563eb; 
         }
         .text-blue-950 {
             color: #0c4a6e;
         }
-
-        /* Custom styling for the progress steps */
         .steps-container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             margin-bottom: 3rem;
-            color: #d1d5db; /* gray-400 */
+            color: #d1d5db; 
         }
 
         .step-item {
@@ -139,14 +140,14 @@
 
         .step-item .step-label {
             margin-top: 0.5rem;
-            font-size: 0.875rem; /* text-sm */
-            font-weight: 600; /* font-semibold */
+            font-size: 0.875rem; 
+            font-weight: 600; 
             text-align: center;
         }
 
         .step-item.active .step-label,
         .step-item.completed .step-label {
-            color: #1f2937; /* gray-800 */
+            color: #1f2937; 
         }
     </style>
 </head>

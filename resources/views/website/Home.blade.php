@@ -185,68 +185,7 @@
                 </div>
 
             </div>
-        </div>
-    </section>
-
- <!-- Key Services Section -->
-    <section id="services" class="py-20 bg-white">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-blue-900 mb-4"> Our Services</h2>
-                <p class="text-xl text-blue-700 max-w-3xl mx-auto">
-                   Access a wide range of barangay services from certificate requests to community programs.
-                </p>
-            </div>
-
-            <!-- Grid container for the service cards -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-xl mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M10 13l2 2 4-4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Barangay Clearance</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Request a clearance for employment, travel, or other legal needs.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                        Apply Now
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <!-- Service Card 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-xl mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path><path d="M12 6v6l4 2"></path><path d="m15 15-6 6"></path><path d="M9 15 3 21"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Certificate of Residency</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Obtain a digital copy verifying your residency in the barangay.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                        Apply Now
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                <!-- Service Card 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-xl mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path><path d="M12 6v6l4 2"></path><path d="M22 11.08V12a10 10 0 1 1-5.93-8.5"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Certificate of Indigency</h3>
-                    <p class="text-gray-600 mb-4 text-sm">Request assistance documentation with quick verification.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                        Apply Now
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-             <!-- View all services button -->
+                         <!-- View all services button -->
             <div class="text-center mt-12">
                 <a href="{{ route('Services') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300">
                     View All Services
@@ -259,13 +198,14 @@
         </div>
     </section>
 
-<section class="py-20 bg-gradient-to-r from-blue-50 to-sky-50">
+
+<section id='faq' class="py-20 bg-white ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl font-bold text-blue-900 mb-4 text-center" >Frequently Asked Questions</h2>
         
         <div class="mt-8 space-y-6">
             <!-- FAQ Item 1 -->
-            <div class="collapse collapse-plus border bg-white border-gray-200 rounded-lg">
+            <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
                      How do I register for an account on the e-services portal?
@@ -276,7 +216,7 @@
             </div>
             
             <!-- FAQ Item 2 -->
-            <div class="collapse collapse-plus border bg-white border-gray-200 rounded-lg">
+            <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
                     How long does it take to process a barangay clearance?
@@ -287,7 +227,7 @@
             </div>
 
             <!-- FAQ Item 3 -->
-            <div class="collapse collapse-plus border bg-white border-gray-200 rounded-lg">
+            <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
                     Can I pay the service fees online?
@@ -298,7 +238,7 @@
             </div>
 
             <!-- FAQ Item 4 -->
-            <div class="collapse collapse-plus border bg-white border-gray-200 rounded-lg">
+            <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
                     How can I contact customer support?
