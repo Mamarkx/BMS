@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <!-- Right Side (Message Form) -->
+        <!-- Right Side (Message Form) -->              
         <div class="p-8 lg:p-12 flex-2">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Send us a Message</h3>
             <form action="#" method="POST" class="mt-8 space-y-6">
@@ -103,7 +103,7 @@
             <h3 class="text-3xl font-bold text-gray-800 mb-2">Find Us On The Map</h3>
             <p class="text-lg text-gray-400">Stop by for a visit at the Barangay Hall.</p>
 
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Caloocan+City+Hall" 
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Barangay+San+Agustin+Hall,+Novaliches,+Quezon+City" 
             target="_blank" 
             rel="noopener noreferrer" 
             class="inline-flex items-center justify-center px-6 py-3 mt-4 mb-8 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">

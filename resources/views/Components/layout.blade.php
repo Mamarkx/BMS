@@ -169,12 +169,12 @@
     </div>
 
     <div class="hidden md:flex items-center gap-3">
-      <button class="text-blue-200 hover:text-white hover:bg-blue-800/50 px-3 py-2 rounded-lg transition-all duration-200">
+      <a href="{{ route('loginPage') }}" class="text-blue-200 hover:text-white hover:bg-blue-800/50 px-3 py-2 rounded-lg transition-all duration-200">
         Login
-      </button>
-      <button class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-2 transition-all duration-200">
+      </a>
+      <a href="{{ route('RegisterPage')}}" class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-2 transition-all duration-200">
         Sign Up
-      </button>
+      </a>
     </div>
      <!-- Mobile View -->
     <div class="md:hidden">
@@ -193,6 +193,7 @@
               <span class="text-xl font-bold text-white">San Agustin</span>
             </div>
           </li>
+             <!-- Mobile options View -->
           <li>
             <a href="{{ route('Home') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
           </li>
@@ -206,14 +207,14 @@
             <a href="{{ route('Contact') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Contact</a>
           </li>
           <li class="mt-4">
-            <button class="text-white hover:bg-blue-800/50 px-3 py-5 rounded-lg transition-all duration-200 w-full text-left">
+            <a href="{{ route('loginPage')  }}" class="text-white hover:bg-blue-800/50 px-3 py-5 rounded-lg transition-all duration-200 w-full text-left">
               Login
-            </button>
+            </a>
           </li>
           <li>
-            <button class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-5 transition-all duration-200 w-full text-left mt-2">
+            <a href="{{ route('RegisterPage')}}" class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-5 transition-all duration-200 w-full text-left mt-2">
               Sign Up
-            </button>
+            </a>
           </li>
         </ul>
       </div>
