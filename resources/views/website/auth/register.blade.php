@@ -13,7 +13,6 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5/s6gTjN1jW6C9I/52Mh35Q3x/C6y7pWz8B6pGf3vK2eQ9pLqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Apply the Inter font family globally */
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -47,16 +46,16 @@
 
             
             <!-- First and Last Name Inputs -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {{-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> --}}
                 <div>
-                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">First Name</label>
+                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Name</label>
                     <div class="relative">
                         <input type="text" id="first_name" name="first_name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your first name">
                     </div>
                 </div>
-
+{{-- 
                 <div>
                     <label for="last_name" class="block text-sm font-semibold text-gray-200 mb-2">Last Name</label>
                     <div class="relative">
@@ -64,8 +63,8 @@
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your last name">
                     </div>
-                </div>
-            </div>
+                </div> --}}
+            {{-- </div> --}}
 
             <!-- Email Input -->
             <div>
@@ -189,7 +188,7 @@
     <!-- Confirmation button -->
     <div class="mt-6 flex justify-end">
       <button id="submit-button" class="px-6 py-3 w-full sm:w-auto bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all" disabled>
-        Proceed to Registration
+        Proceed
       </button>
     </div>
 

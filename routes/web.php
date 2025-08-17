@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SocialAuthController;
 
 
 Route::get('/', [ServiceController::class, 'landingPage'])->name('Home');
@@ -33,3 +35,14 @@ Route::get('/contact', function () {
 
 Route::get('/login', [AuthController::class, "ShowLogin"])->name('loginPage');
 Route::get('/register', [AuthController::class, 'ShowRegister'])->name('RegisterPage');
+
+Route::get('/checkuser', function () {
+    dd(Auth::user()->name ?? 'No Account LogIn');
+});
+
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//Google
+Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('/auth/google/callback', [SocialAuthController::class, 'callback'])->name('auth.google.callback');

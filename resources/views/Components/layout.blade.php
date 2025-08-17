@@ -168,14 +168,25 @@
       <a href="{{ route('Contact') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Contact</a>
     </div>
 
-    <div class="hidden md:flex items-center gap-3">
-      <a href="{{ route('loginPage') }}" class="text-blue-200 hover:text-white hover:bg-blue-800/50 px-3 py-2 rounded-lg transition-all duration-200">
-        Login
-      </a>
-      <a href="{{ route('RegisterPage')}}" class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-2 transition-all duration-200">
-        Sign Up
-      </a>
-    </div>
+<div class="hidden md:flex items-center gap-3">
+  @auth
+    <!-- If the user is authenticated, show the avatar icon -->
+    <a href="#" class="flex items-center gap-2 text-white hover:text-blue-200">
+<img src="https://avatar.iran.liara.run/username?username={{ urlencode(Auth::user()->name) }}" alt="Avatar" class="w-8 h-8 rounded-full">
+
+      <span>{{ Auth::user()->name }}</span>
+    </a>
+  @else
+    <!-- If the user is not authenticated, show the Login and Sign Up buttons -->
+    <a href="{{ route('loginPage') }}" class="text-blue-200 hover:text-white hover:bg-blue-800/50 px-3 py-2 rounded-lg transition-all duration-200">
+      Login
+    </a>
+    <a href="{{ route('RegisterPage')}}" class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-2 transition-all duration-200">
+      Sign Up
+    </a>
+  @endauth
+</div>
+
      <!-- Mobile View -->
     <div class="md:hidden">
       <input id="my-drawer" type="checkbox" class="drawer-toggle hidden" />

@@ -100,7 +100,7 @@
             </div>
             
             <!-- Google Login Button -->
-            <a href="#" class="w-full py-3 px-6 bg-white text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 flex items-center justify-center space-x-4">
+            <a href="{{ route('auth.google.redirect') }}" class="w-full py-3 px-6 bg-white text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 flex items-center justify-center space-x-4">
                 <img src="https://i.ibb.co/TBWZHXPv/google.png" alt="Google logo" class="h-5 w-5" />
                 <span>Sign in with Google</span>
             </a>
