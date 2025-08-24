@@ -10,21 +10,21 @@
         <h1 class="hero-title text-5xl lg:text-7xl font-bold leading-tight">
           <span class="block">Barangay</span>
           <span class="block">San Agustin</span>
-          <span class="text-sky-300 lg:text-blue-600">E-Services</span>
+          <span class="text-sky-300 lg:text-blue-600" id="e-services">E-Services</span>
         </h1>
       </div>
       <p class="hero-subtitle text-xl max-w-2xl leading-relaxed text-blue-100 lg:text-blue-700">
         Experience seamless government services with our cutting-edge digital platform. Fast, secure, and accessible 24/7.
       </p>
-      <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-        <a href="{{ route('Services') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center">
-          View Services
-          <svg class="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 12h14m0 0l-6 6m6-6l-6-6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-        </a>
-        <a href="#track" class="border-2 border-blue-400 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent flex items-center">
-          Track Request
-        </a>
-      </div>
+        <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="{{ route('Services') }}" class="button-left bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center">
+                View Services
+                <svg class="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 12h14m0 0l-6 6m6-6l-6-6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            </a>
+            <a href="#track" class="button-right border-2 border-blue-400 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent flex items-center">
+                Track Request
+            </a>
+        </div>
       <div class="hero-features grid grid-cols-3 gap-2 max-w-md mx-auto lg:mx-0">
         <div class="text-center">
           <div class="w-12 h-12 bg-blue-900/50 lg:bg-blue-200/50 rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
@@ -54,9 +54,8 @@
 
   
 </section>
-
 <!-- News Section -->
-<section id="news" class="py-20 bg-white min-h-auto">
+<section id="news" class="py-20 bg-white ">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
             <div class="inline-flex items-center rounded-full px-4 py-1 mb-4 bg-indigo-100 text-sky-800 border-sky-200">
@@ -70,7 +69,7 @@
         </div>
 
         <!-- Grid for news cards -->
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-8 news-grid">
             <!-- News Card 1 -->
             <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                 <div class="p-6">
@@ -121,6 +120,7 @@
         </div>
     </div>
 </section>
+
 
   <section id="how-it-works" class="py-20 bg-gradient-to-r from-blue-50 to-sky-50">
         <div class="container mx-auto px-4 md:px-6">
@@ -253,3 +253,136 @@
 
 
 </x-layout>
+<script>
+    // Register the GSAP ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Common ScrollTrigger settings
+    const scrollTriggerSettings = {
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none none",
+          markers: true
+    };
+
+    // Hero Section Animation
+    gsap.from(".hero-title", {
+        opacity: 0,
+        x: -150,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".hero-section",
+            ...scrollTriggerSettings
+        }
+    });
+
+    gsap.from(".hero-subtitle", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        delay: 0.3, 
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".hero-section",
+            ...scrollTriggerSettings
+        }
+    });
+
+    gsap.from(".button-left", {
+        opacity: 0,
+        x: -100,
+        duration: 0.5,
+        delay: 0.3,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".hero-section",
+            ...scrollTriggerSettings
+        }
+    });
+
+    gsap.from(".button-right", {
+        opacity: 0,
+        x: 100,
+        duration: 0.5,
+        delay: 0.3,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".hero-section",
+            ...scrollTriggerSettings
+        }
+    });
+
+    gsap.from(".hero-features div", {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        delay: 0.9,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".hero-features",
+            ...scrollTriggerSettings
+        }
+    });
+
+   gsap.from("#news h2, #news p", {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    stagger: 0.2,
+    scrollTrigger: {
+        trigger: "#news",
+        ...scrollTriggerSettings
+    }
+});
+
+
+
+    // How It Works Section Animation
+    gsap.from("#how-it-works h2, #how-it-works p", {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        stagger: 0.2,
+        scrollTrigger: {
+            trigger: "#how-it-works",
+            ...scrollTriggerSettings
+        }
+    });
+
+    gsap.from("#how-it-works .grid > div", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.3,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#how-it-works .grid",
+            ...scrollTriggerSettings
+        }
+    });
+
+    // FAQ Section Animation
+    gsap.from("#faq h2", {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        scrollTrigger: {
+            trigger: "#faq",
+            ...scrollTriggerSettings
+        }
+    });
+
+    gsap.from("#faq .collapse", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#faq .collapse",
+            ...scrollTriggerSettings
+        }
+    });
+</script>
