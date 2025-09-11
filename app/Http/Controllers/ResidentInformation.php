@@ -46,21 +46,21 @@ class ResidentInformation extends Controller
             'status' => $validated['status'],
         ]);
 
-        // Redirect with success message
+
         return redirect()->route('ShowRes')->with('success', 'Resident added successfully!');
     }
 
 
     public function edit($id)
     {
-        // Get the resident by ID
+
         $resident = Resident::findOrFail($id);
         return view('Modal.edit-resident', compact('resident'));
     }
 
     public function update(Request $request, $id)
     {
-        // Validate the input
+
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
@@ -72,7 +72,7 @@ class ResidentInformation extends Controller
             'status' => 'required|string|in:Active,Inactive',
         ]);
 
-        // Find the resident by ID and update their data
+
         $resident = Resident::findOrFail($id);
         $resident->update([
             'first_name' => $validated['first_name'],

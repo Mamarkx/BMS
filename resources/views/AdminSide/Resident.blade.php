@@ -32,7 +32,6 @@
             </tr>
         </thead>
         <tbody>
-            {{-- Loop through the residents --}}
             @foreach ($residents as $resident)
             <tr class="border-b border-gray-300 hover:bg-gray-50">
                 <td class="py-3 px-6 text-sm text-gray-800">{{ $resident->resident_id }}</td>
@@ -40,20 +39,31 @@
                 <td class="py-3 px-6 text-sm text-gray-800">{{ $resident->sex }}</td>
                 <td class="py-3 px-6 text-sm text-gray-800">{{ $resident->civil_status }}</td>
                <td class="py-3 px-6 text-sm text-gray-800">{{ \Carbon\Carbon::parse($resident->birth_date)->format('F j, Y') }}</td>
-                <td class="py-3 px-6 text-sm text-green-500">{{ $resident->status }}</td>
-                <td class="py-3 px-6 text-sm text-blue-500">
-                    <button class="text-blue-500 hover:text-blue-700 transition-colors "   data-id="{{ $resident->resident_id }}">
-                        <i class="fa-solid fa-eye"></i>
-                    </button>
-                    
-                            <button class="EditResidentInfo" data-id="{{ $resident->resident_id }}">
-                            <i class="fa-solid fa-pencil-alt"></i> Edit
-                        </button>
-
-                    <button class="text-red-500 hover:text-red-700 transition-colors ml-2" onclick="deleteRecord({{ $resident->resident_id }})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                <td class="py-3 px-6 text-sm">
+                <span class="inline-block px-3 py-1 rounded-full bg-green-100 text-green-700 font-medium">
+                    {{ $resident->status }}
+                </span>
                 </td>
+
+            <td class="py-4 px-6 text-lg">
+            <div class="flex items-center gap-4">
+                <!-- View Button -->
+                <button class="text-blue-600 hover:text-blue-800 transition-colors duration-200" data-id="{{ $resident->resident_id }}" title="View">
+                <i class="fa-solid fa-eye"></i>
+                </button>
+
+                <!-- Edit Button -->
+                <button class="EditResidentInfo text-green-600 hover:text-green-800 transition-colors duration-200" data-id="{{ $resident->resident_id }}" title="Edit">
+                <i class="fa-solid fa-pen-to-square cursor-pointer"></i>
+                </button>
+
+                <!-- Delete Button -->
+                <button class="text-red-600 hover:text-red-800 transition-colors duration-200" onclick="deleteRecord({{ $resident->resident_id }})" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+            </td>
+
             </tr>
             @endforeach
         </tbody>
@@ -66,103 +76,98 @@
                 {{ $residents->links() }}
             </div>
     </div>
-    <div id="edit-modal-container"></div>
+
+
+ <div id="edit-modal-container"></div>
+
 <dialog id="my_modal_1" class="modal">
-    <div class="modal-box bg-white rounded-xl shadow-2xl w-full max-w-4xl p-10">
-        <h3 class="text-4xl font-extrabold text-gray-900 mb-2 text-center">Add New Resident</h3>
-        <p class="text-center text-gray-500 mb-8">Please fill out the form to add a new resident to the system.</p>
+  <div class="modal-box bg-white rounded-xl shadow-2xl w-full max-w-4xl p-8">
+    <h3 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">Add New Resident</h3>
+    <p class="text-center text-gray-500 mb-6">Please fill out the form to add a new resident to the system.</p>
 
-        <form action="{{ route('addResident') }}" method="POST" class="space-y-8" enctype="multipart/form-data">
-            @csrf
+    <form action="{{ route('addResident') }}" method="POST" class="space-y-6" enctype="multipart/form-data">
+      @csrf
 
-            <!-- Personal Information -->
-            <div class="space-y-6">
-                <h4 class="text-2xl font-bold text-gray-800 border-b pb-2">Personal Information</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Personal Information -->
+      <div class="space-y-4">
+        <h4 class="text-xl font-bold text-gray-800 border-b pb-2">Personal Information</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
+          <div>
+            <label for="fname" class="block text-base font-medium text-gray-700">First Name</label>
+            <input type="text" id="fname" name="fname" class="input input-bordered w-full mt-1 p-3 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter first name" required>
+          </div>
 
-                    <!-- First Name -->
-                    <div class="mb-4">
-                        <label for="fname" class="block text-lg font-medium text-gray-700">First Name</label>
-                        <input type="text" id="fname" name="fname" class="input input-bordered w-full mt-2 p-4 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter first name" required>
-                    </div>
+          <div>
+            <label for="mname" class="block text-base font-medium text-gray-700">Middle Name (optional)</label>
+            <input type="text" id="mname" name="mname" class="input input-bordered w-full mt-1 p-3 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter middle name">
+          </div>
 
-                    <!-- Middle Name -->
-                    <div class="mb-4">
-                        <label for="mname" class="block text-lg font-medium text-gray-700">Middle Name (optional)</label>
-                        <input type="text" id="mname" name="mname" class="input input-bordered w-full mt-2 p-4 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter middle name">
-                    </div>
+          <div>
+            <label for="lname" class="block text-base font-medium text-gray-700">Last Name</label>
+            <input type="text" id="lname" name="lname" class="input input-bordered w-full mt-1 p-3 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter last name" required>
+          </div>
 
-                    <!-- Last Name -->
-                    <div class="mb-4">
-                        <label for="lname" class="block text-lg font-medium text-gray-700">Last Name</label>
-                        <input type="text" id="lname" name="lname" class="input input-bordered w-full mt-2 p-4 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter last name" required>
-                    </div>
+          <div>
+            <label for="sex" class="block text-base font-medium text-gray-700">Gender</label>
+            <select id="sex" name="sex" class="select select-bordered w-full mt-1" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 
-                    <!-- Gender -->
-                    <div class="mb-4">
-                        <label for="sex" class="block text-lg font-medium text-gray-700">Gender</label>
-                        <select id="sex" name="sex" class="select select-bordered w-full mt-2" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+          <div>
+            <label for="birth_date" class="block text-base font-medium text-gray-700">Birthdate</label>
+            <input type="date" id="birth_date" name="birth_date" class="input input-bordered w-full mt-1 p-3 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" required>
+          </div>
 
-                    <!-- Birthdate -->
-                    <div class="mb-4">
-                        <label for="birth_date" class="block text-lg font-medium text-gray-700">Birthdate</label>
-                        <input type="date" id="birth_date" name="birth_date" class="input input-bordered w-full mt-2 p-4 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" required>
-                    </div>
+          <div>
+            <label for="civil_status" class="block text-base font-medium text-gray-700">Civil Status</label>
+            <select id="civil_status" name="civil_status" class="select select-bordered w-full mt-1" required>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Widowed">Widowed</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-                    <!-- Civil Status -->
-                    <div class="mb-4">
-                        <label for="civil_status" class="block text-lg font-medium text-gray-700">Civil Status</label>
-                        <select id="civil_status" name="civil_status" class="select select-bordered w-full mt-2" required>
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Widowed">Widowed</option>
-                        </select>
-                    </div>
+      <!-- Contact & Residence -->
+      <div class="space-y-4">
+        <h4 class="text-xl font-bold text-gray-800 border-b pb-2">Contact & Residence</h4>
+        <div>
+          <label for="address" class="block text-base font-medium text-gray-700">Address</label>
+         <textarea id="address" name="address" rows="10" class="input input-bordered w-full mt-1 py-2 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter address" required></textarea>
+        </div>
+      </div>
 
-                </div>
-            </div>
+      <!-- Profile Photo -->
+      <div class="space-y-4">
+        <h4 class="text-xl font-bold text-gray-800 border-b pb-2">Profile Photo</h4>
+        <div>
+          <label for="photo_path" class="block text-base font-medium text-gray-700">Upload Profile Photo</label>
+          <input type="file" id="photo_path" name="photo_path" class="input input-bordered w-full mt-1 py-2 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
 
-            <!-- Contact & Residence -->
-            <div class="space-y-6">
-                <h4 class="text-2xl font-bold text-gray-800 border-b pb-2">Contact & Residence</h4>
-                <div class="mb-4">
-                    <label for="address" class="block text-lg font-medium text-gray-700">Address</label>
-                    <textarea id="address" name="address" class="input input-bordered w-full mt-2 p-4 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter address" required></textarea>
-                </div>
-            </div>
+      <!-- Status -->
+      <div>
+        <label for="status" class="block text-base font-medium text-gray-700">Status</label>
+        <select id="status" name="status" class="select select-bordered w-full mt-1" required>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
 
-            <!-- Profile Photo -->
-            <div class="space-y-6">
-                <h4 class="text-2xl font-bold text-gray-800 border-b pb-2">Profile Photo</h4>
-                <div class="mb-4">
-                    <label for="photo_path" class="block text-lg font-medium text-gray-700">Upload Profile Photo</label>
-                    <input type="file" id="photo_path" name="photo_path" class="input input-bordered w-full mt-2 p-4 rounded-lg shadow-sm border-gray-300 focus:ring-2 focus:ring-blue-500">
-                </div>
-            </div>
-
-            <!-- Status -->
-            <div class="mb-4">
-                <label for="status" class="block text-lg font-medium text-gray-700">Status</label>
-                <select id="status" name="status" class="select select-bordered w-full mt-2" required>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="mt-6 flex justify-end space-x-4">
-                <button type="submit" class="btn bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">Add Resident</button>
-                 <!-- Close Button -->
-        <button type="button" class="btn" onclick="document.getElementById('my_modal_1').close()">Close</button>
-            </div>
-        </form>
-    </div>
+      <!-- Submit & Close Buttons -->
+      <div class="mt-6 flex justify-end space-x-4">
+        <button type="submit" class="btn bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">Add Resident</button>
+        <button type="button" class="btn bg-gray-200 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-300" onclick="document.getElementById('my_modal_1').close()">Close</button>
+      </div>
+    </form>
+  </div>
 </dialog>
+
 
 
 </x-admin-layout>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\EmployeeManagement;
 use App\Http\Controllers\ResidentInformation;
 use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\ApplicationController;
 
 
 Route::get('/', [ServiceController::class, 'landingPage'])->name('Home');
@@ -68,7 +69,7 @@ Route::get('/residents/{id}/edit', [ResidentInformation::class, 'edit'])->name('
 
 // Update resident's details
 Route::put('/residents/{id}', [ResidentInformation::class, 'update'])->name('residents.update');
-
+Route::post('/submit-application', [ApplicationController::class, 'submitForm'])->name('submit.application');
 
 
 //dashboard

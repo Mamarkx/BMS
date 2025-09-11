@@ -1,4 +1,4 @@
-<div id="edit-resident-modal" class="fixed inset-0 flex items-center justify-center z-50 bg-white/10 backdrop-blur-sm">
+<div id="edit-resident-modal" class="fixed inset-0 flex items-center justify-center z-50 bg-black/60 ">
 
     <div class="bg-white p-6 rounded-lg w-full md:max-w-2xl max-w-md shadow-lg">
         <h2 class="text-xl font-semibold mb-4">Edit Resident</h2>
