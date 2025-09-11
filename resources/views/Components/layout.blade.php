@@ -150,6 +150,7 @@
         .step-item.completed .step-label {
             color: #1f2937; 
         }
+        
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">

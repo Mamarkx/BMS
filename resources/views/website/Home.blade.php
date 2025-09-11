@@ -55,7 +55,7 @@
   
 </section>
 <!-- News Section -->
-<section id="news" class="py-20 bg-white ">
+<section id="news-section" class="py-20 bg-white ">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
             <div class="inline-flex items-center rounded-full px-4 py-1 mb-4 bg-indigo-100 text-sky-800 border-sky-200">
@@ -254,135 +254,136 @@
 
 </x-layout>
 <script>
-    // Register the GSAP ScrollTrigger plugin
-    gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 
-    // Common ScrollTrigger settings
-    const scrollTriggerSettings = {
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-          markers: true
-    };
+  const scrollTriggerSettings = {
+    start: "top 80%",
+    end: "bottom 20%",
+    toggleActions: "play none none none",
+    
+  };
 
-    // Hero Section Animation
-    gsap.from(".hero-title", {
-        opacity: 0,
-        x: -150,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".hero-section",
-            ...scrollTriggerSettings
-        }
-    });
+  // Hero Section
+  gsap.from(".hero-title", {
+    opacity: 0,
+    x: -150,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".hero-section",
+      ...scrollTriggerSettings
+    }
+  });
 
-    gsap.from(".hero-subtitle", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        delay: 0.3, 
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".hero-section",
-            ...scrollTriggerSettings
-        }
-    });
+  gsap.from(".hero-subtitle", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    delay: 0.3,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".hero-section",
+      ...scrollTriggerSettings
+    }
+  });
 
-    gsap.from(".button-left", {
-        opacity: 0,
-        x: -100,
-        duration: 0.5,
-        delay: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".hero-section",
-            ...scrollTriggerSettings
-        }
-    });
+  gsap.from(".button-left", {
+    opacity: 0,
+    x: -100,
+    duration: 0.5,
+    delay: 0.3,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".hero-section",
+      ...scrollTriggerSettings
+    }
+  });
 
-    gsap.from(".button-right", {
-        opacity: 0,
-        x: 100,
-        duration: 0.5,
-        delay: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".hero-section",
-            ...scrollTriggerSettings
-        }
-    });
+  gsap.from(".button-right", {
+    opacity: 0,
+    x: 100,
+    duration: 0.5,
+    delay: 0.3,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".hero-section",
+      ...scrollTriggerSettings
+    }
+  });
 
-    gsap.from(".hero-features div", {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        delay: 0.9,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".hero-features",
-            ...scrollTriggerSettings
-        }
-    });
-
-   gsap.from("#news h2, #news p", {
+  gsap.from(".hero-features div", {
     opacity: 0,
     y: 20,
     duration: 0.8,
+    delay: 0.9,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".hero-features",
+      ...scrollTriggerSettings
+    }
+  });
+
+  document.querySelectorAll(".news-grid > div").forEach((card, i) => {
+    gsap.from(card, {
+      opacity: 0,
+      y: 50,
+      duration: 0.3,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",      
+        toggleActions: "play none none none",
+            
+      },
+      delay: i * 0.2           
+    });
+  });
+
+  // How It Works Section
+  gsap.from("#how-it-works h2, #how-it-works p", {
+    opacity: 0,
+    y: 50,
+    duration: 0.8,
     stagger: 0.2,
     scrollTrigger: {
-        trigger: "#news",
-        ...scrollTriggerSettings
+      trigger: "#how-it-works",
+      ...scrollTriggerSettings
     }
-});
+  });
 
+  gsap.from("#how-it-works .grid > div", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    stagger: 0.3,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#how-it-works .grid",
+      ...scrollTriggerSettings
+    }
+  });
 
+  // FAQ Section
+  gsap.from("#faq h2", {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    scrollTrigger: {
+      trigger: "#faq",
+      ...scrollTriggerSettings
+    }
+  });
 
-    // How It Works Section Animation
-    gsap.from("#how-it-works h2, #how-it-works p", {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-            trigger: "#how-it-works",
-            ...scrollTriggerSettings
-        }
-    });
-
-    gsap.from("#how-it-works .grid > div", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        stagger: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#how-it-works .grid",
-            ...scrollTriggerSettings
-        }
-    });
-
-    // FAQ Section Animation
-    gsap.from("#faq h2", {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        scrollTrigger: {
-            trigger: "#faq",
-            ...scrollTriggerSettings
-        }
-    });
-
-    gsap.from("#faq .collapse", {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#faq .collapse",
-            ...scrollTriggerSettings
-        }
-    });
+  gsap.from("#faq .collapse", {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#faq .collapse",
+      ...scrollTriggerSettings
+    }
+  });
 </script>
