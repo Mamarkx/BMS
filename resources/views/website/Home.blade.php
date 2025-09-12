@@ -262,7 +262,7 @@
         start: "top 80%",
         end: "bottom 20%",
         toggleActions: "play none none none",
-          markers: true
+          
     };
 
     // Hero Section Animation
