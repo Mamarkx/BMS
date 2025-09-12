@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
 {
+    public function ShowAllReq()
+    {
+        $data = Application::paginate(10);
+        return view('AdminSide.Clearance-Certificate', compact('data'));
+    }
+
+
+
     public function submitForm(Request $request)
     {
-        // Validate the incoming form data
         $validatedData = $request->validate([
             'first_name'    => 'required|string|max:255',
             'last_name'     => 'required|string|max:255',
@@ -34,5 +42,56 @@ class ApplicationController extends Controller
             'address_proof' => $addressProofPath,
         ]));
         return redirect()->route('Services')->with('success', 'Application submitted successfully.');
+    }
+
+
+    public function approve(Request $request, $id)
+    {
+        $document = Application::find($id);
+
+        // Ensure the document exists
+        if (!$document) {
+            return redirect()->back()->with('error', 'Document not found.');
+        }
+
+        // Update the status to 'Approved'
+        $document->status = 'Approved';
+        $document->approval_date = now();
+        $document->approved_by = 'barangay Chairman'; // Assuming you're tracking the user who approved it
+        $document->save();
+
+        return redirect()->route('ShowReq')->with('success', 'Document approved successfully!');
+    }
+
+    public function scheduleRelease(Request $request, $id)
+    {
+        $request->validate([
+            'release_date' => 'required|date|after_or_equal:today', // Ensure release date is valid
+        ]);
+
+        // Find the document by ID
+        $document = Application::find($id);
+
+        // Ensure the document exists
+        if (!$document) {
+            return redirect()->back()->with('error', 'Document not found.');
+        }
+
+        // Update the release date and status to 'Released'
+        $document->release_date = $request->input('release_date');
+        $document->released_by = 'Chairman'; // Assuming you're tracking who released the document
+        $document->status = 'Released'; // Optionally, change the status to Released
+        $document->save();
+
+        return redirect()->route('ShowReq')->with('success', 'Document release scheduled successfully!');
+    }
+    public function showApplications()
+    {
+        // Fetch applications where the user is the applicant (assuming user_id field in applications)
+        $id = Auth::user()->id;
+        $applications = Application::where('user_id',  $id)->get();
+
+        // Pass applications data to the view
+        return view('website.application', compact('applications'));
     }
 }

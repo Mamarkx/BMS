@@ -43,5 +43,12 @@ class Application extends Model
     protected $casts = [
         'dob' => 'date:Y-m-d',
         'issue_date' => 'date:Y-m-d',
+        'approval_date' => 'datetime',
+        'release_date' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

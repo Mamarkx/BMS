@@ -17,13 +17,13 @@ Route::get('/services', [ServiceController::class, 'ShowServices'])->name('Servi
 //     return view('auth.login');
 // });
 
+Route::middleware(['CheckUser'])->group(function () { //added middle for unauthorized user
+    // Route for displaying service form
+    Route::get('/service/{service_slug}', [ServiceController::class, 'showForm'])->name('service.form');
 
-// Route for displaying service form
-Route::get('/service/{service_slug}', [ServiceController::class, 'showForm'])->name('service.form');
-
-// Route for handling form submission
-Route::post('/service/{service_slug}/submit', [ServiceController::class, 'submitForm'])->name('service.submit');
-
+    // Route for handling form submission
+    Route::post('/service/{service_slug}/submit', [ServiceController::class, 'submitForm'])->name('service.submit');
+});
 
 Route::get('/about', function () {
     return view('website.About');
@@ -36,13 +36,21 @@ Route::get('/contact', function () {
 
 Route::get('/login', [AuthController::class, "ShowLogin"])->name('loginPage');
 Route::get('/register', [AuthController::class, 'ShowRegister'])->name('RegisterPage');
-
+Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::get('/checkuser', function () {
     dd(Auth::user()->name ?? 'No Account LogIn');
 });
 
+//applications 
+Route::middleware('CheckUser')->group(function () {
+    // Route for viewing applications
+    Route::get('/applications', [ApplicationController::class, 'showApplications'])->name('applications');
+});
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
 
 //Google
 Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirect'])->name('auth.google.redirect');
@@ -54,7 +62,16 @@ Route::get('/auth/google/callback', [SocialAuthController::class, 'callback'])->
 
 
 
-//adminSid
+//adminSide
+
+
+
+//dashboard
+Route::get('/admin', function () {
+    return view('AdminSide.Admin');
+})->name('dash');
+
+
 
 //employee management
 Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');
@@ -62,17 +79,21 @@ Route::get('/employee', [EmployeeManagement::class, 'ShowEmp'])->name('ShowEmplo
 
 //resident information
 Route::get('/resident', [ResidentInformation::class, 'ShowResident'])->name('ShowRes');
-
 Route::post('/add-resident', [ResidentInformation::class, 'StoreResident'])->name('addResident');
 // Show the form for editing a resident
 Route::get('/residents/{id}/edit', [ResidentInformation::class, 'edit'])->name('residents.edit');
-
-// Update resident's details
 Route::put('/residents/{id}', [ResidentInformation::class, 'update'])->name('residents.update');
+
+
+//clearance and certificate
+Route::get('/request', [ApplicationController::class, 'ShowAllReq'])->name('ShowReq');
 Route::post('/submit-application', [ApplicationController::class, 'submitForm'])->name('submit.application');
+Route::post('/approve-document/{id}', [ApplicationController::class, 'approve'])->name('approve.document');
+Route::post('/schedule-release/{id}', [ApplicationController::class, 'scheduleRelease'])->name('schedule.release');
 
 
-//dashboard
-Route::get('/admin', function () {
-    return view('AdminSide.Admin');
-})->name('dash');
+
+//Attendance management
+Route::get('/Attendance', function () {
+    return view('AdminSide.Attendance');
+})->name('attendManage');

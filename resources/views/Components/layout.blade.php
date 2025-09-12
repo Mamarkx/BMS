@@ -173,11 +173,49 @@
 <div class="hidden md:flex items-center gap-3">
   @auth
     <!-- If the user is authenticated, show the avatar icon -->
-    <a href="#" class="flex items-center gap-2 text-white hover:text-blue-200">
-<img src="https://avatar.iran.liara.run/username?username={{ urlencode(Auth::user()->name) }}" alt="Avatar" class="w-8 h-8 rounded-full">
-
-      <span>{{ Auth::user()->name }}</span>
+<div class="relative">
+    <a href="#" class="group flex items-center gap-2 text-white hover:text-white/80 focus:outline-none transition-colors duration-200" id="avatarDropdownBtn">
+        <img src="https://avatar.iran.liara.run/username?username={{ urlencode(Auth::user()->name) }}" alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-300 group-hover:border-white transition-all duration-300 transform group-hover:scale-105">
+        <span class="hidden lg:block text-sm font-normal">{{ Auth::user()->name }}</span>
+        <svg class="w-3 h-3 ml-1 text-white group-hover:text-white/80 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
     </a>
+
+    <div id="avatarDropdown" class="absolute right-0 hidden mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-xl ring-1 ring-gray-200 focus:outline-none animate-fade-in-up transform origin-top-right">
+        <div class="py-1">
+            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md mx-1 my-0.5 transition-colors duration-200 group">
+                <i class="fa-solid fa-user-circle w-4 text-center mr-2 text-gray-500 group-hover:text-indigo-600 transition-colors"></i>Profile
+            </a>
+            <a href="{{ route('applications') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md mx-1 my-0.5 transition-colors duration-200 group">
+                <i class="fa-solid fa-list-check w-4 text-center mr-2 text-gray-500 group-hover:text-indigo-600 transition-colors"></i>Applications
+            </a>
+        </div>
+        <div class="border-t border-gray-100 py-1">
+            <form action="{{ route('logout') }}" method="POST" id="logoutForm">
+                @csrf
+                <button type="submit" class="w-full text-left flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 rounded-md mx-1 my-0.5 transition-colors duration-200 group">
+                    <i class="fa-solid fa-arrow-right-from-bracket w-4 text-center mr-2 text-red-500 group-hover:text-red-700 transition-colors"></i>Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.25s ease-out forwards;
+}
+</style>
+
   @else
     <!-- If the user is not authenticated, show the Login and Sign Up buttons -->
     <a href="{{ route('loginPage') }}" class="text-blue-200 hover:text-white hover:bg-blue-800/50 px-3 py-2 rounded-lg transition-all duration-200">
@@ -324,3 +362,28 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </body>
 </html>
+<script>
+// Toggle the dropdown when clicking on the avatar
+document.getElementById('avatarDropdownBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const dropdown = document.getElementById('avatarDropdown');
+    
+    // Toggle visibility of the dropdown
+    dropdown.classList.toggle('hidden');
+});
+
+// Close the dropdown if clicked outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('avatarDropdown');
+    const avatarBtn = document.getElementById('avatarDropdownBtn');
+    
+    // Close dropdown if the click is outside the avatar and dropdown
+    if (!avatarBtn.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden');
+    }
+});
+
+
+
+</script>

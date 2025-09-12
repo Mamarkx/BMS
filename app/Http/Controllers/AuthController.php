@@ -15,11 +15,13 @@ class AuthController extends Controller
     {
         return view('website.auth.register');
     }
-    public function logout(Request $request)
+    public function destroy(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate(); //invalidate the user session   
-        $request->session()->regenerateToken(); //regenerate token
-        return redirect('/');
+        Auth::logout(); // Logs out the authenticated user
+
+        $request->session()->invalidate(); // Invalidates the session
+        $request->session()->regenerateToken(); // Regenerates CSRF token
+
+        return redirect('/login'); // Redirects the user to the login page
     }
 }

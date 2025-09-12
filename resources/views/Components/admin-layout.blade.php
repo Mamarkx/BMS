@@ -33,7 +33,7 @@
                         <img src="{{ asset('images/san-agustin.png') }}" class="h-16 w-16 rounded-full" alt="Barangay Logo" />                 
                     <h1 class="text-xl font-semibold text-white ml-4 tracking-wide">San Agustin</h1>
                 </div>
-                <i class="fa-solid fa-angle-left hidden md:flex"></i>
+                {{-- <i class="fa-solid fa-angle-left hidden md:flex"></i> --}}
              {{-- <i id="close-btn" class="fa-solid fa-xmark text-white cursor-pointer p-3 rounded-md transition-all duration-300 hover:rotate-90 hidden"></i> --}}
             </div>
                 <!-- Navigation -->
@@ -56,12 +56,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                <a href="{{ route('ShowReq') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
                                     <i class="fa-solid fa-address-book text-xl"></i><span class="ml-2">Clearance & Certificates</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                <a href="{{ route('attendManage') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
                                     <i class="fa-solid fa-calendar-check text-xl"></i><span class="ml-2">Attendance Management</span>
                                 </a>
                             </li>
