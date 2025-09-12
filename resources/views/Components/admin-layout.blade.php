@@ -21,53 +21,70 @@
     </style>
 </head>
  
-<body>
+<body data-theme="light">
 
     <div class="flex h-screen w-full">
         <!-- Sidebar -->
-        <aside id="sidebar" class="fixed md:static h-screen bg-[#1E3A8A] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
+        <aside id="sidebar" class="fixed md:static h-screen bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
             <div>
                 <!-- Brand and Close Button -->
-            <div class="flex items-center justify-between mb-2  px-6 bg-[#1E40AF] ">
+            <div class="flex items-center justify-between mb-2 px-6 border-b border-white/40">
                 <div class="flex items-center py-2">              
                         <img src="{{ asset('images/san-agustin.png') }}" class="h-16 w-16 rounded-full" alt="Barangay Logo" />                 
                     <h1 class="text-xl font-semibold text-white ml-4 tracking-wide">San Agustin</h1>
                 </div>
-                <i class="fa-solid fa-angle-left hidden md:flex"></i>
-                <i id="close-btn" class="fa-solid fa-xmark text-white cursor-pointer  p-3 rounded-md transition-all duration-300 hover:rotate-90 md:hidden"></i>
+                {{-- <i class="fa-solid fa-angle-left hidden md:flex"></i> --}}
+             {{-- <i id="close-btn" class="fa-solid fa-xmark text-white cursor-pointer p-3 rounded-md transition-all duration-300 hover:rotate-90 hidden"></i> --}}
             </div>
                 <!-- Navigation -->
                 <div class="p-5">
                     <nav>
-                        <ul class="space-y-4">
+                    <ul class="space-y-4">
                             <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                    <span><i class="fas fa-home w-5"></i></span> <span>Dashboard</span>
+                                <a href="{{ route('dash') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fas fa-home text-xl"></i><span class="ml-2">Dashboard</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                    <span><i class="fa-solid fa-book w-5"></i></span> <span>Books Management</span>
+                                <a href="{{ route('ShowEmployee') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-book text-xl"></i><span class="ml-2">Employee Management</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                    <span><i class="fa-solid fa-users w-5"></i></span> <span>User Management</span>
+                                <a href="{{ route('ShowRes') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-users text-xl"></i><span class="ml-2">Resident Information</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                    <span><i class="fa-solid fa-address-book w-5"></i></span> <span>Borrowing Transactions</span>
+                                <a href="{{ route('ShowReq') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-address-book text-xl"></i><span class="ml-2">Clearance & Certificates</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('attendManage') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-calendar-check text-xl"></i><span class="ml-2">Attendance Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-tasks text-xl"></i><span class="ml-2">Task Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-users-cog text-xl"></i><span class="ml-2">User Management</span>
                                 </a>
                             </li>
                         </ul>
+
+
                     </nav>
                 </div>
             </div>
 
             <!-- Profile and Logout Section -->
             <div class="">
-                <div class="flex items-center justify-between p-4  bg-[#1E40AF] shadow-sm transition-colors duration-200">
+                <div class="flex items-center justify-between p-4 shadow-sm transition-colors duration-200 border-white/40 border-t">
                     <div class="flex items-center space-x-4">
                         <img src="https://ui-avatars.com/api/?name=John+Mark&background=7E22CE&color=fff&size=64" alt="Profile Picture" class="w-12 h-12 rounded-full object-cover">
                         <div>
@@ -86,35 +103,30 @@
         </aside>
 
         <!-- Main Content -->
-        <div id="main-content" class="flex-1 w-full bg-[#F3F4F6]">
-            <nav class="h-16 bg-white border-b px-4 flex items-center justify-between">
+        <div id="main-content" class="flex-1 w-full bg-[#F4F4F4]">
+            <nav class="h-16 bg-white border-b px-4 flex items-center justify-between border-gray-200">
                 <button id="toggle-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
-                    <i class="fa-solid fa-bars text-xl"></i>
+                    <i class="fa-solid fa-bars text-xl text-stone-900"></i>
                 </button>
                 <div class="flex items-center gap-4">
                     <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
-                        <a href='#'><i class="fa-solid fa-user-gear text-xl"></i></a>
+                        <a href='#'><i class="fa-solid fa-user-gear text-xl text-stone-900"></i></a>
                     </button>
                 </div>
             </nav>
             <div class="p-6">
                 <main >
-                    <!-- Main content goes here -->
+                    {{ $slot }}
                 </main>
             </div>
         </div>
     </div>
     <script>
         $(document).ready(function () {
-    // Sidebar item click event to set active state
-    $('.sidebar-link').on('click', function () {
-        // Remove the 'active' class from all sidebar links
+    $('.sidebar-link').on('click', function () {      
         $('.sidebar-link').removeClass('bg-indigo-50 text-indigo-600');
-
-        // Add 'active' class to the clicked link
         $(this).addClass('bg-indigo-50 text-indigo-600');
     });
-
             $('#toggle-btn').on('click', function () {
                 $('#sidebar').toggleClass('-ml-72 ml-0');
             });
@@ -140,5 +152,4 @@
     </script>
   
 </body>
-
 </html>

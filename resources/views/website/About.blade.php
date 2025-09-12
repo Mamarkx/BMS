@@ -1,5 +1,3 @@
-<x-layout>
-<section id="aboutUs" class="py-20 bg-gradient-to-r from-blue-50 to-sky-50 min-h-screen">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
             <div class="inline-flex items-center rounded-full px-4 py-1 mb-4 bg-indigo-100 text-sky-800 border-sky-200">

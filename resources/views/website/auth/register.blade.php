@@ -35,7 +35,8 @@
             <p class="text-gray-200 text-lg">Sign up to access barangay e-services</p>
         </div>
 
-        <form method="POST" action="" class="space-y-6">
+        <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6">
+        @csrf
        <div role="alert" id="password-error" class="alert alert-error hidden flex items-center space-x-3 bg-red-100 text-red-800 border-l-4 border-red-500 p-4 rounded-md shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -50,7 +51,7 @@
                 <div>
                     <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Name</label>
                     <div class="relative">
-                        <input type="text" id="first_name" name="first_name"
+                        <input type="text" id="first_name" name="name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your first name">
                     </div>
@@ -96,14 +97,28 @@
                 </div>
             </div>
 
-            <!-- "I agree" Checkbox -->
-            <div class="flex items-center mt-4">
-                <input type="checkbox" id="terms" name="terms" required 
-                    class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>
-                <p for="terms" class="ml-2 block text-sm text-gray-200">
-                    I agree to the <a class="text-blue-400 hover:text-blue-500 font-semibold hover:underline cursor-pointer" onclick="my_modal_3.showModal()">Terms of Service and Data Privacy</a>
-                </p>
-            </div>
+       <!-- "I agree" Checkbox -->
+<div class="flex items-center mt-4">
+    <!-- Main checkbox that Laravel validates -->
+    <input 
+        type="checkbox" 
+        id="terms" 
+        name="terms" 
+        required 
+        class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+    />
+
+    <label for="terms" class="ml-2 block text-sm text-gray-200">
+        I agree to the 
+        <a 
+            class="text-blue-400 hover:text-blue-500 font-semibold hover:underline cursor-pointer"
+            onclick="my_modal_3.showModal()"
+        >
+            Terms of Service and Data Privacy
+        </a>
+    </label>
+</div>
+
             
             <!-- Register Button -->
             <div class="pt-2">
@@ -241,6 +256,28 @@ $(document).ready(function() {
       $('#submit-button').prop('disabled', !isChecked);
     });
 
+    $('#submit-button').on('click', function () {
+      $('#my_modal_3')[0].close();
+    });
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    // Sync modal "agree" checkbox with form "terms"
+    $('#agree').on('change', function () {
+      let isChecked = $(this).prop('checked');
+      $('#terms').prop('checked', isChecked);
+      $('#submit-button').prop('disabled', !isChecked);
+    });
+
+    // Sync back if form "terms" is changed directly
+    $('#terms').on('change', function () {
+      let isChecked = $(this).prop('checked');
+      $('#agree').prop('checked', isChecked);
+      $('#submit-button').prop('disabled', !isChecked);
+    });
+
+    // Close modal when Proceed is clicked
     $('#submit-button').on('click', function () {
       $('#my_modal_3')[0].close();
     });
