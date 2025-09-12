@@ -41,7 +41,8 @@
             <p class="text-gray-200 text-lg">Sign in to your account</p>
         </div>
 
-        <form method="POST" action="" class="space-y-6">
+        <form method="POST" action="{{ route('login.submit') }}" class="space-y-6">
+        @csrf
             <!-- Email Input -->
             <div>
                 <label for="email" class="block text-sm font-semibold text-gray-200 mb-2">Email Address</label>

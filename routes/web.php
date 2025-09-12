@@ -36,6 +36,10 @@ Route::get('/contact', function () {
 
 Route::get('/login', [AuthController::class, "ShowLogin"])->name('loginPage');
 Route::get('/register', [AuthController::class, 'ShowRegister'])->name('RegisterPage');
+
+Route::post('/RegisterAccount', [AuthController::class, 'RegisterAcc'])->name('RegisterAcc');
+Route::post('/login', [AuthController::class, 'loginAcc'])->name('login.submit');
+
 Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::get('/checkuser', function () {
     dd(Auth::user()->name ?? 'No Account LogIn');
