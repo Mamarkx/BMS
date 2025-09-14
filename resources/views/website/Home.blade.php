@@ -1,3 +1,11 @@
+<!-- Back to Top Button -->
+<button id="backToTop" 
+    class="hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+    </svg>
+</button>
+
 <x-layout>
  <section class="hero-section relative min-h-screen flex items-center justify-center pt-20 bg-cover bg-center" style="background-image: url('https://i.ibb.co/kVGV9RYr/tumblr-d2804c5300ec9fbee8af853ed1599077-008e2c13-1280.jpg');">
   <div class="absolute inset-0 hero-overlay-left"></div>
@@ -252,16 +260,12 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-    // Common ScrollTrigger settings
-    const scrollTriggerSettings = {
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-          
-    };
-
-
-
+  const scrollTriggerSettings = {
+    start: "top 80%",
+    end: "bottom 20%",
+    toggleActions: "play none none none",
+    
+  };
   gsap.from(".hero-title", {
     opacity: 0,
     x: -150,
@@ -384,4 +388,22 @@
       ...scrollTriggerSettings
     }
   });
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 0.5) {
+    backToTop.classList.remove("hidden");
+  } else {
+    backToTop.classList.add("hidden");
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
 </script>

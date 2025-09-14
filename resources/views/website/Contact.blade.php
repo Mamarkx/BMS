@@ -15,7 +15,6 @@
 
  <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
     <div class="flex flex-wrap lg:flex-nowrap">
-        <!-- Left Side (Contact Information) -->
         <div class="p-8 lg:p-12 bg-blue-900 rounded-xl flex-1 ">
             <h3 class="text-2xl md:text-3xl font-bold text-white">Contact Information</h3>
             <p class="mt-4 text-white">
@@ -65,8 +64,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- Right Side (Message Form) -->              
+             
         <div class="p-8 lg:p-12 flex-2">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-800">Send us a Message</h3>
             <form action="#" method="POST" class="mt-8 space-y-6">

@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Barangay e-Services Registration</title>
-    <!-- Use Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5/s6gTjN1jW6C9I/52Mh35Q3x/C6y7pWz8B6pGf3vK2eQ9pLqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
@@ -21,13 +19,13 @@
 <body class="font-sans antialiased">
 
 <div class="h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('https://i.ibb.co/kVGV9RYr/tumblr-d2804c5300ec9fbee8af853ed1599077-008e2c13-1280.jpg');">
-    <!-- Overlay to make form readable on the image -->
+
     <div class="absolute inset-0 bg-black opacity-50"></div>
     
-    <!-- Registration Card Container -->
+
     <div class="relative z-10 w-full max-w-lg p-8 mx-4 bg-white/20 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
         
-        <!-- Title and Subtitle -->
+        
         <div class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow">
                 Create an Account
@@ -44,9 +42,6 @@
             <span class="text-sm font-medium">Passwords do not match!</span>
         </div>
 
-
-            
-            <!-- First and Last Name Inputs -->
             {{-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> --}}
                 <div>
                     <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Name</label>
@@ -77,7 +72,7 @@
                 </div>
             </div>
 
-            <!-- Password Input -->
+        
             <div>
                 <label for="password" class="block text-sm font-semibold text-gray-200 mb-2">Password</label>
                 <div class="relative">
@@ -87,7 +82,7 @@
                 </div>
             </div>
             
-            <!-- Confirm Password Input -->
+        
             <div>
                 <label for="password_confirmation" class="block text-sm font-semibold text-gray-200 mb-2">Confirm Password</label>
                 <div class="relative">
@@ -96,31 +91,26 @@
                         placeholder="Confirm your password">
                 </div>
             </div>
+            <div class="flex items-center mt-4">
 
-       <!-- "I agree" Checkbox -->
-<div class="flex items-center mt-4">
-    <!-- Main checkbox that Laravel validates -->
-    <input 
-        type="checkbox" 
-        id="terms" 
-        name="terms" 
-        required 
-        class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
-    />
+                <input 
+                    type="checkbox" 
+                    id="terms" 
+                    name="terms" 
+                    required 
+                    class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                />
 
-    <label for="terms" class="ml-2 block text-sm text-gray-200">
-        I agree to the 
-        <a 
-            class="text-blue-400 hover:text-blue-500 font-semibold hover:underline cursor-pointer"
-            onclick="my_modal_3.showModal()"
-        >
-            Terms of Service and Data Privacy
-        </a>
-    </label>
-</div>
-
-            
-            <!-- Register Button -->
+                <label for="terms" class="ml-2 block text-sm text-gray-200">
+                    I agree to the 
+                    <a 
+                        class="text-blue-400 hover:text-blue-500 font-semibold hover:underline cursor-pointer"
+                        onclick="my_modal_3.showModal()"
+                    >
+                        Terms of Service and Data Privacy
+                    </a>
+                </label>
+            </div>
             <div class="pt-2">
                 <button type="submit" id="submit-btn"
                     class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg 
@@ -131,14 +121,14 @@
                 </button>
             </div>
             
-            <!-- Separator -->
+     
             <div class="flex items-center justify-center py-4">
                 <hr class="flex-grow border-t border-gray-400" />
                 <span class="mx-4 text-gray-300 text-sm font-medium">or</span>
                 <hr class="flex-grow border-t border-gray-400" />
             </div>
             
-            <!-- Sign In link -->
+       
             <p class="text-center text-sm text-gray-200">
                 Already have an account?
                 <a href="{{ route('loginPage') }}" class="text-blue-200 hover:text-blue-100 font-semibold hover:underline transition-colors duration-200">Sign in here</a>
@@ -151,7 +141,7 @@
 <dialog id="my_modal_3" class="modal rounded-2xl shadow-xl backdrop:bg-black/40">
   <div class="modal-box p-8 bg-white text-gray-800 rounded-2xl max-w-2xl w-full">
     <form method="dialog">
-      <!-- Close button positioned absolutely in the top-right corner -->
+ 
       <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -162,7 +152,7 @@
     <h3 class="text-3xl font-bold text-center text-blue-800 mb-2">Terms of Service & Privacy Policy</h3>
     <p class="text-center text-gray-500 mb-8">Please review the following before creating your account.</p>
 
-    <!-- Terms of Service section -->
+   
     <div class="space-y-6">
         <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
             <h4 class="text-xl font-semibold text-gray-700">1. Terms of Service</h4>
@@ -177,7 +167,7 @@
             </ul>
         </div>
 
-        <!-- Data Privacy section -->
+
         <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
             <h4 class="text-xl font-semibold text-gray-700">2. Data Privacy Policy</h4>
             <p class="mt-2 text-gray-600 text-sm">
@@ -192,7 +182,7 @@
         </div>
     </div>
 
-    <!-- Checkbox for Terms agreement -->
+ 
     <div class="mt-8 flex items-center">
       <input type="checkbox" id="agree" name="agree" class="h-5 w-5 rounded-md text-blue-600 border-gray-300 focus:ring-blue-500 cursor-pointer" required>
       <label for="agree" class="ml-3 block text-base text-gray-700">
@@ -200,7 +190,7 @@
       </label>
     </div>
 
-    <!-- Confirmation button -->
+    
     <div class="mt-6 flex justify-end">
       <button id="submit-button" class="px-6 py-3 w-full sm:w-auto bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all" disabled>
         Proceed
@@ -263,21 +253,21 @@ $(document).ready(function() {
 </script>
 <script>
   $(document).ready(function () {
-    // Sync modal "agree" checkbox with form "terms"
+ 
     $('#agree').on('change', function () {
       let isChecked = $(this).prop('checked');
       $('#terms').prop('checked', isChecked);
       $('#submit-button').prop('disabled', !isChecked);
     });
 
-    // Sync back if form "terms" is changed directly
+
     $('#terms').on('change', function () {
       let isChecked = $(this).prop('checked');
       $('#agree').prop('checked', isChecked);
       $('#submit-button').prop('disabled', !isChecked);
     });
 
-    // Close modal when Proceed is clicked
+
     $('#submit-button').on('click', function () {
       $('#my_modal_3')[0].close();
     });
