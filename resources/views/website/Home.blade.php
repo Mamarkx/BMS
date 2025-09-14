@@ -252,12 +252,14 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  const scrollTriggerSettings = {
-    start: "top 80%",
-    end: "bottom 20%",
-    toggleActions: "play none none none",
-    
-  };
+    // Common ScrollTrigger settings
+    const scrollTriggerSettings = {
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none none",
+          
+    };
+
 
 
   gsap.from(".hero-title", {
