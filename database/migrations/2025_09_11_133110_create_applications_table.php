@@ -26,19 +26,18 @@ return new class extends Migration
             $table->string('purpose');
             $table->date('issue_date');
 
-            // Status of the request (Pending, Approved, Rejected)
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
 
-            // Fields for storing file paths for ID proof and address proof (optional)
-            $table->string('id_proof')->nullable(); // Store single file path for ID proof
-            $table->string('address_proof')->nullable(); // Store single file path for address proof
 
-            // New fields for approval and release scheduling
-            $table->date('approval_date')->nullable(); // The date when the application is approved
-            $table->string('approved_by')->nullable(); // The person who approved the document (e.g., Barangay Chairman)
+            $table->string('id_proof')->nullable();
+            $table->string('address_proof')->nullable();
 
-            $table->date('release_date')->nullable(); // The date when the document will be released
-            $table->string('released_by')->nullable(); // The person who released the document
+
+            $table->date('approval_date')->nullable();
+            $table->string('approved_by')->nullable();
+
+            $table->date('release_date')->nullable();
+            $table->string('released_by')->nullable();
 
             $table->timestamps();
         });

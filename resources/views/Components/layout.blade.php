@@ -9,11 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Add jQuery and Slick CSS/JS -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
       @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -116,13 +115,13 @@
         }
         
         .step-item.completed .line {
-            background-color: #3b82f6; /* blue-500 */
+            background-color: #3b82f6; 
         }
 
         .step-item .icon-container {
             width: 28px;
             height: 28px;
-            border-radius: 9999px; /* full rounded */
+            border-radius: 9999px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -155,14 +154,14 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 <main id="main">
- <!-- Header -->
+
 <div class="fixed top-0 z-50 w-full bg-blue-900 backdrop-blur-md border-b border-blue-800/50 transition-all duration-300 p-2">
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
     <div class="logo-side flex items-center gap-3">
-      <img src="https://i.postimg.cc/bw7zj5ty/logo-san-agustin.png" class="w-12 h-12" alt="San Agustin Logo" />
+      <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
       <span class="text-xl font-bold text-white">San Agustin</span>
     </div>
-    <!-- Desktop View -->
+   
     <div class="nav-options hidden md:flex items-center gap-1">
       <a href="{{ route('Home') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
       <a href="{{ route('Services') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Services</a>
@@ -172,7 +171,7 @@
 
 <div class="hidden md:flex items-center gap-3">
   @auth
-    <!-- If the user is authenticated, show the avatar icon -->
+
 <div class="relative">
     <a href="#" class="group flex items-center gap-2 text-white hover:text-white/80 focus:outline-none transition-colors duration-200" id="avatarDropdownBtn">
         <img src="https://avatar.iran.liara.run/username?username={{ urlencode(Auth::user()->name) }}" alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-300 group-hover:border-white transition-all duration-300 transform group-hover:scale-105">
@@ -217,7 +216,6 @@
 </style>
 
   @else
-    <!-- If the user is not authenticated, show the Login and Sign Up buttons -->
     <a href="{{ route('loginPage') }}" class="text-blue-200 hover:text-white hover:bg-blue-800/50 px-3 py-2 rounded-lg transition-all duration-200">
       Login
     </a>
@@ -227,7 +225,6 @@
   @endauth
 </div>
 
-     <!-- Mobile View -->
     <div class="md:hidden">
       <input id="my-drawer" type="checkbox" class="drawer-toggle hidden" />
       <div class="drawer-content">
@@ -240,11 +237,10 @@
         <ul class="menu bg-blue-900 text-white min-h-full w-80 p-4">
           <li class="mb-4 border-white border-b">
             <div class="logo-side flex items-center gap-3">
-              <img src="https://i.postimg.cc/bw7zj5ty/logo-san-agustin.png" class="w-12 h-12" alt="San Agustin Logo" />
+              <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
               <span class="text-xl font-bold text-white">San Agustin</span>
             </div>
           </li>
-             <!-- Mobile options View -->
           <li>
             <a href="{{ route('Home') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
           </li>
@@ -272,7 +268,7 @@
     </div>
   </div>
 </div>
-    <!-- Landing Section -->
+
    <div class="div">
    
     {{ $slot }}
@@ -280,14 +276,14 @@
    </div>
 
 </main>
-    <!-- Footer Section -->
+
     <footer class="bg-blue-950 text-white py-12">
         <div class="container mx-auto px-4 md:px-6">
             <div class="grid md:grid-cols-3 gap-8">
            <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-12 h-12 flex items-center justify-center">
-                        <img src="https://i.postimg.cc/bw7zj5ty/logo-san-agustin.png" class="w-12 h-12" alt="San Agustin Logo" />
+                        <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
                     </div>
                     <span class="text-xl font-bold">San Agustin</span>
                 </div>
@@ -348,7 +344,7 @@
                     </ul>
                 </div>
             </div>
-         <!-- Copyright Notice -->
+
         <div class="border-t border-blue-800 mt-12 pt-8 text-center text-blue-300">
             <div class="max-w-3xl mx-auto">
                 <p class="text-lg font-medium">&copy; {{ date('Y') }} Barangay San Agustin. All rights reserved.</p>
@@ -363,22 +359,21 @@
 </body>
 </html>
 <script>
-// Toggle the dropdown when clicking on the avatar
 document.getElementById('avatarDropdownBtn').addEventListener('click', function(event) {
     event.preventDefault();
     
     const dropdown = document.getElementById('avatarDropdown');
     
-    // Toggle visibility of the dropdown
+    
     dropdown.classList.toggle('hidden');
 });
 
-// Close the dropdown if clicked outside
+
 document.addEventListener('click', function(event) {
     const dropdown = document.getElementById('avatarDropdown');
     const avatarBtn = document.getElementById('avatarDropdownBtn');
     
-    // Close dropdown if the click is outside the avatar and dropdown
+
     if (!avatarBtn.contains(event.target) && !dropdown.contains(event.target)) {
         dropdown.classList.add('hidden');
     }

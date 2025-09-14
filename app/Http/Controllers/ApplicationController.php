@@ -40,6 +40,7 @@ class ApplicationController extends Controller
             'status'        => 'Pending',
             'id_proof'      => $idProofPath,
             'address_proof' => $addressProofPath,
+            'user_id'       => Auth::user()->id
         ]));
         return redirect()->route('Services')->with('success', 'Application submitted successfully.');
     }
@@ -49,7 +50,7 @@ class ApplicationController extends Controller
     {
         $document = Application::find($id);
 
-        // Ensure the document exists
+
         if (!$document) {
             return redirect()->back()->with('error', 'Document not found.');
         }
@@ -77,10 +78,9 @@ class ApplicationController extends Controller
             return redirect()->back()->with('error', 'Document not found.');
         }
 
-        // Update the release date and status to 'Released'
         $document->release_date = $request->input('release_date');
-        $document->released_by = 'Chairman'; // Assuming you're tracking who released the document
-        $document->status = 'Released'; // Optionally, change the status to Released
+        $document->released_by = 'Chairman';
+        $document->status = 'Released';
         $document->save();
 
         return redirect()->route('ShowReq')->with('success', 'Document release scheduled successfully!');
