@@ -1,9 +1,7 @@
-<!-- Back to Top Button -->
+
 <button id="backToTop" 
-    class="hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-    </svg>
+    class="hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-4 cursor-pointer rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300">
+    <i class="fa-solid fa-arrow-up h-5 w-6 text-xl"></i>
 </button>
 
 <x-layout>
@@ -392,7 +390,7 @@
 const backToTop = document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 0.5) {
+  if (window.scrollY > 100) {
     backToTop.classList.remove("hidden");
   } else {
     backToTop.classList.add("hidden");
