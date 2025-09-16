@@ -9,13 +9,13 @@ class Resident extends Model
 {
     use HasFactory;
 
-    // Define the table associated with the model (if different from plural of class name)
+
     protected $table = 'residents';
 
-    // Define the primary key
+
     protected $primaryKey = 'resident_id';
 
-    // Define which attributes are mass assignable
+
     protected $fillable = [
         'first_name',
         'middle_name',

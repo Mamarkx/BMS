@@ -1,3 +1,9 @@
+
+<button id="backToTop" 
+    class="hidden fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-4 cursor-pointer rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300">
+    <i class="fa-solid fa-arrow-up h-5 w-6 text-xl"></i>
+</button>
+
 <x-layout>
  <section class="hero-section relative min-h-screen flex items-center justify-center pt-20 bg-cover bg-center" style="background-image: url('https://i.ibb.co/kVGV9RYr/tumblr-d2804c5300ec9fbee8af853ed1599077-008e2c13-1280.jpg');">
   <div class="absolute inset-0 hero-overlay-left"></div>
@@ -48,13 +54,13 @@
     </div>
 
     <div class="hidden lg:block">
-      <!-- This column is intentionally left empty as the image is now the background -->
+   
     </div>
   </div>
 
   
 </section>
-<!-- News Section -->
+
 <section id="news-section" class="py-20 bg-white ">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
@@ -68,9 +74,9 @@
             </p>
         </div>
 
-        <!-- Grid for news cards -->
+
         <div class="grid md:grid-cols-3 gap-8 news-grid">
-            <!-- News Card 1 -->
+         
             <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                 <div class="p-6">
                     <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-blue-100 text-blue-800">
@@ -86,7 +92,7 @@
                 </div>
             </div>
 
-            <!-- News Card 2 -->
+   
             <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                 <div class="p-6">
                     <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-green-100 text-green-800">
@@ -102,7 +108,6 @@
                 </div>
             </div>
 
-            <!-- News Card 3 -->
             <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                 <div class="p-6">
                     <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-purple-100 text-purple-800">
@@ -125,18 +130,15 @@
   <section id="how-it-works" class="py-20 bg-gradient-to-r from-blue-50 to-sky-50">
         <div class="container mx-auto px-4 md:px-6">
             <div class="text-center mb-16">
-                <!-- Main heading -->
                 <h2 class="text-4xl font-bold text-blue-900 mb-4">How It Works</h2>
-                <!-- Subheading/description -->
                 <p class="text-xl text-blue-700 max-w-2xl mx-auto">
                     Simple, fast, and efficient. Get your documents in just three easy steps.
                 </p>
             </div>
 
-            <!-- Grid container for the three steps -->
             <div class="grid md:grid-cols-3 gap-8">
 
-                <!-- Step 1 Card -->
+     
                 <div class="text-center p-6">
                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full step-number-bg text-white text-2xl font-bold mb-4">
                         1
@@ -152,7 +154,7 @@
                     </p>
                 </div>
 
-                <!-- Step 2 Card -->
+
                 <div class="text-center p-6">
                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full step-number-bg text-white text-2xl font-bold mb-4">
                         2
@@ -168,7 +170,7 @@
                     </p>
                 </div>
 
-                <!-- Step 3 Card -->
+         
                 <div class="text-center p-6">
                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full step-number-bg text-white text-2xl font-bold mb-4">
                         3
@@ -185,7 +187,7 @@
                 </div>
 
             </div>
-                         <!-- View all services button -->
+
             <div class="text-center mt-12">
                 <a href="{{ route('Services') }}" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300">
                     View All Services
@@ -204,7 +206,7 @@
         <h2 class="text-4xl font-bold text-blue-900 mb-4 text-center" >Frequently Asked Questions</h2>
         
         <div class="mt-8 space-y-6">
-            <!-- FAQ Item 1 -->
+
             <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
@@ -215,7 +217,7 @@
                 </div>
             </div>
             
-            <!-- FAQ Item 2 -->
+
             <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
@@ -226,7 +228,7 @@
                 </div>
             </div>
 
-            <!-- FAQ Item 3 -->
+
             <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
@@ -237,7 +239,7 @@
                 </div>
             </div>
 
-            <!-- FAQ Item 4 -->
+   
             <div class="collapse collapse-plus border bg-white border-gray-300 rounded-lg">
                 <input type="checkbox" class="peer" />
                 <div class="collapse-title text-lg font-medium text-gray-900 peer-checked:text-blue-600">
@@ -256,16 +258,12 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-    // Common ScrollTrigger settings
-    const scrollTriggerSettings = {
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-          
-    };
-
-
-  // Hero Section
+  const scrollTriggerSettings = {
+    start: "top 80%",
+    end: "bottom 20%",
+    toggleActions: "play none none none",
+    
+  };
   gsap.from(".hero-title", {
     opacity: 0,
     x: -150,
@@ -342,7 +340,7 @@
     });
   });
 
-  // How It Works Section
+
   gsap.from("#how-it-works h2, #how-it-works p", {
     opacity: 0,
     y: 50,
@@ -366,7 +364,7 @@
     }
   });
 
-  // FAQ Section
+
   gsap.from("#faq h2", {
     opacity: 0,
     y: 20,
@@ -388,4 +386,22 @@
       ...scrollTriggerSettings
     }
   });
+
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    backToTop.classList.remove("hidden");
+  } else {
+    backToTop.classList.add("hidden");
+  }
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
 </script>

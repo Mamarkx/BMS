@@ -1,4 +1,5 @@
-    <div class="container mx-auto px-4 md:px-6">
+  <x-layout>
+    <div class="container mx-auto px-4 py-20 md:px-6">
         <div class="text-center mb-16">
             <div class="inline-flex items-center rounded-full px-4 py-1 mb-4 bg-indigo-100 text-sky-800 border-sky-200">
                 <i class="fa-solid fa-building mr-1"></i>
@@ -9,10 +10,8 @@
                 Learn more about our barangay and our commitment to serving the community.
             </p>
         </div>  
-        <!-- Barangay Card Section -->
         <div class="barangay-card bg-white w-full h-auto p-6 rounded-lg ">
             <div class="flex flex-col md:flex-row">             
-                <!-- Left Content -->
                 <div class="left flex-1 mb-6 md:mb-0 px-10">
                     <div class="content">
                         <h1 class="font-bold text-3xl mb-10 text-blue-900">Our Barangay San Agustin</h1>
@@ -31,7 +30,6 @@
                     </div>
                 </div>
                 
-                <!-- Right Image -->
                 <div class="right flex-1">
                     <img src="https://i.ibb.co/kVGV9RYr/tumblr-d2804c5300ec9fbee8af853ed1599077-008e2c13-1280.jpg" alt="Barangay Image" class="w-full h-auto object-cover rounded-lg shadow-md">
                 </div>
@@ -44,8 +42,6 @@
 <section id="mission-vision" class="py-20 bg-white min-h-auto">
     <div class="container mx-auto px-4 md:px-6"> 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <!-- Mission Card -->
             <div class="card bg-white p-8 rounded-lg  border border-gray-300">
                 <div class="logo flex justify-center mb-3">
                     <div class="circle bg-blue-500 p-2 h-14 w-14 rounded-full text-white flex justify-center items-center">
@@ -59,8 +55,6 @@
                     <p>To provide quality services to our community through transparency, effective governance, and active participation of all residents in creating a better future for Barangay San Agustin.</p>
                 </div>
             </div>
-
-            <!-- Vision Card -->
             <div class="card bg-white p-8 rounded-lg border border-gray-300">
                 <div class="logo flex justify-center mb-6">
                     <div class="circle bg-blue-500 p-4 h-16 w-16 rounded-full text-white flex justify-center items-center">
@@ -74,8 +68,6 @@
                     <p>We envision Barangay San Agustin as a progressive, peaceful, and sustainable community where every citizen thrives with dignity and a sense of belonging.</p>
                 </div>
             </div>
-
-            <!-- Our Values Card -->
             <div class="card bg-white p-8 rounded-lg border border-gray-300">
                 <div class="logo flex justify-center mb-6">
                     <div class="circle bg-blue-500 p-4 h-16 w-16 rounded-full text-white flex justify-center items-center">
@@ -103,7 +95,7 @@
             </p>
         </div> 
         
-    <!-- Slick Carousel -->
+ 
     <div class="leadership-carousel slick-carousel">
         <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
             <div class="logo flex justify-center mb-6">

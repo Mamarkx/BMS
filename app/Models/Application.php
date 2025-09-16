@@ -9,10 +9,10 @@ class Application extends Model
 {
     use HasFactory;
 
-    // Define the table name if it's not following Laravel's convention
+
     protected $table = 'applications';
 
-    // Specify which attributes can be mass-assigned
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -27,11 +27,11 @@ class Application extends Model
         'purpose',
         'issue_date',
         'status',
-        'id_proof',        // File path for ID proof
-        'address_proof',   // File path for Address proof
+        'id_proof',
+        'address_proof',
+        'user_id',
     ];
 
-    // Specify the date attributes if using Carbon for date manipulation
     protected $dates = [
         'dob',
         'issue_date',
@@ -39,7 +39,7 @@ class Application extends Model
         'updated_at',
     ];
 
-    // If you want to manipulate dates with a specific format, you can do it here
+
     protected $casts = [
         'dob' => 'date:Y-m-d',
         'issue_date' => 'date:Y-m-d',
