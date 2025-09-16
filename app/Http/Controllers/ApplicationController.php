@@ -40,6 +40,7 @@ class ApplicationController extends Controller
             'status'        => 'Pending',
             'id_proof'      => $idProofPath,
             'address_proof' => $addressProofPath,
+            'user_id'  =>   3
         ]));
         return redirect()->route('Services')->with('success', 'Application submitted successfully.');
     }

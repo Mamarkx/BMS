@@ -159,7 +159,8 @@
 <div class="fixed top-0 z-50 w-full bg-blue-900 backdrop-blur-md border-b border-blue-800/50 transition-all duration-300 p-2">
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
     <div class="logo-side flex items-center gap-3">
-      <img src="https://i.postimg.cc/bw7zj5ty/logo-san-agustin.png" class="w-12 h-12" alt="San Agustin Logo" />
+      <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
+          
       <span class="text-xl font-bold text-white">San Agustin</span>
     </div>
     <!-- Desktop View -->
