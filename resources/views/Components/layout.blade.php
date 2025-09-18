@@ -172,7 +172,15 @@
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
     <div class="logo-side flex items-center gap-2">
       <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
+<<<<<<< HEAD
       <span class="text-xl font-bold text-white">Brgy. San Agustin</span>
+=======
+<<<<<<< HEAD
+          
+=======
+>>>>>>> 97e5c4327a9502e504f2e962a53b10d5c930df82
+      <span class="text-xl font-bold text-white">San Agustin</span>
+>>>>>>> 14ad22799423243f7c1d3f7adabc81a609836796
     </div>
    
     <div class="nav-options hidden md:flex items-center gap-1">
