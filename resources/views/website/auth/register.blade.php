@@ -18,12 +18,12 @@
 </head>
 <body class="font-sans antialiased">
 
-<div class="h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('https://i.ibb.co/kVGV9RYr/tumblr-d2804c5300ec9fbee8af853ed1599077-008e2c13-1280.jpg');">
+<div class="h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
 
     <div class="absolute inset-0 bg-black opacity-50"></div>
     
 
-    <div class="relative z-10 w-full max-w-lg p-8 mx-4 bg-white/20 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
+    <div class="relative z-10 w-full max-w-6xl p-8 mx-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
         
         
         <div class="text-center mb-8">
@@ -42,25 +42,42 @@
             <span class="text-sm font-medium">Passwords do not match!</span>
         </div>
 
-            {{-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> --}}
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                 <div>
-                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Name</label>
+                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">First Name *</label>
                     <div class="relative">
                         <input type="text" id="first_name" name="name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your first name">
                     </div>
                 </div>
-{{-- 
+                
+
                 <div>
-                    <label for="last_name" class="block text-sm font-semibold text-gray-200 mb-2">Last Name</label>
+                    <label for="last_name" class="block text-sm font-semibold text-gray-200 mb-2">Surn  ame Name*</label>
                     <div class="relative">
                         <input type="text" id="last_name" name="last_name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your last name">
                     </div>
-                </div> --}}
-            {{-- </div> --}}
+                </div>
+                  <div>
+                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Middle Name (Optional)</label>
+                    <div class="relative">
+                        <input type="text" id="first_name" name="name"
+                            class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                            placeholder="Enter your first name">
+                    </div>
+                </div>
+                  <div>
+                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Suffix (Optional)</label>
+                    <div class="relative">
+                        <input type="text" id="first_name" name="name"
+                            class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                            placeholder="Enter your first name">
+                    </div>
+                </div>
+            </div>
 
             <!-- Email Input -->
             <div>

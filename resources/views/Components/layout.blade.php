@@ -13,8 +13,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/2.21.0/core.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper.js CDN -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
       @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
       body {
@@ -154,19 +158,28 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 <main id="main">
+@php
+  $blueRoutes = ['Services', 'About', 'Contact'];
+@endphp
 
-<div class="fixed top-0 z-50 w-full bg-blue-900 backdrop-blur-md border-b border-blue-800/50 transition-all duration-300 p-2">
+<div id="header"
+     class="fixed top-0 z-50 w-full border-b transition-all duration-300 p-2 backdrop-blur-md
+     {{ in_array(Route::currentRouteName(), $blueRoutes) ? 'bg-blue-900 border-blue-800/50' : 'bg-transparent border-transparent' }}">
+    <!-- Navbar -->
+
+  <!-- Your header content -->
+    <!-- Navbar -->
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
-    <div class="logo-side flex items-center gap-3">
+    <div class="logo-side flex items-center gap-2">
       <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
-      <span class="text-xl font-bold text-white">San Agustin</span>
+      <span class="text-xl font-bold text-white">Brgy. San Agustin</span>
     </div>
    
     <div class="nav-options hidden md:flex items-center gap-1">
-      <a href="{{ route('Home') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
-      <a href="{{ route('Services') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Services</a>
-      <a href="{{ route('About') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">About</a>
-      <a href="{{ route('Contact') }}" class="nav-link px-4 py-2 text-sm font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Contact</a>
+      <a href="{{ route('Home') }}" class="nav-link px-4 py-2 text-md font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
+      <a href="{{ route('Services') }}" class="nav-link px-4 py-2 text-md font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Services</a>
+      <a href="{{ route('About') }}" class="nav-link px-4 py-2 text-md font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">About</a>
+      <a href="{{ route('Contact') }}" class="nav-link px-4 py-2 text-md font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Contact</a>
     </div>
 
 <div class="hidden md:flex items-center gap-3">
@@ -238,7 +251,7 @@
           <li class="mb-4 border-white border-b">
             <div class="logo-side flex items-center gap-3">
               <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
-              <span class="text-xl font-bold text-white">San Agustin</span>
+              <span class="text-xl font-bold text-white">Brgy San Agustin</span>
             </div>
           </li>
           <li>
@@ -289,15 +302,12 @@
                 </div>
                 <p class="text-blue-200">Providing efficient digital services to our community members.</p>
                 <div class="mt-4">
-                    <a href="https://www.facebook.com" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
+                    <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
                         <i class="fab fa-facebook fa-lg"></i>
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="https://www.twitter.com" target="_blank" class="text-blue-600 hover:text-blue-800">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
+                  <a href="mailto:brgysanagustin13@gmail.com" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
+                      <i class="fa-solid fa-envelope fa-lg"></i>
+                  </a>
                 </div>
             </div>
 
@@ -333,13 +343,19 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                             San Agustin, Philippines
                         </li>
+                       <ul class="space-y-2 text-blue-200" >
                         <li class="flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2h-7.64a2 2 0 0 1-2.18-2v-3a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"></path><path d="M18 16.92a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2z"></path><path d="M12 18v6"></path><path d="M12 18h8"></path></svg>
-                            (+63) 900 000 0000
+                          <i class="fas fa-phone w-4 h-4 "></i>
+                          <span>Admin Office: <strong>8936-1295</strong></span>
                         </li>
                         <li class="flex items-center gap-2">
+                          <i class="fas fa-shield-alt w-4 h-4 "></i>
+                          <span>BPSO: <strong>82876248</strong></span> | <strong>0919-0647-974</strong></span>
+                        </li>
+                      </ul>
+                        <li class="flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            support@sanagustin.gov.ph
+                            brgysanagustin13@gmail.com
                         </li>
                     </ul>
                 </div>
@@ -381,4 +397,22 @@ document.addEventListener('click', function(event) {
 
 
 
+</script>
+<script>
+  const header = document.getElementById("header");
+  const isBlueRoute = @json(in_array(Route::currentRouteName(), $blueRoutes));
+
+  if (!isBlueRoute) {
+    // Only apply scroll effect on routes that are NOT services/about/contact
+    window.addEventListener("scroll", () => {
+      const scrolled = window.scrollY > 100;
+
+      header.classList.toggle("bg-blue-900", scrolled);
+      header.classList.toggle("border-blue-800/50", scrolled);
+      header.classList.toggle("backdrop-blur-md", scrolled);
+
+      header.classList.toggle("bg-transparent", !scrolled);
+      header.classList.toggle("border-transparent", !scrolled);
+    });
+  }
 </script>

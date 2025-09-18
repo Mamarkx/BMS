@@ -36,10 +36,11 @@ class SocialAuthController extends Controller
             Auth::login($existingUser);
         } else {
             // Otherwise, create a new user and log them in
-            $newUser = User::updateOrCreate([ 
+            $newUser = User::updateOrCreate([
                 'email' => $user->email
             ], [
                 'name' => $user->name,
+                'birthday' => $user->birthday,
                 'password' => bcrypt(Str::random(16)), // Set a random password
                 'email_verified_at' => now()
             ]);

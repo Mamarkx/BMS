@@ -12,7 +12,7 @@
                     </svg>
                     Our Services
                 </div>
-                <h2 class="text-4xl font-bold text-blue-900 mb-4">What Can We Help You With?</h2>
+                <h2 class="text-4xl font-bold text-blue-900 mb-4">How can we help you?</h2>
                 <p class="text-xl text-blue-700 max-w-3xl mx-auto">
                     Access all government services digitally. No more long queues, no more paperwork hassles.
                 </p>

@@ -28,8 +28,7 @@
                     </div>
                     <div class="ml-4">
                         <h4 class="text-lg font-semibold text-white">Address</h4>
-                        <p class="text-white">Barangay Hall, Main Street</p>
-                        <p class="text-white">City, Province, 1234</p>
+                        <p class="text-white">Patnubay St. Cor. Katarungan Saint Francis / Blueville Subdivision. Barangay San Agustin , Novaliches, Quezon City.</p>
                     </div>
                 </div>
                 <div class="flex items-start">
@@ -38,7 +37,7 @@
                     </div>
                     <div class="ml-4">
                         <h4 class="text-lg font-semibold text-white">Phone</h4>
-                        <p class="text-white">Main Office: (123) 456-7890</p>
+                        <p class="text-white">Admin Office: 8936-1295</p>
                         <p class="text-white">Emergency: (123) 456-7899</p>
                     </div>
                 </div>
