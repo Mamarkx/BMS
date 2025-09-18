@@ -27,16 +27,16 @@
 </head>
 <body class="font-sans antialiased">
 
-<div class="h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('https://i.ibb.co/kVGV9RYr/tumblr-d2804c5300ec9fbee8af853ed1599077-008e2c13-1280.jpg');">
-    <div class="absolute inset-0 bg-black opacity-50 "></div>
+<div class="h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('images/bg.jpg') }}');">
+    <div class="absolute inset-0 bg-black opacity-70 "></div>
     
    
-    <div class="relative z-10 w-full max-w-lg p-8 mx-4 bg-white/20 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
+    <div class="relative z-10 w-full max-w-lg p-8 mx-4 bg-white/10 backdrop-blur-md  rounded-xl shadow-2xl border border-white/20">
         
      
         <div class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow">
-                Barangay e-Services
+                 San Agustin <span class="text-blue-500">E-Services</span>
             </h1>
             <p class="text-gray-200 text-lg">Sign in to your account</p>
         </div>
@@ -91,7 +91,7 @@
                 </button>
             </div>
          
-            <div class="flex items-center justify-center py-4">
+            {{-- <div class="flex items-center justify-center py-4">
                 <hr class="flex-grow border-t border-gray-400" />
                 <span class="mx-4 text-gray-300 text-sm font-medium">or</span>
                 <hr class="flex-grow border-t border-gray-400" />
@@ -101,8 +101,8 @@
             <a href="{{ route('auth.google.redirect') }}" class="w-full py-3 px-6 bg-white text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 flex items-center justify-center space-x-4">
                 <img src="https://i.ibb.co/TBWZHXPv/google.png" alt="Google logo" class="h-5 w-5" />
                 <span>Sign in with Google</span>
-            </a>
-        
+            </a> --}}
+           
             <p class="text-center text-sm text-gray-200">
                 Don't have an account?
                 <a href="{{ route('RegisterPage') }}" class="text-blue-200 hover:text-blue-100 font-semibold hover:underline transition-colors duration-200">Sign up here</a>
