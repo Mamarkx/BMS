@@ -58,4 +58,9 @@ class BarangayIDController extends Controller
         // Redirect back with success message
         return redirect()->route('barangay.id')->with('success', 'Document release scheduled successfully and email sent!');
     }
+    public function show($id)
+    {
+        $document = FormID::findOrFail($id);
+        return view('AdminSide.services.showBrgyID', compact('document'));
+    }
 }

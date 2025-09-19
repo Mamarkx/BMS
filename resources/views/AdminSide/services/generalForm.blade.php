@@ -37,7 +37,10 @@
                         </td>
                         <td class="py-4 px-6 text-lg flex items-center gap-2">
                             <!-- View/Edit/Delete -->
-                            <button class="text-blue-600 hover:text-blue-800"><i class="fa-solid fa-eye"></i></button>
+                            <a href="{{ route('generalID.show', $d->id) }}" class="text-blue-600 hover:text-blue-800">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+
                             <button class="text-gray-600 hover:text-green-800"><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="text-red-600 hover:text-red-800" onclick="deleteRecord({{ $d->id }})"><i class="fa-solid fa-trash"></i></button>
 

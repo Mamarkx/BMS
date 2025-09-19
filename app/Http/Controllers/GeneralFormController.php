@@ -58,4 +58,9 @@ class GeneralFormController extends Controller
         // Redirect back with success message
         return redirect()->route('general.form')->with('success', 'Document release scheduled successfully and email sent!');
     }
+    public function show($id)
+    {
+        $form = GeneralForm::findOrFail($id);
+        return view('AdminSide.viewData.show-General-ID', compact('form'));
+    }
 }
