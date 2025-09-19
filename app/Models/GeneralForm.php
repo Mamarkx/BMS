@@ -2,18 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Application extends Model
+class GeneralForm extends Model
 {
-    use HasFactory;
 
-
-    protected $table = 'applications';
-
-
+    protected $table = 'general_form';
     protected $fillable = [
+        'user_id',
         'reference_number',
         'first_name',
         'last_name',
@@ -21,32 +17,26 @@ class Application extends Model
         'suffix',
         'dob',
         'civil_status',
-        'phone',
+        'year_of_residency',
         'email',
+        'place_of_birth',
+        'age',
         'address',
+        'amount',
         'type',
         'purpose',
         'issue_date',
         'status',
         'id_proof',
-        'user_id',
+        'approval_date',
+        'approved_by',
+        'release_date',
+        'released_by',
     ];
-
-    protected $dates = [
-        'dob',
-        'issue_date',
-        'created_at',
-        'updated_at',
-    ];
-
-
     protected $casts = [
-        'dob' => 'date:Y-m-d',
-        'issue_date' => 'date:Y-m-d',
-        'approval_date' => 'datetime',
         'release_date' => 'datetime',
     ];
-
+    // app/Models/FormID.php
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

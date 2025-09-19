@@ -42,42 +42,48 @@
             <span class="text-sm font-medium">Passwords do not match!</span>
         </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
                 <div>
                     <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">First Name *</label>
                     <div class="relative">
-                        <input type="text" id="first_name" name="name"
+                        <input type="text" id="first_name" name="first_name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your first name">
                     </div>
                 </div>
-                
-
                 <div>
-                    <label for="last_name" class="block text-sm font-semibold text-gray-200 mb-2">Surn  ame Name*</label>
+                    <label for="last_name" class="block text-sm font-semibold text-gray-200 mb-2">Last Name*</label>
                     <div class="relative">
                         <input type="text" id="last_name" name="last_name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                             placeholder="Enter your last name">
                     </div>
                 </div>
-                  <div>
-                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Middle Name (Optional)</label>
+                <div>
+                    <label for="middle_name" class="block text-sm font-semibold text-gray-200 mb-2">Middle Name (Optional)</label>
                     <div class="relative">
-                        <input type="text" id="first_name" name="name"
+                        <input type="text" id="middle_name" name="middle_name"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                            placeholder="Enter your first name">
+                            placeholder="Enter your middle name">
                     </div>
                 </div>
-                  <div>
-                    <label for="first_name" class="block text-sm font-semibold text-gray-200 mb-2">Suffix (Optional)</label>
+                <div>
+                    <label for="suffix" class="block text-sm font-semibold text-gray-200 mb-2">Suffix (Optional)</label>
                     <div class="relative">
-                        <input type="text" id="first_name" name="name"
+                        <input type="text" id="suffix" name="suffix"
                             class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                            placeholder="Enter your first name">
+                            placeholder="Enter your suffix">
                     </div>
                 </div>
             </div>
+            <div>
+        <label for="address" class="block text-sm font-semibold text-gray-200 mb-2">Address</label>
+        <div class="relative">
+            <input type="text" id="address" name="address"
+                class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                placeholder="Enter your address">
+        </div>
+    </div>
 
             <!-- Email Input -->
             <div>

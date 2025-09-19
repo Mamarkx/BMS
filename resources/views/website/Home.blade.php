@@ -18,7 +18,7 @@
         </h1>
       </div>
       <p class="hero-subtitle text-xl max-w-2xl leading-relaxed text-blue-100 lg:text-white">
- Barangay e-services offer online platforms for residents to access various government services, such as permits, clearances,and updates, making processes faster and more convenient
+Barangay e-Services is an online platform primarily established to provide residents with efficient access to essential barangay services. It is designed to streamline administrative processes, reduce waiting times, promote faster and more convenient transactions within the community.
       </p>
         {{-- <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a href="{{ route('Services') }}" class="button-left bg-blue-400 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center">
@@ -62,9 +62,8 @@
     width: 370px;
     height: 350px;
     text-align: justify;
-    background-color: #fff; 
+    background-color: rgba(255, 255, 255, 0.973); 
     border-radius: 10px;
-    padding: 20px;
     transition: 0.5s;
     left: calc(50% - 185px); 
     top: 0;
@@ -95,77 +94,80 @@
  <div class="slider flex-1 h-screen  justify-center items-center hidden md:flex py-10">
   <div class="swiper-container w-full max-w-7xl relative">
 <div class="swiper-wrapper">
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-blue-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 text-blue-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-file-signature text-2xl"></i>
-      </div>
-      <h3 class="text-2xl font-semibold text-gray-900 mb-2">Barangay Clearance</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">A certification that you are in good standing with your local community. Required for many legal and personal transactions.</p>
-    </div>
-  </div>
 
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-green-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-hand-holding-usd text-2xl"></i>
-      </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">Indigency Certificate</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">Issued to residents below the poverty threshold for financial assistance or government support.</p>
+    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-2 bg-blue-500 p-5"></div>
+        <div class="p-8 flex flex-col justify-center items-center text-center  bg-blue-100">
+            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
+                <i class="fas fa-hand-holding-usd text-4xl text-gray-700"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Indigency Certificate</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Issued to residents below the poverty threshold for financial assistance or government support.</p>
+        </div>
+        <div class="h-2 bg-blue-500 p-6"></div>
     </div>
-  </div>
 
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-yellow-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-yellow-100 text-yellow-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-home text-2xl"></i>
-      </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">Residency Certificate</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">Certifies residence within the Barangay for legal purposes such as enrollment or employment.</p>
+    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-2 bg-blue-500 p-5"></div>
+        <div class="p-8 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
+            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
+                <i class="fas fa-home text-4xl text-gray-700"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Residency Certificate</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Certifies residence within the Barangay for legal purposes such as enrollment or employment.</p>
+        </div>
+        <div class="h-2 bg-blue-500 p-6"></div>
     </div>
-  </div>
 
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-pink-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-pink-100 text-pink-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-user-check text-2xl"></i>
-      </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">First Time Job Seeker</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">Issued to individuals seeking employment for the first time to avail benefits under government programs.</p>
+    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-2 bg-blue-500 p-5"></div>
+        <div class="p-8 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
+            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
+                <i class="fas fa-user-check text-4xl text-gray-700"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-0">First Time Job Seeker</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Issued to individuals seeking employment for the first time to avail benefits under government programs.</p>
+        </div>
+        <div class="h-2 bg-blue-500 p-6"></div>
     </div>
-  </div>
 
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-indigo-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-id-card text-2xl"></i>
-      </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">Cedula</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">Proof of payment for community tax, required for various transactions in the Philippines.</p>
+    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-2 bg-blue-500 p-5"></div>
+        <div class="p-9 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
+            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
+                <i class="fas fa-id-card text-4xl text-gray-700"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Cedula</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Proof of payment for community tax, required for various transactions in the Philippines.</p>
+        </div>
+        <div class="h-2 bg-blue-500 p-6"></div>
     </div>
-  </div>
 
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-teal-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-teal-100 text-teal-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-id-badge text-2xl"></i>
-      </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">Barangay ID Form</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">A valid identification card issued to residents of the Barangay, used for official purposes within the community.</p>
+    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-2 bg-blue-500 p-5"></div>
+        <div class="p-8 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
+            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
+                <i class="fas fa-id-badge text-4xl text-gray-700"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Barangay ID Form</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">A valid identification card issued to residents of the Barangay, used for official purposes within the community.</p>
+        </div>
+        <div class="h-2 bg-blue-500 p-6"></div>
     </div>
-  </div>
 
-  <div class="swiper-slide item group flex flex-col bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:border-orange-500 hover:shadow-lg">
-    <div class="p-8 flex flex-col justify-start items-center text-center">
-      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 text-orange-600 mb-4 transition-transform duration-300 group-hover:scale-110">
-        <i class="fas fa-business-time text-2xl"></i>
-      </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">Business Permit</h3>
-      <p class="text-gray-600 text-sm leading-relaxed">Certifies that a business is legally registered and authorized to operate within the Barangay, ensuring compliance with local regulations.</p>
+    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="h-2 bg-blue-500 p-4"></div>
+        <div class="p-8 flex flex-col justify-center items-center text-center  bg-blue-100">
+            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
+                <i class="fas fa-business-time text-4xl text-gray-700"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Business Permit</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Certifies that a business is legally registered and authorized to operate within the Barangay, ensuring compliance with local regulations.</p>
+        </div>
+        <div class="h-2 bg-blue-500 p-6"></div>
     </div>
-  </div>
+
 </div>
-
     <!-- Pagination and Navigation -->
     <div  id="next"></div>
     <div  id="prev"></div>
@@ -618,3 +620,20 @@ setInterval(() => {
 
 loadShow();
 </script>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: '{{ session('success') }}',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        iconColor: '#ffffff',
+        background: '#22c55e', 
+        color: '#ffffff'
+    });
+</script>
+@endif

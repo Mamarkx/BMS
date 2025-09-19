@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cedula;
+use App\Models\FormID;
+use App\Models\GeneralForm;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\BusinessPermit;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -35,15 +41,20 @@ class ServiceController extends Controller
                 'icon' => '<i class="fa-solid fa-calendar-check text-xl"></i>'
             ],
             [
-                'title' => 'Community Tax Certificate (Cedula)',
+                'title' => 'Cedula',
                 'description' => 'Request and pay for your cedula online, required for various legal and official transactions.',
                 'icon' => '<i class="fa-solid fa-id-card text-xl"></i>'
             ],
+            [
+                'title' => 'First Time Job Seeker',
+                'description' => 'Apply for your First Time Job Seeker Certificate, required for fresh graduates entering the workforce.',
+                'icon' => '<i class="fa-solid fa-briefcase text-xl"></i>'
+            ],
         ];
-
 
         return view('website.Service', compact('services'));
     }
+
     public function landingPage()
     {
         return view('website.Home');
@@ -51,98 +62,246 @@ class ServiceController extends Controller
 
     public function showForm($service_slug)
     {
-        $services = [
-            'barangay-clearance' => [
-                'title' => 'Barangay Clearance',
-                'description' => 'A clearance from the Barangay certifying your good standing.',
-                'requirements' => [
-                    'Valid government-issued ID (e.g., passport, driver\'s license)',
-                    'Proof of Residency (e.g., utility bill, lease agreement, or voter\'s ID)'
-                ],
-                'service_fee' => '100',
-                'processing_time' => '3-5 business days',
-                'icon' => '<i class="fas fa-check-circle"></i>'
-            ],
-            'cedula' => [
-                'title' => 'Community Tax Certificate (Cedula)',
-                'description' => 'The Community Tax Certificate (cedula) is required for various legal and official transactions.',
-                'requirements' => [
-                    'Valid government-issued ID (e.g., passport, driver\'s license)',
-                    'Proof of Residence (e.g., utility bill, lease agreement, or any other document that proves your residency)',
-                    'Payment of community tax (if required)'
-                ],
-                'service_fee' => '50',
-                'processing_time' => '1-2 business days',
-                'icon' => '<i class="fas fa-id-card"></i>'
-            ],
-            'certificate-of-residency' => [
-                'title' => 'Certificate of Residency',
-                'description' => 'A certificate from the Barangay confirming your place of residence.',
-                'requirements' => [
-                    'Valid government-issued ID (e.g., passport, driver\'s license)',
-                    'Proof of Residency (e.g., utility bill, lease contract, or any valid proof of address)',
-                ],
-                'service_fee' => '100',
-                'processing_time' => '2-4 business days',
-                'icon' => '<i class="fas fa-home"></i>'
-            ],
-            'certificate-of-indigency' => [
-                'title' => 'Certificate of Indigency',
-                'description' => 'A certificate from the Barangay certifying your indigent status.',
-                'requirements' => [
-                    'Valid government-issued ID (e.g., passport, driver\'s license)',
-                    'Proof of Indigency (e.g., government aid certificate, low-income declaration, or certification from a social welfare office)',
-                ],
-                'service_fee' => '50',
-                'processing_time' => '3-5 business days',
-                'icon' => '<i class="fas fa-hand-holding-heart"></i>'
-            ],
-            'business-permit-endorsement' => [
-                'title' => 'Business Permit Endorsement',
-                'description' => 'Endorsement for obtaining a business permit from the Barangay.',
-                'requirements' => [
-                    'Business Registration Certificate (e.g., DTI/SEC registration)',
-                    'Valid government-issued ID',
-                    'Proof of Business Location (e.g., lease contract, title of property, or Barangay Business Permit)',
-                ],
-                'service_fee' => '200',
-                'processing_time' => '5-7 business days',
-                'icon' => '<i class="fas fa-clipboard-check"></i>'
-            ],
-            'barangay-id-scheduling' => [
-                'title' => 'Barangay ID Scheduling',
-                'description' => 'Apply for your Barangay ID by scheduling an appointment for ID capture and issuance.',
-                'requirements' => [
-                    'Valid government-issued ID (e.g., passport, driver\'s license)',
-                    'Barangay ID Application Form',
-                    'Proof of Residency (e.g., utility bill, lease agreement)'
-                ],
-                'service_fee' => '50',
-                'processing_time' => '1-2 business days',
-                'icon' => '<i class="fas fa-calendar-alt"></i>'
-            ]
+        $titles = [
+            'barangay-clearance' => 'Barangay Clearance',
+            'certificate-of-indigency' => 'Certificate of Indigency',
+            'certificate-of-residency' => 'Certificate of Residency',
+            'first-time-job-seeker' => 'First-Time Job Seeker',
+            'cedula' => 'Cedula',
+            'barangay-id' => 'Barangay ID',
+            'business-permit-endorsement' => 'Business Permit Endorsement',
         ];
 
-        $service = $services[$service_slug] ?? null;
+        $title = $titles[$service_slug] ?? 'Service Not Found';
 
-        if (!$service) {
-            abort(404);
+        switch ($service_slug) {
+            case 'barangay-clearance':
+            case 'certificate-of-indigency':
+            case 'certificate-of-residency':
+            case 'first-time-job-seeker':
+                return view('website.Barangay-Services.General_form', compact('service_slug', 'title'));
+
+            case 'cedula':
+                return view('website.Barangay-Services.cedula', compact('service_slug', 'title'));
+
+            case 'barangay-id':
+                return view('website.Barangay-Services.form_id', compact('service_slug', 'title'));
+
+            case 'business-permit-endorsement':
+                return view('website.Barangay-Services.business_permit', compact('service_slug', 'title'));
+
+            default:
+                abort(404);
         }
-
-        return view('website.Barangay-Services.form', compact('service'));
     }
 
 
     // Handle form submission
-    public function submitForm(Request $request, $service_slug)
+    public function submitGeneralForm(Request $request, $service_slug)
     {
-
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'purpose' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'civil_status' => 'required|string',
+            'year_of_residency' => 'required|integer',
+            'age' => 'required|integer',
+            'place_of_birth' => 'required|string',
+            'type' => 'required|string',
+            'purpose' => 'required|string',
+            'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
-        return redirect()->route('home')->with('status', 'Your application has been successfully submitted!');
+        // File upload
+        $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
+
+        // Normalize type (avoid case sensitivity issues)
+        $type = strtolower(trim($request->type));
+
+        // Set amount based on type
+        switch ($type) {
+            case 'certificate of residency':
+                $amount = 40;
+                break;
+
+            case 'barangay clearance':
+                $amount = 50;
+                break;
+
+            case 'certificate of indigency':
+            case 'first-time job seeker':
+                $amount = 0;
+                break;
+
+            default:
+                $amount = 0;
+                break;
+        }
+
+        // Save to DB
+        $application = GeneralForm::create([
+            'user_id' => Auth::id(),
+            'reference_number' => Str::random(10),
+            'first_name' => Auth::user()->first_name,
+            'last_name' => Auth::user()->last_name,
+            'middle_name' => Auth::user()->middle_name,
+            'suffix' => Auth::user()->suffix,
+            'dob' => $request->dob,
+            'civil_status' => $request->civil_status,
+            'year_of_residency' => $request->year_of_residency,
+            'email' => Auth::user()->email,
+            'place_of_birth' => $request->place_of_birth,
+            'age' => $request->age,
+            'address' => Auth::user()->address,
+            'amount' => $amount,
+            'type' => $request->type, // keep original format (e.g., "Barangay Clearance")
+            'purpose' => $request->purpose,
+            'status' => 'Pending',
+            'issue_date' => now(),
+            'id_proof' => $idProofPath,
+        ]);
+
+        return redirect()->route('Services')
+            ->with('success', 'Application submitted successfully! Reference No: ' . $application->reference_number);
+    }
+    public function submitFormID(Request $request, $service_slug)
+    {
+        // ✅ Validate input
+        $request->validate([
+            'dob' => 'required|date',
+            'gender' => 'required|string',
+            'civil_status' => 'required|string',
+            'age' => 'required|integer',
+            'religion' => 'nullable|string',
+            'citizenship' => 'nullable|string',
+            'height' => 'nullable|integer',
+            'weight' => 'nullable|integer',
+            'precint_number' => 'nullable|string',
+            'emergency_name' => 'required|string',
+            'cellphone_number' => 'required|string',
+            'emergency_address' => 'required|string',
+            'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        // ✅ Handle file upload
+        $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
+
+        // ✅ Amount handling (Barangay ID is usually free or fixed fee)
+        $amount = 0;
+        if (strtolower($service_slug) === 'barangay id') {
+            $amount = 40; // <-- set fee if needed
+        }
+
+        // ✅ Save to DB
+        $application = FormID::create([
+            'user_id' => Auth::id(),
+            'reference_number' => Str::random(10),
+            'name' => Auth::user()->first_name . ' ' . Auth::user()->last_name,
+            'address' => Auth::user()->address,
+            'dob' => $request->dob,
+            'age' => $request->age,
+            'place_of_birth' => $request->place_of_birth, // from user profile
+            'civil_status' => $request->civil_status,
+            'email' => Auth::user()->email,
+            'type' => $service_slug, // Barangay ID
+            'purpose' => 'Barangay ID Application',
+            'status' => 'Pending',
+            'issue_date' => now(),
+            'religion' => $request->religion,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'amount' => $amount,
+            'gender' => $request->gender,
+            'citezenship' => $request->citizenship,
+            'id_proof' => $idProofPath,
+            'precint_number' => $request->precint_number,
+            'emergency_name' => $request->emergency_name,
+            'cellphone_number' => $request->cellphone_number,
+            'emergency_address' => $request->emergency_address,
+        ]);
+
+        return redirect()->route('Services')
+            ->with('success', 'Barangay ID Application submitted successfully! Reference No: ' . $application->reference_number);
+    }
+
+    public function submitCedula(Request $request, $service_slug)
+    {
+        $request->validate([
+            'dob' => 'required|date',
+            'gender' => 'nullable|string',
+            'civil_status' => 'required|string',
+            'tin' => 'nullable|string|max:50',
+            'citizenship' => 'required|string',
+            'place_of_birth' => 'required|string',
+            'height' => 'nullable|integer',
+            'weight' => 'nullable|integer',
+            'total_gross_receipt_fr_business' => 'nullable|numeric',
+            'total_earning_fr_salaries' => 'nullable|numeric',
+            'total_income_fr_realproperty' => 'nullable|numeric',
+            'e_signature' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
+        $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
+
+        $amount = strtolower($service_slug) === 'cedula' ? 50 : 0;
+        $application = Cedula::create([
+            'user_id' => Auth::id(),
+            'reference_number' => Str::random(10),
+            'name' => Auth::user()->first_name . ' ' . Auth::user()->last_name,
+            'address' => Auth::user()->address,
+            'tin' => $request->tin,
+            'citezenship' => $request->citizenship,
+            'civil_status' => $request->civil_status,
+            'dob' => $request->dob,
+            'place_of_birth' => $request->place_of_birth,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'total_gross_receipt_fr_business' => $request->total_gross_receipt_fr_business,
+            'total_earning_fr_salaries' => $request->total_earning_fr_salaries,
+            'total_income_fr_realproperty' => $request->total_income_fr_realproperty,
+            'e-signature' => $signaturePath,
+            'email' => Auth::user()->email,
+            'type' => $service_slug,
+            'purpose' => 'Cedula Application',
+            'amount' => $amount,
+            'issue_date' => now(),
+            'status' => 'Pending',
+            'id_proof' => $idProofPath,
+        ]);
+
+        return redirect()->route('Services')
+            ->with('success', 'Cedula Application submitted successfully! Reference No: ' . $application->reference_number);
+    }
+    public function submitpermit(Request $request, $service_slug)
+    {
+        $request->validate([
+            'owner_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'business_name' => 'required|string|max:255',
+            'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $idProofPath = null;
+        if ($request->hasFile('id_proof')) {
+            $idProofPath = $request->file('id_proof')->store('id_proofs', 'public');
+        }
+
+        $amount = strtolower($service_slug) === 'business permit endorsement' ? 50 : 0;
+        BusinessPermit::create([
+            'user_id' => Auth::id(),
+            'reference_number' => Str::random(10),
+            'amount' => $amount,
+            'name_owner' => $request->owner_name,
+            'name_business' => $request->business_name,
+            'address_business' => $request->address,
+            'email' => Auth::user()->email,
+            'type' => $service_slug,
+            'purpose' => 'Business Permit Application',
+            'id_proof' => $idProofPath,
+            'issue_date' => now(),
+            'status' => 'pending',
+        ]);
+
+        return redirect()->route('Services')->with('success', 'Business permit submitted successfully!');
     }
 }

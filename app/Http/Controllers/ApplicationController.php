@@ -2,16 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Mail\DocumentReleased;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Models\BusinessPermit;
+use App\Models\Cedula;
+use App\Models\FormID;
+use App\Models\GeneralForm;
 
 class ApplicationController extends Controller
 {
+
     public function ShowAllReq()
     {
-        $data = Application::paginate(10);
-        return view('AdminSide.Clearance-Certificate', compact('data'));
+        $businessPermits = BusinessPermit::select(
+            'id',
+            'name_owner',
+            'name_business as request_name',
+            'email',
+            'status',
+            'created_at'
+        )->get()->map(function ($item) {
+            $item->form_type = 'Business Permit';
+            return $item;
+        });
+
+        $cedulas = Cedula::select(
+            'id',
+            'name_owner',
+            'purpose as request_name',
+            'email',
+            'status',
+            'created_at'
+        )->get()->map(function ($item) {
+            $item->form_type = 'Cedula';
+            return $item;
+        });
+
+        $formIDs = FormID::select(
+            'id',
+            'name_owner',
+            'type as request_name',
+            'email',
+            'status',
+            'created_at'
+        )->get()->map(function ($item) {
+            $item->form_type = 'Form ID';
+            return $item;
+        });
+
+        $generalForms = GeneralForm::select(
+            'id',
+            'name_owner',
+            'type as request_name',
+            'email',
+            'status',
+            'created_at'
+        )->get()->map(function ($item) {
+            $item->form_type = 'General Form';
+            return $item;
+        });
+
+        $allRequests = $businessPermits->merge($cedulas)->merge($formIDs)->merge($generalForms)
+            ->sortByDesc('created_at');
+
+        return view('AdminSide.Clearance-Certificate', compact('allRequests'));
     }
 
 
@@ -31,20 +89,21 @@ class ApplicationController extends Controller
             'type'          => 'required|string|max:255',
             'purpose'       => 'required|string|max:255',
             'id_proof'      => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'address_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
+
+        $referenceNumber = Str::random(10);
         $idProofPath = $request->file('id_proof')->store('documents/id_proof', 'public');
-        $addressProofPath = $request->file('address_proof')->store('documents/address_proof', 'public');
+
         Application::create(array_merge($validatedData, [
             'issue_date'    => now(),
             'status'        => 'Pending',
             'id_proof'      => $idProofPath,
-            'address_proof' => $addressProofPath,
-            'user_id'       => Auth::user()->id
+            'user_id'       => Auth::user()->id,
+            'reference_number' => $referenceNumber,
         ]));
+
         return redirect()->route('Services')->with('success', 'Application submitted successfully.');
     }
-
 
     public function approve(Request $request, $id)
     {
@@ -58,7 +117,7 @@ class ApplicationController extends Controller
         // Update the status to 'Approved'
         $document->status = 'Approved';
         $document->approval_date = now();
-        $document->approved_by = 'barangay Chairman'; // Assuming you're tracking the user who approved it
+        $document->approved_by = 'barangay Chairman';
         $document->save();
 
         return redirect()->route('ShowReq')->with('success', 'Document approved successfully!');
@@ -66,6 +125,7 @@ class ApplicationController extends Controller
 
     public function scheduleRelease(Request $request, $id)
     {
+        // Validate the input
         $request->validate([
             'release_date' => 'required|date|after_or_equal:today', // Ensure release date is valid
         ]);
@@ -78,12 +138,20 @@ class ApplicationController extends Controller
             return redirect()->back()->with('error', 'Document not found.');
         }
 
+
         $document->release_date = $request->input('release_date');
         $document->released_by = 'Chairman';
-        $document->status = 'Released';
+        $document->status = 'To be Released';
         $document->save();
 
-        return redirect()->route('ShowReq')->with('success', 'Document release scheduled successfully!');
+        $greeting = 'Dear ' . $document->first_name . ' ' . $document->last_name . ',';
+        $claim_date = $document->release_date->format('F j, Y');
+
+        // Send an email notification
+        Mail::to($document->user->email)->send(new DocumentReleased($document, $greeting, $claim_date));
+
+        // Redirect back with success message
+        return redirect()->route('ShowReq')->with('success', 'Document release scheduled successfully and email sent!');
     }
     public function showApplications()
     {

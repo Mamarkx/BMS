@@ -1,14 +1,20 @@
 <?php
 
+use App\Http\Controllers\E_Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CedulaController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\EmployeeManagement;
-use App\Http\Controllers\ResidentInformation;
-use App\Http\Controllers\SocialAuthController;
-use App\Http\Controllers\ApplicationController;
 
+use App\Http\Controllers\ResidentInformation;
+use App\Http\Controllers\BarangayIDController;
+use App\Http\Controllers\SocialAuthController;
+use Google\Service\MyBusinessLodging\Business;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\GeneralFormController;
 
 Route::get('/', [ServiceController::class, 'landingPage'])->name('Home');
 Route::get('/services', [ServiceController::class, 'ShowServices'])->name('Services');
@@ -22,7 +28,10 @@ Route::middleware(['CheckUser'])->group(function () { //added middle for unautho
     Route::get('/service/{service_slug}', [ServiceController::class, 'showForm'])->name('service.form');
 
     // Route for handling form submission
-    Route::post('/service/{service_slug}/submit', [ServiceController::class, 'submitForm'])->name('service.submit');
+    Route::post('/service/{service_slug}/submit', [ServiceController::class, 'submitGeneralForm'])->name('submit.general_form');
+    Route::post('/service/{service_slug}/form_id', [ServiceController::class, 'submitFormID'])->name('submit.form_id');
+    Route::post('/service/{service_slug}/cedula', [ServiceController::class, 'submitCedula'])->name('submit.cedula');
+    Route::post('/service/{service_slug}/permit', [ServiceController::class, 'submitPermit'])->name('submit.permit');
 });
 
 Route::get('/about', function () {
@@ -101,3 +110,36 @@ Route::post('/schedule-release/{id}', [ApplicationController::class, 'scheduleRe
 Route::get('/Attendance', function () {
     return view('AdminSide.Attendance');
 })->name('attendManage');
+
+
+
+
+
+
+Route::prefix('services')->group(function () {
+    Route::get('/general-form', [E_Services::class, 'generalForm'])->name('general.form');
+    Route::get('/business-permit', [E_Services::class, 'businessPermit'])->name('business.permit');
+    Route::get('/barangay-id', [E_Services::class, 'barangayID'])->name('barangay.id');
+    Route::get('/cedula', [E_Services::class, 'cedula'])->name('cedula');
+});
+
+
+
+//barnagay id
+Route::post('/barangay-id/{id}/approveID', [BarangayIDController::class, 'approveID'])->name('approve.formID');
+Route::post('/barangay-id/{id}', [BarangayIDController::class, 'scheduleReleaseID'])->name('schedule.releaseID');
+
+
+//general fform
+Route::post('/general-form/{id}/approveID', [GeneralFormController::class, 'approveGeneral'])->name('general.formID');
+Route::post('/general-form/{id}', [GeneralFormController::class, 'GeneralReleaseID'])->name('general.release');
+
+
+//cedula
+Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');
+Route::post('/cedula/{id}', [CedulaController::class, 'CedulaRelease'])->name('cedula.release');
+
+
+//BUSINEESS PERMIT
+Route::post('/business-permit/{id}/approveID', [BusinessController::class, 'approveBusinessPermit'])->name('approve.business-permit');
+Route::post('/business-permit/{id}', [BusinessController::class, 'CedulaBusinessPermit'])->name('businessPermit.release');

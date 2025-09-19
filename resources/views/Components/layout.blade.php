@@ -9,12 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/2.21.0/core.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- Swiper.js CDN -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -159,7 +162,7 @@
 <body class="bg-gray-100 text-gray-800">
 <main id="main">
 @php
-  $blueRoutes = ['Services', 'About', 'Contact'];
+  $blueRoutes = ['Services', 'About', 'Contact' , 'applications','service.form'];
 @endphp
 
 <div id="header"
@@ -172,18 +175,7 @@
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
     <div class="logo-side flex items-center gap-2">
       <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
       <span class="text-xl font-bold text-white">Brgy. San Agustin</span>
-=======
-<<<<<<< HEAD
-          
-=======
->>>>>>> 97e5c4327a9502e504f2e962a53b10d5c930df82
->>>>>>> e659124d7602a59706fbaf77e078ea23a19be828
-      <span class="text-xl font-bold text-white">San Agustin</span>
->>>>>>> 14ad22799423243f7c1d3f7adabc81a609836796
     </div>
    
     <div class="nav-options hidden md:flex items-center gap-1">
@@ -197,9 +189,9 @@
   @auth
 
 <div class="relative">
-    <a href="#" class="group flex items-center gap-2 text-white hover:text-white/80 focus:outline-none transition-colors duration-200" id="avatarDropdownBtn">
-        <img src="https://avatar.iran.liara.run/username?username={{ urlencode(Auth::user()->name) }}" alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-gray-300 group-hover:border-white transition-all duration-300 transform group-hover:scale-105">
-        <span class="hidden lg:block text-sm font-normal">{{ Auth::user()->name }}</span>
+    <a href="#" class="group flex items-center gap-1 text-white hover:text-white/80 focus:outline-none transition-colors duration-200" id="avatarDropdownBtn">
+        <i class="fa-solid fa-circle-user fa-2x text-gray-300 group-hover:text-white transition-all duration-300 transform"></i>
+        <span class="hidden lg:block text-sm font-normal">{{ Auth::user()->first_name }}</span>
         <svg class="w-3 h-3 ml-1 text-white group-hover:text-white/80 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
     </a>
 

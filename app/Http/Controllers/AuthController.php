@@ -28,16 +28,26 @@ class AuthController extends Controller
     }
     public function RegisterAcc(Request $request)
     {
+        // Dump the request data to see what the form is sending
+
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'suffix' => 'nullable|string|max:255',
+            'address' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:6|confirmed',
             'terms' => 'accepted',
         ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
+        User::create([
+            'first_name' => $validated['first_name'],
+            'middle_name' => $validated['middle_name'],
+            'last_name' => $validated['last_name'],
+            'suffix' => $validated['suffix'],
+            'address' => $validated['address'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
@@ -56,7 +66,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('/')
-                ->with('success', 'Welcome back!');
+                ->with('success', 'Welcome, ' . Auth::user()->first_name . '!'); // Added punctuation for better formatting
         }
 
         return back()->withErrors([
