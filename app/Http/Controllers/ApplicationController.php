@@ -12,6 +12,7 @@ use App\Models\BusinessPermit;
 use App\Models\Cedula;
 use App\Models\FormID;
 use App\Models\GeneralForm;
+use Carbon\Carbon;
 
 class ApplicationController extends Controller
 {
@@ -114,7 +115,6 @@ class ApplicationController extends Controller
             return redirect()->back()->with('error', 'Document not found.');
         }
 
-        // Update the status to 'Approved'
         $document->status = 'Approved';
         $document->approval_date = now();
         $document->approved_by = 'barangay Chairman';
@@ -125,15 +125,14 @@ class ApplicationController extends Controller
 
     public function scheduleRelease(Request $request, $id)
     {
-        // Validate the input
+
         $request->validate([
-            'release_date' => 'required|date|after_or_equal:today', // Ensure release date is valid
+            'release_date' => 'required|date|after_or_equal:today',
         ]);
 
-        // Find the document by ID
         $document = Application::find($id);
 
-        // Ensure the document exists
+
         if (!$document) {
             return redirect()->back()->with('error', 'Document not found.');
         }
@@ -147,19 +146,49 @@ class ApplicationController extends Controller
         $greeting = 'Dear ' . $document->first_name . ' ' . $document->last_name . ',';
         $claim_date = $document->release_date->format('F j, Y');
 
-        // Send an email notification
+
         Mail::to($document->user->email)->send(new DocumentReleased($document, $greeting, $claim_date));
 
-        // Redirect back with success message
         return redirect()->route('ShowReq')->with('success', 'Document release scheduled successfully and email sent!');
     }
+
+
     public function showApplications()
     {
-        // Fetch applications where the user is the applicant (assuming user_id field in applications)
-        $id = Auth::user()->id;
-        $applications = Application::where('user_id',  $id)->get();
+        $userId = Auth::id();
 
-        // Pass applications data to the view
+        $models = [
+            ['model' => \App\Models\Cedula::class, 'label' => 'Cedula'],
+            ['model' => \App\Models\GeneralForm::class, 'label' => 'General Form'],
+            ['model' => \App\Models\FormID::class, 'label' => 'Barangay ID'],
+            ['model' => \App\Models\BusinessPermit::class, 'label' => 'Business Permit'],
+        ];
+
+        $applications = collect();
+
+        foreach ($models as $item) {
+            $records = $item['model']::where('user_id', $userId)
+                ->get(['type', 'issue_date', 'status', 'release_date'])
+                ->map(function ($app) use ($item) {
+
+                    $app->type = $app->type ?? $item['label'];
+
+
+                    $app->issue_date = $app->issue_date ? Carbon::parse($app->issue_date) : null;
+
+
+                    $app->release_date = $app->release_date ? Carbon::parse($app->release_date) : null;
+
+                    return $app;
+                });
+
+            $applications = $applications->concat($records);
+        }
+
+
+        $applications = $applications->sortByDesc('issue_date')->values();
+
+
         return view('website.application', compact('applications'));
     }
 }

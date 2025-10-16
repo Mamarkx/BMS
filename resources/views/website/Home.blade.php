@@ -29,7 +29,7 @@ Barangay e-Services is an online platform primarily established to provide resid
                 Track Request
             </a>
         </div> --}}
-      <div class="hero-features grid grid-cols-3 gap-2 max-w-md mx-auto lg:mx-0">
+      {{-- <div class="hero-features grid grid-cols-3 gap-2 max-w-md mx-auto lg:mx-0">
         <div class="text-center">
           <div class="w-14 h-14 bg-blue-900/50 lg:bg-white rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
             <i class="fa-regular fa-clock w-6 h-6 text-blue-200 lg:text-black text-2xl"></i>
@@ -48,7 +48,7 @@ Barangay e-Services is an online platform primarily established to provide resid
           </div>
           <p class="text-sm font-medium text-blue-100 lg:text-white">Fast</p>
         </div>
-      </div>
+      </div> --}}
     </div>
 <style>
 .slider{

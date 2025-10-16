@@ -169,9 +169,6 @@
      class="fixed top-0 z-50 w-full border-b transition-all duration-300 p-2 backdrop-blur-md
      {{ in_array(Route::currentRouteName(), $blueRoutes) ? 'bg-blue-900 border-blue-800/50' : 'bg-transparent border-transparent' }}">
     <!-- Navbar -->
-
-  <!-- Your header content -->
-    <!-- Navbar -->
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
     <div class="logo-side flex items-center gap-2">
       <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />

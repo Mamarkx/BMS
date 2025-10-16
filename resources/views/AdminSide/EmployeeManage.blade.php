@@ -100,13 +100,6 @@
     <!-- Main Form -->
     <form action="{{ route('AddEmployee') }}" method="POST" class="grid grid-cols-1 sm:grid-cols-4 gap-4">
   @csrf
-      <!-- Personnel ID -->
-      <div class="mb-4">
-        <label for="personnel_id" class="block text-lg font-medium">Personnel ID</label>
-        <input type="text" id="personnel_id" name="personnel_id" class="input input-bordered w-full mt-2 uppercase" placeholder="Enter personnel ID" required>
-    </div>
-
-
       <!-- First Name -->
       <div class="mb-4">
         <label for="first_name" class="block text-lg font-medium">First Name</label>
@@ -171,25 +164,32 @@
  
 
       <!-- Position -->
-      <div class="mb-4">
-        <label for="position_title" class="block text-lg font-medium">Position</label>
-        <select id="position_title" name="position_title" class="select select-bordered w-full mt-2" required>
-          <option value="Barangay Captain">Barangay Captain</option>
-          <option value="Barangay Treasurer">Barangay Treasurer</option>
-          <option value="Barangay Secretary">Barangay Secretary</option>
-          <option value="Barangay Health Worker">Barangay Health Worker</option>
-          <option value="Barangay Tanod">Barangay Tanod</option>
-        </select>
-      </div>
+    <div class="mb-4">
+      <label for="position_title" class="block text-lg font-medium">Position</label>
+      <select id="position_title" name="position_title" class="select select-bordered w-full mt-2" required>
+        <option value="Punong Barangay">Punong Barangay</option>
+        <option value="Barangay Kagawad">Barangay Kagawad</option>
+        <option value="BPSO">BPSO</option>
+        <option value="Admin Staff">Admin Staff</option>
+        <option value="BCPC GAD Focal Person">BCPC GAD Focal Person</option>
+        <option value="VAWC Desk Officer">VAWC Desk Officer</option>
+        <option value="Area Monitoring Officer">Area Monitoring Officer</option>
+        <option value="Admin Officer">Admin Officer</option>
+        <option value="Accounting">Accounting</option>
+      </select>
+    </div>
+
 
       <!-- Department -->
       <div class="mb-4">
         <label for="department" class="block text-lg font-medium">Department</label>
         <select id="department" name="department" class="select select-bordered w-full mt-2" required>
-          <option value="Administration">Administration</option>
+          <option value="Administrative">Administrative</option>
           <option value="Finance">Finance</option>
           <option value="Health Services">Health Services</option>
           <option value="Public Safety">Public Safety</option>
+          <option value="Brgy Council">Brgy Council</option>
+          <option value="Brgy Council">GAD</option>
         </select>
       </div>
 

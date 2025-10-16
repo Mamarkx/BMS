@@ -8,6 +8,7 @@ use App\Models\GeneralForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\BusinessPermit;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
@@ -226,24 +227,31 @@ class ServiceController extends Controller
     {
         $request->validate([
             'dob' => 'required|date',
-            'gender' => 'nullable|string',
             'civil_status' => 'required|string',
-            'tin' => 'nullable|string|max:50',
             'citizenship' => 'required|string',
             'place_of_birth' => 'required|string',
-            'height' => 'nullable|integer',
-            'weight' => 'nullable|integer',
-            'total_gross_receipt_fr_business' => 'nullable|numeric',
-            'total_earning_fr_salaries' => 'nullable|numeric',
-            'total_income_fr_realproperty' => 'nullable|numeric',
-            'e_signature' => 'required|file|mimes:jpg,jpeg,png|max:2048',
             'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'e_signature' => 'required',
         ]);
 
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
-        $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
+
+        // Handle uploaded file OR base64 string in the same field
+        if ($request->hasFile('e_signature')) {
+            $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
+        } elseif (Str::startsWith($request->e_signature, 'data:image')) {
+            $image = $request->e_signature;
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = 'signature_' . time() . '.png';
+            Storage::disk('public')->put('documents/signatures/' . $imageName, base64_decode($image));
+            $signaturePath = 'documents/signatures/' . $imageName;
+        } else {
+            return back()->withErrors(['e_signature' => 'Invalid signature format.']);
+        }
 
         $amount = strtolower($service_slug) === 'cedula' ? 50 : 0;
+
         $application = Cedula::create([
             'user_id' => Auth::id(),
             'reference_number' => Str::random(10),

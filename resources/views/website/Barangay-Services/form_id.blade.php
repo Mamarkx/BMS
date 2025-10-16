@@ -25,10 +25,15 @@
                     <div class="bg-blue-50 border border-blue-200 p-6 rounded-2xl shadow">
                         <h3 class="text-lg font-semibold text-blue-950 mb-4">Personal Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                                <label class="block mb-2 text-sm font-medium text-gray-700">Date of Birth *</label>
-                                <input type="date" name="dob" value="{{ auth()->user()->dob }}" class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-500" required>
-                            </div>
+                      <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-700">Date of Birth *</label>
+                        <input id="dob" 
+                            name="dob" 
+                            type="text"
+                            class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-500" 
+                            placeholder="Select date of birth"
+                            required>
+                    </div>
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Gender *</label>
                                 <select name="gender" class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-500" required>
@@ -200,4 +205,12 @@
             });
         });
     </script>
+    <script>
+    flatpickr("#dob", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "F j, Y",
+        allowInput: true
+    });
+</script>
 </x-layout>
