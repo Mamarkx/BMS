@@ -51,9 +51,24 @@
                             <button class="text-blue-600 hover:text-blue-800" onclick="openReleaseModal({{ $d->id }})"><i class="fa-solid fa-calendar-check"></i></button>
                         </td>
                     </tr>
+                        <!-- Release Modal -->
+                <div id="releaseModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                        <h3 class="text-xl font-semibold mb-4">Schedule Document Release</h3>
+                        <form id="releaseForm" action="{{ route('schedule.releaseID', $d->id) }}" method="POST">
+                            @csrf
+                            <label for="release_date" class="block text-sm font-medium text-gray-700">Select Release Date:</label>
+                            <input type="date" name="release_date" id="release_date" class="w-full p-2 border border-gray-300 rounded-md mt-2" required>
+                            <div class="flex justify-end gap-4 mt-4">
+                                <button type="button" class="text-gray-500" onclick="closeReleaseModal()">Cancel</button>
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Schedule Release</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center py-6 text-gray-500 text-lg">No requests available.</td>
+                        <td colspan="5" class="text-center py-2 text-gray-500 text-lg">No requests available.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -65,21 +80,7 @@
         {{ $data->links() }}
     </div>
 
-    <!-- Release Modal -->
-    <div id="releaseModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h3 class="text-xl font-semibold mb-4">Schedule Document Release</h3>
-            <form id="releaseForm" action="{{ route('schedule.releaseID', $d->id) }}" method="POST">
-                @csrf
-                <label for="release_date" class="block text-sm font-medium text-gray-700">Select Release Date:</label>
-                <input type="date" name="release_date" id="release_date" class="w-full p-2 border border-gray-300 rounded-md mt-2" required>
-                <div class="flex justify-end gap-4 mt-4">
-                    <button type="button" class="text-gray-500" onclick="closeReleaseModal()">Cancel</button>
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md">Schedule Release</button>
-                </div>
-            </form>
-        </div>
-    </div>
+
 
 </div>
 
