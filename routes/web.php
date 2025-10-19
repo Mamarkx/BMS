@@ -15,6 +15,7 @@ use App\Http\Controllers\SocialAuthController;
 use Google\Service\MyBusinessLodging\Business;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\GeneralFormController;
+use App\Http\Controllers\AnnouncementController;
 
 Route::get('/', [ServiceController::class, 'landingPage'])->name('Home');
 Route::get('/services', [ServiceController::class, 'ShowServices'])->name('Services');
@@ -90,6 +91,13 @@ Route::get('/admin', function () {
 Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');
 Route::get('/employee', [EmployeeManagement::class, 'ShowEmp'])->name('ShowEmployee');
 
+Route::delete('/employee/{id}/delete', [EmployeeManagement::class, 'DestroyEmployee'])
+    ->name('DeleteEmploye');
+Route::put('/Edit/Employee', [EmployeeManagement::class, 'editemployee'])->name('EditEmployee');
+
+
+
+
 //resident information
 Route::get('/resident', [ResidentInformation::class, 'ShowResident'])->name('ShowRes');
 Route::post('/add-resident', [ResidentInformation::class, 'StoreResident'])->name('addResident');
@@ -97,6 +105,8 @@ Route::post('/add-resident', [ResidentInformation::class, 'StoreResident'])->nam
 Route::get('/residents/{id}/edit', [ResidentInformation::class, 'edit'])->name('residents.edit');
 Route::put('/residents/{id}', [ResidentInformation::class, 'update'])->name('residents.update');
 
+Route::delete('/resident/{id}/delete', [ResidentInformation::class, 'DestroyResident'])
+    ->name('DeleteResident');
 
 //clearance and certificate
 Route::get('/request', [ApplicationController::class, 'ShowAllReq'])->name('ShowReq');
@@ -106,10 +116,8 @@ Route::post('/schedule-release/{id}', [ApplicationController::class, 'scheduleRe
 
 
 
-//Attendance management
-Route::get('/Attendance', function () {
-    return view('AdminSide.Attendance');
-})->name('attendManage');
+//Annoucement
+Route::get('/announcement', [AnnouncementController::class, 'showAnnounce'])->name('Announce');
 
 
 

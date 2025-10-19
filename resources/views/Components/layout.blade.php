@@ -160,7 +160,6 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
-<main id="main">
 @php
   $blueRoutes = ['Services', 'About', 'Contact' , 'applications','service.form'];
 @endphp
@@ -170,10 +169,10 @@
      {{ in_array(Route::currentRouteName(), $blueRoutes) ? 'bg-blue-900 border-blue-800/50' : 'bg-transparent border-transparent' }}">
     <!-- Navbar -->
   <div class="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
-    <div class="logo-side flex items-center gap-2">
+    <a href="{{ route('Home') }}" class="logo-side flex items-center gap-2">
       <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
       <span class="text-xl font-bold text-white">Brgy. San Agustin</span>
-    </div>
+    </a>
    
     <div class="nav-options hidden md:flex items-center gap-1">
       <a href="{{ route('Home') }}" class="nav-link px-4 py-2 text-md font-medium text-[#c7d7ee] hover:text-white hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
@@ -281,7 +280,7 @@
     </div>
   </div>
 </div>
-
+<main id="main">
    <div class="div">
    
     {{ $slot }}

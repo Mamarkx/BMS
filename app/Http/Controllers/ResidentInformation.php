@@ -14,36 +14,27 @@ class ResidentInformation extends Controller
     }
     public function StoreResident(Request $request)
     {
-        // Validate form data
+
         $validated = $request->validate([
             'fname' => 'required|string|max:255',
             'mname' => 'nullable|string|max:255',
             'lname' => 'required|string|max:255',
             'sex' => 'required|string|in:Male,Female,Other',
             'birth_date' => 'required|date',
+            'contact_number' => 'required',
             'civil_status' => 'required|string|in:Single,Married,Divorced,Widowed',
             'address' => 'required|string|max:500',
-            'photo_path' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'status' => 'required|string|in:Active,Inactive',
         ]);
 
-        // Handle file upload for profile photo
-        $photoPath = null;
-        if ($request->hasFile('photo_path')) {
-            $photoPath = $request->file('photo_path')->store('public/photos');
-        }
-
-        // Store resident data
         Resident::create([
             'first_name' => $validated['fname'],
             'middle_name' => $validated['mname'],
             'last_name' => $validated['lname'],
             'sex' => $validated['sex'],
             'birth_date' => $validated['birth_date'],
+            'contact_number' => $validated['contact_number'],
             'civil_status' => $validated['civil_status'],
             'address' => $validated['address'],
-            'photo_path' => $photoPath,
-            'status' => $validated['status'],
         ]);
 
 
@@ -86,5 +77,17 @@ class ResidentInformation extends Controller
         ]);
 
         return response()->json(['status' => 'success', 'message' => 'Resident updated successfully']);
+    }
+    public function DestroyResident($id)
+    {
+        $personnel = Resident::find($id);
+
+        if (!$personnel) {
+            return redirect()->back()->with('error', 'Employee not found.');
+        }
+
+        $personnel->delete();
+
+        return redirect()->back()->with('success', 'Resident deleted successfully.');
     }
 }

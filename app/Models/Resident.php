@@ -23,8 +23,8 @@ class Resident extends Model
         'sex',
         'birth_date',
         'civil_status',
+        'contact_number',
         'address',
-        'photo_path',
         'status',
     ];
 }

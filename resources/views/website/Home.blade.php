@@ -5,12 +5,11 @@
 </button>
 
 <x-layout>
- <section class="hero-section relative min-h-screen flex items-center justify-center pt-20 bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
-  {{-- <div class="absolute inset-0 hero-overlay-left"></div>--}}
-  {{-- <div class="absolute inset-0 hero-overlay-right"></div>  --}}
+ <section class="hero-section relative h-screen flex items-center justify-center pt-2 bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
 <div class="absolute inset-0 bg-black opacity-70 "></div>
-  <div class="container mx-auto flex justify-between h-full px-4 md:px-6 relative z-10">
-    <div class="text-center flex-1 lg:text-left space-y-8 text-white lg:text-blue-950">
+  <div class="container mx-auto flex justify-between items-center h-full px-2 md:px-6 relative z-10">
+     <!-- Left side -->
+    <div class="text-center flex-1   lg:text-left space-y-8 text-white lg:text-blue-950">
       <div class="space-y-4"> 
         <h1 class="hero-title text-5xl lg:text-7xl font-bold leading-tight">
           <span class="block text-white">Barangay</span>
@@ -19,160 +18,180 @@
       </div>
       <p class="hero-subtitle text-xl max-w-2xl leading-relaxed text-blue-100 lg:text-white">
 Barangay e-Services is an online platform primarily established to provide residents with efficient access to essential barangay services. It is designed to streamline administrative processes, reduce waiting times, promote faster and more convenient transactions within the community.
-      </p>
-        {{-- <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a href="{{ route('Services') }}" class="button-left bg-blue-400 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center">
-                View Services
-                <svg class="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 12h14m0 0l-6 6m6-6l-6-6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-            </a> 
-           <a href="#track" class="button-right border-2 border-blue-400 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent flex items-center">
-                Track Request
-            </a>
-        </div> --}}
-      {{-- <div class="hero-features grid grid-cols-3 gap-2 max-w-md mx-auto lg:mx-0">
-        <div class="text-center">
-          <div class="w-14 h-14 bg-blue-900/50 lg:bg-white rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
-            <i class="fa-regular fa-clock w-6 h-6 text-blue-200 lg:text-black text-2xl"></i>
-          </div>
-          <p class="text-sm font-medium text-blue-100 lg:text-white">24/7 Access</p>
-        </div>
-        <div class="text-center">
-          <div class="w-14 h-14 bg-blue-900/50 lg:bg-white rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
-            <i class="fa-solid fa-shield-halved w-6 h-6 text-black lg:text-black text-2xl"></i>
-          </div>
-          <p class="text-sm font-medium text-blue-100 lg:text-white">Secure</p>
-        </div>
-        <div class="text-center">
-          <div class="w-14 h-14 bg-blue-900/50 lg:bg-white rounded-full flex items-center justify-center mx-auto mb-2 backdrop-blur-sm">
-           <i class="fa-solid fa-bolt w-6 h-6 text-blue-200 lg:text-black text-2xl"></i>
-          </div>
-          <p class="text-sm font-medium text-blue-100 lg:text-white">Fast</p>
-        </div>
-      </div> --}}
+      </p>   
     </div>
-<style>
-.slider{
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-}
-.item {
-    position: absolute;
-    width: 370px;
-    height: 350px;
-    text-align: justify;
-    background-color: rgba(255, 255, 255, 0.973); 
-    border-radius: 10px;
-    transition: 0.5s;
-    left: calc(50% - 185px); 
-    top: 0;
-    backdrop-filter: blur(8px); 
-    color: #fff; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-.item:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
-}
-#next, #prev{
-    position: absolute;
-    top: 40%;
-    color: #fff;
-    background-color: white;
-    border: none;
-    font-size: xxx-large;
-    font-family: monospace;
-    font-weight: bold;
-    left: 400px;
-}
-#next{
-    left: unset;
-    right: 400px;
-}
-</style>
- <div class="slider flex-1 h-screen  justify-center items-center hidden md:flex py-10">
-  <div class="swiper-container w-full max-w-7xl relative">
-<div class="swiper-wrapper">
 
-    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="h-2 bg-blue-500 p-5"></div>
-        <div class="p-8 flex flex-col justify-center items-center text-center  bg-blue-100">
-            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
-                <i class="fas fa-hand-holding-usd text-4xl text-gray-700"></i>
+      <!-- Right side -->
+<div class="slider relative w-full h-[700px] flex-1 items-center justify-center overflow-hidden">
+  <div class="w-full h-full relative">
+    <div class="swiper-wrapper relative">
+
+      <!-- CARD 1 -->
+      <div class="item  absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80"
+          class="w-full h-[250px] object-cover rounded-t-2xl" />
+        <div class="p-8">
+          <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">Certificate of Indigency </h3>
+          <p class="text-sm leading-relaxed text-neutral-600 font-light">
+            Issued to residents below the poverty threshold for financial assistance or government support.
+          </p>
+        </div>
+      </div>
+            <!-- CARD 7 -->
+            <div class="item absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+            <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=800&q=80"
+                alt="Barangay Clearance Document"
+                class="w-full h-[250px] object-cover rounded-t-2xl" />
+
+            <div class="p-8">
+                <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">Barangay Clearance</h3>
+                <p class="text-sm leading-relaxed text-neutral-600 font-light">
+                Proof that a resident or business has no pending cases or obligations within the Barangay.
+                </p>
             </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Indigency Certificate</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Issued to residents below the poverty threshold for financial assistance or government support.</p>
-        </div>
-        <div class="h-2 bg-blue-500 p-6"></div>
-    </div>
-
-    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="h-2 bg-blue-500 p-5"></div>
-        <div class="p-8 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
-            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
-                <i class="fas fa-home text-4xl text-gray-700"></i>
             </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Residency Certificate</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Certifies residence within the Barangay for legal purposes such as enrollment or employment.</p>
+      <!-- CARD 2 -->
+      <div class="item absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80"
+          class="w-full h-[250px] object-cover rounded-t-2xl" />
+        <div class="p-8">
+          <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">Certificate of Residency</h3>
+          <p class="text-sm leading-relaxed text-neutral-600 font-light">
+            Certifies residence within the Barangay for legal purposes such as enrollment or employment.
+          </p>
         </div>
-        <div class="h-2 bg-blue-500 p-6"></div>
-    </div>
+      </div>
 
-    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="h-2 bg-blue-500 p-5"></div>
-        <div class="p-8 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
-            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
-                <i class="fas fa-user-check text-4xl text-gray-700"></i>
-            </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-0">First Time Job Seeker</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Issued to individuals seeking employment for the first time to avail benefits under government programs.</p>
+      <!-- CARD 3 -->
+      <div class="item absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80"
+          class="w-full h-[250px] object-cover rounded-t-2xl" />
+        <div class="p-8">
+          <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">First Time Job Seeker</h3>
+          <p class="text-sm leading-relaxed text-neutral-600 font-light">
+            Issued to individuals seeking employment for the first time to avail benefits under government programs.
+          </p>
         </div>
-        <div class="h-2 bg-blue-500 p-6"></div>
-    </div>
+      </div>
 
-    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="h-2 bg-blue-500 p-5"></div>
-        <div class="p-9 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
-            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
-                <i class="fas fa-id-card text-4xl text-gray-700"></i>
-            </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Cedula</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Proof of payment for community tax, required for various transactions in the Philippines.</p>
+      <!-- CARD 4 -->
+      <div class="item absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
+          class="w-full h-[250px] object-cover rounded-t-2xl" />
+        <div class="p-8">
+          <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">Cedula</h3>
+          <p class="text-sm leading-relaxed text-neutral-600 font-light">
+            Proof of payment for community tax, required for various transactions in the Philippines.
+          </p>
         </div>
-        <div class="h-2 bg-blue-500 p-6"></div>
-    </div>
+      </div>
 
-    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="h-2 bg-blue-500 p-5"></div>
-        <div class="p-8 flex flex-col justify-center items-center text-center flex-1 bg-blue-100">
-            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
-                <i class="fas fa-id-badge text-4xl text-gray-700"></i>
-            </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Barangay ID Form</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">A valid identification card issued to residents of the Barangay, used for official purposes within the community.</p>
+      <!-- CARD 5 -->
+      <div class="item absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
+          class="w-full h-[250px] object-cover rounded-t-2xl" />
+        <div class="p-8">
+          <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">Barangay ID</h3>
+          <p class="text-sm leading-relaxed text-neutral-600 font-light">
+            A valid identification card issued to residents of the Barangay, used for official purposes within the community.
+          </p>
         </div>
-        <div class="h-2 bg-blue-500 p-6"></div>
-    </div>
+      </div>
 
-    <div class="swiper-slide item group flex flex-col bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="h-2 bg-blue-500 p-4"></div>
-        <div class="p-8 flex flex-col justify-center items-center text-center  bg-blue-100">
-            <div class="flex items-center justify-center w-20 h-20 rounded-full border-2 border-gray-700 mb-6 bg-white">
-                <i class="fas fa-business-time text-4xl text-gray-700"></i>
-            </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-0">Business Permit</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Certifies that a business is legally registered and authorized to operate within the Barangay, ensuring compliance with local regulations.</p>
+      <!-- CARD 6 -->
+      <div class="item absolute left-1/2 top-1/2 w-[350px] bg-white rounded-2xl text-black shadow-[0_8px_32px_rgba(0,0,0,0.9)] border border-white/10 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+          class="w-full h-[250px] object-cover rounded-t-2xl" />
+        <div class="p-8">
+          <h3 class="text-2xl font-light uppercase tracking-wide mb-4 text-neutral-900">Business Permit</h3>
+          <p class="text-sm leading-relaxed text-neutral-600 font-light">
+            Certifies that a business is legally registered and authorized to operate within the Barangay, ensuring compliance with local regulations.
+          </p>
         </div>
-        <div class="h-2 bg-blue-500 p-6"></div>
-    </div>
+      </div>
+      
 
-</div>
-    <!-- Pagination and Navigation -->
-    <div  id="next"></div>
-    <div  id="prev"></div>
+       
+    </div>
   </div>
 </div>
+
+<script>
+  const items = document.querySelectorAll('.item');
+  let active = 0;
+  const total = items.length;
+  let isAnimating = false;
+
+  function resetStyles() {
+    items.forEach((item) => {
+      item.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+      item.style.opacity = '0';
+      item.style.zIndex = '-1';
+      item.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      item.style.willChange = 'transform, opacity';
+    });
+  }
+
+  function animateCurrent(direction) {
+    const current = items[active];
+    current.style.opacity = '1';
+    current.style.zIndex = '10';
+
+    const startY = direction === 'next' ? '80%' : '-180%';
+    current.style.transform = `translate(-50%, ${startY}) scale(0.9)`;
+
+    requestAnimationFrame(() => {
+      current.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+  }
+
+  function stackNextCards() {
+    for (let i = 1; i <= 3; i++) {
+      const nextIndex = (active + i) % total;
+      const offsetX = 140 * i;
+      const scale = 1 - 0.1 * i;
+      items[nextIndex].style.opacity = '1';
+      items[nextIndex].style.zIndex = `${10 - i}`;
+      items[nextIndex].style.transform = `translate(calc(-50% + ${offsetX}px), -50%) scale(${scale})`;
+    }
+  }
+
+  function fadePreviousCards(prevActive) {
+    // Animate previous active card bottom to top
+    const leaving = items[prevActive];
+    leaving.style.opacity = '0';
+    leaving.style.transform = 'translate(-50%, -150%) scale(0.7)';
+
+    // Animate last stacked card top to bottom
+    const lastStackedIndex = (active + 3) % total;
+    const lastStacked = items[lastStackedIndex];
+    lastStacked.style.opacity = '0';
+    lastStacked.style.transform = 'translate(-50%, 150%) scale(0.7)';
+  }
+
+  function loadShow(direction = 'next') {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const prevActive = active;
+    active = (active + 1) % total;
+
+    resetStyles();
+    animateCurrent(direction);
+    stackNextCards();
+    fadePreviousCards(prevActive);
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 800);
+  }
+
+  setInterval(() => {
+    loadShow('next');
+  }, 3000);
+
+  loadShow();
+</script>
 
   </div>
 
@@ -560,66 +579,7 @@ typewriter.typeString('E-Services')
     .deleteAll()
     .start();
 </script>
-<script>
-let items = document.querySelectorAll('.slider .item');
-let next = document.getElementById('next');
-let prev = document.getElementById('prev');
 
-let active = 3; // Start at center
-let total = items.length;
-
-function loadShow() {
-    let stt = 0;
-    items.forEach((item, i) => {
-        item.style.transition = '0.5s';
-        item.style.opacity = '0';
-        item.style.zIndex = '-1';
-        item.style.transform = 'scale(0.8)';
-    });
-
-    items[active].style.transform = `none`;
-    items[active].style.zIndex = 1;
-
-    items[active].style.filter = 'none';
-    items[active].style.opacity = 1;
-
-    stt = 0;
-    for (let i = 1; i <= 3; i++) {
-        let nextIndex = (active + i) % total;
-        stt++;
-        items[nextIndex].style.transform = `translateX(${120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(-1deg)`;
-        items[nextIndex].style.zIndex = -stt;
-        items[nextIndex].style.opacity = stt > 2 ? 0 : 0.6;
-    }
-
-    stt = 0;
-    for (let i = 1; i <= 3; i++) {
-        let prevIndex = (active - i + total) % total;
-        stt++;
-        items[prevIndex].style.transform = `translateX(${-120 * stt}px) scale(${1 - 0.2 * stt}) perspective(16px) rotateY(1deg)`;
-        items[prevIndex].style.zIndex = -stt;
-        items[prevIndex].style.opacity = stt > 2 ? 0 : 0.6;
-    }
-}
-
-next.onclick = () => {
-    active = (active + 1) % total;
-    loadShow();
-};
-
-prev.onclick = () => {
-    active = (active - 1 + total) % total;
-    loadShow();
-};
-
-// Auto-slide every 4 seconds
-setInterval(() => {
-    active = (active + 1) % total;
-    loadShow();
-}, 2000);
-
-loadShow();
-</script>
 
 @if(session('success'))
 <script>

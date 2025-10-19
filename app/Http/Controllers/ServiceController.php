@@ -97,7 +97,7 @@ class ServiceController extends Controller
     }
 
 
-    // Handle form submission
+
     public function submitGeneralForm(Request $request, $service_slug)
     {
         $request->validate([
@@ -111,13 +111,8 @@ class ServiceController extends Controller
             'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
-        // File upload
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
-
-        // Normalize type (avoid case sensitivity issues)
         $type = strtolower(trim($request->type));
-
-        // Set amount based on type
         switch ($type) {
             case 'certificate of residency':
                 $amount = 40;
@@ -137,7 +132,6 @@ class ServiceController extends Controller
                 break;
         }
 
-        // Save to DB
         $application = GeneralForm::create([
             'user_id' => Auth::id(),
             'reference_number' => Str::random(10),
@@ -153,7 +147,7 @@ class ServiceController extends Controller
             'age' => $request->age,
             'address' => Auth::user()->address,
             'amount' => $amount,
-            'type' => $request->type, // keep original format (e.g., "Barangay Clearance")
+            'type' => $request->type,
             'purpose' => $request->purpose,
             'status' => 'Pending',
             'issue_date' => now(),
@@ -165,7 +159,7 @@ class ServiceController extends Controller
     }
     public function submitFormID(Request $request, $service_slug)
     {
-        // ✅ Validate input
+
         $request->validate([
             'dob' => 'required|date',
             'gender' => 'required|string',
@@ -182,16 +176,14 @@ class ServiceController extends Controller
             'id_proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
-        // ✅ Handle file upload
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
 
-        // ✅ Amount handling (Barangay ID is usually free or fixed fee)
         $amount = 0;
         if (strtolower($service_slug) === 'barangay id') {
-            $amount = 40; // <-- set fee if needed
+            $amount = 40;
         }
 
-        // ✅ Save to DB
+
         $application = FormID::create([
             'user_id' => Auth::id(),
             'reference_number' => Str::random(10),
@@ -199,10 +191,10 @@ class ServiceController extends Controller
             'address' => Auth::user()->address,
             'dob' => $request->dob,
             'age' => $request->age,
-            'place_of_birth' => $request->place_of_birth, // from user profile
+            'place_of_birth' => $request->place_of_birth,
             'civil_status' => $request->civil_status,
             'email' => Auth::user()->email,
-            'type' => $service_slug, // Barangay ID
+            'type' => $service_slug,
             'purpose' => 'Barangay ID Application',
             'status' => 'Pending',
             'issue_date' => now(),
@@ -236,7 +228,7 @@ class ServiceController extends Controller
 
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
 
-        // Handle uploaded file OR base64 string in the same field
+
         if ($request->hasFile('e_signature')) {
             $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
         } elseif (Str::startsWith($request->e_signature, 'data:image')) {

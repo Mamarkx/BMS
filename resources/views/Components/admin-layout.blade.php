@@ -24,7 +24,7 @@
  
 <body data-theme="light">
 
-    <div class="flex h-screen w-full">
+    <div class="flex h-auto w-full">
         <!-- Sidebar -->
         <aside id="sidebar" class="fixed md:static h-screen bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
             <div>
@@ -47,6 +47,13 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('Announce') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-bullhorn text-xl"></i>
+                                    <span class="ml-2">Announcement</span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href="{{ route('ShowEmployee') }}" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
                                     <i class="fa-solid fa-book text-xl"></i><span class="ml-2">Employee Management</span>
                                 </a>
@@ -57,85 +64,43 @@
                                 </a>
                             </li>
                            <li class="relative">
-    <!-- Parent Link -->
-<li class="relative">
-      <button id="requestDropdownButton" 
-            class="flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200 w-full"
-            onclick="toggleDropdownSmooth('requestDropdown', this)">
-        <i class="fa-solid fa-address-book text-xl"></i>
-        <span class="ml-3">E-Services</span>
-        <i class="fa-solid fa-chevron-down ml-auto transition-transform duration-300" id="chevronIcon"></i>
-    </button>
+                                <!-- Parent Link -->
+                            <li class="relative">
+                                <button id="requestDropdownButton" 
+                                        class="flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200 w-full"
+                                        onclick="toggleDropdownSmooth('requestDropdown', this)">
+                                    <i class="fa-solid fa-address-book text-xl"></i>
+                                    <span class="ml-3">E-Services</span>
+                                    <i class="fa-solid fa-chevron-down ml-auto transition-transform duration-300" id="chevronIcon"></i>
+                                </button>
 
-    <!-- Dropdown Menu -->
-    <ul id="requestDropdown" 
-        class="max-h-0 overflow-hidden bg-indigo-700 rounded-lg transition-all duration-500"
-        style="transition-property: max-height;">
-        <li>
-            <a href="{{ route('general.form') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 rounded-t-lg transition-colors duration-200">
-                General Form
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('business.permit') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                Business Permit
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('barangay.id') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                Barangay ID
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('cedula') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 rounded-b-lg transition-colors duration-200">
-                Cedula
-            </a>
-        </li>
-    </ul>
-</li>
-
-<script>
-function toggleDropdownSmooth(id) {
-    const dropdown = document.getElementById(id);
-    const chevron = document.getElementById('chevronIcon');
-
-    if (dropdown.style.maxHeight && dropdown.style.maxHeight !== "0px") {
-        // Close
-        dropdown.style.maxHeight = "0";
-        chevron.style.transform = "rotate(0deg)";
-    } else {
-        // Open: set max-height to scrollHeight for smooth animation
-        dropdown.style.maxHeight = dropdown.scrollHeight + "px";
-        chevron.style.transform = "rotate(180deg)";
-    }
-}
-
-// Close dropdown if clicked outside
-window.addEventListener('click', function(e) {
-    const dropdown = document.getElementById('requestDropdown');
-    const button = document.getElementById('requestDropdownButton');
-    const chevron = document.getElementById('chevronIcon');
-
-    if (!button.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.style.maxHeight = "0";
-        chevron.style.transform = "rotate(0deg)";
-    }
-});
-</script>
-
-                            {{-- <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                    <i class="fa-solid fa-tasks text-xl"></i><span class="ml-2">Task Management</span>
-                                </a>
+                                <!-- Dropdown Menu -->
+                                <ul id="requestDropdown" 
+                                    class="max-h-0 overflow-hidden bg-indigo-700 rounded-lg transition-all duration-500"
+                                    style="transition-property: max-height;">
+                                    <li>
+                                        <a href="{{ route('general.form') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 rounded-t-lg transition-colors duration-200">
+                                            General Form
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('business.permit') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                            Business Permit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('barangay.id') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                            Barangay ID
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('cedula') }}" class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 rounded-b-lg transition-colors duration-200">
+                                            Cedula
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="#" class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                    <i class="fa-solid fa-users-cog text-xl"></i><span class="ml-2">User Management</span>
-                                </a>
-                            </li> --}}
                         </ul>
-
-
                     </nav>
                 </div>
             </div>
@@ -172,11 +137,9 @@ window.addEventListener('click', function(e) {
                     </button>
                 </div>
             </nav>
-            <div class="p-6">
-                <main>
+                <main class="h-screen md:h-auto p-6">
                     {{ $slot }}
                 </main>
-            </div>
         </div>
     </div>
     <script>
@@ -208,6 +171,33 @@ window.addEventListener('click', function(e) {
             });
         });
     </script>
-  
+  <script>
+function toggleDropdownSmooth(id) {
+    const dropdown = document.getElementById(id);
+    const chevron = document.getElementById('chevronIcon');
+
+    if (dropdown.style.maxHeight && dropdown.style.maxHeight !== "0px") {
+        // Close
+        dropdown.style.maxHeight = "0";
+        chevron.style.transform = "rotate(0deg)";
+    } else {
+        // Open: set max-height to scrollHeight for smooth animation
+        dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+        chevron.style.transform = "rotate(180deg)";
+    }
+}
+
+// Close dropdown if clicked outside
+window.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('requestDropdown');
+    const button = document.getElementById('requestDropdownButton');
+    const chevron = document.getElementById('chevronIcon');
+
+    if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.maxHeight = "0";
+        chevron.style.transform = "rotate(0deg)";
+    }
+});
+</script>
 </body>
 </html>
