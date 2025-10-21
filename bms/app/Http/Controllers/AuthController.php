@@ -38,7 +38,7 @@ class AuthController extends Controller
             'suffix' => 'nullable|string|max:255',
             'address' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|confirmed',
             'terms' => 'accepted',
         ]);
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
         ]);
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
