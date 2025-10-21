@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-      @vite(['resources/css/app.css', 'resources/js/app.js'])
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
       body {
         font-family: 'Inter', sans-serif;
