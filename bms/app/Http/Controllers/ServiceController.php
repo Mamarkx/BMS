@@ -86,7 +86,7 @@ class ServiceController extends Controller
             case 'certificate-of-indigency':
             case 'certificate-of-residency':
             case 'first-time-job-seeker':
-                return view('website.Barangay-Services.General_form', compact('service_slug', 'title'));
+                return view('website.Barangay-Services.General_Form', compact('service_slug', 'title'));
 
             case 'cedula':
                 return view('website.Barangay-Services.cedula', compact('service_slug', 'title'));

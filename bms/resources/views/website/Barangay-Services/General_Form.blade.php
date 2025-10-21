@@ -73,11 +73,11 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Certificate Type *</label>
-                                <input type="text" name="type" value="{{ $title }}" class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="text" name="type" value="{{ $title }}" readonly class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
                             </div>
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Purpose *</label>
-                                <input type="text" name="purpose" placeholder="Intended purpose of the certificate" class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="text" name="purpose"  class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
                             </div>
                         </div>
                     </div>
