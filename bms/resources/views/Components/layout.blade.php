@@ -376,14 +376,14 @@
                     <span class="text-xl font-bold">San Agustin</span>
                 </div>
                 <p class="text-blue-200">Providing efficient digital services to our community members.</p>
-                <div class="mt-4">
-                  <a href="mailto:brgysanagustin13@gmail.com" target="_blank" class="text-blue-600 hover:text-blue-800 ">
-                      <i class="fa-solid fa-envelope fa-lg"></i>
-                  </a>
-                    <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 ">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                </div>
+             <div class="mt-4 flex items-center space-x-4">
+          <a href="mailto:brgysanagustin13@gmail.com" target="_blank" class="text-blue-600 hover:text-blue-800">
+            <i class="fa-solid fa-envelope text-2xl"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors">
+            <i class="bx bxl-facebook-square text-3xl"></i>
+          </a>
+        </div>
             </div>
 
                 <div>
