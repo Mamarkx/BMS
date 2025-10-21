@@ -71,27 +71,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                {{ $data->links() }}
-            </div>
-        @else
-            <div class="text-center py-16">
-                <i class="fa-solid fa-inbox text-6xl text-gray-300 mb-4"></i>
-                <p class="text-gray-500 text-lg font-medium">No requests available</p>
-                <p class="text-gray-400 text-sm mt-1">Check back later for new applications</p>
-            </div>
-        @endif
-    </div>
-
-</div>
-
-<!-- Release Modal -->
+                            <!-- Release Modal -->
 <div id="releaseModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
     <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
         <div class="flex items-center justify-between mb-6">
@@ -101,7 +81,7 @@
             </button>
         </div>
         
-        <form id="releaseForm" action="" method="POST">
+        <form id="releaseForm" action="{{ route('cedula.release' ,$d->id )}}" method="POST">
             @csrf
             <div class="mb-6">
                 <label for="release_date" class="block text-sm font-semibold text-gray-700 mb-2">
@@ -132,6 +112,27 @@
         </form>
     </div>
 </div>
+
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                {{ $data->links() }}
+            </div>
+        @else
+            <div class="text-center py-16">
+                <i class="fa-solid fa-inbox text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 text-lg font-medium">No requests available</p>
+                <p class="text-gray-400 text-sm mt-1">Check back later for new applications</p>
+            </div>
+        @endif
+    </div>
+
+</div>
+
 
 <!-- Scripts -->
 @if(session('success'))
@@ -171,7 +172,7 @@ function showApprovalConfirmation(id) {
 }
 
 function openReleaseModal(id) {
-    document.getElementById('releaseForm').action = '/cedula/' + id + '/release';
+    document.getElementById('releaseForm').action = '/cedula/' + id;
     document.getElementById('releaseModal').classList.remove('hidden');
 }
 

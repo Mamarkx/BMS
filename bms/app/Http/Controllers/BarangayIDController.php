@@ -46,7 +46,7 @@ class BarangayIDController extends Controller
 
         $document->release_date = $request->input('release_date');
         $document->released_by = 'Chairman';
-        $document->status = 'To be Released';
+        $document->status = 'To be Release';
         $document->save();
 
         $greeting = 'Dear ' . $document->name . ',';

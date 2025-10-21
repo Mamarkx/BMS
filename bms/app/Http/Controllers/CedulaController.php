@@ -30,7 +30,6 @@ class CedulaController extends Controller
 
     public function CedulaRelease(Request $request, $id)
     {
-        // Validate the input
         $request->validate([
             'release_date' => 'required|date|after_or_equal:today', // Ensure release date is valid
         ]);
@@ -46,7 +45,7 @@ class CedulaController extends Controller
 
         $document->release_date = $request->input('release_date');
         $document->released_by = 'Chairman';
-        $document->status = 'To be Released';
+        $document->status = 'To be Release';
         $document->save();
 
         $greeting = 'Dear ' . $document->name . ',';
