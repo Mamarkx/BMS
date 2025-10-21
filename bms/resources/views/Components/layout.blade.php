@@ -377,9 +377,9 @@
                 </div>
                 <p class="text-blue-200">Providing efficient digital services to our community members.</p>
                 <div class="mt-4">
-                    {{-- <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
+                    <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
                         <i class="fab fa-facebook fa-lg"></i>
-                    </a> --}}
+                    </a>
                   <a href="mailto:brgysanagustin13@gmail.com" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
                       <i class="fa-solid fa-envelope fa-lg"></i>
                   </a>
