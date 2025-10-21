@@ -4,11 +4,13 @@ use App\Http\Controllers\E_Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserManagement;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CedulaController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BusinessController;
-use App\Http\Controllers\EmployeeManagement;
 
+use App\Http\Controllers\EmployeeManagement;
 use App\Http\Controllers\ResidentInformation;
 use App\Http\Controllers\BarangayIDController;
 use App\Http\Controllers\SocialAuthController;
@@ -43,7 +45,7 @@ Route::get('/contact', function () {
     return view('website.Contact');
 })->name('Contact');
 
-
+//E-services
 Route::get('/login', [AuthController::class, "ShowLogin"])->name('loginPage');
 Route::get('/register', [AuthController::class, 'ShowRegister'])->name('RegisterPage');
 
@@ -71,84 +73,89 @@ Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirect'])->
 Route::get('/auth/google/callback', [SocialAuthController::class, 'callback'])->name('auth.google.callback');
 
 
-
+Route::get('/announcements/{id}', [AnnouncementController::class, 'Readmore'])->name('ShowAnnounce');
 
 
 
 
 //adminSide
-
-
-
-//dashboard
+//login for admin side
 Route::get('/admin', function () {
-    return view('AdminSide.Admin');
-})->name('dash');
+    return view('AdminSide.auth.login');
+})->name('LoginAdmin')->middleware('admin');
+Route::post('/admin/login', [AdminController::class, 'Adminlogin'])->name('admin.login');
+Route::post('/Admin/logout', [AdminController::class, 'Adminlogout'])->name('admin.logout');
+Route::get('/admin/2fa', function () {
+    return view('AdminSide.auth.2fa');
+})->name('admin.2fa.form');
+
+Route::post('/admin/2fa', [AdminController::class, 'verify2fa'])->name('admin.2fa.verify');
 
 
+Route::middleware(['admin', 'preventBackHistory'])->group(function () {
 
-//employee management
-Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');
-Route::get('/employee', [EmployeeManagement::class, 'ShowEmp'])->name('ShowEmployee');
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('AdminSide.Admin');
+    })->name('dash');
 
-Route::delete('/employee/{id}/delete', [EmployeeManagement::class, 'DestroyEmployee'])
-    ->name('DeleteEmploye');
-Route::put('/Edit/Employee', [EmployeeManagement::class, 'editemployee'])->name('EditEmployee');
-
-
+    // Logout
 
 
-//resident information
-Route::get('/resident', [ResidentInformation::class, 'ShowResident'])->name('ShowRes');
-Route::post('/add-resident', [ResidentInformation::class, 'StoreResident'])->name('addResident');
-// Show the form for editing a resident
-Route::get('/residents/{id}/edit', [ResidentInformation::class, 'edit'])->name('residents.edit');
-Route::put('/residents/{id}', [ResidentInformation::class, 'update'])->name('residents.update');
+    // Employee Management
+    Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');
+    Route::get('/employee', [EmployeeManagement::class, 'ShowEmp'])->name('ShowEmployee');
+    Route::delete('/employee/{id}/delete', [EmployeeManagement::class, 'DestroyEmployee'])->name('DeleteEmploye');
+    Route::put('/Edit/Employee', [EmployeeManagement::class, 'editemployee'])->name('EditEmployee');
 
-Route::delete('/resident/{id}/delete', [ResidentInformation::class, 'DestroyResident'])
-    ->name('DeleteResident');
+    // Resident Information
+    Route::get('/resident', [ResidentInformation::class, 'ShowResident'])->name('ShowRes');
+    Route::post('/add-resident', [ResidentInformation::class, 'StoreResident'])->name('addResident');
+    Route::get('/residents/{id}/edit', [ResidentInformation::class, 'edit'])->name('residents.edit');
+    Route::put('/residents/{id}', [ResidentInformation::class, 'update'])->name('residents.update');
+    Route::delete('/resident/{id}/delete', [ResidentInformation::class, 'DestroyResident'])->name('DeleteResident');
 
-//clearance and certificate
-Route::get('/request', [ApplicationController::class, 'ShowAllReq'])->name('ShowReq');
-Route::post('/submit-application', [ApplicationController::class, 'submitForm'])->name('submit.application');
-Route::post('/approve-document/{id}', [ApplicationController::class, 'approve'])->name('approve.document');
-Route::post('/schedule-release/{id}', [ApplicationController::class, 'scheduleRelease'])->name('schedule.release');
+    // Clearance & Certificate
+    Route::get('/request', [ApplicationController::class, 'ShowAllReq'])->name('ShowReq');
+    Route::post('/submit-application', [ApplicationController::class, 'submitForm'])->name('submit.application');
+    Route::post('/approve-document/{id}', [ApplicationController::class, 'approve'])->name('approve.document');
+    Route::post('/schedule-release/{id}', [ApplicationController::class, 'scheduleRelease'])->name('schedule.release');
 
+    // Announcement
+    Route::get('/announcement', [AnnouncementController::class, 'showAnnounce'])->name('Announce');
+    Route::post('/upload/announcement', [AnnouncementController::class, 'AddAnnounce'])->name('announce.store');
+    Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announce.update');
+    Route::delete('/announcements/{id}', [AnnouncementController::class, 'DeleteAnnounce'])->name('DeleteAnnounce');
 
+    // E-Services
+    Route::prefix('services')->group(function () {
+        Route::get('/general-form', [E_Services::class, 'generalForm'])->name('general.form');
+        Route::get('/business-permit', [E_Services::class, 'businessPermit'])->name('business.permit');
+        Route::get('/barangay-id', [E_Services::class, 'barangayID'])->name('barangay.id');
+        Route::get('/cedula', [E_Services::class, 'cedula'])->name('cedula');
+    });
 
-//Annoucement
-Route::get('/announcement', [AnnouncementController::class, 'showAnnounce'])->name('Announce');
+    // Barangay ID
+    Route::post('/barangay-id/{id}/approveID', [BarangayIDController::class, 'approveID'])->name('approve.formID');
+    Route::post('/barangay-id/{id}', [BarangayIDController::class, 'scheduleReleaseID'])->name('schedule.releaseID');
 
+    // General Form
+    Route::post('/general-form/{id}/approveID', [GeneralFormController::class, 'approveGeneral'])->name('general.formID');
+    Route::post('/general-form/{id}', [GeneralFormController::class, 'GeneralReleaseID'])->name('general.release');
+    Route::get('/general-form/{id}', [GeneralFormController::class, 'show'])->name('generalID.show');
 
+    // Cedula
+    Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');
+    Route::post('/cedula/{id}', [CedulaController::class, 'CedulaRelease'])->name('cedula.release');
 
+    // Business Permit
+    Route::post('/business-permit/{id}/approveID', [BusinessController::class, 'approveBusinessPermit'])->name('approve.business-permit');
+    Route::post('/business-permit/{id}', [BusinessController::class, 'CedulaBusinessPermit'])->name('businessPermit.release');
 
+    //User Management
 
-
-Route::prefix('services')->group(function () {
-    Route::get('/general-form', [E_Services::class, 'generalForm'])->name('general.form');
-    Route::get('/business-permit', [E_Services::class, 'businessPermit'])->name('business.permit');
-    Route::get('/barangay-id', [E_Services::class, 'barangayID'])->name('barangay.id');
-    Route::get('/cedula', [E_Services::class, 'cedula'])->name('cedula');
+    Route::get('/Users', [UserManagement::class, 'ShowUsers'])->name('UserManage');
+    Route::Post('/create/account', [UserManagement::class, 'AddAcc'])->name('AddUserAcc');
+    Route::Post('/update/account', [UserManagement::class, 'UpdateAcc'])->name('UpdateUserAcc');
+    Route::delete('/delete/account/{id}', [UserManagement::class, 'DeleteAcc'])->name('DeleteUserAccount');
 });
-
-
-
-//barnagay id
-Route::post('/barangay-id/{id}/approveID', [BarangayIDController::class, 'approveID'])->name('approve.formID');
-Route::post('/barangay-id/{id}', [BarangayIDController::class, 'scheduleReleaseID'])->name('schedule.releaseID');
-
-
-
-//general fform
-Route::post('/general-form/{id}/approveID', [GeneralFormController::class, 'approveGeneral'])->name('general.formID');
-Route::post('/general-form/{id}', [GeneralFormController::class, 'GeneralReleaseID'])->name('general.release');
-Route::get('/general-form/{id}', [GeneralFormController::class, 'show'])->name('generalID.show');
-
-//cedula
-Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');
-Route::post('/cedula/{id}', [CedulaController::class, 'CedulaRelease'])->name('cedula.release');
-
-
-//BUSINEESS PERMIT
-Route::post('/business-permit/{id}/approveID', [BusinessController::class, 'approveBusinessPermit'])->name('approve.business-permit');
-Route::post('/business-permit/{id}', [BusinessController::class, 'CedulaBusinessPermit'])->name('businessPermit.release');

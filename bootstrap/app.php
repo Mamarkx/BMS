@@ -13,7 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'CheckUser' => CheckIfAuthenticated::class
+            'CheckUser' => CheckIfAuthenticated::class,
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'preventBackHistory' => \App\Http\Middleware\PreventBackHistory::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

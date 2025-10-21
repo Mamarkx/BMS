@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Announce extends Model
 {
     protected $table = 'announcements';
+
     protected $fillable = [
         'title',
         'content',
         'category',
+        'attachment',
         'publish_date',
-        'attachment'
     ];
-    protected $dates = [
-        'created_at',
-        'updated_at',
+
+    protected $casts = [
+        'publish_date' => 'datetime',
+        'created_at'   => 'datetime',
+        'updated_at'   => 'datetime',
     ];
 }

@@ -22,7 +22,7 @@ Barangay e-Services is an online platform primarily established to provide resid
     </div>
 
       <!-- Right side -->
-<div class="slider relative w-full h-[700px] flex-1 items-center justify-center overflow-hidden">
+<div class="slider relative w-full h-[700px] flex-1 items-center justify-center overflow-hidden hidden md:flex">
   <div class="w-full h-full relative">
     <div class="swiper-wrapper relative">
 
@@ -115,32 +115,32 @@ Barangay e-Services is an online platform primarily established to provide resid
     </div>
   </div>
 </div>
-
 <script>
   const items = document.querySelectorAll('.item');
   let active = 0;
   const total = items.length;
   let isAnimating = false;
 
+  // Reset all cards except current + next stack
   function resetStyles() {
-    items.forEach((item) => {
-      item.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
-      item.style.opacity = '0';
-      item.style.zIndex = '-1';
-      item.style.transform = 'translate(-50%, -50%) scale(0.8)';
+    items.forEach((item, index) => {
+      item.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease';
       item.style.willChange = 'transform, opacity';
+      item.style.opacity = index === active ? '1' : '0';
+      item.style.zIndex = index === active ? '10' : '0';
     });
   }
 
   function animateCurrent(direction) {
     const current = items[active];
-    current.style.opacity = '1';
-    current.style.zIndex = '10';
-
-    const startY = direction === 'next' ? '80%' : '-180%';
+    const startY = direction === 'next' ? '-80%' : '80%';
     current.style.transform = `translate(-50%, ${startY}) scale(0.9)`;
+    current.style.opacity = '0';
 
     requestAnimationFrame(() => {
+      current.style.opacity = '1';
+      current.style.zIndex = '10';
+      current.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease';
       current.style.transform = 'translate(-50%, -50%) scale(1)';
     });
   }
@@ -150,23 +150,19 @@ Barangay e-Services is an online platform primarily established to provide resid
       const nextIndex = (active + i) % total;
       const offsetX = 140 * i;
       const scale = 1 - 0.1 * i;
-      items[nextIndex].style.opacity = '1';
-      items[nextIndex].style.zIndex = `${10 - i}`;
-      items[nextIndex].style.transform = `translate(calc(-50% + ${offsetX}px), -50%) scale(${scale})`;
+      const item = items[nextIndex];
+      item.style.opacity = '1';
+      item.style.zIndex = `${10 - i}`;
+      item.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+      item.style.transform = `translate(calc(-50% + ${offsetX}px), -50%) scale(${scale})`;
     }
   }
 
   function fadePreviousCards(prevActive) {
-    // Animate previous active card bottom to top
     const leaving = items[prevActive];
+    leaving.style.transition = 'transform 0.6s ease-in, opacity 0.6s ease-in';
     leaving.style.opacity = '0';
-    leaving.style.transform = 'translate(-50%, -150%) scale(0.7)';
-
-    // Animate last stacked card top to bottom
-    const lastStackedIndex = (active + 3) % total;
-    const lastStacked = items[lastStackedIndex];
-    lastStacked.style.opacity = '0';
-    lastStacked.style.transform = 'translate(-50%, 150%) scale(0.7)';
+    leaving.style.transform = 'translate(-50%, 80%) scale(0.7)';
   }
 
   function loadShow(direction = 'next') {
@@ -183,22 +179,23 @@ Barangay e-Services is an online platform primarily established to provide resid
 
     setTimeout(() => {
       isAnimating = false;
-    }, 800);
+    }, 900);
   }
 
-  setInterval(() => {
-    loadShow('next');
-  }, 3000);
+  // Start auto loop
+  setInterval(() => loadShow('next'), 3000);
 
-  loadShow();
+  // Initialize first view
+  resetStyles();
+  animateCurrent();
+  stackNextCards();
 </script>
 
   </div>
 
   
 </section>
-
-<section id="news-section" class="py-20 bg-white ">
+<section id="news-section" class="py-20 bg-white">
     <div class="container mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
             <div class="inline-flex items-center rounded-full px-4 py-1 mb-4 bg-indigo-100 text-sky-800 border-sky-200">
@@ -211,57 +208,59 @@ Barangay e-Services is an online platform primarily established to provide resid
             </p>
         </div>
 
-
+        <!-- Dynamic Announcements -->
         <div class="grid md:grid-cols-3 gap-8 news-grid">
-         
-            <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-                <div class="p-6">
-                    <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-blue-100 text-blue-800">
-                        Advisory
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Scheduled Water Interruption Notice</h3>
-                    <p class="text-gray-500 text-sm mb-2">Aug 22, 2025</p>
-                    <p class="text-gray-600 text-sm mb-4">Maintenance will affect Zones 1-3 from 9:00 AM to 3:00 PM. Please store enough water.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                        Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                    </a>
-                </div>
-            </div>
+            @forelse ($announce as $item)
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+                    <!-- Image (if available) -->
+                    @if ($item->attachment)
+                        <img src="{{ asset('storage/' . $item->attachment) }}" alt="{{ $item->title }}" class="w-full h-50 object-cover rounded-t-xl">
+                    @endif
 
-   
-            <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-                <div class="p-6">
-                    <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-green-100 text-green-800">
-                        Community
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Barangay Clean-up Drive</h3>
-                    <p class="text-gray-500 text-sm mb-2">Sep 02, 2025</p>
-                    <p class="text-gray-600 text-sm mb-4">Join our community clean-up. Volunteers will receive certificates of participation.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                        Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                    </a>
-                </div>
-            </div>
+                    <div class="p-6">
+                        <!-- Category -->
+                        <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-blue-100 text-blue-800">
+                            {{ $item->category ?? 'Announcement' }}
+                        </div>
 
-            <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-                <div class="p-6">
-                    <div class="inline-flex items-center rounded-full px-2 py-1 mb-4 text-xs font-semibold bg-purple-100 text-purple-800">
-                        Update
+                        <!-- Title -->
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 line-clamp-2">
+                            {{ $item->title }}
+                        </h3>
+
+                        <!-- Date -->
+                        <p class="text-gray-500 text-sm mb-2">
+                            {{ $item->publish_date ? $item->publish_date->format('M d, Y') : $item->created_at->format('M d, Y') }}
+                        </p>
+
+                        <!-- Content preview -->
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            {{ Str::limit(strip_tags($item->content), 100, '...') }}
+                        </p>
+
+                        <!-- Read More -->
+                        <a href="{{ route('ShowAnnounce', $item->id) }}"
+                           class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
+                            Read More
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                                 class="w-4 h-4 ml-2">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </a>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Services Rollout</h3>
-                    <p class="text-gray-500 text-sm mb-2">Aug 30, 2025</p>
-                    <p class="text-gray-600 text-sm mb-4">New e-services added for faster, paperless transactions and better transparency.</p>
-                    <a href="#" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                        Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                    </a>
                 </div>
-            </div>
+            @empty
+                <div class="col-span-3 text-center text-gray-500 bg-white shadow-md rounded-xl py-10">
+                    No announcements available.
+                </div>
+            @endforelse
         </div>
     </div>
 </section>
+
 
 
   <section id="how-it-works" class="py-20 bg-gradient-to-r from-blue-50 to-sky-50">

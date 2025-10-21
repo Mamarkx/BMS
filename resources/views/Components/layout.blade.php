@@ -161,7 +161,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 @php
-  $blueRoutes = ['Services', 'About', 'Contact' , 'applications','service.form'];
+  $blueRoutes = ['Services', 'About', 'Contact' , 'applications','service.form', 'ShowAnnounce'];
 @endphp
 
 <div id="header"
@@ -193,9 +193,6 @@
 
     <div id="avatarDropdown" class="absolute right-0 hidden mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-xl ring-1 ring-gray-200 focus:outline-none animate-fade-in-up transform origin-top-right">
         <div class="py-1">
-            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md mx-1 my-0.5 transition-colors duration-200 group">
-                <i class="fa-solid fa-user-circle w-4 text-center mr-2 text-gray-500 group-hover:text-indigo-600 transition-colors"></i>Profile
-            </a>
             <a href="{{ route('applications') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-md mx-1 my-0.5 transition-colors duration-200 group">
                 <i class="fa-solid fa-list-check w-4 text-center mr-2 text-gray-500 group-hover:text-indigo-600 transition-colors"></i>Applications
             </a>
@@ -237,47 +234,127 @@
   @endauth
 </div>
 
-    <div class="md:hidden">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle hidden" />
-      <div class="drawer-content">
-        <label for="my-drawer" class="hover:bg-white p-2 hover:text-black rounded-lg cursor-pointer text-white">
-          <i class="fa-solid fa-bars text-xl"></i>
-        </label>
-      </div>
-      <div class="drawer-side">
-        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu bg-blue-900 text-white min-h-full w-80 p-4">
-          <li class="mb-4 border-white border-b">
-            <div class="logo-side flex items-center gap-3">
-              <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
-              <span class="text-xl font-bold text-white">Brgy San Agustin</span>
-            </div>
-          </li>
-          <li>
-            <a href="{{ route('Home') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a>
-          </li>
-          <li>
-            <a href="{{ route('Services') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Services</a>
-          </li>
-          <li>
-            <a href="{{ route('About') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">About</a>
-          </li>
-          <li>
-            <a href="{{ route('Contact') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Contact</a>
-          </li>
+   <!-- Include jQuery if not already -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="md:hidden">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle hidden" />
+
+  <!-- Drawer Toggle Button -->
+  <div class="drawer-content">
+    <label for="my-drawer" class="hover:bg-white p-2 hover:text-black rounded-lg cursor-pointer text-white">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </label>
+  </div>
+
+  <!-- Drawer Side -->
+  <div class="drawer-side">
+    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+
+    <ul class="menu bg-blue-900 text-white min-h-full w-80 p-4 flex flex-col justify-between">
+      <!-- Top Menu Section -->
+      <div>
+        <!-- Logo -->
+        <li class="mb-4 border-white border-b">
+          <div class="logo-side flex items-center gap-3">
+            <img src="{{ asset('images/san-agustin.png') }}" class="w-12 h-12" alt="San Agustin Logo" />
+            <span class="text-xl font-bold text-white">Brgy San Agustin</span>
+          </div>
+        </li>
+
+        <!-- Navigation Links -->
+        <li><a href="{{ route('Home') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Home</a></li>
+        <li><a href="{{ route('Services') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Services</a></li>
+        <li><a href="{{ route('About') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">About</a></li>
+        <li><a href="{{ route('Contact') }}" class="px-4 py-5 hover:bg-blue-800/50 rounded-lg transition-all duration-200">Contact</a></li>
+
+        @guest
           <li class="mt-4">
-            <a href="{{ route('loginPage')  }}" class="text-white hover:bg-blue-800/50 px-3 py-5 rounded-lg transition-all duration-200 w-full text-left">
+            <a href="{{ route('loginPage') }}" class="text-white hover:bg-blue-800/50 px-3 py-5 rounded-lg transition-all duration-200 w-full text-left">
               Login
             </a>
           </li>
           <li>
-            <a href="{{ route('RegisterPage')}}" class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-5 transition-all duration-200 w-full text-left mt-2">
+            <a href="{{ route('RegisterPage') }}" class="bg-white text-blue-800 hover:bg-blue-100 font-semibold rounded-lg px-3 py-5 transition-all duration-200 w-full text-left mt-2">
               Sign Up
             </a>
           </li>
-        </ul>
+        @endguest
+      </div>
+
+      @auth
+      <!-- Bottom User Section -->
+      <div class="mt-6 border-t border-blue-700 pt-4 relative">
+        <div class="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-blue-800/50 transition-all cursor-pointer" id="toggleUserMenu">
+          <div class="flex items-center gap-3" >
+            <img 
+              src="{{ Auth::user()->profile_picture 
+                ?? 'https://avatar.iran.liara.run/username?username=' . urlencode(Auth::user()->first_name . ' ' . Auth::user()->last_name) }}" 
+              onerror="this.onerror=null; this.src='{{ asset('images/default-avatar.png') }}';"
+              class="w-10 h-10 rounded-full border-2 border-blue-600" 
+              alt="Profile">
+            <div>
+              <p class="font-semibold">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
+              <p class="text-sm text-blue-200">View options</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="userMenuModal" class="hidden fixed bottom-28 right-6 z-50 flex items-end justify-end">
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 w-72 overflow-hidden">
+        <div class="p-4 border-b border-gray-100">
+          <h2 class="text-sm font-semibold text-gray-700">{{ Auth::user()->email }}</h2>
+        </div>
+        <div class="flex flex-col">
+          <a href="{{ route('applications') }}" class="px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 transition">My Applications</a>
+        </div>
+     
+          <form action="{{ route('logout') }}" method="POST" id="logoutForm">
+             <div class="border-t border-gray-100">
+            @csrf
+            <button type="submit" class="w-full text-left px-5 py-3 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition">Logout</button>
+           </div>
+          </form>
+       
       </div>
     </div>
+
+
+
+      </div>
+      @endauth
+    </ul>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    const $modal = $('#userMenuModal');
+
+    $('#toggleUserMenu').on('click', function(e) {
+      e.stopPropagation();
+      if ($modal.hasClass('hidden')) {
+        $modal.removeClass('hidden').fadeIn(200);
+      } else {
+        $modal.fadeOut(200, function() {
+          $(this).addClass('hidden');
+        });
+      }
+});
+
+    // Close when clicking outside
+    $(document).on('click', function(e) {
+      if (!$(e.target).closest('#userMenuModal, #toggleUserMenu').length) {
+        $modal.fadeOut(200, function() {
+          $(this).addClass('hidden');
+        });
+      }
+    });
+  });
+</script>
+
+
+    
   </div>
 </div>
 <main id="main">

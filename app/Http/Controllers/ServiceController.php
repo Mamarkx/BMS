@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announce;
 use App\Models\Cedula;
 use App\Models\FormID;
 use App\Models\GeneralForm;
@@ -58,8 +59,13 @@ class ServiceController extends Controller
 
     public function landingPage()
     {
-        return view('website.Home');
+        $announce = Announce::orderBy('publish_date', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('website.Home', compact('announce'));
     }
+
 
     public function showForm($service_slug)
     {

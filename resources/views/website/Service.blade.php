@@ -19,14 +19,14 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($services as $service)
-                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-300 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-l-5   border-blue-600 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                         <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-xl mb-4">
                             {!! $service['icon'] !!}
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $service['title'] }}</h3>
                         <p class="text-gray-600 mb-4 text-sm">{{ $service['description'] }}</p>
                         <a href="{{ route('service.form', ['service_slug' => Str::slug($service['title'])]) }}" class="text-blue-600 font-semibold flex items-center transition-all duration-300 hover:text-blue-700">
-                            Apply Now
+                            Request Now
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 ml-2">
                                 <path d="M5 12h14"></path>
                                 <path d="m12 5 7 7-7 7"></path>

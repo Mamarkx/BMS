@@ -63,7 +63,6 @@
                                     <i class="fa-solid fa-users text-xl"></i><span class="ml-2">Resident Information</span>
                                 </a>
                             </li>
-                           <li class="relative">
                                 <!-- Parent Link -->
                             <li class="relative">
                                 <button id="requestDropdownButton" 
@@ -100,13 +99,20 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                            <a href="{{ route('UserManage') }}" 
+                                class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                <i class="fa-solid fa-users-gear text-xl"></i>
+                                <span class="ml-2">User Management</span>
+                            </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
             </div>
 
             <!-- Profile and Logout Section -->
-            <div class="">
+            {{-- <div class="">
                 <div class="flex items-center justify-between p-4 shadow-sm transition-colors duration-200 border-white/40 border-t">
                     <div class="flex items-center space-x-4">
                         <img src="https://ui-avatars.com/api/?name=John+Mark&background=7E22CE&color=fff&size=64" alt="Profile Picture" class="w-12 h-12 rounded-full object-cover">
@@ -115,14 +121,14 @@
                             <p class="text-[#93C5FD] text-sm">Admin</p>
                         </div>
                     </div>
-                    <form method="POST" action="" class="logoutacc">
+                    <form method="POST" action="{{ route('admin.logout') }}" class="logoutacc">
                         @csrf
-                        <button type="submit" class="text-[#93C5FD] hover:text-red-500 transition ">
+                        <button type="submit" class="text-[#93C5FD] hover:text-red-500 transition">
                             <i class="fa-solid fa-right-from-bracket text-xl"></i>
                         </button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </aside>
 
         <!-- Main Content -->
@@ -131,11 +137,65 @@
                 <button id="toggle-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
                     <i class="fa-solid fa-bars text-xl text-stone-900"></i>
                 </button>
+                <!-- Profile Button -->
                 <div class="flex items-center gap-4">
-                    <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
-                        <a href='#'><i class="fa-solid fa-user-gear text-xl text-stone-900"></i></a>
-                    </button>
+                <button id="profileBtn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
+                    <i class="fa-solid fa-user-gear text-xl text-stone-900"></i>
+                </button>
                 </div>
+
+               <!-- Profile Modal -->
+                    <div id="profileModal" 
+                        class="fixed top-17 right-6 hidden z-50">
+                    <div class="bg-white w-72 rounded-xl shadow-lg border border-gray-200 overflow-hidden animate-fade-in-down">
+
+                        <!-- Header -->
+                        <div class="flex items-center gap-3 p-4 border-b border-gray-100">
+                        <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full">
+                            <i class="fa-solid fa-user text-2xl text-gray-700"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-sm font-semibold text-gray-800">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h2>
+                            <p class="text-xs text-gray-500">{{Auth::user()->email }}</p>
+                        </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="p-4 space-y-2">
+                        <a href="/profile" 
+                            class="block w-full btn text-sm font-medium text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-100 transition">
+                            <i class="fa-solid fa-id-card mr-2 text-gray-500"></i> View Profile
+                        </a>
+
+                        <form method="POST" action="{{ route('admin.logout') }}" class="logoutacc">
+                            @csrf
+                            <button type="submit" 
+                            class="w-full flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 transition">
+                            <i class="fa-solid fa-right-from-bracket"></i> Logout
+                            </button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+
+<!-- Animation -->
+<style>
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-down {
+  animation: fade-in-down 0.2s ease-out;
+}
+</style>
+
+
             </nav>
                 <main class="h-screen md:h-auto p-6">
                     {{ $slot }}
@@ -199,5 +259,28 @@ window.addEventListener('click', function(e) {
     }
 });
 </script>
+<script>
+  const profileBtn = document.getElementById('profileBtn');
+  const profileModal = document.getElementById('profileModal');
+  const closeModal = document.getElementById('closeModal');
+
+  profileBtn.addEventListener('click', () => {
+    profileModal.classList.toggle('hidden');
+  });
+
+  closeModal.addEventListener('click', () => {
+    profileModal.classList.add('hidden');
+    profileModal.classList.remove('flex');
+  });
+
+  // Close modal when clicking outside the box
+  window.addEventListener('click', (e) => {
+    if (e.target === profileModal) {
+      profileModal.classList.add('hidden');
+      profileModal.classList.remove('flex');
+    }
+  });
+</script>
+
 </body>
 </html>

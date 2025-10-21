@@ -41,7 +41,7 @@
 
 <section id="mission-vision" class="py-20 bg-white min-h-auto">
     <div class="container mx-auto px-4 md:px-6"> 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="card bg-white p-8 rounded-lg  border border-gray-300">
                 <div class="logo flex justify-center mb-3">
                     <div class="circle bg-blue-500 p-2 h-14 w-14 rounded-full text-white flex justify-center items-center">
@@ -49,10 +49,10 @@
                     </div>
                 </div>
                 <div class="title text-center mb-4">
-                    <h3 class="text-xl font-semibold text-blue-900">Our Mission</h3>
+                    <h3 class="text-xl font-semibold text-blue-900">Mission</h3>
                 </div>
                 <div class="description text-gray-700">
-                    <p>To provide quality services to our community through transparency, effective governance, and active participation of all residents in creating a better future for Barangay San Agustin.</p>
+                    <p>To formulate and enforce transparent plans, programs and regulations for the protection and interest of the community with regards to environment, education, infrastructure, health, social services, moral, financial and peace and order.</p>
                 </div>
             </div>
             <div class="card bg-white p-8 rounded-lg border border-gray-300">
@@ -62,26 +62,12 @@
                     </div>
                 </div>
                 <div class="title text-center mb-4">
-                    <h3 class="text-xl font-semibold text-green-900">Our Vision</h3>
+                    <h3 class="text-xl font-semibold text-green-900">Vision</h3>
                 </div>
                 <div class="description text-gray-700">
-                    <p>We envision Barangay San Agustin as a progressive, peaceful, and sustainable community where every citizen thrives with dignity and a sense of belonging.</p>
+                    <p>Barangay San Agustin envisions to be a community of Law-Abiding, productive and healthy individuals, a community that is God-fearing, progressive, drug-free, clean, environmentally aware, ready to help others, empowered constituents and collectively participating in decision- making, gearing towards good governance.</p>
                 </div>
             </div>
-            <div class="card bg-white p-8 rounded-lg border border-gray-300">
-                <div class="logo flex justify-center mb-6">
-                    <div class="circle bg-blue-500 p-4 h-16 w-16 rounded-full text-white flex justify-center items-center">
-                        <i class="bx bx-heart text-3xl"></i>
-                    </div>
-                </div>
-                <div class="title text-center mb-4">
-                    <h3 class="text-xl font-semibold text-yellow-900">Our Values</h3>
-                </div>
-                <div class="description text-gray-700">
-                    <p>We uphold the values of integrity, teamwork, compassion, and respect. Our community strives for mutual cooperation, shared responsibility, and the well-being of all citizens.</p>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
@@ -102,17 +88,17 @@
                 <img src="https://avatar.iran.liara.run/public/12" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
             </div>
             <div class="official-info text-center">
-                <p class="font-semibold text-blue-900">Juan Dela Cruz</p>
-                <p class="text-gray-600">Barangay Captain</p>
+                <p class="font-semibold text-blue-900">Fabio Y. Ortega</p>
+                <p class="text-gray-600">Punong Barangay</p>
             </div>
         </div>
         
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
-            <img src="https://avatar.iran.liara.run/public/17" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+            <img src="https://avatar.iran.liara.run/public/58" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
         </div>
         <div class="official-info text-center">
-            <p class="font-semibold text-yellow-900">Carlos Garcia</p>
+            <p class="font-semibold text-yellow-900">Patria B. Untalan</p>
             <p class="text-gray-600">Barangay Secretary</p>
         </div>
     </div>
@@ -122,7 +108,7 @@
             <img src="https://avatar.iran.liara.run/public/21" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
         </div>
         <div class="official-info text-center">
-            <p class="font-semibold text-yellow-900">Angela Lopez</p>
+            <p class="font-semibold text-yellow-900">Daniel O. Clarin</p>
             <p class="text-gray-600">Barangay Treasurer</p>
         </div>
     </div>
@@ -132,19 +118,19 @@
             <img src="https://avatar.iran.liara.run/public/29" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
         </div>
         <div class="official-info text-center">
-            <p class="font-semibold text-green-900">Erwin Bautista</p>
-            <p class="text-gray-600">Barangay Councilor</p>
+            <p class="font-semibold text-green-900">Gerald M. Lagatoc</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
         </div>
     </div>
 
  
     <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
         <div class="logo flex justify-center mb-6">
-            <img src="https://avatar.iran.liara.run/public/35" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+            <img src="https://avatar.iran.liara.run/public/58" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
         </div>
         <div class="official-info text-center">
-            <p class="font-semibold text-blue-900">Sophia Tan</p>
-            <p class="text-gray-600">Barangay Councilor</p>
+            <p class="font-semibold text-blue-900">Abigail Jezreel O. Millar</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
         </div>
     </div>
     
@@ -154,8 +140,63 @@
             <img src="https://avatar.iran.liara.run/public/41" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
         </div>
         <div class="official-info text-center">
-            <p class="font-semibold text-yellow-900">Rafael Cruz</p>
-            <p class="text-gray-600">Barangay Councilor</p>
+            <p class="font-semibold text-yellow-900">Edmundo R. Osea Jr.</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
+        </div>
+    </div>
+
+    
+    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
+        <div class="logo flex justify-center mb-6">
+            <img src="https://avatar.iran.liara.run/public/41" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+        </div>
+        <div class="official-info text-center">
+            <p class="font-semibold text-yellow-900">Robert R. Peralta</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
+        </div>
+    </div>
+
+    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
+        <div class="logo flex justify-center mb-6">
+            <img src="https://avatar.iran.liara.run/public/41" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+        </div>
+        <div class="official-info text-center">
+            <p class="font-semibold text-yellow-900">Alejandro F. Palma</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
+        </div>
+    </div>
+
+    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
+        <div class="logo flex justify-center mb-6">
+            <img src="https://avatar.iran.liara.run/public/58" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+        </div>
+
+        <div class="official-info text-center">
+            <p class="font-semibold text-blue-900">Lilibeth P. Mata</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
+        </div>
+    </div>
+
+    
+    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
+        <div class="logo flex justify-center mb-6">
+            <img src="https://avatar.iran.liara.run/public/58" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+        </div>
+
+        <div class="official-info text-center">
+            <p class="font-semibold text-blue-900">Jasmin D. Gilbuena</p>
+            <p class="text-gray-600">Barangay Kagawad</p>
+        </div>
+    </div>
+
+    <div class="card bg-white p-8 rounded-lg border border-gray-300 mr-4">
+        <div class="logo flex justify-center mb-6">
+            <img src="https://avatar.iran.liara.run/public/58" alt="Official Image" class="h-24 w-24 rounded-full object-cover border-2 border-blue-500">
+        </div>
+
+        <div class="official-info text-center">
+            <p class="font-semibold text-blue-900">Rachel Ann Launchengco</p>
+            <p class="text-gray-600">SK Chairperson</p>
         </div>
     </div>
 </div>
