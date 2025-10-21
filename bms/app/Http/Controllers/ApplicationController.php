@@ -189,6 +189,6 @@ class ApplicationController extends Controller
         $applications = $applications->sortByDesc('issue_date')->values();
 
 
-        return view('website.application', compact('applications'));
+        return view('website.Application', compact('applications'));
     }
 }
