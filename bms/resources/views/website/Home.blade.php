@@ -214,7 +214,7 @@ Barangay e-Services is an online platform primarily established to provide resid
                 <div class="bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
                     <!-- Image (if available) -->
                     @if ($item->attachment)
-                        <img src="{{ asset('storage/' . $item->attachment) }}" alt="{{ $item->title }}" class="w-full h-50 object-cover rounded-t-xl">
+                        <img src="{{ asset('public/storage/' . $item->attachment) }}" alt="{{ $item->title }}" class="w-full h-50 object-cover rounded-t-xl">
                     @endif
 
                     <div class="p-6">
