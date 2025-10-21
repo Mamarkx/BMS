@@ -225,7 +225,6 @@ Swal.fire({
     padding-left: 12px !important;
 }
 </style>
-@endif
 <script>
 $(document).ready(function() {
     $('.delete-btn').on('click', function() {
