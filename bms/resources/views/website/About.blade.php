@@ -75,7 +75,7 @@
 <section id="leadership" class="py-20 bg-gradient-to-r from-blue-50 to-sky-50 min-h-auto">
     <div class="container mx-auto px-4 md:px-6"> 
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-blue-900 mb-4">Our Leadership</h2>
+            <h2 class="text-4xl font-bold text-blue-900 mb-4">Organizational Chart</h2>
             <p class="text-xl text-blue-700 max-w-2xl mx-auto">
                 Learn more about our barangay and our commitment to serving the community.
             </p>
