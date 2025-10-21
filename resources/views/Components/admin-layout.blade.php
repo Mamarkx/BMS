@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="//unpkg.com/alpinejs" defer></script>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/daisyui.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         #sidebar, #main-content {
