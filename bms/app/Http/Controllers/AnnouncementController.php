@@ -19,18 +19,25 @@ class AnnouncementController extends Controller
             'title'       => 'required|string|max:255',
             'content'     => 'required|string',
             'category'    => 'nullable|string|max:255',
-            'attachment'  => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'attachment'  => 'nullable|file|mimes:jpg,jpeg,png|max:5120',
+        ], [
+            'attachment.max' => 'Maximum file size is 5 MB only.',
+            'attachment.mimes' => 'Only JPG and PNG files are allowed.',
         ]);
+
         $validatedData['publish_date'] = now();
+
         if ($request->hasFile('attachment')) {
             $validatedData['attachment'] = $request->file('attachment')->store('documents/announce', 'public');
         }
+
         Announce::create($validatedData);
 
         return redirect()
             ->back()
             ->with('success', 'Posted successfully!');
     }
+
     public function Readmore($id)
     {
         $announcement = Announce::findOrFail($id);

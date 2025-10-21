@@ -196,6 +196,27 @@ Swal.fire({
     color: '#16a34a',
 });
 </script>
+@endif
+
+@if ($errors->has('attachment'))
+<script>
+Swal.fire({
+    toast: true,
+    position: 'top-end',
+    icon: 'error',
+    title: 'File upload error',
+    text: '{{ $errors->first('attachment') }}',
+    showConfirmButton: false,
+    timer: 4000,
+    timerProgressBar: true,
+    customClass: {
+        popup: 'colored-toast'
+    },
+    background: '#ffffff',
+    color: '#dc2626',
+});
+</script>
+@endif
 
 <style>
 .colored-toast {
