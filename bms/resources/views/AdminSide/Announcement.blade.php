@@ -190,7 +190,7 @@ Swal.fire({
     timer: 2000,
     timerProgressBar: true,
     customClass: {
-        popup: 'colored-toast'
+        popup: 'colored-toast-success'
     },
     background: '#ffffff',
     color: '#16a34a',
@@ -210,7 +210,7 @@ Swal.fire({
     timer: 4000,
     timerProgressBar: true,
     customClass: {
-        popup: 'colored-toast'
+        popup: 'colored-toast-error'
     },
     background: '#ffffff',
     color: '#dc2626',
@@ -219,12 +219,25 @@ Swal.fire({
 @endif
 
 <style>
-.colored-toast {
-    border-left: 6px solid #16a34a !important; 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding-left: 12px !important;
+.colored-toast-success,
+.colored-toast-error {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.colored-toast-success {
+    border-left: 6px solid #16a34a !important; /* Green */
+}
+
+
+.colored-toast-error {
+    border-left: 6px solid #dc2626 !important; /* Red */
 }
 </style>
+
 <script>
 $(document).ready(function() {
     $('.delete-btn').on('click', function() {
