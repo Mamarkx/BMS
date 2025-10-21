@@ -25,7 +25,7 @@
                 @forelse ($data as $d)
                     <tr class="border-b border-gray-300 hover:bg-gray-50 text-sm text-gray-800">
                         <td class="py-3 px-6">{{ $d->reference_number }}</td>
-                        <td class="py-3 px-6">{{ $d->name }}</td>
+                        <td class="py-3 px-6">{{ $d->first_name }} {{ $d->middle_name ?? '' }} {{ $d->last_name }}</td>
                         <td class="py-3 px-6">{{ $d->type }}</td>
                         <td class="py-3 px-6">
                             <span class="inline-block px-3 py-1 rounded-full font-medium
