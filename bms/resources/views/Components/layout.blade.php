@@ -377,12 +377,12 @@
                 </div>
                 <p class="text-blue-200">Providing efficient digital services to our community members.</p>
                 <div class="mt-4">
-                    <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                  <a href="mailto:brgysanagustin13@gmail.com" target="_blank" class="text-blue-600 hover:text-blue-800 mr-4">
+                  <a href="mailto:brgysanagustin13@gmail.com" target="_blank" class="text-blue-600 hover:text-blue-800 ">
                       <i class="fa-solid fa-envelope fa-lg"></i>
                   </a>
+                    <a href="https://www.facebook.com/share/1K148thiPR/" target="_blank" class="text-blue-600 hover:text-blue-800 ">
+                        <i class="fab fa-facebook fa-lg"></i>
+                    </a>
                 </div>
             </div>
 
@@ -447,6 +447,8 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+
 </body>
 </html>
 <script>
