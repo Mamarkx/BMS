@@ -18,7 +18,7 @@
 </head>
 <body class="font-sans antialiased">
 
-<div class="h-auto md:h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
+<div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
 
     <div class="absolute inset-0 bg-black opacity-50"></div>
     
