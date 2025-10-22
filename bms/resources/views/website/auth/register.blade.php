@@ -76,6 +76,7 @@
                     </div>
                 </div>
             </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
         <label for="address" class="block text-sm font-semibold text-gray-200 mb-2">Address</label>
         <div class="relative">
@@ -94,8 +95,10 @@
                         placeholder="Enter your email address">
                 </div>
             </div>
+          </div>
 
-        
+          
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
                 <label for="password" class="block text-sm font-semibold text-gray-200 mb-2">Password</label>
                 <div class="relative">
@@ -114,6 +117,9 @@
                         placeholder="Confirm your password">
                 </div>
             </div>
+            </div>
+
+
             <div class="flex items-center mt-4">
 
                 <input 

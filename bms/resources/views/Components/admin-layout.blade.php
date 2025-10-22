@@ -99,7 +99,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @auth
+                    @auth
                         @if(Auth::user()->role === 'Super Admin')
                             <li>
                                 <a href="{{ route('UserManage') }}" 
