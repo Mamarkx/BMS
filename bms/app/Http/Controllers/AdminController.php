@@ -22,9 +22,9 @@ class AdminController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            if ($user->role !== 'Admin') {
+            if (!in_array($user->role, ['Admin', 'Super Admin'])) {
                 Auth::logout();
-                return back()->withErrors(['email' => 'Only admins can login.']);
+                return back()->withErrors(['email' => 'Only Admin and Super Admin can login.']);
             }
 
             // Remove existing 2FA codes for the user
@@ -56,6 +56,7 @@ class AdminController extends Controller
             'email' => 'Invalid email or password.'
         ])->onlyInput('email');
     }
+
 
     public function verify2fa(Request $request)
     {

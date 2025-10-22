@@ -18,10 +18,10 @@ class AdminMiddleware
         // 1️⃣ If user is logged in
         if (Auth::check()) {
 
-            // Only allow admin role
-            if (Auth::user()->role !== 'Admin') {
+            // ✅ Allow only Admin and Super Admin
+            if (!in_array(Auth::user()->role, ['Admin', 'Super Admin'])) {
                 Auth::logout();
-                return redirect()->route('LoginAdmin')->with('error', 'Only Admin Can Access This!');
+                return redirect()->route('LoginAdmin')->with('error', 'Only Admin and Super Admin can access this!');
             }
 
             // 2️⃣ Prevent logged-in admin from accessing login page

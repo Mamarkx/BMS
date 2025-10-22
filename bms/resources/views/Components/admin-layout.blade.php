@@ -99,13 +99,18 @@
                                     </li>
                                 </ul>
                             </li>
+                        @auth
+                        @if(Auth::user()->role === 'Super Admin')
                             <li>
-                            <a href="{{ route('UserManage') }}" 
-                                class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
-                                <i class="fa-solid fa-users-gear text-xl"></i>
-                                <span class="ml-2">User Management</span>
-                            </a>
+                                <a href="{{ route('UserManage') }}" 
+                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    <i class="fa-solid fa-users-gear text-xl"></i>
+                                    <span class="ml-2">User Management</span>
+                                </a>
                             </li>
+                        @endif
+                    @endauth
+
                         </ul>
                     </nav>
                 </div>
