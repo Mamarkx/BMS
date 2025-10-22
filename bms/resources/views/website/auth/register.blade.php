@@ -18,7 +18,7 @@
 </head>
 <body class="font-sans antialiased">
 
-<div class="h-screen w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
+<div class="h-auto w-full flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('images/register.jpg') }}');">
 
     <div class="absolute inset-0 bg-black opacity-50"></div>
     
@@ -97,7 +97,7 @@
             </div>
           </div>
 
-          
+
              <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
                 <label for="password" class="block text-sm font-semibold text-gray-200 mb-2">Password</label>
