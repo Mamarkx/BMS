@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Email Verification</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
@@ -39,6 +41,23 @@
             <button type="submit" class="text-blue-600 hover:underline">Resend OTP</button>
         </form>
     </div>
+
+    <!-- ✅ SweetAlert success modal + redirect -->
+    @if (session('success_verified'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Email Verified!',
+                text: 'Your email has been successfully verified.',
+                confirmButtonColor: '#2563eb',
+                confirmButtonText: 'Continue to Login',
+                timer: 3000,
+                timerProgressBar: true,
+            }).then(() => {
+                window.location.href = "{{ route('loginPage') }}";
+            });
+        </script>
+    @endif
 
 </body>
 
