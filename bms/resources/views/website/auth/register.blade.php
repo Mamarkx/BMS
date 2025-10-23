@@ -21,12 +21,10 @@
                 style="background-image: url('{{ asset('images/register.jpg') }}');">
             </div>
             <!-- Right Side -->
-            <div
-                class="w-full
-                max-w-xl flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
+            <div class="w-full  flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
 
                 <!-- Form -->
-                <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6">
+                <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6 max-w-xl">
 
                     @csrf
                     <div role="alert" id="password-error"
@@ -219,172 +217,7 @@
 
             </div>
         </div>
-        <script>
-            const tl = gsap.timeline();
 
-            function createParticles() {
-                const container = document.getElementById('particles-container');
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'floating-particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    container.appendChild(particle);
-
-                    gsap.to(particle, {
-                        y: -30,
-                        x: Math.random() * 100 - 50,
-                        duration: 3 + Math.random() * 2,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: "sine.inOut",
-                        delay: Math.random() * 2
-                    });
-                }
-            }
-
-            // Initialize particles
-            createParticles();
-
-            // Background icons floating animation
-            gsap.to("#userIcon", {
-                y: -20,
-                rotation: 15,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-
-            gsap.to("#briefcaseIcon", {
-                y: -15,
-                rotation: -10,
-                duration: 2.5,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: 0.5
-            });
-
-            gsap.to("#chartIcon", {
-                y: -12,
-                rotation: 8,
-                duration: 2.8,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: 1
-            });
-
-            gsap.to("#moneyIcon", {
-                y: -18,
-                rotation: -12,
-                duration: 3.2,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: 1.5
-            });
-
-            gsap.to("#usersIcon", {
-                y: -10,
-                rotation: 6,
-                duration: 2.3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                delay: 0.8
-            });
-
-            // Main content animation sequence
-            tl.from("#mainHeading", {
-                    y: -100,
-                    opacity: 0,
-                    scale: 0.8,
-                    duration: 1.2,
-                    ease: "back.out(1.7)"
-                })
-                .from("#description", {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power3.out"
-                }, "-=0.4")
-
-            // Card hover animations
-            const cards = ["#card1", "#card2", "#card3"];
-            const icons = ["#icon1", "#icon2", "#icon3"];
-
-            cards.forEach((card, index) => {
-                const cardElement = document.querySelector(card);
-                const iconElement = document.querySelector(icons[index]);
-
-                cardElement.addEventListener("mouseenter", () => {
-                    gsap.to(card, {
-                        scale: 1.05,
-                        y: -10,
-                        duration: 0.3,
-                        ease: "power2.out"
-                    });
-                    gsap.to(iconElement, {
-                        rotation: 360,
-                        scale: 1.1,
-                        duration: 0.5,
-                        ease: "back.out(1.7)"
-                    });
-                });
-
-                cardElement.addEventListener("mouseleave", () => {
-                    gsap.to(card, {
-                        scale: 1,
-                        y: 0,
-                        duration: 0.3,
-                        ease: "power2.out"
-                    });
-                    gsap.to(iconElement, {
-                        rotation: 0,
-                        scale: 1,
-                        duration: 0.3,
-                        ease: "power2.out"
-                    });
-                });
-            });
-
-            // CTA Button hover animation
-            const ctaBtn = document.querySelector("#ctaButton button");
-            ctaBtn.addEventListener("mouseenter", () => {
-                gsap.to(ctaBtn, {
-                    scale: 1.1,
-                    y: -2,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-
-            ctaBtn.addEventListener("mouseleave", () => {
-                gsap.to(ctaBtn, {
-                    scale: 1,
-                    y: 0,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-        </script>
-        <script>
-            function togglePassword() {
-                const password = document.getElementById("password");
-                const icon = document.getElementById("toggleIcon");
-                if (password.type === "password") {
-                    password.type = "text";
-                    icon.classList.remove("fa-eye");
-                    icon.classList.add("fa-eye-slash");
-                } else {
-                    password.type = "password";
-                    icon.classList.remove("fa-eye-slash");
-                    icon.classList.add("fa-eye");
-                }
-            }
-        </script>
     </body>
 
     </html>
