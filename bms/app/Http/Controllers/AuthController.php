@@ -73,12 +73,11 @@ class AuthController extends Controller
                 'email' => 'This email is not registered.',
             ])->onlyInput('email');
         }
-        if (!$user->is_verified) {
-            // Use flash data so it persists for the next request
-            session()->flash('show_verification_modal', true);
-            session()->flash('pending_verification_email', $user->email);
 
-            return back();
+        if (!$user->is_verified) {
+            return back()->withErrors([
+                'email' => 'Your email is not yet verified. Please verify your email first.',
+            ])->onlyInput('email');
         }
 
         if (!Hash::check($request->password, $user->password)) {
@@ -87,15 +86,12 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
 
-
-        // ✅ Verified and password correct
         Auth::login($user);
         $request->session()->regenerate();
 
         return redirect()->intended('/')
             ->with('success', 'Welcome, ' . $user->first_name . '!');
     }
-
 
 
     public function showVerifyEmailPage()
