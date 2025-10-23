@@ -32,22 +32,16 @@
                     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
                     <div
                         class="bg-white border-t-4 border-red-500 text-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6 animate-modal-slide relative">
-
-                        <!-- Close Button -->
                         <button type="button" onclick="closeErrorModal()"
                             class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-2xl transition-colors">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
-
-                        <!-- Header -->
                         <div class="flex items-center gap-3 mb-4">
                             <div class="text-red-600 text-3xl">
                                 <i class="fa-solid fa-circle-exclamation"></i>
                             </div>
                             <h2 class="text-xl font-bold text-gray-800">Validation Error</h2>
                         </div>
-
-                        <!-- Error List -->
                         <ul class="space-y-2">
                             @foreach ($errors->all() as $error)
                                 <li class="flex items-start gap-3 bg-red-50 border border-red-200 p-3 rounded-lg">
@@ -56,8 +50,6 @@
                                 </li>
                             @endforeach
                         </ul>
-
-                        <!-- Button -->
                         <div class="mt-6 text-right">
                             <button type="button" onclick="closeErrorModal()"
                                 class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition duration-200">
@@ -66,7 +58,6 @@
                         </div>
                     </div>
                 </div>
-
                 <script>
                     function closeErrorModal() {
                         const modal = document.getElementById('errorModal');

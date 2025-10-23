@@ -555,12 +555,12 @@
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150">
                                 </div>
 
-                                <div>
+                                {{-- <div>
                                     <label for="edit_department"
                                         class="font-medium text-sm text-gray-600 mb-1 block">Department</label>
                                     <input type="text" id="edit_department" name="department"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150">
-                                </div>
+                                </div> --}}
                                 <div>
                                     <label for="edit_department"
                                         class="font-medium text-sm text-gray-600 mb-1 block">Department</label>
