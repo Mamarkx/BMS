@@ -108,7 +108,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     // Employee Management
     Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');
     Route::get('/employee', [EmployeeManagement::class, 'ShowEmp'])->name('ShowEmployee');
-    Route::delete('/employee/{id}/delete', [EmployeeManagement::class, 'DestroyEmployee'])->name('DeleteEmploye');
+    Route::delete('/employee/{id}/delete', [EmployeeManagement::class, 'DestroyEmployee'])->name('DeleteEmployee');
     Route::put('/Edit/Employee', [EmployeeManagement::class, 'editemployee'])->name('EditEmployee');
 
     // Resident Information
@@ -147,7 +147,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     Route::post('/general-form/{id}', [GeneralFormController::class, 'GeneralReleaseID'])->name('general.release');
     Route::get('/general-form/{id}', [GeneralFormController::class, 'show'])->name('generalID.show');
     Route::post('/update/general-form', [GeneralFormController::class, 'UpdateData'])->name('UpdateGeneralForm');
-    Route::delete('/employee/{id}/delete', [GeneralFormController::class, 'DeleteGeneralREcord'])->name('DeleteGeneralForm');
+    Route::delete('/general-form/{id}/delete', [GeneralFormController::class, 'DeleteGeneralREcord'])->name('DeleteGeneralForm');
 
     // Cedula
     Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');

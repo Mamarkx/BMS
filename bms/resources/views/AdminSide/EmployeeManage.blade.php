@@ -110,7 +110,8 @@
 
                                         <!-- Delete Button -->
                                         <form id="deleteForm_{{ $p->personnel_id }}"
-                                            action="{{ route('DeleteEmploye', $p->id) }}" method="POST" class="inline">
+                                            action="{{ route('DeleteEmployee', $p->id) }}" method="POST"
+                                            class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
@@ -600,15 +601,15 @@
                                         class="font-medium text-sm text-gray-600 mb-1 block">Position/Title</label>
                                     <select id="edit_position_title" name="position_title"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150 appearance-none">
-                                                                        <option value="Punong Barangay">Punong Barangay</option>
-                                    <option value="Barangay Kagawad">Barangay Kagawad</option>
-                                    <option value="BPSO">BPSO</option>
-                                    <option value="Admin Staff">Admin Staff</option>
-                                    <option value="BCPC GAD Focal Person">BCPC GAD Focal Person</option>
-                                    <option value="VAWC Desk Officer">VAWC Desk Officer</option>
-                                    <option value="Area Monitoring Officer">Area Monitoring Officer</option>
-                                    <option value="Admin Officer">Admin Officer</option>
-                                    <option value="Accounting">Accounting</option>
+                                        <option value="Punong Barangay">Punong Barangay</option>
+                                        <option value="Barangay Kagawad">Barangay Kagawad</option>
+                                        <option value="BPSO">BPSO</option>
+                                        <option value="Admin Staff">Admin Staff</option>
+                                        <option value="BCPC GAD Focal Person">BCPC GAD Focal Person</option>
+                                        <option value="VAWC Desk Officer">VAWC Desk Officer</option>
+                                        <option value="Area Monitoring Officer">Area Monitoring Officer</option>
+                                        <option value="Admin Officer">Admin Officer</option>
+                                        <option value="Accounting">Accounting</option>
                                     </select>
                                 </div>
 
