@@ -73,7 +73,7 @@
                     <div class="relative">
                         <input type="email" id="email" name="email"
                             class="w-full pl-10 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                            placeholder="Enter your email address">
+                            placeholder="Enter your email address" required>
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3">
 
                             <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
