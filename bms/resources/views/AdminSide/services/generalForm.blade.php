@@ -25,11 +25,11 @@
                         <tr>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">
                                 Reference #</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Full
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">Full
                                 Name</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Type
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">Type
                             </th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">
                                 Status</th>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
                                 Actions</th>
