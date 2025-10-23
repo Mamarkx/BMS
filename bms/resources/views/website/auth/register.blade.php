@@ -26,7 +26,6 @@
         style="background-image: url('{{ asset('images/register.jpg') }}');">
 
         <div class="absolute inset-0 bg-black opacity-50"></div>
-
         @if ($errors->any())
             <div id="errorModal" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
                 <div
@@ -55,6 +54,9 @@
                     const modal = document.getElementById('errorModal');
                     if (modal) modal.style.display = 'none';
                 }
+
+                // Auto-close after 3 seconds
+                setTimeout(closeErrorModal, 3000);
             </script>
 
             <style>
@@ -75,7 +77,6 @@
                 }
             </style>
         @endif
-
 
         <div
             class="relative z-10 w-full max-w-6xl p-8 mx-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
