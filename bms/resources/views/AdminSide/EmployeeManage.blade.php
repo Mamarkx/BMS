@@ -202,7 +202,8 @@
                             </div>
 
                             <div>
-                                <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">Gender*</label>
+                                <label for="gender"
+                                    class="block text-sm font-semibold text-gray-700 mb-2">Gender*</label>
                                 <select id="gender" name="gender"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     required>
@@ -560,12 +561,47 @@
                                     <input type="text" id="edit_department" name="department"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150">
                                 </div>
+                                <div>
+                                    <label for="edit_department"
+                                        class="font-medium text-sm text-gray-600 mb-1 block">Department</label>
+                                    <select id="edit_department" name="department"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150 appearance-none">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Resigned">Resigned</option>
+                                        <option value="Terminated">Terminated</option>
+                                    </select>
+                                </div>
+
 
                                 <div>
                                     <label for="edit_position_title"
                                         class="font-medium text-sm text-gray-600 mb-1 block">Position/Title</label>
+                                    <select id="edit_position_title" name="position_title"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150 appearance-none">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Resigned">Resigned</option>
+                                        <option value="Terminated">Terminated</option>
+                                    </select>
+                                </div>
+
+                                {{-- <div>
+                                    <label for="edit_position_title"
+                                        class="font-medium text-sm text-gray-600 mb-1 block">Position/Title</label>
                                     <input type="text" id="edit_position_title" name="position_title"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150">
+                                </div> --}}
+                                <div>
+                                    <label for="edit_position_title"
+                                        class="font-medium text-sm text-gray-600 mb-1 block">Position/Title</label>
+                                    <select id="edit_position_title" name="position_title"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150 appearance-none">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Resigned">Resigned</option>
+                                        <option value="Terminated">Terminated</option>
+                                    </select>
                                 </div>
 
                                 <div>
@@ -586,6 +622,8 @@
                                         <option value="Terminated">Terminated</option>
                                     </select>
                                 </div>
+
+
                             </div>
                         </div>
 
