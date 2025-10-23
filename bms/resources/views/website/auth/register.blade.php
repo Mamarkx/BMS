@@ -10,49 +10,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-
         <script src="https://cdn.tailwindcss.com"></script>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-        <style>
-            .gradient-text {
-                background: linear-gradient(135deg, #f0f9ff, #e0e7ff, #c7d2fe);
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            .icon-card {
-                backdrop-filter: blur(10px);
-                background: rgba(255, 255, 255, 0.1);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            .icon-glow {
-                filter: drop-shadow(0 0 8px currentColor);
-            }
-
-            .floating-particle {
-                position: absolute;
-                width: 4px;
-                height: 4px;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-            }
-
-            input::-ms-reveal,
-            input::-ms-clear {
-                display: none;
-            }
-
-
-            input::-webkit-credentials-auto-fill-button,
-            input::-webkit-password-toggle-button,
-            input::-webkit-clear-button {
-                display: none !important;
-                -webkit-appearance: none;
-            }
-        </style>
     </head>
 
     <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
@@ -80,8 +39,7 @@
                         <span class="text-sm font-medium">Passwords do not match!</span>
                     </div>
                     @if ($errors->any())
-                        <div id="errorModal"
-                            class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
+                        <div id="errorModal" class="fixed inset-0 z-50 w-full max-w-md p-4">
                             <div
                                 class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-2xl shadow-lg p-6 animate-slide-down relative">
                                 <button type="button" onclick="closeErrorModal()"
