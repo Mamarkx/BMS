@@ -333,47 +333,19 @@
     </script>
 
 
-    {{-- <script>
-        $(document).ready(function() {
-            $('#agree').on('change', function() {
-                var isChecked = $(this).prop('checked');
-                $('#terms').prop('checked', isChecked);
-                $('#submit-button').prop('disabled', !isChecked);
-            });
-
-            $('#terms').on('change', function() {
-                var isChecked = $(this).prop('checked');
-                $('#agree').prop('checked', isChecked);
-                $('#submit-button').prop('disabled', !isChecked);
-            });
-
-            $('#submit-button').on('click', function() {
-                $('#my_modal_3')[0].close();
-            });
-        });
-    </script> --}}
     <script>
         $(document).ready(function() {
-
             $('#agree').on('change', function() {
-                let isChecked = $(this).prop('checked');
-                $('#terms').prop('checked', isChecked);
+                const isChecked = $(this).is(':checked');
                 $('#submit-button').prop('disabled', !isChecked);
             });
-
-
-            $('#terms').on('change', function() {
-                let isChecked = $(this).prop('checked');
-                $('#agree').prop('checked', isChecked);
-                $('#submit-button').prop('disabled', !isChecked);
-            });
-
 
             $('#submit-button').on('click', function() {
                 $('#my_modal_3')[0].close();
             });
         });
     </script>
+
 
 </body>
 
