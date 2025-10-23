@@ -27,10 +27,10 @@ Route::get('/services', [ServiceController::class, 'ShowServices'])->name('Servi
 // });
 
 Route::middleware(['CheckUser'])->group(function () { //added middle for unauthorized user
-    // Route for displaying service form
+
     Route::get('/service/{service_slug}', [ServiceController::class, 'showForm'])->name('service.form');
 
-    // Route for handling form submission
+
     Route::post('/service/{service_slug}/submit', [ServiceController::class, 'submitGeneralForm'])->name('submit.general_form');
     Route::post('/service/{service_slug}/form_id', [ServiceController::class, 'submitFormID'])->name('submit.form_id');
     Route::post('/service/{service_slug}/cedula', [ServiceController::class, 'submitCedula'])->name('submit.cedula');
@@ -56,7 +56,9 @@ Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::get('/checkuser', function () {
     dd(Auth::user()->name ?? 'No Account LogIn');
 });
-
+Route::get('/verify-email', [AuthController::class, 'showVerifyEmailPage'])->name('verify.email.page');
+Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verify.otp');
+Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('resend.otp');
 //applications 
 Route::middleware('CheckUser')->group(function () {
     // Route for viewing applications

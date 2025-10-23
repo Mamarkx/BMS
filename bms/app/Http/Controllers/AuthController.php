@@ -6,6 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use App\Mail\SendEmailOTP;
+use App\Models\TwoFactorCode;
 
 class AuthController extends Controller
 {
@@ -19,42 +23,42 @@ class AuthController extends Controller
     }
     public function destroy(Request $request)
     {
-        Auth::logout(); // Logs out the authenticated user
+        Auth::logout();
 
-        $request->session()->invalidate(); // Invalidates the session
-        $request->session()->regenerateToken(); // Regenerates CSRF token
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return redirect('/login'); // Redirects the user to the login page
+        return redirect('/login');
     }
+
     public function RegisterAcc(Request $request)
     {
-        // Dump the request data to see what the form is sending
-
-
         $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'suffix' => 'nullable|string|max:255',
-            'address' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|confirmed',
-            'terms' => 'accepted',
+            'first_name'   => 'required|string|max:255',
+            'middle_name'  => 'nullable|string|max:255',
+            'last_name'    => 'required|string|max:255',
+            'suffix'       => 'nullable|string|max:255',
+            'address'      => 'required|string|max:255',
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|string|confirmed',
+            'terms'        => 'accepted',
         ]);
-
-        User::create([
-            'first_name' => $validated['first_name'],
-            'middle_name' => $validated['middle_name'],
-            'last_name' => $validated['last_name'],
-            'suffix' => $validated['suffix'],
-            'address' => $validated['address'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+        $user = User::create([
+            'first_name'  => $validated['first_name'],
+            'middle_name' => $validated['middle_name'] ?? null,
+            'last_name'   => $validated['last_name'],
+            'suffix'      => $validated['suffix'] ?? null,
+            'address'     => $validated['address'],
+            'email'       => $validated['email'],
+            'password'    => Hash::make($validated['password']),
         ]);
-
-        return redirect()->route('loginPage')
-            ->with('success', 'Registration successful. Please log in.');
+        $this->sendOtp($user);
+        session(['pending_verification_email' => $user->email]);
+        return redirect()
+            ->route('auth.verify-email')
+            ->with('success', 'Registration successful! We sent a verification code to your email.');
     }
+
     public function loginAcc(Request $request)
     {
         $credentials = $request->validate([
@@ -66,11 +70,84 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('/')
-                ->with('success', 'Welcome, ' . Auth::user()->first_name . '!'); // Added punctuation for better formatting
+                ->with('success', 'Welcome, ' . Auth::user()->first_name . '!');
         }
 
         return back()->withErrors([
             'email' => 'Invalid email or password.',
         ])->onlyInput('email');
+    }
+
+    public function showVerifyEmailPage()
+    {
+        $email = session('pending_verification_email');
+
+        if (!$email) {
+            return redirect()->route('login')->with('error', 'No verification pending.');
+        }
+
+        return view('website.auth.verify-email', compact('email'));
+    }
+
+    public function resendOtp(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $user = User::where('email', $request->email)->firstOrFail();
+        $latestOtp = TwoFactorCode::where('user_id', $user->id)->latest()->first();
+        if ($latestOtp && $latestOtp->created_at->diffInSeconds(now()) < 60) {
+            return response()->json(['message' => 'Please wait before requesting another OTP.'], 429);
+        }
+
+        $this->sendOtp($user);
+
+        return response()->json(['message' => 'New OTP has been sent to your email.']);
+    }
+
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'otp'   => 'required|digits:6',
+        ]);
+
+        $user = User::where('email', $request->email)->firstOrFail();
+
+        $emailOtp = TwoFactorCode::where('user_id', $user->id)
+            ->where('is_used', false)
+            ->latest()
+            ->first();
+
+        if (!$emailOtp) {
+            return response()->json(['message' => 'No OTP found. Please request a new one.'], 404);
+        }
+
+        if ($emailOtp->isExpired()) {
+            return response()->json(['message' => 'OTP expired.'], 400);
+        }
+
+        if (decrypt($emailOtp->otp) !== $request->otp) {
+            $emailOtp->increment('attempts');
+            if ($emailOtp->attempts >= 3) {
+                $emailOtp->update(['is_used' => true]); // lock this OTP
+            }
+            return response()->json(['message' => 'Invalid OTP.'], 400);
+        }
+        $emailOtp->update(['is_used' => true]);
+        $user->update(['is_verified' => true]);
+
+        return response()->json(['message' => 'Email verified successfully.'], 200);
+    }
+
+
+    private function SendOtp($user)
+    {
+        $otp = rand(100000, 999999);
+        TwoFactorCode::create([
+            'user_id' => $user->id,
+            'otp' => $otp,
+            'expires_at' => Carbon::now()->addMinutes(10),
+        ]);
+        Mail::to($user->email)->send(new SendEmailOTP($user, $otp));
     }
 }
