@@ -114,19 +114,6 @@
                 <form id="editRecordForm" method="POST" action="#" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">User ID</label>
-                        <input type="text" id="edit_user_id" name="user_id" readonly
-                            class="input input-bordered w-full bg-gray-100 border-gray-300 text-gray-600">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Reference Number</label>
-                        <input type="text" id="edit_reference_number" name="reference_number"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
-                    </div>
-
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">First Name</label>
                         <input type="text" id="edit_first_name" name="first_name"
@@ -218,8 +205,6 @@
 
                     // Fill all modal fields
                     $('#edit_id').val(record.id);
-                    $('#edit_user_id').val(record.user_id);
-                    $('#edit_reference_number').val(record.reference_number);
                     $('#edit_first_name').val(record.first_name);
                     $('#edit_last_name').val(record.last_name);
                     $('#edit_middle_name').val(record.middle_name);
