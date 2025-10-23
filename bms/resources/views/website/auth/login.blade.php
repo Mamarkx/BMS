@@ -189,13 +189,19 @@
         </style>
     @endif
 
-    <div id="emailVerifiedModal" class="fixed top-8 inset-x-0 z-50 flex justify-center mt-2">
+    <div id="emailVerifiedModal"
+        class="fixed top-8 inset-x-0 z-50 flex justify-center pointer-events-none opacity-0 transition-opacity duration-300">
         <div
-            class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-2 text-center border border-blue-200 animate-slide-down">
-            <div class="text-blue-600 text-4xl mb-4">
-                <i class="fa-solid fa-circle-check"></i>
+            class="bg-white rounded-2xl shadow-lg max-w-md w-full mx-4 p-5 text-center border border-blue-200 transform -translate-y-10 opacity-0 transition-all duration-500">
+            <!-- Icon -->
+            <div class="mx-auto w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full mb-4">
+                <i class="fa-solid fa-circle-check text-blue-600 text-2xl"></i>
             </div>
+
+            <!-- Heading -->
             <h2 class="text-xl font-bold text-gray-800 mb-2">Email Verified!</h2>
+
+            <!-- Message -->
             <p class="text-gray-600 mb-4">Your email has been successfully verified.</p>
         </div>
     </div>
