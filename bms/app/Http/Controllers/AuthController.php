@@ -114,30 +114,34 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->firstOrFail();
 
         $emailOtp = TwoFactorCode::where('user_id', $user->id)
-            ->where('is_used', false)
             ->latest()
             ->first();
 
         if (!$emailOtp) {
-            return response()->json(['message' => 'No OTP found. Please request a new one.'], 404);
+            return back()->with('error', 'No OTP found. Please request a new one.');
         }
 
         if ($emailOtp->isExpired()) {
-            return response()->json(['message' => 'OTP expired.'], 400);
+            $emailOtp->delete();
+            return back()->with('error', 'Your OTP has expired. Please request a new one.');
         }
 
         if (decrypt($emailOtp->otp) !== $request->otp) {
             $emailOtp->increment('attempts');
-            if ($emailOtp->attempts >= 3) {
-                $emailOtp->update(['is_used' => true]); // lock this OTP
-            }
-            return response()->json(['message' => 'Invalid OTP.'], 400);
-        }
-        $emailOtp->update(['is_used' => true]);
-        $user->update(['is_verified' => true]);
 
-        return response()->json(['message' => 'Email verified successfully.'], 200);
+            if ($emailOtp->attempts >= 3) {
+                $emailOtp->delete();
+            }
+
+            return back()->with('error', 'Invalid OTP. Please try again.');
+        }
+        $emailOtp->delete();
+        $user->update(['is_verified' => true]);
+        session()->forget('pending_verification_email');
+
+        return redirect()->route('login')->with('success', 'Email verified successfully! You can now log in.');
     }
+
 
 
     private function SendOtp($user)
