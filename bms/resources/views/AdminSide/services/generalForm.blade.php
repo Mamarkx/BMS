@@ -10,98 +10,116 @@
         </div>
 
         <!-- Table -->
-        <div class="overflow-x-auto bg-white rounded-md border border-gray-300">
-            <table class="min-w-full table-auto text-left">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="py-3 px-6 text-sm font-medium text-gray-700">Reference Number</th>
-                        <th class="py-3 px-6 text-sm font-medium text-gray-700">Name</th>
-                        <th class="py-3 px-6 text-sm font-medium text-gray-700">Type</th>
-                        <th class="py-3 px-6 text-sm font-medium text-gray-700">Status</th>
-                        <th class="py-3 px-6 text-sm font-medium text-gray-700">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($data as $d)
-                        <tr class="border-b border-gray-300 hover:bg-gray-50 text-sm text-gray-800">
-                            <td class="py-3 px-6">{{ $d->reference_number }}</td>
-                            <td class="py-3 px-6">{{ $d->first_name }} {{ $d->middle_name ?? '' }} {{ $d->last_name }}
-                            </td>
-                            <td class="py-3 px-6">{{ $d->type }}</td>
-                            <td class="py-3 px-6">
-                                <span
-                                    class="inline-block px-3 py-1 rounded-full font-medium
-                                {{ $d->status === 'Pending' ? 'bg-red-100 text-red-700' : '' }}
-                                {{ $d->status === 'Approved' ? 'bg-green-100 text-green-700' : '' }}
-                                {{ $d->status === 'Released' ? 'bg-blue-100 text-blue-700' : '' }}">
-                                    {{ ucfirst($d->status) }}
-                                </span>
-                            </td>
-                            <td class="py-4 px-6 text-lg flex items-center gap-2">
-                                <!-- View/Edit/Delete -->
-                                <a href="{{ route('generalID.show', $d->id) }}"
-                                    class="text-blue-600 hover:text-blue-800">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
+        <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-blue-600"></i>
+                    General Form Requests
+                </h2>
+                <span class="text-sm text-gray-500">{{ $data->count() }} records found</span>
+            </div>
 
-                                <button class="text-gray-600 hover:text-green-800 edit-btn"
-                                    data-record='@json($d)'>
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <form id="deleteForm_{{ $d->id }}"
-                                    action="{{ route('DeleteGeneralForm', $d->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="delete-btn text-red-600 hover:text-red-800"
-                                        data-id="{{ $d->id }}">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                                <!-- Approve -->
-                                <form id="approveForm{{ $d->id }}"
-                                    action="{{ route('general.formID', $d->id) }}" method="POST">
-                                    @csrf
-                                </form>
-                                <button class="text-green-600 hover:text-yellow-800"
-                                    onclick="showApprovalConfirmation({{ $d->id }})"><i
-                                        class="fa-solid fa-check-circle"></i></button>
-
-                                <!-- Schedule Release -->
-                                <button class="text-blue-600 hover:text-blue-800 delete-btn"
-                                    onclick="openReleaseModal({{ $d->id }})"><i
-                                        class="fa-solid fa-calendar-check"></i></button>
-                            </td>
-                        </tr>
-                        <!-- Release Modal -->
-                        <div id="releaseModal"
-                            class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
-                            <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-                                <h3 class="text-xl font-semibold mb-4">Schedule Document Release</h3>
-                                <form id="releaseForm" action="{{ route('general.release', $d->id) }}" method="POST">
-                                    @csrf
-                                    <label for="release_date" class="block text-sm font-medium text-gray-700">Select
-                                        Release Date:</label>
-                                    <input type="date" name="release_date" id="release_date"
-                                        class="w-full p-2 border border-gray-300 rounded-md mt-2" required>
-                                    <div class="flex justify-end gap-4 mt-4">
-                                        <button type="button" class="text-gray-500"
-                                            onclick="closeReleaseModal()">Cancel</button>
-                                        <button type="submit"
-                                            class="bg-blue-600 text-white px-4 py-2 rounded-md">Schedule
-                                            Release</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    @empty
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-gray-700">
+                    <thead class="bg-gradient-to-r from-blue-50 to-indigo-100">
                         <tr>
-                            <td colspan="5" class="text-center py-2 text-gray-500 text-lg">No requests available.
-                            </td>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Reference #</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Full Name</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Type</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Status</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
+                                Actions</th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200">
+                        @forelse ($data as $d)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-3 px-6 font-medium text-gray-800">{{ $d->reference_number }}</td>
+
+                                <td class="py-3 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold">
+                                            {{ strtoupper(substr($d->first_name, 0, 1)) }}
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">{{ $d->first_name }} {{ $d->middle_name ?? '' }}
+                                                {{ $d->last_name }}</p>
+                                            <p class="text-xs text-gray-500">{{ $d->email }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="py-3 px-6 capitalize text-gray-700">{{ $d->type }}</td>
+
+                                <td class="py-3 px-6">
+                                    @php
+                                        $statusClasses = [
+                                            'Pending' => 'bg-yellow-100 text-yellow-800 border border-yellow-300',
+                                            'Approved' => 'bg-green-100 text-green-800 border border-green-300',
+                                            'Released' => 'bg-blue-100 text-blue-800 border border-blue-300',
+                                        ];
+                                    @endphp
+                                    <span
+                                        class="px-3 py-1 rounded-full text-xs font-semibold {{ $statusClasses[$d->status] ?? 'bg-gray-100 text-gray-700 border border-gray-300' }}">
+                                        {{ ucfirst($d->status) }}
+                                    </span>
+                                </td>
+
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex justify-center items-center gap-3 text-lg">
+                                        <!-- View -->
+                                        <a href="{{ route('generalID.show', $d->id) }}"
+                                            class="text-blue-600 hover:text-blue-800 transition">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+
+                                        <!-- Edit -->
+                                        <button class="text-gray-600 hover:text-green-800 transition edit-btn"
+                                            data-record='@json($d)'>
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+
+                                        <!-- Delete -->
+                                        <form id="deleteForm_{{ $d->id }}"
+                                            action="{{ route('DeleteGeneralForm', $d->id) }}" method="POST"
+                                            class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button"
+                                                class="text-red-600 hover:text-red-800 transition delete-btn"
+                                                data-id="{{ $d->id }}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+
+                                        <!-- Approve -->
+                                        <button class="text-green-600 hover:text-green-700 transition"
+                                            onclick="showApprovalConfirmation({{ $d->id }})">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </button>
+
+                                        <!-- Schedule Release -->
+                                        <button class="text-indigo-600 hover:text-indigo-800 transition"
+                                            onclick="openReleaseModal({{ $d->id }})">
+                                            <i class="fa-solid fa-calendar-check"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
+                                    No requests found.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
+
 
         <!-- Pagination -->
         <div class="mt-4">
