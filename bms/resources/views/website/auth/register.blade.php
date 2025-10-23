@@ -79,6 +79,55 @@
                         </svg>
                         <span class="text-sm font-medium">Passwords do not match!</span>
                     </div>
+                    @if ($errors->any())
+                        <div id="errorModal"
+                            class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
+                            <div
+                                class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-2xl shadow-lg p-6 animate-slide-down relative">
+                                <button type="button" onclick="closeErrorModal()"
+                                    class="absolute top-6 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
+                                    &times;
+                                </button>
+
+                                <ul class="space-y-2 text-sm text-red-800">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="flex items-center gap-2">
+                                            <i
+                                                class="fa-solid fa-circle-exclamation text-red-700 text-lg font-semibold"></i>
+                                            <span class="text-lg font-semibold">{{ $error }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+                        <script>
+                            function closeErrorModal() {
+                                const modal = document.getElementById('errorModal');
+                                if (modal) modal.style.display = 'none';
+                            }
+                            setTimeout(closeErrorModal, 3000);
+                        </script>
+
+                        <style>
+                            @keyframes slide-down {
+                                from {
+                                    transform: translateY(-20px);
+                                    opacity: 0;
+                                }
+
+                                to {
+                                    transform: translateY(0);
+                                    opacity: 1;
+                                }
+                            }
+
+                            .animate-slide-down {
+                                animation: slide-down 0.3s ease-out;
+                            }
+                        </style>
+                    @endif
+
                     <div class="text-center mb-8">
                         <h1 class="text-3xl md:text-4xl font-bold text-black mb-2 drop-shadow">
                             Create an Account
