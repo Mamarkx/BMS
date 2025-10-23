@@ -225,72 +225,58 @@
 
     <dialog id="my_modal_3" class="modal rounded-2xl shadow-xl backdrop:bg-black/40">
         <div class="modal-box p-8 bg-white text-gray-800 rounded-2xl max-w-2xl w-full">
-            <form method="dialog">
-
-                <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </form>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                onclick="document.getElementById('my_modal_3').close()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
 
             <h3 class="text-3xl font-bold text-center text-blue-800 mb-2">Terms of Service & Privacy Policy</h3>
             <p class="text-center text-gray-500 mb-8">Please review the following before creating your account.</p>
 
-
+            <!-- Terms & Privacy Sections -->
             <div class="space-y-6">
                 <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
                     <h4 class="text-xl font-semibold text-gray-700">1. Terms of Service</h4>
                     <p class="mt-2 text-gray-600 text-sm">
-                        By creating an account, you agree to the following terms and conditions governing the use of
-                        Barangay San Agustin's e-Services.
+                        By creating an account, you agree to the following terms and conditions.
                     </p>
                     <ul class="list-inside list-disc pl-4 mt-4 text-gray-600 space-y-2 text-sm">
-                        <li>You agree to provide accurate, current, and complete information during registration.</li>
-                        <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
-                        <li>The use of this service is subject to all applicable laws and ordinances of the Philippines.
-                        </li>
-                        <li>Barangay San Agustin reserves the right to suspend or terminate your account for any
-                            violation of these terms.</li>
+                        <li>You agree to provide accurate information during registration.</li>
+                        <li>You are responsible for maintaining your account credentials.</li>
+                        <li>Service use is subject to Philippine laws.</li>
+                        <li>Accounts may be suspended for violations.</li>
                     </ul>
                 </div>
-
 
                 <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
                     <h4 class="text-xl font-semibold text-gray-700">2. Data Privacy Policy</h4>
                     <p class="mt-2 text-gray-600 text-sm">
-                        We are committed to protecting your personal information in compliance with the Data Privacy Act
-                        of 2012 (Republic Act No. 10173).
+                        We protect your personal information according to the Data Privacy Act of 2012.
                     </p>
                     <ul class="list-inside list-disc pl-4 mt-4 text-gray-600 space-y-2 text-sm">
-                        <li><strong>Information We Collect:</strong> We collect personal data such as your name, contact
-                            details, and address for the purpose of providing e-services.</li>
-                        <li><strong>Purpose of Collection:</strong> Your data is collected to process service requests,
-                            improve our services, and communicate with you about your transactions.</li>
-                        <li><strong>Data Protection:</strong> We implement security measures to ensure your data is
-                            protected from unauthorized access, alteration, or disclosure.</li>
-                        <li><strong>Third-Party Disclosure:</strong> Your data will not be shared with third parties
-                            without your explicit consent, except when required by law.</li>
+                        <li><strong>Information We Collect:</strong> Name, contact, address for services.</li>
+                        <li><strong>Purpose:</strong> Process requests and communicate with you.</li>
+                        <li><strong>Data Protection:</strong> Secured from unauthorized access.</li>
+                        <li><strong>Third-Party Disclosure:</strong> Only with consent or required by law.</li>
                     </ul>
                 </div>
             </div>
 
-
+            <!-- Checkbox -->
             <div class="mt-8 flex items-center">
                 <input type="checkbox" id="agree" name="agree"
-                    class="h-5 w-5 rounded-md text-blue-600 border-gray-300 focus:ring-blue-500 cursor-pointer"
-                    required>
+                    class="h-5 w-5 rounded-md text-blue-600 border-gray-300 focus:ring-blue-500 cursor-pointer">
                 <label for="agree" class="ml-3 block text-base text-gray-700">
                     I have read and agree to the <a href="#"
-                        class="text-blue-600 hover:text-blue-700 font-semibold transition-colors">Terms of Service</a>
-                    and <a href="#"
-                        class="text-blue-600 hover:text-blue-700 font-semibold transition-colors">Privacy Policy</a>.
+                        class="text-blue-600 hover:text-blue-700 font-semibold">Terms of Service</a>
+                    and <a href="#" class="text-blue-600 hover:text-blue-700 font-semibold">Privacy Policy</a>.
                 </label>
             </div>
 
-
+            <!-- Proceed Button -->
             <div class="mt-6 flex justify-end">
                 <button id="submit-button"
                     class="px-6 py-3 w-full sm:w-auto bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all"
@@ -302,9 +288,24 @@
             <p class="mt-4 text-center text-xs text-gray-400">
                 By clicking 'Proceed', you confirm that you are a resident of Barangay San Agustin.
             </p>
-
         </div>
     </dialog>
+
+    <script>
+        const agreeCheckbox = document.getElementById('agree');
+        const submitButton = document.getElementById('submit-button');
+        const modal = document.getElementById('my_modal_3');
+
+        // Enable/disable button based on checkbox
+        agreeCheckbox.addEventListener('change', () => {
+            submitButton.disabled = !agreeCheckbox.checked;
+        });
+
+        // Close modal on button click
+        submitButton.addEventListener('click', () => {
+            modal.close();
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -333,18 +334,6 @@
     </script>
 
 
-    <script>
-        $(document).ready(function() {
-            $('#agree').on('change', function() {
-                const isChecked = $(this).is(':checked');
-                $('#submit-button').prop('disabled', !isChecked);
-            });
-
-            $('#submit-button').on('click', function() {
-                $('#my_modal_3')[0].close();
-            });
-        });
-    </script>
 
 
 </body>
