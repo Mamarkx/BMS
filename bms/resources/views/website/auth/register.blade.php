@@ -104,7 +104,7 @@
                             *</label>
                         <div class="relative">
                             <input type="text" id="first_name" name="first_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your first name">
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="suffix" class="block text-sm font-semibold text-gray-200 mb-2">Suffix
+                        <label for="suffix" class="block text-sm font-semibold text-gray-700 mb-2">Suffix
                             (Optional)</label>
                         <div class="relative">
                             <input type="text" id="suffix" name="suffix"
@@ -137,7 +137,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
-                        <label for="address" class="block text-sm font-semibold text-gray-200 mb-2">Address</label>
+                        <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                         <div class="relative">
                             <input type="text" id="address" name="address"
                                 class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
@@ -147,7 +147,7 @@
 
                     <!-- Email Input -->
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-200 mb-2">Email
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email
                             Address</label>
                         <div class="relative">
                             <input type="email" id="email" name="email"
@@ -160,7 +160,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
-                        <label for="password" class="block text-sm font-semibold text-gray-200 mb-2">Password</label>
+                        <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                         <div class="relative">
                             <input type="password" id="password" name="password"
                                 class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
