@@ -142,12 +142,12 @@ class AuthController extends Controller
 
     private function SendOtp($user)
     {
-        $otp = rand(100000, 999999);
+        $code = rand(100000, 999999);
         TwoFactorCode::create([
             'user_id' => $user->id,
-            'otp' => $otp,
+            'code' => $code,
             'expires_at' => Carbon::now()->addMinutes(10),
         ]);
-        Mail::to($user->email)->send(new SendEmailOTP($user, $otp));
+        Mail::to($user->email)->send(new SendEmailOTP($user, $code));
     }
 }

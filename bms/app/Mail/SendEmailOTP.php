@@ -13,14 +13,14 @@ class SendEmailOTP extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
-    public $otp;
+    public $code;
     /**
      * Create a new message instance.
      */
-    public function __construct($user, $otp)
+    public function __construct($user, $code)
     {
         $this->user = $user;
-        $this->otp = $otp;
+        $this->code = $code;
     }
 
     /**
@@ -42,7 +42,7 @@ class SendEmailOTP extends Mailable
             view: 'emails.emailotp', // Blade view for the email
             with: [
                 'user' => $this->user,
-                'otp' => $this->otp,
+                'code' => $this->code,
             ]
         );
     }

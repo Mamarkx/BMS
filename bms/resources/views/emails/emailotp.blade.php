@@ -19,7 +19,7 @@
 
             <div class="text-center my-8">
                 <p class="text-gray-600 text-lg mb-2">Your Email Verification Code:</p>
-                <h1 class="text-4xl font-bold tracking-widest text-blue-600">{{ $otp }}</h1>
+                <h1 class="text-4xl font-bold tracking-widest text-blue-600">{{ $code }}</h1>
             </div>
 
             <p class="text-gray-700 leading-relaxed">
