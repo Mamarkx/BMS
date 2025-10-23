@@ -30,16 +30,15 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+
     public function reverified(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-
         if (!$user) {
             return redirect()->route('loginPage')->with('error', 'No verification pending.');
         }
         $this->sendOtp($user);
         session(['pending_verification_email' => $user->email]);
-
         return redirect()->route('verify.email.page');
     }
 
@@ -70,7 +69,6 @@ class AuthController extends Controller
             ->route('verify.email.page')
             ->with('success', 'Registration successful! We sent a verification code to your email.');
     }
-
     public function loginAcc(Request $request)
     {
         $request->validate([

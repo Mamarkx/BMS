@@ -188,48 +188,43 @@
             }
         </style>
     @endif
-    @if (session('success_verified'))
-        <div id="emailVerifiedModal" class="fixed top-10 inset-x-0 z-50 flex justify-center mt-4">
-            <div
-                class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 text-center border border-blue-200 animate-slide-down">
-                <div class="text-blue-600 text-4xl mb-4">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <h2 class="text-xl font-bold text-gray-800 mb-2">Email Verified!</h2>
-                <p class="text-gray-600 mb-4">Your email has been successfully verified.</p>
-                <button onclick="closeModal()"
-                    class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                    You can now log in to your account
-                </button>
+
+    <div id="emailVerifiedModal" class="fixed top-10 inset-x-0 z-50 flex justify-center mt-4">
+        <div
+            class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 text-center border border-blue-200 animate-slide-down">
+            <div class="text-blue-600 text-4xl mb-4">
+                <i class="fa-solid fa-circle-check"></i>
             </div>
+            <h2 class="text-xl font-bold text-gray-800 mb-2">Email Verified!</h2>
+            <p class="text-gray-600 mb-4">Your email has been successfully verified.</p>
         </div>
+    </div>
+    <script>
+        function closeModal() {
+            const modal = document.getElementById('emailVerifiedModal');
+            if (modal) modal.remove();
+        }
+        setTimeout(closeModal, 3000);
+    </script>
 
-        <script>
-            function closeModal() {
-                const modal = document.getElementById('emailVerifiedModal');
-                if (modal) modal.remove();
-            }
-            setTimeout(closeModal, 3000);
-        </script>
-
-        <style>
-            @keyframes slide-down {
-                from {
-                    transform: translateY(-100%);
-                    opacity: 0;
-                }
-
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
+    <style>
+        @keyframes slide-down {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
             }
 
-            .animate-slide-down {
-                animation: slide-down 0.4s ease-out;
+            to {
+                transform: translateY(0);
+                opacity: 1;
             }
-        </style>
-    @endif
+        }
+
+        .animate-slide-down {
+            animation: slide-down 0.4s ease-out;
+        }
+    </style>
+
 </body>
 
 </html>
