@@ -54,7 +54,7 @@
                 <p class="text-gray-200 text-lg">Sign in to your account</p>
             </div>
             @if ($errors->any())
-                <div class="bg-red-200 border-l-4 border-red-500 text-red-800 rounded-lg p-4 mb-4">
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-lg p-4 mb-4">
                     <ul class="space-y-2 text-sm">
                         @foreach ($errors->all() as $error)
                             <li class="flex items-start gap-2">
