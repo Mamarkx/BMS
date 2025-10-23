@@ -17,11 +17,13 @@
     <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
 
         <div class="h-screen flex flex-col md:flex-row relative">
-            <div class="h-auto   md:h-screen w-full py-10 hidden md:flex items-center justify-center relative bg-cover bg-center flex-1"
+            <div class="h-auto md:h-screen w-full py-10 hidden md:flex items-center justify-center relative bg-cover bg-center flex-1"
                 style="background-image: url('{{ asset('images/register.jpg') }}');">
-                <div class="absolute inset-0 bg-black opacity-70 "></div>
-                <div class="absolute inset-0">
-                    <img src="{{ asset('images/san-agustin.png') }}" class="mx-auto h-36 w-36 drop-shadow-2xl"
+
+                <div class="absolute inset-0 bg-black opacity-70"></div>
+
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <img src="{{ asset('images/san-agustin.png') }}" class="h-64 w-64 drop-shadow-2xl"
                         alt="Barangay Logo" />
                 </div>
             </div>
