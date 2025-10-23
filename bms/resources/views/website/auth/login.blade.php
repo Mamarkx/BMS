@@ -131,22 +131,46 @@
         </div>
     </div>
     @if (session('success_verified'))
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <div id="emailVerifiedModal" class="fixed top-0 inset-x-0 z-50 flex justify-center mt-4">
+            <div
+                class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 text-center border border-blue-200 animate-slide-down">
+                <div class="text-blue-600 text-4xl mb-4">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800 mb-2">Email Verified!</h2>
+                <p class="text-gray-600 mb-4">Your email has been successfully verified.</p>
+                <button onclick="closeModal()"
+                    class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    You can now log in to your account
+                </button>
+            </div>
+        </div>
+
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Email Verified!',
-                    text: 'Your email has been successfully verified.',
-                    confirmButtonColor: '#2563eb',
-                    confirmButtonText: 'You can now log in to your account',
-                    timer: 3000,
-                    timerProgressBar: true,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                });
-            });
+            function closeModal() {
+                const modal = document.getElementById('emailVerifiedModal');
+                if (modal) modal.remove();
+            }
+            setTimeout(closeModal, 3000);
         </script>
+
+        <style>
+            @keyframes slide-down {
+                from {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .animate-slide-down {
+                animation: slide-down 0.4s ease-out;
+            }
+        </style>
     @endif
 </body>
 
