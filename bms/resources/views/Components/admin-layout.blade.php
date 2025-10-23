@@ -79,7 +79,7 @@
                                     class="flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200 w-full"
                                     onclick="toggleDropdownSmooth('requestDropdown', this)">
                                     <i class="fa-solid fa-address-book text-xl"></i>
-                                    <span class="ml-3">E-Services Management</span>
+                                    <span class="">E-Services Management</span>
                                     <i class="fa-solid fa-chevron-down ml-auto transition-transform duration-300"
                                         id="chevronIcon"></i>
                                 </button>
