@@ -130,39 +130,24 @@
             </form>
         </div>
     </div>
-    {{-- Laravel SweetAlert Flash Messages --}}
-    @if (session('success') || session('error') || session('success_verified'))
+    @if (session('success_verified'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            Swal.fire({
-                icon: @if (session('success') || session('success_verified'))
-                    'success'
-                @else
-                    'error'
-                @endif ,
-                title: @if (session('success_verified'))
-                    'Email Verified!'
-                @elseif (session('success'))
-                    'Success!'
-                @else
-                    'Error!'
-                @endif ,
-                text: @if (session('success_verified'))
-                    '{{ session('success_verified') }}'
-                @elseif (session('success'))
-                    '{{ session('success') }}'
-                @else
-                    '{{ session('error') }}'
-                @endif ,
-                confirmButtonColor: '#2563eb',
-                confirmButtonText: 'Okay',
-                timer: 3000,
-                timerProgressBar: true,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Email Verified!',
+                    text: 'Your email has been successfully verified.',
+                    confirmButtonColor: '#2563eb',
+                    confirmButtonText: 'You can now log in to your account',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                });
             });
         </script>
     @endif
-
 </body>
 
 </html>
