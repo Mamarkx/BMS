@@ -1,341 +1,343 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Barangay e-Services Registration</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5/s6gTjN1jW6C9I/52Mh35Q3x/C6y7pWz8B6pGf3vK2eQ9pLqg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Login Page</title>
+        <link rel="icon" href="{{ asset('icons.svg') }}" type="image/x-icon">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
-<body class="font-sans antialiased">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <style>
+            .gradient-text {
+                background: linear-gradient(135deg, #f0f9ff, #e0e7ff, #c7d2fe);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
 
-    <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center"
-        style="background-image: url('{{ asset('images/register.jpg') }}');">
+            .icon-card {
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
 
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        @if ($errors->any())
-            <div id="errorModal" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
-                <div
-                    class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-2xl shadow-lg p-6 animate-slide-down relative">
-                    <button type="button" onclick="closeErrorModal()"
-                        class="absolute top-6 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
-                        &times;
-                    </button>
+            .icon-glow {
+                filter: drop-shadow(0 0 8px currentColor);
+            }
 
-                    <ul class="space-y-2 text-sm text-red-800">
-                        @foreach ($errors->all() as $error)
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-circle-exclamation text-red-700 text-lg font-semibold"></i>
-                                <span class="text-lg font-semibold">{{ $error }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+            .floating-particle {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+            }
+
+            input::-ms-reveal,
+            input::-ms-clear {
+                display: none;
+            }
+
+
+            input::-webkit-credentials-auto-fill-button,
+            input::-webkit-password-toggle-button,
+            input::-webkit-clear-button {
+                display: none !important;
+                -webkit-appearance: none;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+
+        <div class="h-screen flex flex-col md:flex-row">
+            <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center"
+                style="background-image: url('{{ asset('images/register.jpg') }}');">
             </div>
-
-            <script>
-                function closeErrorModal() {
-                    const modal = document.getElementById('errorModal');
-                    if (modal) modal.style.display = 'none';
-                }
-
-                // Auto-close after 3 seconds
-                setTimeout(closeErrorModal, 3000);
-            </script>
-
-            <style>
-                @keyframes slide-down {
-                    from {
-                        transform: translateY(-20px);
-                        opacity: 0;
-                    }
-
-                    to {
-                        transform: translateY(0);
-                        opacity: 1;
-                    }
-                }
-
-                .animate-slide-down {
-                    animation: slide-down 0.3s ease-out;
-                }
-            </style>
-        @endif
-
+        </div>
+        <!-- Right Side -->
         <div
-            class="relative z-10 w-full max-w-6xl p-8 text-black mx-4 bg-white backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
+            class="w-full
+                max-w-xl flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
 
-
-            <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-black mb-2 drop-shadow">
-                    Create an Account
-                </h1>
-                <p class="text-gray-700 text-lg">Sign up to access barangay e-services</p>
-            </div>
-
-            <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6">
+            <!-- Form -->
+            <form method="POST" action="{{ route('RegisterAcc') }}" class="w-full max-w-xl space-y-5">
                 @csrf
-                <div role="alert" id="password-error"
-                    class="alert alert-error hidden flex items-center space-x-3 bg-red-100 text-red-800 border-l-4 border-red-500 p-4 rounded-md shadow-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span class="text-sm font-medium">Passwords do not match!</span>
+                <div class="text-center mb-10">
+                    <div class="mb-4 flex justify-center">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-users-cog text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-4xl font-extrabold mb-3 text-slate-900">Welcome to HR-IV</h2>
+                    <p class="text-lg text-gray-600">Please log in with your Credentials Continue</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-                    <div>
-                        <label for="first_name" class="block text-sm font-semibold text-gray-700 mb-2">First Name
-                            *</label>
-                        <div class="relative">
-                            <input type="text" id="first_name" name="first_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Enter your first name">
-                        </div>
+                @error('failed')
+                    <div
+                        class="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-lg text-sm font-medium flex items-center space-x-2">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>{{ $message }}</span>
                     </div>
-                    <div>
-                        <label for="last_name" class="block text-sm font-semibold text-gray-700 mb-2">Last Name*</label>
-                        <div class="relative">
-                            <input type="text" id="last_name" name="last_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Enter your last name">
-                        </div>
+                @enderror
+
+                @if (session('success'))
+                    <div
+                        class="bg-green-50 border-l-4 border-green-500 text-green-700 px-6 py-4 rounded-lg text-sm font-medium flex items-center space-x-2">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>{{ session('success') }}</span>
                     </div>
-                    <div>
-                        <label for="middle_name" class="block text-sm font-semibold text-gray-700 mb-2">Middle Name
-                            (Optional)</label>
-                        <div class="relative">
-                            <input type="text" id="middle_name" name="middle_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Enter your middle name">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="suffix" class="block text-sm font-semibold text-gray-700 mb-2">Suffix
-                            (Optional)</label>
-                        <div class="relative">
-                            <input type="text" id="suffix" name="suffix"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Enter your suffix">
-                        </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    <div>
-                        <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
-                        <div class="relative">
-                            <input type="text" id="address" name="address"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Enter your address">
+                @endif
+
+                <!-- Email -->
+                <div class="space-y-2">
+                    <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
+                    <div class="relative">
+                        <input type="email" required id="email" name="email" value="{{ old('email') }}"
+                            class="w-full px-11 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white transition-all duration-200 @error('email') border-red-400 bg-red-50 @enderror"
+                            placeholder="Enter Your Email">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-4 px-4 ">
+                            <i class="fas fa-envelope text-gray-400"></i>
                         </div>
                     </div>
 
-                    <!-- Email Input -->
-                    <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email
-                            Address</label>
-                        <div class="relative">
-                            <input type="email" id="email" name="email"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Enter your email address">
-                        </div>
-                    </div>
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-2 flex items-center space-x-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>{{ $message }}</span>
+                        </p>
+                    @enderror
                 </div>
 
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    <div>
-                        <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-                        <div class="relative">
-                            <input type="password" id="password" name="password"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Create a password">
+                <!-- Password -->
+                <div class="space-y-2">
+                    <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password"
+                            class="w-full px-11 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white transition-all duration-200 @error('password') border-red-400 bg-red-50 @enderror"
+                            placeholder="Enter Your Password">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pr-3">
+                            <i class="fas fa-key text-gray-400"></i>
                         </div>
+                        <button type="button" onclick="togglePassword()"
+                            class="absolute inset-y-0 right-0 flex items-center pr-5 text-gray-400 hover:text-gray-600">
+                            <i id="toggleIcon" class="fas fa-eye"></i>
+                        </button>
                     </div>
-
-
-                    <div>
-                        <label for="password_confirmation"
-                            class="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
-                        <div class="relative">
-                            <input type="password" id="password_confirmation" name="password_confirmation"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
-                                placeholder="Confirm your password">
-                        </div>
-                    </div>
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-2 flex items-center space-x-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>{{ $message }}</span>
+                        </p>
+                    @enderror
                 </div>
 
-
-                <div class="flex items-center mt-4">
-
-                    <input type="checkbox" id="terms" name="terms" required
-                        class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer" />
-
-                    <label for="terms" class="ml-2 block text-sm text-gray-700">
-                        I agree to the
-                        <a class="text-blue-400 hover:text-blue-500 font-semibold hover:underline cursor-pointer"
-                            onclick="my_modal_3.showModal()">
-                            Terms of Service and Data Privacy
-                        </a>
-                    </label>
-                </div>
-                <div class="pt-2">
-                    <button type="submit" id="submit-btn"
-                        class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg 
-                    hover:shadow-xl hover:from-indigo-600 hover:to-blue-600 transform hover:-translate-y-0.5 
-                    transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-300"
-                        aria-label="Create your account">
-                        <i class="fa-solid fa-user-plus mr-2"></i>Sign Up
+                <!-- Submit Button -->
+                <div class="pt-1">
+                    <button type="submit"
+                        class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                        Sign In
                     </button>
                 </div>
-
-
-                <div class="flex items-center justify-center py-4">
-                    <hr class="flex-grow border-t border-gray-400" />
-                    <span class="mx-4 text-gray-300 text-sm font-medium">or</span>
-                    <hr class="flex-grow border-t border-gray-400" />
-                </div>
-
-
-                <p class="text-center text-sm text-gray-700">
-                    Already have an account?
-                    <a href="{{ route('loginPage') }}"
-                        class="text-blue-500 hover:text-blue-100 font-semibold hover:underline transition-colors duration-200">Sign
-                        in here</a>
-                </p>
-
             </form>
+
         </div>
-    </div>
-
-    <dialog id="my_modal_3" class="modal rounded-2xl shadow-xl backdrop:bg-black/40">
-        <div class="modal-box p-8 bg-white text-gray-800 rounded-2xl max-w-2xl w-full">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-                onclick="document.getElementById('my_modal_3').close()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-
-            <h3 class="text-3xl font-bold text-center text-blue-800 mb-2">Terms of Service & Privacy Policy</h3>
-            <p class="text-center text-gray-500 mb-8">Please review the following before creating your account.</p>
-
-            <!-- Terms & Privacy Sections -->
-            <div class="space-y-6">
-                <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h4 class="text-xl font-semibold text-gray-700">1. Terms of Service</h4>
-                    <p class="mt-2 text-gray-600 text-sm">
-                        By creating an account, you agree to the following terms and conditions.
-                    </p>
-                    <ul class="list-inside list-disc pl-4 mt-4 text-gray-600 space-y-2 text-sm">
-                        <li>You agree to provide accurate information during registration.</li>
-                        <li>You are responsible for maintaining your account credentials.</li>
-                        <li>Service use is subject to Philippine laws.</li>
-                        <li>Accounts may be suspended for violations.</li>
-                    </ul>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h4 class="text-xl font-semibold text-gray-700">2. Data Privacy Policy</h4>
-                    <p class="mt-2 text-gray-600 text-sm">
-                        We protect your personal information according to the Data Privacy Act of 2012.
-                    </p>
-                    <ul class="list-inside list-disc pl-4 mt-4 text-gray-600 space-y-2 text-sm">
-                        <li><strong>Information We Collect:</strong> Name, contact, address for services.</li>
-                        <li><strong>Purpose:</strong> Process requests and communicate with you.</li>
-                        <li><strong>Data Protection:</strong> Secured from unauthorized access.</li>
-                        <li><strong>Third-Party Disclosure:</strong> Only with consent or required by law.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Checkbox -->
-            <div class="mt-8 flex items-center">
-                <input type="checkbox" id="agree" name="agree"
-                    class="h-5 w-5 rounded-md text-blue-600 border-gray-300 focus:ring-blue-500 cursor-pointer">
-                <label for="agree" class="ml-3 block text-base text-gray-700">
-                    I have read and agree to the <a href="#"
-                        class="text-blue-600 hover:text-blue-700 font-semibold">Terms of Service</a>
-                    and <a href="#" class="text-blue-600 hover:text-blue-700 font-semibold">Privacy Policy</a>.
-                </label>
-            </div>
-
-            <!-- Proceed Button -->
-            <div class="mt-6 flex justify-end">
-                <button id="submit-button"
-                    class="px-6 py-3 w-full sm:w-auto bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all"
-                    disabled>
-                    Proceed
-                </button>
-            </div>
-
-            <p class="mt-4 text-center text-xs text-gray-400">
-                By clicking 'Proceed', you confirm that you are a resident of Barangay San Agustin.
-            </p>
+        <!-- Sign Up Link -->
+        <!-- <p class="text-center text-sm text-gray-600 pt-4">
+                Don't have an account?
+                <a href="#" class="text-indigo-600 hover:text-indigo-700 font-semibold hover:underline transition-colors duration-200">Sign up here</a>
+            </p> -->
         </div>
-    </dialog>
+        <script>
+            const tl = gsap.timeline();
 
-    <script>
-        const agreeCheckbox = document.getElementById('agree');
-        const submitButton = document.getElementById('submit-button');
-        const modal = document.getElementById('my_modal_3');
+            function createParticles() {
+                const container = document.getElementById('particles-container');
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'floating-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    container.appendChild(particle);
 
-        // Enable/disable button based on checkbox
-        agreeCheckbox.addEventListener('change', () => {
-            submitButton.disabled = !agreeCheckbox.checked;
-        });
-
-        // Close modal on button click
-        submitButton.addEventListener('click', () => {
-            modal.close();
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            function validatePasswords() {
-                var password = $('#password').val();
-                var confirmPassword = $('#password_confirmation').val();
-
-                if (password.length > 0 && confirmPassword.length > 0) {
-                    if (password !== confirmPassword) {
-                        $('#password-error').removeClass('hidden');
-                        $('#submit-btn').prop('disabled', true);
-                    } else {
-                        $('#password-error').addClass('hidden');
-                        $('#submit-btn').prop('disabled', false);
-                    }
-                } else {
-                    $('#password-error').addClass('hidden');
-                    $('#submit-btn').prop('disabled', true);
+                    gsap.to(particle, {
+                        y: -30,
+                        x: Math.random() * 100 - 50,
+                        duration: 3 + Math.random() * 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: Math.random() * 2
+                    });
                 }
             }
 
-            $('#password, #password_confirmation').on('keyup', validatePasswords);
+            // Initialize particles
+            createParticles();
 
-            $('#submit-btn').prop('disabled', true);
-        });
-    </script>
+            // Background icons floating animation
+            gsap.to("#userIcon", {
+                y: -20,
+                rotation: 15,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
 
+            gsap.to("#briefcaseIcon", {
+                y: -15,
+                rotation: -10,
+                duration: 2.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 0.5
+            });
 
+            gsap.to("#chartIcon", {
+                y: -12,
+                rotation: 8,
+                duration: 2.8,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 1
+            });
 
+            gsap.to("#moneyIcon", {
+                y: -18,
+                rotation: -12,
+                duration: 3.2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 1.5
+            });
 
-</body>
+            gsap.to("#usersIcon", {
+                y: -10,
+                rotation: 6,
+                duration: 2.3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: 0.8
+            });
 
-</html>
+            // Main content animation sequence
+            tl.from("#mainHeading", {
+                    y: -100,
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1.2,
+                    ease: "back.out(1.7)"
+                })
+                .from("#description", {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "-=0.4")
+
+            // Card hover animations
+            const cards = ["#card1", "#card2", "#card3"];
+            const icons = ["#icon1", "#icon2", "#icon3"];
+
+            cards.forEach((card, index) => {
+                const cardElement = document.querySelector(card);
+                const iconElement = document.querySelector(icons[index]);
+
+                cardElement.addEventListener("mouseenter", () => {
+                    gsap.to(card, {
+                        scale: 1.05,
+                        y: -10,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                    gsap.to(iconElement, {
+                        rotation: 360,
+                        scale: 1.1,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
+                    });
+                });
+
+                cardElement.addEventListener("mouseleave", () => {
+                    gsap.to(card, {
+                        scale: 1,
+                        y: 0,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                    gsap.to(iconElement, {
+                        rotation: 0,
+                        scale: 1,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+            });
+
+            // CTA Button hover animation
+            const ctaBtn = document.querySelector("#ctaButton button");
+            ctaBtn.addEventListener("mouseenter", () => {
+                gsap.to(ctaBtn, {
+                    scale: 1.1,
+                    y: -2,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+
+            ctaBtn.addEventListener("mouseleave", () => {
+                gsap.to(ctaBtn, {
+                    scale: 1,
+                    y: 0,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+        </script>
+        <script>
+            function togglePassword() {
+                const password = document.getElementById("password");
+                const icon = document.getElementById("toggleIcon");
+                if (password.type === "password") {
+                    password.type = "text";
+                    icon.classList.remove("fa-eye");
+                    icon.classList.add("fa-eye-slash");
+                } else {
+                    password.type = "password";
+                    icon.classList.remove("fa-eye-slash");
+                    icon.classList.add("fa-eye");
+                }
+            }
+        </script>
+    </body>
+
+    </html>
