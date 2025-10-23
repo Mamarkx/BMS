@@ -111,8 +111,7 @@
                 </h3>
 
                 <!-- Edit Form -->
-                <form id="editRecordForm" method="POST" action="{{ route('UpdateAcc') }}"
-                    class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form id="editRecordForm" method="POST" action="#" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
 
