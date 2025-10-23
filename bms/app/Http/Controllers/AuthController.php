@@ -32,17 +32,15 @@ class AuthController extends Controller
     }
     public function reverified(Request $request)
     {
+        $user = User::where('email', $request->email)->first();
 
-        $email = User::where('email', $request->email)->first();
-        $this->sendOtp($email);
-
-
-
-        if (!$email) {
+        if (!$user) {
             return redirect()->route('loginPage')->with('error', 'No verification pending.');
         }
+        $this->sendOtp($user);
+        session(['pending_verification_email' => $user->email]);
 
-        return view('website.auth.verify-email', compact('email'));
+        return redirect()->route('verify.email.page');
     }
 
     public function RegisterAcc(Request $request)
