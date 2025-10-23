@@ -61,7 +61,7 @@ class UserManagement extends Controller
             'address'     => 'nullable|string|max:255',
             'email'       => 'required|email|unique:users,email,' . $request->id,
             'password'    => 'nullable|string|min:6|',
-            'role'        => 'required|string|in:Admin,Resident',
+            'role'        => 'required|string|in:Admin,Resident,Super Admin',
             'status'      => 'required|string|in:Active,Inactive',
         ], [
             'id.required'        => 'User ID is required.',
