@@ -141,6 +141,36 @@
             </form>
         </div>
     </div>
+    @if (session('show_verification_modal'))
+        <dialog id="verifyModal" class="modal" open>
+            <div class="modal-box text-center">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Email Not Verified</h3>
+                <p class="text-gray-600 mb-4">
+                    Your email <strong>{{ session('pending_verification_email') }}</strong> is not yet verified.
+                </p>
+                <div class="flex justify-center gap-3">
+                    <form method="POST" action="{{ route('resend.otp') }}">
+                        @csrf
+                        <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
+                        <button type="submit"
+                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                            Resend Verification Email
+                        </button>
+                    </form>
+                    <a href="#"
+                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
+                        Go to Verification Page
+                    </a>
+                </div>
+            </div>
+        </dialog>
+
+        <script>
+            const modal = document.getElementById('verifyModal');
+            modal.showModal();
+        </script>
+    @endif
+
     @if (session('success_verified'))
         <div id="emailVerifiedModal" class="fixed top-10 inset-x-0 z-50 flex justify-center mt-4">
             <div
