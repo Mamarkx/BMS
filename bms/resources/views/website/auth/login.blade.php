@@ -55,17 +55,68 @@
                 <p class="text-gray-200 text-lg">Sign in to your account</p>
             </div>
             @if ($errors->any())
-                <div class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-lg p-4 mb-4">
-                    <ul class="space-y-2 text-sm">
-                        @foreach ($errors->all() as $error)
-                            <li class="flex items-center gap-3 text-base">
-                                <i class="fa-solid fa-circle-exclamation text-red-600 text-xl"></i>
-                                <span class="font-medium text-red-800">{{ $error }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
+                <div id="errorModal"
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+                    <div class="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 animate-slide-down">
+
+                        <!-- Close Button -->
+                        <button type="button" onclick="closeErrorModal()"
+                            class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold transition-colors">
+                            &times;
+                        </button>
+
+                        <!-- Heading -->
+                        <h3 class="text-xl font-bold text-red-600 mb-4 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-exclamation text-red-600"></i>
+                            Validation Errors
+                        </h3>
+
+                        <!-- Errors List -->
+                        <ul class="space-y-2 text-sm text-gray-700 text-left">
+                            @foreach ($errors->all() as $error)
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-exclamation text-red-500"></i>
+                                    <span class="font-medium">{{ $error }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <!-- Close Button at Bottom -->
+                        <div class="mt-6 flex justify-center">
+                            <button type="button" onclick="closeErrorModal()"
+                                class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-md transition-all">
+                                Close
+                            </button>
+                        </div>
+                    </div>
                 </div>
+
+                <script>
+                    function closeErrorModal() {
+                        const modal = document.getElementById('errorModal');
+                        if (modal) modal.style.display = 'none';
+                    }
+                </script>
+
+                <style>
+                    @keyframes slide-down {
+                        from {
+                            transform: translateY(-20px);
+                            opacity: 0;
+                        }
+
+                        to {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+
+                    .animate-slide-down {
+                        animation: slide-down 0.3s ease-out;
+                    }
+                </style>
             @endif
+
             <form method="POST" action="{{ route('login.submit') }}" class="space-y-6">
                 @csrf
 
