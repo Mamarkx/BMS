@@ -53,7 +53,15 @@
                 </h1>
                 <p class="text-gray-200 text-lg">Sign in to your account</p>
             </div>
-
+            @if ($errors->any())
+                <div class="bg-red-500/20 border border-red-400 text-red-100 rounded-lg p-4 mb-4">
+                    <ul class="list-disc list-inside text-sm">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="POST" action="{{ route('login.submit') }}" class="space-y-6">
                 @csrf
 
@@ -131,7 +139,7 @@
         </div>
     </div>
     @if (session('success_verified'))
-        <div id="emailVerifiedModal" class="fixed top-0 inset-x-0 z-50 flex justify-center mt-4">
+        <div id="emailVerifiedModal" class="fixed top-10 inset-x-0 z-50 flex justify-center mt-4">
             <div
                 class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 text-center border border-blue-200 animate-slide-down">
                 <div class="text-blue-600 text-4xl mb-4">

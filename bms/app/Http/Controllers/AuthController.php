@@ -61,22 +61,38 @@ class AuthController extends Controller
 
     public function loginAcc(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
+        $user = User::where('email', $request->email)->first();
 
-            return redirect()->intended('/')
-                ->with('success', 'Welcome, ' . Auth::user()->first_name . '!');
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'This email is not registered.',
+            ])->onlyInput('email');
         }
 
-        return back()->withErrors([
-            'email' => 'Invalid email or password.',
-        ])->onlyInput('email');
+        if (!$user->is_verified) {
+            return back()->withErrors([
+                'email' => 'Your email is not yet verified. Please verify your email first.',
+            ])->onlyInput('email');
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors([
+                'password' => 'Incorrect password. Please try again.',
+            ])->onlyInput('email');
+        }
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return redirect()->intended('/')
+            ->with('success', 'Welcome, ' . $user->first_name . '!');
     }
+
 
     public function showVerifyEmailPage()
     {
