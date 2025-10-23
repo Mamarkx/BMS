@@ -58,7 +58,7 @@
     <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
 
         <div class="h-screen flex flex-col md:flex-row">
-            <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center"
+            <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center flex-1"
                 style="background-image: url('{{ asset('images/register.jpg') }}');">
             </div>
             <!-- Right Side -->
