@@ -42,8 +42,8 @@
                     <ul class="space-y-2 text-sm text-red-800">
                         @foreach ($errors->all() as $error)
                             <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-circle-exclamation text-red-700 text-lg font-bold"></i>
-                                <span class="text-lg font-bold">{{ $error }}</span>
+                                <i class="fa-solid fa-circle-exclamation text-red-700 text-lg font-semibold"></i>
+                                <span class="text-lg font-semibold">{{ $error }}</span>
                             </li>
                         @endforeach
                     </ul>
