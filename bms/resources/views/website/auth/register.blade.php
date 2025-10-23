@@ -104,7 +104,7 @@
                             *</label>
                         <div class="relative">
                             <input type="text" id="first_name" name="first_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your first name">
                         </div>
                     </div>
