@@ -100,7 +100,7 @@
             <div class="w-full  flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
 
                 <!-- Form -->
-                <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6 w-full max-w-2xl p-6">
+                <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6 w-full max-w-3xl p-6">
 
                     @csrf
                     <div role="alert" id="password-error"
