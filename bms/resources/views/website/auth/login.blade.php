@@ -168,7 +168,7 @@
                 }
             });
 
-            // Handle AJAX resend without page reload
+            // AJAX resend
             document.getElementById('resendForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const btn = document.getElementById('resendBtn');

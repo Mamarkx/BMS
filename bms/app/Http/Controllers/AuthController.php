@@ -74,13 +74,13 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
         if (!$user->is_verified) {
-            session([
-                'show_verification_modal' => true,
-                'pending_verification_email' => $user->email,
-            ]);
+            // Use flash data so it persists for the next request
+            session()->flash('show_verification_modal', true);
+            session()->flash('pending_verification_email', $user->email);
 
             return back();
         }
+
         if (!Hash::check($request->password, $user->password)) {
             return back()->withErrors([
                 'password' => 'Incorrect password. Please try again.',
