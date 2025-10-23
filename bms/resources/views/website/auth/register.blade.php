@@ -22,10 +22,10 @@
 
 <body class="font-sans antialiased">
 
-    <div class="h-auto md:h-screen w-full bg-white py-10 flex items-center justify-center bg-cover bg-center">
-        {{-- style="background-image: url('{{ asset('images/register.jpg') }}'); --}}
+    <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center"
+        style="background-image: url('{{ asset('images/register.jpg') }}');">
 
-        {{-- <div class="absolute inset-0 bg-black opacity-50"></div> --}}
+        <div class="absolute inset-0 bg-black opacity-50"></div>
         @if ($errors->any())
             <div id="errorModal" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
                 <div
@@ -76,7 +76,7 @@
         @endif
 
         <div
-            class="relative z-10 w-full max-w-6xl p-8 mx-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
+            class="relative z-10 w-full max-w-6xl p-8 mx-4 bg-white backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
 
 
             <div class="text-center mb-8">
