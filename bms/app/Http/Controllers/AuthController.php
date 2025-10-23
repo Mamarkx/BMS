@@ -138,8 +138,7 @@ class AuthController extends Controller
         session()->forget('pending_verification_email');
 
         // ✅ Redirect to the same page to trigger SweetAlert modal
-        return redirect()
-            ->route('website.auth.verify-email', ['email' => $user->email])
+        return view('website.auth.verify-email', ['email' => $user->email])
             ->with('success_verified', true);
     }
 
