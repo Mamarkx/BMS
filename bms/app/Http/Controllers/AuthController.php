@@ -121,27 +121,19 @@ class AuthController extends Controller
             return back()->with('error', 'No OTP found. Please request a new one.');
         }
 
-        // Check expiry
         if ($emailOtp->isExpired()) {
             $emailOtp->delete();
             return back()->with('error', 'Your OTP has expired. Please request a new one.');
         }
-
-        // Check OTP code
         if ($emailOtp->code != $request->otp) {
             return back()->with('error', 'Invalid OTP. Please try again.');
         }
-
-        // ✅ OTP valid
         $emailOtp->delete();
         $user->update(['is_verified' => true]);
         session()->forget('pending_verification_email');
 
-        // ✅ Redirect to the same page to trigger SweetAlert modal
-        return view('website.auth.verify-email', ['email' => $user->email])
-            ->with('success_verified', true);
+        return redirect()->route('loginPage')->with('success', 'Email verified successfully! You can now log in.');
     }
-
 
 
 
