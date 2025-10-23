@@ -125,14 +125,7 @@ class AuthController extends Controller
             $emailOtp->delete();
             return back()->with('error', 'Your OTP has expired. Please request a new one.');
         }
-
-        if (decrypt($emailOtp->otp) !== $request->otp) {
-            $emailOtp->increment('attempts');
-
-            if ($emailOtp->attempts >= 3) {
-                $emailOtp->delete();
-            }
-
+        if ($emailOtp->code != $request->otp) {
             return back()->with('error', 'Invalid OTP. Please try again.');
         }
         $emailOtp->delete();
