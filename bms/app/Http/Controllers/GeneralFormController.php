@@ -65,39 +65,22 @@ class GeneralFormController extends Controller
     }
     public function UpdateData(Request $request)
     {
-        $validated = $request->validate([
-            'first_name'          => 'required|string|max:255',
-            'last_name'           => 'required|string|max:255',
-            'middle_name'         => 'nullable|string|max:255',
-            'suffix'              => 'nullable|string|max:10',
-            'dob'                 => 'required|date',
-            'civil_status'        => 'required|string|max:50',
-            'year_of_residency'   => 'nullable|numeric|min:1900|max:' . date('Y'),
-            'email'               => 'required|email|max:255',
-            'place_of_birth'      => 'nullable|string|max:255',
-            'age'                 => 'nullable|numeric|min:0|max:120',
-            'address'             => 'nullable|string|max:255',
-        ]);
-
-        $record = GeneralForm::find($request->id);
-
-        if (!$record) {
-            return redirect()->back()->withErrors(['Record not found.']);
-        }
+        $record = GeneralForm::where('id', $request->id)->firstOrFail();
 
         $record->update([
-            'first_name'        => $validated['first_name'],
-            'last_name'         => $validated['last_name'],
-            'middle_name'       => $validated['middle_name'] ?? null,
-            'suffix'            => $validated['suffix'] ?? null,
-            'dob'               => $validated['dob'],
-            'civil_status'      => $validated['civil_status'],
-            'year_of_residency' => $validated['year_of_residency'] ?? null,
-            'email'             => $validated['email'],
-            'place_of_birth'    => $validated['place_of_birth'] ?? null,
-            'age'               => $validated['age'] ?? null,
-            'address'           => $validated['address'] ?? null,
+            'first_name'        => $request->first_name,
+            'last_name'         => $request->last_name,
+            'middle_name'       => $request->middle_name,
+            'suffix'            => $request->suffix,
+            'dob'               => $request->dob,
+            'civil_status'      => $request->civil_status,
+            'year_of_residency' => $request->year_of_residency,
+            'email'             => $request->email,
+            'place_of_birth'    => $request->place_of_birth,
+            'age'               => $request->age,
+            'address'           => $request->address,
         ]);
-        return redirect()->back()->with('success', 'Record updated successfully.');
+
+        return redirect()->back()->with('success', 'Record updated successfully!');
     }
 }
