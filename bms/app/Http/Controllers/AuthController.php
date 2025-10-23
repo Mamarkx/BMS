@@ -95,9 +95,9 @@ class AuthController extends Controller
     }
 
 
-    public function showVerifyEmailPage()
+    public function showVerifyEmailPage(Request $request)
     {
-        $email = session('pending_verification_email');
+        $email = $request->email ?? session('pending_verification_email');
 
         if (!$email) {
             return redirect()->route('login')->with('error', 'No verification pending.');
