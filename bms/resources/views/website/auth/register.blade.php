@@ -79,7 +79,7 @@
                         <span class="text-sm font-medium">Passwords do not match!</span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                             <label for="first_name" class="block text-sm font-semibold text-gray-700 mb-2">First Name
                                 *</label>
