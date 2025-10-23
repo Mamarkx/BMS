@@ -25,7 +25,7 @@
                         <tr>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">
                                 Reference #</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">Full
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Full
                                 Name</th>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Type
                             </th>
@@ -72,23 +72,17 @@
                                 </td>
 
                                 <td class="py-3 px-6 text-center">
-                                    <div class="flex justify-center flex-wrap items-center gap-2 text-sm">
-
+                                    <div class="flex justify-center items-center gap-3 text-lg">
                                         <!-- View -->
                                         <a href="{{ route('generalID.show', $d->id) }}"
-                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-blue-100 text-blue-700 font-medium 
-                   hover:bg-blue-200 transition">
+                                            class="text-blue-600 hover:text-blue-800 transition">
                                             <i class="fa-solid fa-eye"></i>
-                                            <span>View</span>
                                         </a>
 
                                         <!-- Edit -->
-                                        <button type="button"
-                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-green-100 text-green-700 font-medium 
-                   hover:bg-green-200 transition edit-btn"
+                                        <button class="text-gray-600 hover:text-green-800 transition edit-btn"
                                             data-record='@json($d)'>
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                            <span>Edit</span>
                                         </button>
 
                                         <!-- Delete -->
@@ -98,35 +92,25 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-red-100 text-red-700 font-medium 
-                       hover:bg-red-200 transition delete-btn"
+                                                class="text-red-600 hover:text-red-800 transition delete-btn"
                                                 data-id="{{ $d->id }}">
                                                 <i class="fa-solid fa-trash"></i>
-                                                <span>Delete</span>
                                             </button>
                                         </form>
 
                                         <!-- Approve -->
-                                        <button type="button"
-                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-emerald-100 text-emerald-700 font-medium 
-                   hover:bg-emerald-200 transition"
+                                        <button class="text-green-600 hover:text-green-700 transition"
                                             onclick="showApprovalConfirmation({{ $d->id }})">
                                             <i class="fa-solid fa-circle-check"></i>
-                                            <span>Approve</span>
                                         </button>
 
                                         <!-- Schedule Release -->
-                                        <button type="button"
-                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-indigo-100 text-indigo-700 font-medium 
-                   hover:bg-indigo-200 transition"
+                                        <button class="text-indigo-600 hover:text-indigo-800 transition"
                                             onclick="openReleaseModal({{ $d->id }})">
                                             <i class="fa-solid fa-calendar-check"></i>
-                                            <span>Release</span>
                                         </button>
-
                                     </div>
                                 </td>
-
                             </tr>
                         @empty
                             <tr>
