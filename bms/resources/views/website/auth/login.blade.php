@@ -148,18 +148,20 @@
         <dialog id="verifyModal"
             class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" open>
             <form method="POST" action="{{ route('NotVerified') }}"
-                class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center animate-slide-down">
+                class="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center animate-slide-down">
                 @csrf
 
-                <!-- Warning Icon -->
+                <button type="button" onclick="closeModal()"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold transition-colors">
+                    &times;
+                </button>
+
                 <div class="flex justify-center mb-4">
                     <svg class="w-16 h-16 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
-
-                <!-- Heading -->
                 <h3 class="text-2xl font-bold text-gray-800 mb-2">Email Not Verified</h3>
                 <p class="text-gray-600 mb-6 text-sm sm:text-base">
                     Your email <strong>{{ session('pending_verification_email') }}</strong> is not yet verified.
@@ -167,7 +169,6 @@
 
                 <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
 
-                <!-- Action Button -->
                 <div class="flex justify-center">
                     <button type="submit"
                         class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-200">
@@ -177,6 +178,12 @@
             </form>
         </dialog>
 
+        <script>
+            function closeModal() {
+                const modal = document.getElementById('verifyModal');
+                if (modal) modal.style.display = 'none';
+            }
+        </script>
         <script>
             const modal = document.getElementById('verifyModal');
             if (modal) modal.showModal();
