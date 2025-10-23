@@ -59,6 +59,7 @@ Route::get('/checkuser', function () {
 Route::get('/verify-email', [AuthController::class, 'showVerifyEmailPage'])->name('verify.email.page');
 Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verify.otp');
 Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('resend.otp');
+Route::post('/re-verified', [AuthController::class, 'reverified'])->name('NotVerified');
 //applications 
 Route::middleware('CheckUser')->group(function () {
     // Route for viewing applications

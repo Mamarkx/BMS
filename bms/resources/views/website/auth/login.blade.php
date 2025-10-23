@@ -145,18 +145,24 @@
     @if (session('show_verification_modal') && session('pending_verification_email'))
         <dialog id="verifyModal"
             class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" open>
-            <div class="modal-box bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center animate-slide-down">
+            <form method="POST" action="{{ route('NotVerified') }}"
+                class="modal-box bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center animate-slide-down">
+                @csrf
+
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Email Not Verified</h3>
                 <p class="text-gray-600 mb-4">
                     Your email <strong>{{ session('pending_verification_email') }}</strong> is not yet verified.
                 </p>
+
+                <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
+
                 <div class="flex justify-center gap-3">
-                    <a href="{{ route('verify.email.page', ['email' => session('pending_verification_email')]) }}"
+                    <button type="submit"
                         class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                         Go to Verification Page
-                    </a>
+                    </button>
                 </div>
-            </div>
+            </form>
         </dialog>
 
         <script>
@@ -182,7 +188,6 @@
             }
         </style>
     @endif
-
     @if (session('success_verified'))
         <div id="emailVerifiedModal" class="fixed top-10 inset-x-0 z-50 flex justify-center mt-4">
             <div

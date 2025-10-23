@@ -30,6 +30,11 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+    public function reverified(Request $request)
+    {
+        dd($request->all());
+        return redirect('/login');
+    }
 
     public function RegisterAcc(Request $request)
     {
