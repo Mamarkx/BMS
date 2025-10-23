@@ -27,9 +27,9 @@
                                 Reference #</th>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">Full
                                 Name</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">Type
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Type
                             </th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-left">
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
                                 Status</th>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
                                 Actions</th>
@@ -76,18 +76,18 @@
 
                                         <!-- View -->
                                         <a href="{{ route('generalID.show', $d->id) }}"
-                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-blue-100 text-blue-700 font-medium
-                   hover:bg-blue-200 transition-all duration-200">
-                                            <i class="fa-solid fa-eye text-base"></i>
+                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-blue-100 text-blue-700 font-medium 
+                   hover:bg-blue-200 transition">
+                                            <i class="fa-solid fa-eye"></i>
                                             <span>View</span>
                                         </a>
 
                                         <!-- Edit -->
                                         <button type="button"
-                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-green-100 text-green-700 font-medium
-                   hover:bg-green-200 transition-all duration-200 edit-btn"
+                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-green-100 text-green-700 font-medium 
+                   hover:bg-green-200 transition edit-btn"
                                             data-record='@json($d)'>
-                                            <i class="fa-solid fa-pen-to-square text-base"></i>
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                             <span>Edit</span>
                                         </button>
 
@@ -98,29 +98,29 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-red-100 text-red-700 font-medium
-                       hover:bg-red-200 transition-all duration-200 delete-btn"
+                                                class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-red-100 text-red-700 font-medium 
+                       hover:bg-red-200 transition delete-btn"
                                                 data-id="{{ $d->id }}">
-                                                <i class="fa-solid fa-trash text-base"></i>
+                                                <i class="fa-solid fa-trash"></i>
                                                 <span>Delete</span>
                                             </button>
                                         </form>
 
                                         <!-- Approve -->
                                         <button type="button"
-                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-emerald-100 text-emerald-700 font-medium
-                   hover:bg-emerald-200 transition-all duration-200"
+                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-emerald-100 text-emerald-700 font-medium 
+                   hover:bg-emerald-200 transition"
                                             onclick="showApprovalConfirmation({{ $d->id }})">
-                                            <i class="fa-solid fa-circle-check text-base"></i>
+                                            <i class="fa-solid fa-circle-check"></i>
                                             <span>Approve</span>
                                         </button>
 
                                         <!-- Schedule Release -->
                                         <button type="button"
-                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-indigo-100 text-indigo-700 font-medium
-                   hover:bg-indigo-200 transition-all duration-200"
+                                            class="flex items-center gap-1 px-3 py-1.5 rounded-md bg-indigo-100 text-indigo-700 font-medium 
+                   hover:bg-indigo-200 transition"
                                             onclick="openReleaseModal({{ $d->id }})">
-                                            <i class="fa-solid fa-calendar-check text-base"></i>
+                                            <i class="fa-solid fa-calendar-check"></i>
                                             <span>Release</span>
                                         </button>
 
