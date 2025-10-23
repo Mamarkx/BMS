@@ -144,8 +144,7 @@
     </div>
 
     @if (session('show_verification_modal') && session('pending_verification_email'))
-        <dialog id="verifyModal"
-            class="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-50 p-4 pt-24">
+        <dialog id="verifyModal" class="fixed top-7 inset-x-0 z-50 flex justify-center px-4 p-4 pt-24">
             <form method="POST" action="{{ route('NotVerified') }}"
                 class="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center animate-slide-down transform scale-100 sm:scale-100">
                 @csrf
