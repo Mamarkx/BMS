@@ -72,20 +72,22 @@
                                 </td>
 
                                 <td class="py-3 px-6 text-center">
-                                    <div class="flex justify-center items-center gap-4 text-lg">
+                                    <div class="flex justify-center items-center gap-3 text-sm font-medium">
 
                                         <!-- View -->
                                         <a href="{{ route('generalID.show', $d->id) }}"
-                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition duration-200"
+                                            class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition duration-200"
                                             title="View Record">
-                                            <i class="fa-solid fa-eye"></i>
+                                            <i class="fa-solid fa-eye text-lg mb-1"></i>
+                                            <span class="text-xs font-semibold">View</span>
                                         </a>
 
                                         <!-- Edit -->
                                         <button type="button"
-                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-800 transition duration-200 edit-btn"
+                                            class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-800 transition duration-200 edit-btn"
                                             data-record='@json($d)' title="Edit Record">
-                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <i class="fa-solid fa-pen-to-square text-lg mb-1"></i>
+                                            <span class="text-xs font-semibold">Edit</span>
                                         </button>
 
                                         <!-- Delete -->
@@ -95,9 +97,10 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="flex items-center justify-center w-9 h-9 rounded-full bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-800 transition duration-200 delete-btn"
+                                                class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-800 transition duration-200 delete-btn"
                                                 data-id="{{ $d->id }}" title="Delete Record">
-                                                <i class="fa-solid fa-trash"></i>
+                                                <i class="fa-solid fa-trash text-lg mb-1"></i>
+                                                <span class="text-xs font-semibold">Delete</span>
                                             </button>
                                         </form>
 
@@ -108,17 +111,19 @@
                                             @csrf
                                         </form>
                                         <button type="button"
-                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-yellow-50 text-yellow-600 hover:bg-yellow-100 hover:text-yellow-800 transition duration-200"
+                                            class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-yellow-50 text-yellow-600 hover:bg-yellow-100 hover:text-yellow-700 transition duration-200"
                                             onclick="showApprovalConfirmation({{ $d->id }})"
                                             title="Approve Request">
-                                            <i class="fa-solid fa-circle-check"></i>
+                                            <i class="fa-solid fa-circle-check text-lg mb-1"></i>
+                                            <span class="text-xs font-semibold">Approve</span>
                                         </button>
 
                                         <!-- Schedule Release -->
                                         <button type="button"
-                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
+                                            class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
                                             onclick="openReleaseModal({{ $d->id }})" title="Schedule Release">
-                                            <i class="fa-solid fa-calendar-check"></i>
+                                            <i class="fa-solid fa-calendar-check text-lg mb-1"></i>
+                                            <span class="text-xs font-semibold">Release</span>
                                         </button>
 
                                     </div>
