@@ -71,59 +71,29 @@
                     function closeErrorModal() {
                         const modal = document.getElementById('errorModal');
                         if (modal) {
-                            const box = modal.querySelector('div.animate-modal-slide');
-                            // Add smooth fade and scale out
-                            box.classList.add('animate-modal-hide');
-                            modal.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-                            setTimeout(() => modal.remove(), 500); // Wait for animation to finish
+                            modal.classList.add('opacity-0', 'pointer-events-none');
                         }
                     }
-
-                    // Auto-close after 4s
                     setTimeout(closeErrorModal, 4000);
                 </script>
 
                 <style>
-                    /* Entrance animation */
                     @keyframes modal-slide {
-                        0% {
-                            transform: translateY(-25px) scale(0.95);
+                        from {
+                            transform: translateY(-20px);
                             opacity: 0;
                         }
 
-                        100% {
-                            transform: translateY(0) scale(1);
+                        to {
+                            transform: translateY(0);
                             opacity: 1;
                         }
                     }
 
                     .animate-modal-slide {
-                        animation: modal-slide 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-                    }
-
-                    /* Exit animation */
-                    @keyframes modal-hide {
-                        0% {
-                            transform: scale(1);
-                            opacity: 1;
-                        }
-
-                        100% {
-                            transform: scale(0.95);
-                            opacity: 0;
-                        }
-                    }
-
-                    .animate-modal-hide {
-                        animation: modal-hide 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-                    }
-
-                    /* Fade overlay transition */
-                    #errorModal {
-                        transition: opacity 0.4s ease;
+                        animation: modal-slide 0.35s ease-out;
                     }
                 </style>
-
             @endif
             <!-- Right Side -->
             <div class="w-full  flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
@@ -277,6 +247,91 @@
 
             </div>
         </div>
+        <dialog id="my_modal_3" class="modal rounded-2xl shadow-xl backdrop:bg-black/40">
+            <div class="modal-box p-8 bg-white text-gray-800 rounded-2xl max-w-2xl w-full">
+                <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                    onclick="document.getElementById('my_modal_3').close()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <h3 class="text-3xl font-bold text-center text-blue-800 mb-2">Terms of Service & Privacy Policy</h3>
+                <p class="text-center text-gray-500 mb-8">Please review the following before creating your account.</p>
+
+                <!-- Terms & Privacy Sections -->
+                <div class="space-y-6">
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 class="text-xl font-semibold text-gray-700">1. Terms of Service</h4>
+                        <p class="mt-2 text-gray-600 text-sm">
+                            By creating an account, you agree to the following terms and conditions.
+                        </p>
+                        <ul class="list-inside list-disc pl-4 mt-4 text-gray-600 space-y-2 text-sm">
+                            <li>You agree to provide accurate information during registration.</li>
+                            <li>You are responsible for maintaining your account credentials.</li>
+                            <li>Service use is subject to Philippine laws.</li>
+                            <li>Accounts may be suspended for violations.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                        <h4 class="text-xl font-semibold text-gray-700">2. Data Privacy Policy</h4>
+                        <p class="mt-2 text-gray-600 text-sm">
+                            We protect your personal information according to the Data Privacy Act of 2012.
+                        </p>
+                        <ul class="list-inside list-disc pl-4 mt-4 text-gray-600 space-y-2 text-sm">
+                            <li><strong>Information We Collect:</strong> Name, contact, address for services.</li>
+                            <li><strong>Purpose:</strong> Process requests and communicate with you.</li>
+                            <li><strong>Data Protection:</strong> Secured from unauthorized access.</li>
+                            <li><strong>Third-Party Disclosure:</strong> Only with consent or required by law.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="mt-8 flex items-center">
+                    <input type="checkbox" id="agree" name="agree"
+                        class="h-5 w-5 rounded-md text-blue-600 border-gray-300 focus:ring-blue-500 cursor-pointer">
+                    <label for="agree" class="ml-3 block text-base text-gray-700">
+                        I have read and agree to the <a href="#"
+                            class="text-blue-600 hover:text-blue-700 font-semibold">Terms of Service</a>
+                        and <a href="#" class="text-blue-600 hover:text-blue-700 font-semibold">Privacy
+                            Policy</a>.
+                    </label>
+                </div>
+
+                <!-- Proceed Button -->
+                <div class="mt-6 flex justify-end">
+                    <button id="submit-button"
+                        class="px-6 py-3 w-full sm:w-auto bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all"
+                        disabled>
+                        Proceed
+                    </button>
+                </div>
+
+                <p class="mt-4 text-center text-xs text-gray-400">
+                    By clicking 'Proceed', you confirm that you are a resident of Barangay San Agustin.
+                </p>
+            </div>
+        </dialog>
+
+        <script>
+            const agreeCheckbox = document.getElementById('agree');
+            const submitButton = document.getElementById('submit-button');
+            const modal = document.getElementById('my_modal_3');
+
+            // Enable/disable button based on checkbox
+            agreeCheckbox.addEventListener('change', () => {
+                submitButton.disabled = !agreeCheckbox.checked;
+            });
+
+            // Close modal on button click
+            submitButton.addEventListener('click', () => {
+                modal.close();
+            });
+        </script>
 
     </body>
 
