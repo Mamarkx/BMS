@@ -37,19 +37,12 @@
                         class="absolute top-3 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
                         &times;
                     </button>
-
-                    <!-- Heading -->
-                    <h3 class="text-lg font-bold text-red-700 mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-exclamation"></i>
-                        Registration Error
-                    </h3>
-
                     <!-- Errors List -->
                     <ul class="space-y-2 text-sm text-red-800">
                         @foreach ($errors->all() as $error)
                             <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-circle-exclamation text-red-500"></i>
-                                <span>{{ $error }}</span>
+                                <i class="fa-solid fa-circle-exclamation text-red-700 text-lg"></i>
+                                <span class="text-lg">{{ $error }}</span>
                             </li>
                         @endforeach
                     </ul>
