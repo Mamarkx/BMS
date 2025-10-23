@@ -76,7 +76,7 @@
         @endif
 
         <div
-            class="relative z-10 w-full max-w-6xl p-8 mx-4 bg-white backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
+            class="relative z-10 w-full max-w-6xl p-8 text-black mx-4 bg-white backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
 
 
             <div class="text-center mb-8">
