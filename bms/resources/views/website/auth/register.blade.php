@@ -186,7 +186,7 @@
                     <input type="checkbox" id="terms" name="terms" required
                         class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 cursor-pointer" />
 
-                    <label for="terms" class="ml-2 block text-sm text-gray-200">
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">
                         I agree to the
                         <a class="text-blue-400 hover:text-blue-500 font-semibold hover:underline cursor-pointer"
                             onclick="my_modal_3.showModal()">
@@ -333,7 +333,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#agree').on('change', function() {
                 var isChecked = $(this).prop('checked');
@@ -351,7 +351,7 @@
                 $('#my_modal_3')[0].close();
             });
         });
-    </script>
+    </script> --}}
     <script>
         $(document).ready(function() {
 
