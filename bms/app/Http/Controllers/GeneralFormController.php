@@ -66,7 +66,6 @@ class GeneralFormController extends Controller
     public function UpdateData(Request $request, $id)
     {
         dd($request->all());
-
         $validated = $request->validate([
             'first_name'          => 'required|string|max:255',
             'last_name'           => 'required|string|max:255',
