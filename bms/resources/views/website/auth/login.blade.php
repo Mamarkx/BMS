@@ -140,6 +140,73 @@
 
             </form>
         </div>
+        @if (session('show_verification_modal'))
+            <script>
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Email Not Verified',
+                    html: `
+            <p>Your email is not yet verified. Please check your inbox for the OTP code.</p>
+            <br>
+            <form id="resendForm" method="POST" action="{{ route('resend.otp') }}">
+                @csrf
+                <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
+                <button type="submit" id="resendBtn" 
+                    class="swal2-confirm swal2-styled" 
+                    style="background-color:#2563eb;">Resend OTP</button>
+            </form>
+        `,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Go to Verification Page',
+                    confirmButtonColor: '#2563eb',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{{ route('verify.email.page') }}";
+                    }
+                });
+
+                document.getElementById('resendForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = document.getElementById('resendBtn');
+                    btn.disabled = true;
+                    btn.textContent = 'Sending...';
+
+                    fetch(this.action, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': this.querySelector('[name=_token]').value,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: this.querySelector('[name=email]').value
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'OTP Sent!',
+                                text: data.message,
+                                confirmButtonColor: '#2563eb'
+                            });
+                        })
+                        .catch(() => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Unable to resend OTP. Please try again later.',
+                            });
+                        })
+                        .finally(() => {
+                            btn.disabled = false;
+                            btn.textContent = 'Resend OTP';
+                        });
+                });
+            </script>
+        @endif
+
     </div>
 
     @if (session('success_verified'))

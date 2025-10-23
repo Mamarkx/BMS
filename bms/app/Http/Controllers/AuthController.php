@@ -74,16 +74,17 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
 
-        if (!$user->is_verified) {
-            return back()->withErrors([
-                'email' => 'Your email is not yet verified. Please verify your email first.',
-            ])->onlyInput('email');
-        }
-
         if (!Hash::check($request->password, $user->password)) {
             return back()->withErrors([
                 'password' => 'Incorrect password. Please try again.',
             ])->onlyInput('email');
+        }
+
+        if (!$user->is_verified) {
+            session()->flash('show_verification_modal', true);
+            session()->flash('pending_verification_email', $user->email);
+
+            return back();
         }
 
         Auth::login($user);
