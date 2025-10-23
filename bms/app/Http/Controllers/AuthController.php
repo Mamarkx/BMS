@@ -55,7 +55,7 @@ class AuthController extends Controller
         $this->sendOtp($user);
         session(['pending_verification_email' => $user->email]);
         return redirect()
-            ->route('auth.verify-email')
+            ->route('verify.email.page')
             ->with('success', 'Registration successful! We sent a verification code to your email.');
     }
 
