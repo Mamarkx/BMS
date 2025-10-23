@@ -189,7 +189,7 @@
         </style>
     @endif
 
-    <div id="emailVerifiedModal" class="fixed top-4 inset-x-0 z-50 flex justify-center mt-2">
+    <div id="emailVerifiedModal" class="fixed top-8 inset-x-0 z-50 flex justify-center mt-2">
         <div
             class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-2 text-center border border-blue-200 animate-slide-down">
             <div class="text-blue-600 text-4xl mb-4">
