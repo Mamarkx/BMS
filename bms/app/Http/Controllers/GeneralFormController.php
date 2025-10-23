@@ -83,4 +83,16 @@ class GeneralFormController extends Controller
 
         return redirect()->back()->with('success', 'Record updated successfully!');
     }
+    public function DeleteGeneralREcord($id)
+    {
+        $personnel = GeneralForm::find($id);
+
+        if (!$personnel) {
+            return redirect()->back()->with('error', 'Not found.');
+        }
+
+        $personnel->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully.');
+    }
 }

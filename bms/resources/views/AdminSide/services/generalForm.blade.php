@@ -48,10 +48,15 @@
                                     data-record='@json($d)'>
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
-                                <button class="text-red-600 hover:text-red-800"
-                                    onclick="deleteRecord({{ $d->id }})"><i
-                                        class="fa-solid fa-trash"></i></button>
-
+                                <form id="deleteForm_{{ $d->id }}"
+                                    action="{{ route('DeleteGeneralForm', $d->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="delete-btn text-red-600 hover:text-red-800"
+                                        data-id="{{ $d->id }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
                                 <!-- Approve -->
                                 <form id="approveForm{{ $d->id }}"
                                     action="{{ route('general.formID', $d->id) }}" method="POST">
@@ -62,7 +67,7 @@
                                         class="fa-solid fa-check-circle"></i></button>
 
                                 <!-- Schedule Release -->
-                                <button class="text-blue-600 hover:text-blue-800"
+                                <button class="text-blue-600 hover:text-blue-800 delete-btn"
                                     onclick="openReleaseModal({{ $d->id }})"><i
                                         class="fa-solid fa-calendar-check"></i></button>
                             </td>
@@ -277,5 +282,30 @@
             document.getElementById('releaseModal').classList.add('hidden');
         }
     </script>
-
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').on('click', function() {
+                const id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This employee record will be permanently deleted!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6b7280',
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'Cancel',
+                    background: '#fff',
+                    color: '#333',
+                    customClass: {
+                        popup: 'rounded-2xl shadow-2xl'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deleteForm_' + id).submit();
+                    }
+                });
+            });
+        });
+    </script>
 </x-admin-layout>

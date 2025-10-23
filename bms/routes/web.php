@@ -147,6 +147,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     Route::post('/general-form/{id}', [GeneralFormController::class, 'GeneralReleaseID'])->name('general.release');
     Route::get('/general-form/{id}', [GeneralFormController::class, 'show'])->name('generalID.show');
     Route::post('/update/general-form', [GeneralFormController::class, 'UpdateData'])->name('UpdateGeneralForm');
+    Route::delete('/employee/{id}/delete', [GeneralFormController::class, 'DeleteGeneralREcord'])->name('DeleteGeneralForm');
 
     // Cedula
     Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');
