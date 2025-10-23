@@ -32,8 +32,17 @@ class AuthController extends Controller
     }
     public function reverified(Request $request)
     {
-        dd($request->all());
-        return redirect('/login');
+
+        $email = User::where('email', $request->email)->first();
+        $this->sendOtp($email);
+
+
+
+        if (!$email) {
+            return redirect()->route('loginPage')->with('error', 'No verification pending.');
+        }
+
+        return view('website.auth.verify-email', compact('email'));
     }
 
     public function RegisterAcc(Request $request)
@@ -80,11 +89,10 @@ class AuthController extends Controller
         }
 
         if (!$user->is_verified) {
-            // Use flash session to show modal
             session()->flash('show_verification_modal', true);
             session()->flash('pending_verification_email', $user->email);
 
-            return back(); // go back to login page
+            return back();
         }
         if (!Hash::check($request->password, $user->password)) {
             return back()->withErrors([
@@ -105,7 +113,7 @@ class AuthController extends Controller
         $email = $request->email ?? session('pending_verification_email');
 
         if (!$email) {
-            return redirect()->route('login')->with('error', 'No verification pending.');
+            return redirect()->route('loginPage')->with('error', 'No verification pending.');
         }
 
         return view('website.auth.verify-email', compact('email'));
@@ -166,7 +174,7 @@ class AuthController extends Controller
         TwoFactorCode::create([
             'user_id'    => $user->id,
             'code'       => $code,
-            'expires_at' => Carbon::now('Asia/Manila')->addMinutes(10), // 🇵🇭 Philippine Time
+            'expires_at' => Carbon::now('Asia/Manila')->addMinutes(10),
         ]);
 
         Mail::to($user->email)->send(new SendEmailOTP($user, $code));
