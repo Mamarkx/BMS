@@ -65,7 +65,12 @@
             <div
                 class="w-full
                 max-w-xl flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
-
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl md:text-4xl font-bold text-black mb-2 drop-shadow">
+                        Create an Account
+                    </h1>
+                    <p class="text-gray-700 text-lg">Sign up to access barangay e-services</p>
+                </div>
                 <!-- Form -->
                 <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6">
                     @csrf
