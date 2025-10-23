@@ -28,38 +28,31 @@
         <div class="absolute inset-0 bg-black opacity-50"></div>
 
         @if ($errors->any())
-            <div id="errorModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-                <div class="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 animate-slide-down">
+            <div id="errorModal" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
+                <div
+                    class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-2xl shadow-lg p-6 animate-slide-down relative">
 
                     <!-- Close Button -->
                     <button type="button" onclick="closeErrorModal()"
-                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold transition-colors">
+                        class="absolute top-3 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
                         &times;
                     </button>
 
                     <!-- Heading -->
-                    <h3 class="text-xl font-bold text-red-600 mb-4 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-circle-exclamation text-red-600"></i>
-                        Validation Errors
+                    <h3 class="text-lg font-bold text-red-700 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Registration Error
                     </h3>
 
                     <!-- Errors List -->
-                    <ul class="space-y-2 text-sm text-gray-700 text-left">
+                    <ul class="space-y-2 text-sm text-red-800">
                         @foreach ($errors->all() as $error)
-                            <li class="flex items-center gap-3">
+                            <li class="flex items-center gap-2">
                                 <i class="fa-solid fa-circle-exclamation text-red-500"></i>
-                                <span class="font-medium">{{ $error }}</span>
+                                <span>{{ $error }}</span>
                             </li>
                         @endforeach
                     </ul>
-
-                    <!-- Close Button at Bottom -->
-                    <div class="mt-6 flex justify-center">
-                        <button type="button" onclick="closeErrorModal()"
-                            class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-md transition-all">
-                            Close
-                        </button>
-                    </div>
                 </div>
             </div>
 
@@ -88,6 +81,7 @@
                 }
             </style>
         @endif
+
 
         <div
             class="relative z-10 w-full max-w-6xl p-8 mx-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20">
