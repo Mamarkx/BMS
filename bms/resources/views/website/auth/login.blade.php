@@ -150,18 +150,14 @@
                     Your email <strong>{{ session('pending_verification_email') }}</strong> is not yet verified.
                 </p>
                 <div class="flex justify-center gap-3">
-                    <form method="POST" action="{{ route('resend.otp') }}">
+                    <form method="POST" action="{{ route('verify.email.page') }}">
                         @csrf
                         <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
                         <button type="submit"
                             class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                            Resend Verification Email
+                            Go to Verification Page
                         </button>
                     </form>
-                    <a href="#"
-                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
-                        Go to Verification Page
-                    </a>
                 </div>
             </div>
         </dialog>
