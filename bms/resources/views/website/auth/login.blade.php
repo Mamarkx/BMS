@@ -54,12 +54,12 @@
                 <p class="text-gray-200 text-lg">Sign in to your account</p>
             </div>
             @if ($errors->any())
-                <div class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-lg p-4 mb-4">
+                <div class="bg-white border-l-4 border-red-500 text-red-800 rounded-lg p-4 mb-4">
                     <ul class="space-y-2 text-sm">
                         @foreach ($errors->all() as $error)
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-exclamation mt-1 text-red-600"></i>
-                                <span>{{ $error }}</span>
+                            <li class="flex items-start gap-3 text-base">
+                                <i class="fa-solid fa-circle-exclamation text-red-600 text-xl mt-1"></i>
+                                <span class="font-medium text-red-800">{{ $error }}</span>
                             </li>
                         @endforeach
                     </ul>
