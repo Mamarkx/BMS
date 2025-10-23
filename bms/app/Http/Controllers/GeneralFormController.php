@@ -63,7 +63,7 @@ class GeneralFormController extends Controller
         $form = GeneralForm::findOrFail($id);
         return view('AdminSide.viewData.show-General-ID', compact('form'));
     }
-    public function UpdateData(Request $request, $id)
+    public function UpdateData(Request $request)
     {
         dd($request->all());
         $validated = $request->validate([
