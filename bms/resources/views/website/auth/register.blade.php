@@ -212,10 +212,10 @@
                 </div>
 
 
-                <p class="text-center text-sm text-gray-200">
+                <p class="text-center text-sm text-gray-700">
                     Already have an account?
                     <a href="{{ route('loginPage') }}"
-                        class="text-blue-200 hover:text-blue-100 font-semibold hover:underline transition-colors duration-200">Sign
+                        class="text-blue-500 hover:text-blue-100 font-semibold hover:underline transition-colors duration-200">Sign
                         in here</a>
                 </p>
 
