@@ -17,14 +17,15 @@
     <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
 
         <div class="h-screen flex flex-col md:flex-row">
-            <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center bg-cover bg-center flex-1"
+            <div class="h-auto md:h-screen w-full py-10 flex items-center justify-center relative bg-cover bg-center flex-1"
                 style="background-image: url('{{ asset('images/register.jpg') }}');">
+                <div class="absolute inset-0 bg-black opacity-70 "></div>
             </div>
             <!-- Right Side -->
             <div class="w-full  flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
 
                 <!-- Form -->
-                <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6 w-full max-w-2xl">
+                <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6 w-full max-w-2xl p-6">
 
                     @csrf
                     <div role="alert" id="password-error"
@@ -37,36 +38,59 @@
                         <span class="text-sm font-medium">Passwords do not match!</span>
                     </div>
                     @if ($errors->any())
-                        <div id="errorModal" class="fixed inset-0 z-50 w-full max-w-md p-4">
+                        <div id="errorModal"
+                            class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
                             <div
-                                class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-2xl shadow-lg p-6 animate-slide-down relative">
+                                class="bg-white border-t-4 border-red-500 text-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6 animate-modal-slide relative">
+
+                                <!-- Close Button -->
                                 <button type="button" onclick="closeErrorModal()"
-                                    class="absolute top-6 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
-                                    &times;
+                                    class="absolute top-4 right-4 text-gray-400 hover:text-red-600 text-2xl transition-colors">
+                                    <i class="fa-solid fa-xmark"></i>
                                 </button>
 
-                                <ul class="space-y-2 text-sm text-red-800">
+                                <!-- Header -->
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="text-red-600 text-3xl">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-gray-800">Validation Error</h2>
+                                </div>
+
+                                <!-- Error List -->
+                                <ul class="space-y-2">
                                     @foreach ($errors->all() as $error)
-                                        <li class="flex items-center gap-2">
-                                            <i
-                                                class="fa-solid fa-circle-exclamation text-red-700 text-lg font-semibold"></i>
-                                            <span class="text-lg font-semibold">{{ $error }}</span>
+                                        <li
+                                            class="flex items-start gap-3 bg-red-50 border border-red-200 p-3 rounded-lg">
+                                            <i class="fa-solid fa-triangle-exclamation text-red-600 mt-0.5"></i>
+                                            <span class="text-sm font-medium text-gray-700">{{ $error }}</span>
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <!-- Button -->
+                                <div class="mt-6 text-right">
+                                    <button type="button" onclick="closeErrorModal()"
+                                        class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition duration-200">
+                                        Close
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <script>
                             function closeErrorModal() {
                                 const modal = document.getElementById('errorModal');
-                                if (modal) modal.style.display = 'none';
+                                if (modal) {
+                                    modal.classList.add('opacity-0', 'pointer-events-none');
+                                    setTimeout(() => modal.remove(), 300);
+                                }
                             }
-                            setTimeout(closeErrorModal, 3000);
+                            setTimeout(closeErrorModal, 4000);
                         </script>
 
                         <style>
-                            @keyframes slide-down {
+                            @keyframes modal-slide {
                                 from {
                                     transform: translateY(-20px);
                                     opacity: 0;
@@ -78,12 +102,15 @@
                                 }
                             }
 
-                            .animate-slide-down {
-                                animation: slide-down 0.3s ease-out;
+                            .animate-modal-slide {
+                                animation: modal-slide 0.35s ease-out;
                             }
                         </style>
                     @endif
-
+                    <div class="mb-8">
+                        <img src="{{ asset('images/san-agustin.png') }}" class="mx-auto h-36 w-36 drop-shadow-2xl"
+                            alt="Barangay Logo" />
+                    </div>
                     <div class="text-center mb-8">
                         <h1 class="text-3xl md:text-4xl font-bold text-black mb-2 drop-shadow">
                             Create an Account
