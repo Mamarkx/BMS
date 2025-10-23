@@ -142,12 +142,19 @@
             </form>
         </div>
     </div>
+
     @if (session('show_verification_modal') && session('pending_verification_email'))
         <dialog id="verifyModal"
             class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" open>
             <form method="POST" action="{{ route('NotVerified') }}"
-                class="modal-box bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center animate-slide-down">
+                class="relative modal-box bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center animate-slide-down">
                 @csrf
+
+                <!-- Close Button -->
+                <button type="button" onclick="closeModal()"
+                    class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl font-bold">
+                    &times;
+                </button>
 
                 <h3 class="text-xl font-bold text-gray-800 mb-2">Email Not Verified</h3>
                 <p class="text-gray-600 mb-4">
@@ -166,6 +173,11 @@
         </dialog>
 
         <script>
+            function closeModal() {
+                const modal = document.getElementById('verifyModal');
+                if (modal) modal.close(); // closes the <dialog> element
+            }
+
             const modal = document.getElementById('verifyModal');
             if (modal) modal.showModal();
         </script>
@@ -188,6 +200,8 @@
             }
         </style>
     @endif
+
+
     @if (session('success_verified'))
         <div id="emailVerifiedModal" class="fixed top-7 inset-x-0 z-50 flex justify-center px-4">
             <div
