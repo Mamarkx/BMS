@@ -132,7 +132,7 @@ class AuthController extends Controller
         $user->update(['is_verified' => true]);
         session()->forget('pending_verification_email');
 
-        return view('website.auth.login')->with('success_verified', true);
+        return redirect()->route('loginPage')->with('success_verified', true);
     }
 
 
