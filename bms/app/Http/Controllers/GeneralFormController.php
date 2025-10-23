@@ -63,4 +63,43 @@ class GeneralFormController extends Controller
         $form = GeneralForm::findOrFail($id);
         return view('AdminSide.viewData.show-General-ID', compact('form'));
     }
+    public function UpdateData(Request $request, $id)
+    {
+        dd($request->all());
+
+        $validated = $request->validate([
+            'first_name'          => 'required|string|max:255',
+            'last_name'           => 'required|string|max:255',
+            'middle_name'         => 'nullable|string|max:255',
+            'suffix'              => 'nullable|string|max:10',
+            'dob'                 => 'required|date',
+            'civil_status'        => 'required|string|max:50',
+            'year_of_residency'   => 'nullable|numeric|min:1900|max:' . date('Y'),
+            'email'               => 'required|email|max:255',
+            'place_of_birth'      => 'nullable|string|max:255',
+            'age'                 => 'nullable|numeric|min:0|max:120',
+            'address'             => 'nullable|string|max:255',
+        ]);
+
+        $record = GeneralForm::find($id);
+
+        if (!$record) {
+            return redirect()->back()->withErrors(['Record not found.']);
+        }
+
+        $record->update([
+            'first_name'        => $validated['first_name'],
+            'last_name'         => $validated['last_name'],
+            'middle_name'       => $validated['middle_name'] ?? null,
+            'suffix'            => $validated['suffix'] ?? null,
+            'dob'               => $validated['dob'],
+            'civil_status'      => $validated['civil_status'],
+            'year_of_residency' => $validated['year_of_residency'] ?? null,
+            'email'             => $validated['email'],
+            'place_of_birth'    => $validated['place_of_birth'] ?? null,
+            'age'               => $validated['age'] ?? null,
+            'address'           => $validated['address'] ?? null,
+        ]);
+        return redirect()->back()->with('success', 'Record updated successfully.');
+    }
 }

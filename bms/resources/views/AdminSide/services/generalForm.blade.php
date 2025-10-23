@@ -107,11 +107,12 @@
             <div class="modal-box max-w-3xl bg-white rounded-2xl shadow-xl border border-gray-200">
                 <h3 class="font-bold text-2xl mb-6 flex items-center gap-3 text-gray-800">
                     <i class="fa-solid fa-user-pen text-green-600"></i>
-                    Edit Resident Record
+                    Edit Record
                 </h3>
 
                 <!-- Edit Form -->
-                <form id="editRecordForm" method="POST" action="#" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form id="editRecordForm" method="POST" action="{{ route('UpdateGeneralForm') }}"
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
                     <div>
@@ -225,7 +226,6 @@
 
     </div>
 
-    <!-- Scripts -->
     @if (session('success'))
         <script>
             Swal.fire({
@@ -236,11 +236,21 @@
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
-                iconColor: '#ffffff',
-                background: '#22c55e',
-                color: '#ffffff'
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                background: '#ffffff',
+                color: '#16a34a', // green text
             });
         </script>
+
+        <style>
+            .colored-toast {
+                border-left: 6px solid #16a34a !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding-left: 12px !important;
+            }
+        </style>
     @endif
 
     <script>
