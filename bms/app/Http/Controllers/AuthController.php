@@ -73,12 +73,6 @@ class AuthController extends Controller
                 'email' => 'This email is not registered.',
             ])->onlyInput('email');
         }
-
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors([
-                'password' => 'Incorrect password. Please try again.',
-            ])->onlyInput('email');
-        }
         if (!$user->is_verified) {
             session([
                 'show_verification_modal' => true,
@@ -87,6 +81,12 @@ class AuthController extends Controller
 
             return back();
         }
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors([
+                'password' => 'Incorrect password. Please try again.',
+            ])->onlyInput('email');
+        }
+
 
         // ✅ Verified and password correct
         Auth::login($user);
