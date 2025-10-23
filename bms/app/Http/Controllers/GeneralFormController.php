@@ -65,7 +65,6 @@ class GeneralFormController extends Controller
     }
     public function UpdateData(Request $request)
     {
-        dd($request->all());
         $validated = $request->validate([
             'first_name'          => 'required|string|max:255',
             'last_name'           => 'required|string|max:255',
@@ -80,7 +79,7 @@ class GeneralFormController extends Controller
             'address'             => 'nullable|string|max:255',
         ]);
 
-        $record = GeneralForm::find($id);
+        $record = GeneralForm::find($request->id);
 
         if (!$record) {
             return redirect()->back()->withErrors(['Record not found.']);
