@@ -189,7 +189,7 @@
         </style>
     @endif
     {{-- @if (session('success_verified')) --}}
-    <div id="emailVerifiedModal" class="fixed inset-0 z-50 flex justify-center px-4">
+    <div id="emailVerifiedModal" class="fixed top-8 inset-x-0 z-50 flex justify-center px-4">
         <div
             class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center border border-blue-300 animate-slide-down">
             <div class="text-blue-600 text-5xl mb-4">
