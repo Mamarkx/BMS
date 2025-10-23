@@ -33,7 +33,7 @@
 
                     <!-- Close Button -->
                     <button type="button" onclick="closeErrorModal()"
-                        class="absolute top-3 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
+                        class="absolute top-6 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
                         &times;
                     </button>
 
