@@ -30,14 +30,11 @@
             <div id="errorModal" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md p-4">
                 <div
                     class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-2xl shadow-lg p-6 animate-slide-down relative">
-
-                    <!-- Close Button -->
                     <button type="button" onclick="closeErrorModal()"
                         class="absolute top-6 right-3 text-red-600 hover:text-red-800 text-xl font-bold transition-colors">
                         &times;
                     </button>
 
-                    <!-- Errors List -->
                     <ul class="space-y-2 text-sm text-red-800">
                         @foreach ($errors->all() as $error)
                             <li class="flex items-center gap-2">
