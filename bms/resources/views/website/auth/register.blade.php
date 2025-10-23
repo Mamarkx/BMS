@@ -112,7 +112,7 @@
                         <label for="last_name" class="block text-sm font-semibold text-gray-700 mb-2">Last Name*</label>
                         <div class="relative">
                             <input type="text" id="last_name" name="last_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your last name">
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                             (Optional)</label>
                         <div class="relative">
                             <input type="text" id="middle_name" name="middle_name"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your middle name">
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                             (Optional)</label>
                         <div class="relative">
                             <input type="text" id="suffix" name="suffix"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your suffix">
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                         <div class="relative">
                             <input type="text" id="address" name="address"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your address">
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                             Address</label>
                         <div class="relative">
                             <input type="email" id="email" name="email"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Enter your email address">
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                         <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                         <div class="relative">
                             <input type="password" id="password" name="password"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Create a password">
                         </div>
                     </div>
@@ -171,10 +171,10 @@
 
                     <div>
                         <label for="password_confirmation"
-                            class="block text-sm font-semibold text-gray-200 mb-2">Confirm Password</label>
+                            class="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
                         <div class="relative">
                             <input type="password" id="password_confirmation" name="password_confirmation"
-                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                 placeholder="Confirm your password">
                         </div>
                     </div>
