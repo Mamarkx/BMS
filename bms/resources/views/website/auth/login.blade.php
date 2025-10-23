@@ -150,21 +150,17 @@
                     Your email <strong>{{ session('pending_verification_email') }}</strong> is not yet verified.
                 </p>
                 <div class="flex justify-center gap-3">
-                    <form method="POST" action="{{ route('verify.email.page') }}">
-                        @csrf
-                        <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
-                        <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                            Go to Verification Page
-                        </button>
-                    </form>
+                    <a href="{{ route('verify.email.page') }}"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        Go to Verification Page
+                    </a>
                 </div>
             </div>
         </dialog>
 
         <script>
             const modal = document.getElementById('verifyModal');
-            modal.showModal();
+            if (modal) modal.showModal();
         </script>
     @endif
 
