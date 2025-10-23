@@ -189,9 +189,9 @@
         </style>
     @endif
 
-    <div id="emailVerifiedModal" class="fixed top-10 inset-x-0 z-50 flex justify-center mt-4">
+    <div id="emailVerifiedModal" class="fixed top-2 inset-x-0 z-50 flex justify-center mt-2">
         <div
-            class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 text-center border border-blue-200 animate-slide-down">
+            class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-2 text-center border border-blue-200 animate-slide-down">
             <div class="text-blue-600 text-4xl mb-4">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
@@ -199,6 +199,8 @@
             <p class="text-gray-600 mb-4">Your email has been successfully verified.</p>
         </div>
     </div>
+
+
     <script>
         function closeModal() {
             const modal = document.getElementById('emailVerifiedModal');
