@@ -72,16 +72,19 @@
                                 </td>
 
                                 <td class="py-3 px-6 text-center">
-                                    <div class="flex justify-center items-center gap-3 text-lg">
+                                    <div class="flex justify-center items-center gap-4 text-lg">
+
                                         <!-- View -->
                                         <a href="{{ route('generalID.show', $d->id) }}"
-                                            class="text-blue-600 hover:text-blue-800 transition">
+                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition duration-200"
+                                            title="View Record">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
 
                                         <!-- Edit -->
-                                        <button class="text-gray-600 hover:text-green-800 transition edit-btn"
-                                            data-record='@json($d)'>
+                                        <button type="button"
+                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-800 transition duration-200 edit-btn"
+                                            data-record='@json($d)' title="Edit Record">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
@@ -92,49 +95,57 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="button"
-                                                class="text-red-600 hover:text-red-800 transition delete-btn"
-                                                data-id="{{ $d->id }}">
+                                                class="flex items-center justify-center w-9 h-9 rounded-full bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-800 transition duration-200 delete-btn"
+                                                data-id="{{ $d->id }}" title="Delete Record">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
 
                                         <!-- Approve -->
                                         <form id="approveForm{{ $d->id }}"
-                                            action="{{ route('general.formID', $d->id) }}" method="POST">
+                                            action="{{ route('general.formID', $d->id) }}" method="POST"
+                                            class="inline">
                                             @csrf
                                         </form>
-                                        <button class="text-green-600 hover:text-yellow-800"
-                                            onclick="showApprovalConfirmation({{ $d->id }})"><i
-                                                class="fa-solid fa-check-circle"></i></button>
+                                        <button type="button"
+                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-yellow-50 text-yellow-600 hover:bg-yellow-100 hover:text-yellow-800 transition duration-200"
+                                            onclick="showApprovalConfirmation({{ $d->id }})"
+                                            title="Approve Request">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </button>
 
                                         <!-- Schedule Release -->
-                                        <button class="text-blue-600 hover:text-blue-800"
-                                            onclick="openReleaseModal({{ $d->id }})"><i
-                                                class="fa-solid fa-calendar-check"></i></button>
-                                    </div>
-                                    <div id="releaseModal"
-                                        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
-                                        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-                                            <h3 class="text-xl font-semibold mb-4">Schedule Document Release</h3>
-                                            <form id="releaseForm" action="{{ route('general.release', $d->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                <label for="release_date"
-                                                    class="block text-sm font-medium text-gray-700">Select
-                                                    Release Date:</label>
-                                                <input type="date" name="release_date" id="release_date"
-                                                    class="w-full p-2 border border-gray-300 rounded-md mt-2" required>
-                                                <div class="flex justify-end gap-4 mt-4">
-                                                    <button type="button" class="text-gray-500"
-                                                        onclick="closeReleaseModal()">Cancel</button>
-                                                    <button type="submit"
-                                                        class="bg-blue-600 text-white px-4 py-2 rounded-md">Schedule
-                                                        Release</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                        <button type="button"
+                                            class="flex items-center justify-center w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
+                                            onclick="openReleaseModal({{ $d->id }})" title="Schedule Release">
+                                            <i class="fa-solid fa-calendar-check"></i>
+                                        </button>
+
                                     </div>
                                 </td>
+
+                                <div id="releaseModal"
+                                    class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+                                    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                                        <h3 class="text-xl font-semibold mb-4">Schedule Document Release</h3>
+                                        <form id="releaseForm" action="{{ route('general.release', $d->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            <label for="release_date"
+                                                class="block text-sm font-medium text-gray-700">Select
+                                                Release Date:</label>
+                                            <input type="date" name="release_date" id="release_date"
+                                                class="w-full p-2 border border-gray-300 rounded-md mt-2" required>
+                                            <div class="flex justify-end gap-4 mt-4">
+                                                <button type="button" class="text-gray-500"
+                                                    onclick="closeReleaseModal()">Cancel</button>
+                                                <button type="submit"
+                                                    class="bg-blue-600 text-white px-4 py-2 rounded-md">Schedule
+                                                    Release</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </tr>
 
                         @empty
