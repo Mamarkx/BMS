@@ -74,43 +74,45 @@
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex justify-center items-center gap-3 text-lg">
                                         <!-- View -->
+                                        <!-- View -->
                                         <a href="{{ route('generalID.show', $d->id) }}"
-                                            class="text-blue-600 hover:text-blue-800 transition">
-                                            <i class="fa-solid fa-eye"></i>
+                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-blue-100 text-blue-700 font-medium
+                   hover:bg-blue-200 hover:text-blue-900 transition-all duration-200">
+                                            <i class="fa-solid fa-eye text-base"></i>
+                                            <span>View</span>
                                         </a>
 
                                         <!-- Edit -->
-                                        <button class="text-gray-600 hover:text-green-800 transition edit-btn"
+                                        <button type="button"
+                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-gray-100 text-gray-700 font-medium
+                   hover:bg-green-100 hover:text-green-800 transition-all duration-200 edit-btn"
                                             data-record='@json($d)'>
-                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <i class="fa-solid fa-pen-to-square text-base"></i>
+                                            <span>Edit</span>
                                         </button>
 
                                         <!-- Delete -->
-                                        <form id="deleteForm_{{ $d->id }}"
-                                            action="{{ route('DeleteGeneralForm', $d->id) }}" method="POST"
+                                        <form id="approveForm{{ $d->id }}"
+                                            action="{{ route('general.formID', $d->id) }}" method="POST"
                                             class="inline">
                                             @csrf
-                                            @method('DELETE')
-                                            <button type="button"
-                                                class="text-red-600 hover:text-red-800 transition delete-btn"
-                                                data-id="{{ $d->id }}">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
                                         </form>
-
-                                        <!-- Approve -->
-                                        <form id="approveForm{{ $d->id }}"
-                                            action="{{ route('general.formID', $d->id) }}" method="POST">
-                                            @csrf
-                                        </form>
-                                        <button class="text-green-600 hover:text-yellow-800"
-                                            onclick="showApprovalConfirmation({{ $d->id }})"><i
-                                                class="fa-solid fa-check-circle"></i></button>
+                                        <button type="button"
+                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-green-100 text-green-700 font-medium
+                   hover:bg-yellow-100 hover:text-yellow-800 transition-all duration-200"
+                                            onclick="showApprovalConfirmation({{ $d->id }})">
+                                            <i class="fa-solid fa-check-circle text-base"></i>
+                                            <span>Approve</span>
+                                        </button>
 
                                         <!-- Schedule Release -->
-                                        <button class="text-blue-600 hover:text-blue-800"
-                                            onclick="openReleaseModal({{ $d->id }})"><i
-                                                class="fa-solid fa-calendar-check"></i></button>
+                                        <button type="button"
+                                            class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-indigo-100 text-indigo-700 font-medium
+                   hover:bg-indigo-200 hover:text-indigo-900 transition-all duration-200"
+                                            onclick="openReleaseModal({{ $d->id }})">
+                                            <i class="fa-solid fa-calendar-check text-base"></i>
+                                            <span>Release</span>
+                                        </button>
                                     </div>
                                     <div id="releaseModal"
                                         class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
