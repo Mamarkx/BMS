@@ -71,37 +71,65 @@
                     function closeErrorModal() {
                         const modal = document.getElementById('errorModal');
                         if (modal) {
-                            modal.classList.add('opacity-0', 'pointer-events-none');
-                            setTimeout(() => modal.remove(), 300);
+                            const box = modal.querySelector('div.animate-modal-slide');
+                            // Add smooth fade and scale out
+                            box.classList.add('animate-modal-hide');
+                            modal.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                            setTimeout(() => modal.remove(), 500); // Wait for animation to finish
                         }
                     }
+
+                    // Auto-close after 4s
                     setTimeout(closeErrorModal, 4000);
                 </script>
 
                 <style>
+                    /* Entrance animation */
                     @keyframes modal-slide {
-                        from {
-                            transform: translateY(-20px);
+                        0% {
+                            transform: translateY(-25px) scale(0.95);
                             opacity: 0;
                         }
 
-                        to {
-                            transform: translateY(0);
+                        100% {
+                            transform: translateY(0) scale(1);
                             opacity: 1;
                         }
                     }
 
                     .animate-modal-slide {
-                        animation: modal-slide 0.35s ease-out;
+                        animation: modal-slide 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                    }
+
+                    /* Exit animation */
+                    @keyframes modal-hide {
+                        0% {
+                            transform: scale(1);
+                            opacity: 1;
+                        }
+
+                        100% {
+                            transform: scale(0.95);
+                            opacity: 0;
+                        }
+                    }
+
+                    .animate-modal-hide {
+                        animation: modal-hide 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    }
+
+                    /* Fade overlay transition */
+                    #errorModal {
+                        transition: opacity 0.4s ease;
                     }
                 </style>
+
             @endif
             <!-- Right Side -->
             <div class="w-full  flex-1 md:flex justify-center items-center bg-white/80 backdrop-blur-sm p-6 md:p-8">
 
                 <!-- Form -->
                 <form method="POST" action="{{ route('RegisterAcc') }}" class="space-y-6 w-full max-w-3xl p-6">
-
                     @csrf
                     <div role="alert" id="password-error"
                         class="alert alert-error hidden flex items-center space-x-3 bg-red-100 text-red-800 border-l-4 border-red-500 p-4 rounded-md shadow-md">
