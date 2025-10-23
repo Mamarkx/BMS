@@ -23,7 +23,7 @@
                 <div class="absolute inset-0 bg-black opacity-70"></div>
 
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <img src="{{ asset('images/san-agustin.png') }}" class="h-64 w-64 drop-shadow-2xl"
+                    <img src="{{ asset('images/san-agustin.png') }}" class="h-96 w-96 drop-shadow-2xl"
                         alt="Barangay Logo" />
                 </div>
             </div>
@@ -112,10 +112,10 @@
                         </svg>
                         <span class="text-sm font-medium">Passwords do not match!</span>
                     </div>
-                    <div class="mb-8">
+                    {{-- <div class="mb-8">
                         <img src="{{ asset('images/san-agustin.png') }}" class="mx-auto h-36 w-36 drop-shadow-2xl"
                             alt="Barangay Logo" />
-                    </div>
+                    </div> --}}
                     <div class="text-center mb-8">
                         <h1 class="text-3xl md:text-4xl font-bold text-black mb-2 drop-shadow">
                             Create an Account
@@ -162,8 +162,7 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <div>
-                            <label for="address"
-                                class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
+                            <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                             <div class="relative">
                                 <input type="text" id="address" name="address"
                                     class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
