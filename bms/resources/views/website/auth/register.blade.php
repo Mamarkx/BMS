@@ -20,6 +20,10 @@
             <div class="h-auto   md:h-screen w-full py-10 hidden md:flex items-center justify-center relative bg-cover bg-center flex-1"
                 style="background-image: url('{{ asset('images/register.jpg') }}');">
                 <div class="absolute inset-0 bg-black opacity-70 "></div>
+                <div class="absolute inset-0">
+                    <img src="{{ asset('images/san-agustin.png') }}" class="mx-auto h-36 w-36 drop-shadow-2xl"
+                        alt="Barangay Logo" />
+                </div>
             </div>
             @if ($errors->any())
                 <div id="errorModal"
@@ -156,7 +160,8 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <div>
-                            <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
+                            <label for="address"
+                                class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                             <div class="relative">
                                 <input type="text" id="address" name="address"
                                     class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
