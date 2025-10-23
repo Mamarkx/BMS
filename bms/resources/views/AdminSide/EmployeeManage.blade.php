@@ -566,15 +566,18 @@
                                         class="font-medium text-sm text-gray-600 mb-1 block">Department</label>
                                     <select id="edit_department" name="department"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150 appearance-none">
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                        <option value="Resigned">Resigned</option>
-                                        <option value="Terminated">Terminated</option>
+                                        <option value="">Select Department</option>
+                                        <option value="Administrative">Administrative</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Health Services">Health Services</option>
+                                        <option value="Public Safety">Public Safety</option>
+                                        <option value="Brgy Council">Brgy Council</option>
+                                        <option value="GAD">GAD</option>
                                     </select>
                                 </div>
 
 
-                                <div>
+                                {{-- <div>
                                     <label for="edit_position_title"
                                         class="font-medium text-sm text-gray-600 mb-1 block">Position/Title</label>
                                     <select id="edit_position_title" name="position_title"
@@ -584,7 +587,7 @@
                                         <option value="Resigned">Resigned</option>
                                         <option value="Terminated">Terminated</option>
                                     </select>
-                                </div>
+                                </div> --}}
 
                                 {{-- <div>
                                     <label for="edit_position_title"
@@ -597,10 +600,15 @@
                                         class="font-medium text-sm text-gray-600 mb-1 block">Position/Title</label>
                                     <select id="edit_position_title" name="position_title"
                                         class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150 appearance-none">
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
-                                        <option value="Resigned">Resigned</option>
-                                        <option value="Terminated">Terminated</option>
+                                        <option value="Punong Barangay">Punong Barangay</option>
+                                        <option value="Barangay Kagawad">Barangay Kagawad</option>
+                                        <option value="BPSO">BPSO</option>
+                                        <option value="Admin Staff">Admin Staff</option>
+                                        <option value="BCPC GAD Focal Person">BCPC GAD Focal Person</option>
+                                        <option value="VAWC Desk Officer">VAWC Desk Officer</option>
+                                        <option value="Area Monitoring Officer">Area Monitoring Officer</option>
+                                        <option value="Admin Officer">Admin Officer</option>
+                                        <option value="Accounting">Accounting</option>
                                     </select>
                                 </div>
 

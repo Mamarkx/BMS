@@ -126,7 +126,7 @@
                                 Name*</label>
                             <div class="relative">
                                 <input type="text" id="last_name" name="last_name"
-                                    class="w-full pl-2 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
+                                    class="w-full pl-2 pr-4 py-3 bg-white/20 text-gray-700 placeholder-gray-300 border border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
                                     placeholder="Enter your last name">
                             </div>
                         </div>
