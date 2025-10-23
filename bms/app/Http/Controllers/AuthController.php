@@ -139,7 +139,7 @@ class AuthController extends Controller
 
         // ✅ Redirect to the same page to trigger SweetAlert modal
         return redirect()
-            ->route('verify.email.page', ['email' => $user->email])
+            ->route('website.auth.verify-email', ['email' => $user->email])
             ->with('success_verified', true);
     }
 
