@@ -8,7 +8,7 @@
         <title>Login Page</title>
         <link rel="icon" href="{{ asset('icons.svg') }}" type="image/x-icon">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
