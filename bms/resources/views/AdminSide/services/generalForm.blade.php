@@ -23,10 +23,14 @@
                 <table class="min-w-full text-sm text-gray-700">
                     <thead class="bg-gradient-to-r from-blue-50 to-indigo-100">
                         <tr>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Reference #</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Full Name</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Type</th>
-                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider">Status</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
+                                Reference #</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Full
+                                Name</th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">Type
+                            </th>
+                            <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
+                                Status</th>
                             <th class="py-3 px-6 font-semibold text-gray-800 uppercase tracking-wider text-center">
                                 Actions</th>
                         </tr>
