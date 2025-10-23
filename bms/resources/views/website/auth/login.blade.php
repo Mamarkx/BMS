@@ -148,19 +148,29 @@
         <dialog id="verifyModal"
             class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" open>
             <form method="POST" action="{{ route('NotVerified') }}"
-                class="modal-box bg-white rounded-lg shadow-xl max-w-md w-full p-6 text-center animate-slide-down">
+                class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center animate-slide-down">
                 @csrf
 
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Email Not Verified</h3>
-                <p class="text-gray-600 mb-4">
+                <!-- Warning Icon -->
+                <div class="flex justify-center mb-4">
+                    <svg class="w-16 h-16 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+
+                <!-- Heading -->
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Email Not Verified</h3>
+                <p class="text-gray-600 mb-6 text-sm sm:text-base">
                     Your email <strong>{{ session('pending_verification_email') }}</strong> is not yet verified.
                 </p>
 
                 <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
 
-                <div class="flex justify-center gap-3">
+                <!-- Action Button -->
+                <div class="flex justify-center">
                     <button type="submit"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-200">
                         Go to Verification Page
                     </button>
                 </div>
