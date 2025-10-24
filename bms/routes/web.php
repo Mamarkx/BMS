@@ -157,6 +157,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     // Cedula
     Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');
     Route::post('/cedula/{id}', [CedulaController::class, 'CedulaRelease'])->name('cedula.release');
+    Route::get('/cedula/{id}', [CedulaController::class, 'CedulaShow'])->name('cedula.show');
 
     // Business Permit
     Route::post('/business-permit/{id}/approveID', [BusinessController::class, 'approveBusinessPermit'])->name('approve.business-permit');

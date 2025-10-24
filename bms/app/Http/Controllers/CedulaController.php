@@ -10,6 +10,28 @@ use Illuminate\Support\Facades\Mail;
 
 class CedulaController extends Controller
 {
+    public function CedulaShow($id)
+    {
+        $cedula = Cedula::findOrFail($id);
+        return view('AdminSide.viewData.cedula', compact('cedula'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function approveCedula(Request $request, $id)
     {
         $document = Cedula::find($id);
