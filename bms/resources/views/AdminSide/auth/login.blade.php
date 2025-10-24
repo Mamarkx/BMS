@@ -53,14 +53,17 @@
                     <p class="text-gray-500 text-lg">Sign in to access your account</p>
                 </div>
                 <!-- Error Message -->
-                @if (session('error'))
-                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-2 ">
+                @if ($errors->any())
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-2">
                         <div class="flex items-center">
                             <i class="fa-solid fa-circle-exclamation text-red-500 mr-3"></i>
-                            <p class="text-red-700 text-sm font-medium">{{ session('error') }}</p>
+                            <p class="text-red-700 text-sm font-medium">
+                                {{ $errors->first() }}
+                            </p>
                         </div>
                     </div>
                 @endif
+
                 <!-- Login Form -->
                 <form action="{{ route('admin.login') }}" method="POST"
                     class="mt-4 space-y-6 max-w-md mx-auto lg:mx-0">
