@@ -17,7 +17,28 @@ class CedulaController extends Controller
     }
 
 
+    public function UpdateCedula(Request $request)
+    {
+        $record = Cedula::where('id', $request->id)->firstOrFail();
 
+        $record->update([
+            'name'                                => $request->name,
+            'tin'                                 => $request->tin,
+            'address'                             => $request->address,
+            'citezenship'                         => $request->citezenship,
+            'civil_status'                        => $request->civil_status,
+            'dob'                                 => $request->dob,
+            'place_of_birth'                      => $request->place_of_birth,
+            'height'                              => $request->height,
+            'weight'                              => $request->weight,
+            'total_gross_receipt_fr_business'     => $request->total_gross_receipt_fr_business,
+            'total_earning_fr_salaries'           => $request->total_earning_fr_salaries,
+            'total_income_fr_realproperty'        => $request->total_income_fr_realproperty,
+            'amount'                              => $request->amount, // added this field
+        ]);
+
+        return redirect()->back()->with('success', 'Cedula Updated successfully!');
+    }
 
 
     public function DeleteCedula($id)
