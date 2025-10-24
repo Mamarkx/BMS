@@ -222,15 +222,9 @@
         document.getElementById('reset-signature').addEventListener('click', () => {
             signaturePad.value = [];
             document.getElementById('signature_data').value = '';
-
-            Swal.fire({
-                icon: 'info',
-                text: 'Signature cleared!',
-                timer: 900,
-                showConfirmButton: false
-            });
         });
 
+        // Preview Modal + Submit Confirmation
         $(document).ready(function() {
             $("#previewSummary").click(function() {
                 let sigText = $("#signature_data").val() ?
@@ -238,16 +232,16 @@
                     'No signature provided ❌';
 
                 let summaryHtml = `
-                <p><strong>Name:</strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
-                <p><strong>TIN:</strong> ${$("input[name='tin']").val()}</p>
-                <p><strong>Address:</strong> {{ auth()->user()->address }}</p>
-                <p><strong>Citizenship:</strong> ${$("input[name='citizenship']").val()}</p>
-                <p><strong>Civil Status:</strong> ${$("select[name='civil_status']").val()}</p>
-                <p><strong>Date of Birth:</strong> ${$("input[name='dob']").val()}</p>
-                <p><strong>Birth Place:</strong> ${$("input[name='place_of_birth']").val()}</p>
-                <hr>
-                <p><strong>Signature:</strong> ${sigText}</p>
-            `;
+            <p><strong>Name:</strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
+            <p><strong>TIN:</strong> ${$("input[name='tin']").val()}</p>
+            <p><strong>Address:</strong> {{ auth()->user()->address }}</p>
+            <p><strong>Citizenship:</strong> ${$("input[name='citizenship']").val()}</p>
+            <p><strong>Civil Status:</strong> ${$("select[name='civil_status']").val()}</p>
+            <p><strong>Date of Birth:</strong> ${$("input[name='dob']").val()}</p>
+            <p><strong>Birth Place:</strong> ${$("input[name='place_of_birth']").val()}</p>
+            <hr>
+            <p><strong>Signature:</strong> ${sigText}</p>
+        `;
 
                 $("#summaryContent").html(summaryHtml);
                 $("#summaryModal").removeClass("hidden");
