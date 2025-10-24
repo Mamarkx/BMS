@@ -26,34 +26,36 @@
 
 <body data-theme="light">
 
-    <div class="flex h-auto w-full">
+    <div class="flex h-screen w-full">
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="fixed md:static h-auto bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
+            class="bg-[#15399b] text-white w-72 flex flex-col justify-between transition-all duration-500
+               fixed md:static inset-y-0 -left-72 md:left-0 z-50">
+
             <div>
-                <!-- Brand and Close Button -->
+                <!-- Brand -->
                 <div class="flex items-center justify-between mb-2 px-6 border-b border-white/40">
                     <div class="flex items-center py-2">
                         <img src="{{ asset('images/san-agustin.png') }}" class="h-16 w-16 rounded-full"
                             alt="Barangay Logo" />
                         <h1 class="text-xl font-semibold text-white ml-2 tracking-wide">San Agustin</h1>
                     </div>
-                    {{-- <i class="fa-solid fa-angle-left hidden md:flex"></i> --}}
-                    {{-- <i id="close-btn" class="fa-solid fa-xmark text-white cursor-pointer p-3 rounded-md transition-all duration-300 hover:rotate-90 hidden"></i> --}}
                 </div>
+
                 <!-- Navigation -->
                 <div class="p-5">
                     <nav>
                         <ul class="space-y-4">
                             <li>
                                 <a href="{{ route('dash') }}"
-                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
                                     <i class="fas fa-home text-xl"></i><span class="ml-2">Dashboard</span>
                                 </a>
                             </li>
+
                             <li>
                                 <a href="{{ route('Announce') }}"
-                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
                                     <i class="fa-solid fa-bullhorn text-xl"></i>
                                     <span class="ml-2">Announcement Management</span>
                                 </a>
@@ -61,64 +63,65 @@
 
                             <li>
                                 <a href="{{ route('ShowEmployee') }}"
-                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
                                     <i class="fa-solid fa-book text-xl"></i><span class="ml-2">Employee
                                         Management</span>
                                 </a>
                             </li>
+
                             <li>
                                 <a href="{{ route('ShowRes') }}"
-                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                    class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
                                     <i class="fa-solid fa-users text-xl"></i><span class="ml-2">Resident
                                         Information</span>
                                 </a>
                             </li>
-                            <!-- Parent Link -->
+
+                            <!-- Dropdown -->
                             <li class="relative">
                                 <button id="requestDropdownButton"
-                                    class="flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200 w-full"
+                                    class="flex items-center font-medium text-white space-x-2 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 w-full"
                                     onclick="toggleDropdownSmooth('requestDropdown', this)">
                                     <i class="fa-solid fa-address-book text-xl"></i>
-                                    <span class="">E-Services Management</span>
+                                    <span>E-Services Management</span>
                                     <i class="fa-solid fa-chevron-down ml-auto transition-transform duration-300"
                                         id="chevronIcon"></i>
                                 </button>
 
-                                <!-- Dropdown Menu -->
                                 <ul id="requestDropdown"
-                                    class="max-h-0 overflow-hidden bg-indigo-700 rounded-lg transition-all duration-500"
-                                    style="transition-property: max-height;">
+                                    class="max-h-0 overflow-hidden bg-indigo-700 rounded-lg transition-all duration-500">
                                     <li>
                                         <a href="{{ route('general.form') }}"
-                                            class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 rounded-t-lg transition-colors duration-200">
+                                            class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600 rounded-t-lg transition">
                                             General Form
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('business.permit') }}"
-                                            class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                            class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600 transition">
                                             Business Permit
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('barangay.id') }}"
-                                            class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                            class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600 transition">
                                             Barangay ID
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('cedula') }}"
-                                            class="block px-4 py-2 text-white hover:bg-indigo-50 hover:text-indigo-600 rounded-b-lg transition-colors duration-200">
+                                            class="block px-4 py-2 hover:bg-indigo-50 hover:text-indigo-600 rounded-b-lg transition">
                                             Cedula
                                         </a>
                                     </li>
                                 </ul>
                             </li>
+
                             @auth
                                 @if (Auth::user()->role === 'Super Admin')
                                     <li>
                                         <a href="{{ route('UserManage') }}"
-                                            class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-colors duration-200">
+                                            class="sidebar-link flex items-center font-medium text-white space-x-4 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
                                             <i class="fa-solid fa-users-gear text-xl"></i>
                                             <span class="ml-2">User Management</span>
                                         </a>
