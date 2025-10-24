@@ -88,7 +88,7 @@
 
                 <!-- Actions -->
                 <div class="mt-4 flex flex-col gap-3">
-                    <form action="{{ route('resend.otp') }}" method="POST">
+                    <form action="{{ route('resend.otp.admin') }}" method="POST">
                         @csrf
                         <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
 

@@ -92,7 +92,7 @@ Route::post('/Admin/logout', [AdminController::class, 'Adminlogout'])->name('adm
 Route::get('/admin/2fa', function () {
     return view('AdminSide.auth.2fa');
 })->name('admin.2fa.form');
-
+Route::post('/resend-otp/admin', [AdminController::class, 'ResendAdminOtp'])->name('resend.otp.admin');
 Route::post('/admin/2fa', [AdminController::class, 'verify2fa'])->name('admin.2fa.verify');
 
 

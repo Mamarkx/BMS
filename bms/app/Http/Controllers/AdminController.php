@@ -49,6 +49,32 @@ class AdminController extends Controller
         return redirect()->route('admin.2fa.form');
     }
 
+    public function ResendAdminOtp(Request $request)
+    {
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            return redirect()->route('LoginAdmin')->withErrors('User not found, please login again.');
+        }
+
+        // Delete existing codes
+        TwoFactorCode::where('user_id', $user->id)->delete();
+
+        // Generate new code
+        $code = rand(100000, 999999);
+
+        TwoFactorCode::create([
+            'user_id' => $user->id,
+            'code' => $code,
+            'expires_at' => now()->addMinutes(10),
+        ]);
+
+        // Send email
+        Mail::to($user->email)->send(new TwoFactorCodeMail($user, $code));
+
+        return back()->with('success', 'A new OTP has been sent to your email.');
+    }
 
 
     public function verify2fa(Request $request)
@@ -109,6 +135,7 @@ class AdminController extends Controller
     }
     public function updatePersonal(Request $request)
     {
+        $user = Auth::user();
         $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
