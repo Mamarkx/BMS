@@ -1,5 +1,12 @@
 <x-admin-layout>
-    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <div class="min-h-screen max-h-screen overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100">
+
         <div class="w-full">
 
             <!-- Header Section -->
