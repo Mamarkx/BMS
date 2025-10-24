@@ -227,7 +227,7 @@
                                         class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
                                         @click.away="open = false" @keydown.escape.window="open = false">
 
-                                        <div class="relative max-w-full max-h-full">
+                                        <div class="relative max-w-full max-h-full border border-gray-400">
                                             <!-- Redesigned Header -->
                                             <div
                                                 class="bg-white w-full px-6 py-4 rounded-t-lg flex items-center justify-between shadow-md border border-gray-400">
