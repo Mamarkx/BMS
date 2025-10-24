@@ -61,29 +61,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Stats Bar -->
-                <div class="bg-gradient-to-r from-gray-50 to-white px-4 sm:px-6 lg:px-8 py-4 border-b border-gray-200">
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="text-center sm:text-left">
-                            <p class="text-xs text-gray-500 font-medium mb-1">Type</p>
-                            <p class="text-sm sm:text-base font-bold text-gray-900">{{ $BrgyID->type }}</p>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <p class="text-xs text-gray-500 font-medium mb-1">Amount</p>
-                            <p class="text-sm sm:text-base font-bold text-emerald-600">
-                                ₱{{ number_format($BrgyID->amount, 2) }}</p>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <p class="text-xs text-gray-500 font-medium mb-1">Issue Date</p>
-                            <p class="text-sm sm:text-base font-bold text-gray-900">
-                                {{ $BrgyID->issue_date ?? 'Pending' }}</p>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <p class="text-xs text-gray-500 font-medium mb-1">Age</p>
-                            <p class="text-sm sm:text-base font-bold text-gray-900">{{ $BrgyID->age }} years</p>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Information Sections -->
                 <div class="px-4 sm:px-6 lg:px-8 py-8 space-y-8">
