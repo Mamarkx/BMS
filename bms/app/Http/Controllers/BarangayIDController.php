@@ -18,7 +18,7 @@ class BarangayIDController extends Controller
 
     public function UpdateBrgyID(Request $request)
     {
-        dd($request->all());
+
         $record = FormID::where('id', $request->id)->firstOrFail();
 
         $record->update([
