@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="h-auto bg-gray-50 p-8">
+    <div class="h-screen bg-gray-50 p-8">
         <div class="">
             <!-- Header Section with Search Bar -->
             <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
