@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\TwoFactorCode;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use Carbon\Carbon;
 use App\Mail\TwoFactorCodeMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -19,43 +20,34 @@ class AdminController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        $user = \App\Models\User::where('email', $request->email)->first();
 
-            if (!in_array($user->role, ['Admin', 'Super Admin'])) {
-                Auth::logout();
-                return back()->withErrors(['email' => 'Only Admin and Super Admin can login.']);
-            }
-
-            // Remove existing 2FA codes for the user
-            TwoFactorCode::where('user_id', $user->id)->delete();
-
-            // Generate 6-digit 2FA code
-            $code = rand(100000, 999999);
-
-            // Store in separate table
-            TwoFactorCode::create([
-                'user_id' => $user->id,
-                'code' => $code,
-                'expires_at' => Carbon::now()->addMinutes(10),
-            ]);
-
-            // Send code via email
-            Mail::to($user->email)->send(new TwoFactorCodeMail($user, $code));
-
-            // Logout until 2FA verified
-            Auth::logout();
-
-            // Store user ID in session for verification
-            $request->session()->put('2fa:user:id', $user->id);
-
-            return redirect()->route('admin.2fa.form');
+        if (!$user) {
+            return back()->with('error', 'No account found with that email address.')->onlyInput('email');
         }
 
-        return back()->withErrors([
-            'email' => 'Invalid email or password.'
-        ])->onlyInput('email');
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->with('error', 'Incorrect password.')->onlyInput('email');
+        }
+        if (!in_array($user->role, ['Admin', 'Super Admin'])) {
+            return back()->with('error', 'Access denied. Only Admin and Super Admin can login.');
+        }
+
+        Auth::login($user);
+        TwoFactorCode::where('user_id', $user->id)->delete();
+        $code = rand(100000, 999999);
+        TwoFactorCode::create([
+            'user_id' => $user->id,
+            'code' => $code,
+            'expires_at' => now()->addMinutes(10),
+        ]);
+        Mail::to($user->email)->send(new TwoFactorCodeMail($user, $code));
+        Auth::logout();
+        $request->session()->put('2fa:user:id', $user->id);
+
+        return redirect()->route('admin.2fa.form');
     }
+
 
 
     public function verify2fa(Request $request)
