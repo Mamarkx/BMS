@@ -161,7 +161,7 @@
                         <input type="email" id="edit_email" name="email" class="input input-bordered w-full">
                     </div>
 
-                    <div class="col-span-2">
+                    <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Purpose</label>
                         <input type="text" id="edit_purpose" name="purpose" class="input input-bordered w-full">
                     </div>
