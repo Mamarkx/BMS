@@ -8,7 +8,7 @@ use App\Models\Announce;
 use App\Models\GeneralForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
 use App\Models\BusinessPermit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -222,7 +222,7 @@ class ServiceController extends Controller
             ->with('success', 'Barangay ID Application submitted successfully! Reference No: ' . $application->reference_number);
     }
 
-    public function submitCedula(Request $request, $service_slug)
+    public function submitCedula(Request $request, $service_slug, ImageManager $manager)
     {
         $request->validate([
             'dob' => 'required|date',
@@ -238,27 +238,28 @@ class ServiceController extends Controller
 
         // Handle Signature (with white background)
         if ($request->hasFile('e_signature')) {
-
-            $image = Image::make($request->file('e_signature'));
+            $image = $manager->read($request->file('e_signature')->getPathname());
         } elseif (Str::startsWith($request->e_signature, 'data:image')) {
-
             $imageData = preg_replace('/^data:image\/\w+;base64,/', '', $request->e_signature);
             $imageData = str_replace(' ', '+', $imageData);
-            $image = Image::make(base64_decode($imageData));
+            $decoded = base64_decode($imageData);
+            $image = $manager->read($decoded);
         } else {
             return back()->withErrors(['e_signature' => 'Invalid signature format.']);
         }
 
         // Force white background behind signature
-        $whiteBg = Image::canvas($image->width(), $image->height(), '#ffffff')
-            ->insert($image, 'center');
+        $whiteBg = $manager->create($image->width(), $image->height(), 'ffffff');
+        $whiteBg->place($image);
 
         $signatureName = 'signature_' . time() . '.png';
         $signaturePath = 'documents/signatures/' . $signatureName;
         Storage::disk('public')->put($signaturePath, (string) $whiteBg->encode('png'));
 
+        // Determine amount
         $amount = strtolower($service_slug) === 'cedula' ? 50 : 0;
 
+        // Create Cedula record
         $application = Cedula::create([
             'user_id' => Auth::id(),
             'reference_number' => Str::random(10),
@@ -287,6 +288,7 @@ class ServiceController extends Controller
         return redirect()->route('Services')
             ->with('success', 'Cedula Application submitted successfully! Reference No: ' . $application->reference_number);
     }
+
 
     public function submitpermit(Request $request, $service_slug)
     {
