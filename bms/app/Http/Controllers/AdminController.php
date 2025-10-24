@@ -102,4 +102,9 @@ class AdminController extends Controller
         // Redirect to login page with a success message
         return redirect()->route('LoginAdmin')->with('success', 'Logged out successfully.');
     }
+    public function ShowAdminProfile()
+    {
+        $admin = Auth::user();
+        return view('AdminSide.admin-profile', compact('admin'));
+    }
 }

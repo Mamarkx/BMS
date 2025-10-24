@@ -104,7 +104,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     // })->name('dash');
     Route::get('/dashboard', [DashboardController::class, 'ShowDashboard'])->name('dash');
     // Logout
-
+    Route::get('/admin/profile', [AdminController::class, 'ShowAdminProfile'])->name('admin.profile');
 
     // Employee Management
     Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');

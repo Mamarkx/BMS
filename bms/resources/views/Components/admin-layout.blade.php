@@ -164,7 +164,7 @@
 
                         <!-- Body -->
                         <div class="p-4 space-y-2">
-                            <a href="/profile"
+                            <a href="{{ route('admin.profile') }}"
                                 class="block w-full btn text-sm font-medium text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-100 transition">
                                 <i class="fa-solid fa-id-card mr-2 text-gray-500"></i> View Profile
                             </a>
