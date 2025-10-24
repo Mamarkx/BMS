@@ -31,6 +31,7 @@
                 <!-- Status Header -->
                 <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <!-- Left Section -->
                         <div class="space-y-2">
                             <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                                 {{ $BrgyID->type }} Request
@@ -43,22 +44,25 @@
                             </div>
                         </div>
 
+                        <!-- Status Badge -->
                         <div class="flex items-center gap-3">
                             <span
                                 class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-md
-        @class([
-            'bg-yellow-400 text-yellow-900' => $BrgyID->status === 'Pending',
-            'bg-green-500 text-white' => $BrgyID->status === 'Approved',
-            'bg-orange-500 text-white' => $BrgyID->status === 'To be Release',
-            'bg-red-600 text-white' => $BrgyID->status === 'Released',
-        ])">
+                @class([
+                    'bg-yellow-300 text-gray-900' => $BrgyID->status === 'Pending',
+                    'bg-green-400 text-gray-900' => $BrgyID->status === 'Approved',
+                    'bg-orange-400 text-gray-900' => $BrgyID->status === 'To be Release',
+                    'bg-blue-500 text-white' => $BrgyID->status === 'Released',
+                ])">
 
                                 <span
                                     class="h-2 w-2 rounded-full animate-pulse
-            @class([
-                'bg-yellow-900' => $BrgyID->status === 'Pending',
-                'bg-white' => $BrgyID->status !== 'Pending',
-            ])">
+                    @class([
+                        'bg-yellow-900' => $BrgyID->status === 'Pending',
+                        'bg-green-700' => $BrgyID->status === 'Approved',
+                        'bg-orange-700' => $BrgyID->status === 'To be Release',
+                        'bg-white' => $BrgyID->status === 'Released',
+                    ])">
                                 </span>
 
                                 <span class="uppercase tracking-wide">
@@ -66,7 +70,6 @@
                                 </span>
                             </span>
                         </div>
-
                     </div>
                 </div>
 
