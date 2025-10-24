@@ -8,14 +8,39 @@
             <!-- Header Section -->
             <div class="mb-6 sm:mb-8">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div class="space-y-1">
-                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
-                            Request Details
-                        </h1>
-                        <p class="text-sm sm:text-base text-gray-600">
-                            Manage and verify ID request information
-                        </p>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-1 sm:space-y-0">
+
+                        <!-- Title + Subtitle -->
+                        <div class="space-y-1">
+                            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+                                Request Details
+                            </h1>
+                            <p class="text-sm sm:text-base text-gray-600">
+                                Manage and verify ID request information
+                            </p>
+                        </div>
+
+                        <!-- Status Badge -->
+                        <span
+                            class="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-full shadow-sm
+        @class([
+            'bg-yellow-300 text-yellow-900' => $BrgyID->status === 'Pending',
+            'bg-green-500 text-white' => $BrgyID->status === 'Approved',
+            'bg-indigo-500 text-white' => $BrgyID->status === 'To be Release',
+            'bg-blue-600 text-white' => $BrgyID->status === 'Released',
+        ])">
+
+                            <span class="h-2 w-2 rounded-full animate-pulse
+            @class([
+                'bg-yellow-900' => $BrgyID->status === 'Pending',
+                'bg-white' => $BrgyID->status !== 'Pending',
+            ])">
+                            </span>
+
+                            {{ ucfirst($BrgyID->status) }}
+                        </span>
                     </div>
+
                     <a href="{{ url()->previous() }}"
                         class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white px-5 py-2.5 rounded-xl shadow-lg hover:shadow-xl hover:from-gray-800 hover:to-gray-700 transition-all duration-200 text-sm font-semibold group w-full sm:w-auto">
                         <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform duration-200"></i>
@@ -26,7 +51,7 @@
 
             <!-- Main Card -->
             <div
-                class="bg-white max-h-[650px] h-full w-full overflow-y-auto  rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                class="bg-white max-h-[650px] h-full w-full overflow-y-auto  rounded-lg shadow-xl border border-gray-200 overflow-hidden">
 
                 <!-- Status Header -->
                 <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -104,7 +129,6 @@
                             @foreach ([
         'Full Name' => $BrgyID->name,
         'Date of Birth' => $BrgyID->dob,
-        'Age' => $BrgyID->age . ' years old',
         'Place of Birth' => $BrgyID->place_of_birth,
         'Gender' => $BrgyID->gender,
         'Civil Status' => $BrgyID->civil_status,
