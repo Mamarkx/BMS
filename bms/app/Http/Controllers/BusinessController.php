@@ -37,8 +37,18 @@ class BusinessController extends Controller
 
         return redirect()->back()->with('success', 'Business Record Updated successfully!');
     }
+    public function DeleteBusinessPermit($id)
+    {
+        $record = BusinessPermit::find($id);
 
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found.');
+        }
 
+        $record->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully!');
+    }
 
     public function approveBusinessPermit(Request $request, $id)
     {
