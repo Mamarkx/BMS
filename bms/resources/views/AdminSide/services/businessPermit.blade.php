@@ -179,9 +179,10 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Status</label>
                         <select id="edit_status" name="status" class="select select-bordered w-full">
                             <option value="">Select status</option>
-                            <option>Pending</option>
-                            <option>Approved</option>
-                            <option>Declined</option>
+                            <option value="Pending">Pending</option>
+                            <option class="Approved">Approved</option>
+                            <option class="To be Release">To be Release</option>
+                            <option class="Declined">Declined</option>
                         </select>
                     </div>
 
