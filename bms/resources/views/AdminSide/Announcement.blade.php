@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="p-6 bg-white rounded-2xl h-dvh">
+    <div class="p-6  rounded-2xl h-dvh">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-2xl font-bold text-gray-800">Announcement Management</h1>
