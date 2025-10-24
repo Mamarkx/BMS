@@ -1,130 +1,90 @@
 <x-admin-layout>
-    <div class="w-full min-h-screen px-4 py-10 space-y-10">
 
-        {{-- Update Profile --}}
-        <form action="#" method="POST" class="space-y-8">
-            @csrf
-            @method('PUT')
+    <div class="max-w-5xl mx-auto mt-10">
+        <div class="bg-white rounded-2xl shadow-lg p-10 border border-gray-200">
 
-            <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-user text-indigo-600"></i> Personal Information
-                </h3>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Profile Information</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-                    <!-- First Name -->
+                {{-- Left Form: Personal Info --}}
+                <form action="#" method="POST" class="space-y-4">
+                    @csrf
+                    @method('PUT')
+
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            First Name <span class="text-red-500">*</span>
-                        </label>
+                        <label class="text-sm font-medium text-gray-600">First Name</label>
                         <input type="text" name="first_name" value="{{ Auth::user()->first_name }}"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500"
-                            required>
+                            class="w-full p-3 border rounded-lg focus:ring-blue-500">
                     </div>
 
-                    <!-- Middle Name -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Middle Name</label>
+                        <label class="text-sm font-medium text-gray-600">Middle Name</label>
                         <input type="text" name="middle_name" value="{{ Auth::user()->middle_name }}"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500">
+                            class="w-full p-3 border rounded-lg focus:ring-blue-500">
                     </div>
 
-                    <!-- Last Name -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Last Name <span class="text-red-500">*</span>
-                        </label>
+                        <label class="text-sm font-medium text-gray-600">Last Name</label>
                         <input type="text" name="last_name" value="{{ Auth::user()->last_name }}"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500"
-                            required>
+                            class="w-full p-3 border rounded-lg focus:ring-blue-500">
                     </div>
 
-                    <!-- Suffix -->
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Suffix</label>
+                        <label class="text-sm font-medium text-gray-600">Suffix</label>
                         <input type="text" name="suffix" value="{{ Auth::user()->suffix }}"
-                            placeholder="Jr., Sr., III, etc."
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500">
+                            class="w-full p-3 border rounded-lg focus:ring-blue-500">
                     </div>
 
-                    <!-- Email -->
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Email Address <span class="text-red-500">*</span>
-                        </label>
+                    <div>
+                        <label class="text-sm font-medium text-gray-600">Address</label>
+                        <input type="text" name="address" value="{{ Auth::user()->address }}"
+                            class="w-full p-3 border rounded-lg focus:ring-blue-500">
+                    </div>
+
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-5 py-2 mt-2 rounded-lg hover:bg-blue-700 transition">
+                        Update Personal Info
+                    </button>
+                </form>
+
+
+                {{-- Right Form: Account & Role --}}
+                <form action="#" method="POST" class="space-y-4">
+                    @csrf
+                    @method('PUT')
+
+                    <div>
+                        <label class="text-sm font-medium text-gray-600">Email</label>
                         <input type="email" name="email" value="{{ Auth::user()->email }}"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500"
-                            required>
+                            class="w-full p-3 border rounded-lg focus:ring-blue-500">
                     </div>
 
-                    <!-- Address -->
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Address <span class="text-red-500">*</span>
-                        </label>
-                        <textarea name="address" rows="3"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 resize-none" required>{{ Auth::user()->address }}</textarea>
+                    <div>
+                        <label class="text-sm font-medium text-gray-600">Role</label>
+                        <select name="role" class="w-full p-3 border rounded-lg focus:ring-blue-500">
+                            <option value="Super Admin" {{ Auth::user()->role == 'Super Admin' ? 'selected' : '' }}>
+                                Super Admin</option>
+                            <option value="Admin" {{ Auth::user()->role == 'Admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="Resident" {{ Auth::user()->role == 'Resident' ? 'selected' : '' }}>Resident
+                            </option>
+                        </select>
                     </div>
 
-                </div>
+                    <div>
+                        <label class="text-sm font-medium text-gray-600">New Password</label>
+                        <input type="password" name="password" class="w-full p-3 border rounded-lg focus:ring-blue-500"
+                            placeholder="Leave empty if unchanged">
+                    </div>
+
+                    <button type="submit"
+                        class="bg-green-600 text-white px-5 py-2 mt-2 rounded-lg hover:bg-green-700 transition">
+                        Update Account
+                    </button>
+                </form>
+
             </div>
-
-            <button type="submit"
-                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all shadow-md">
-                Save Profile Changes
-            </button>
-
-        </form>
-
-        {{-- Change Password --}}
-        <form action="#" method="POST">
-            @csrf
-            @method('PUT')
-
-            <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-lock text-purple-600"></i> Change Password
-                </h3>
-
-                <div class="space-y-5">
-
-                    <!-- Old Password -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Current Password <span class="text-red-500">*</span>
-                        </label>
-                        <input type="password" name="current_password" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500">
-                    </div>
-
-                    <!-- New Password -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            New Password <span class="text-red-500">*</span>
-                        </label>
-                        <input type="password" name="new_password" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500">
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Confirm Password <span class="text-red-500">*</span>
-                        </label>
-                        <input type="password" name="new_password_confirmation" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500">
-                    </div>
-
-                </div>
-            </div>
-
-            <button type="submit"
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-all shadow-md">
-                Update Password
-            </button>
-
-        </form>
-
+        </div>
     </div>
+
 </x-admin-layout>
