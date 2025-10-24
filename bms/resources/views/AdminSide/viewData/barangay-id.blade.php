@@ -75,7 +75,6 @@
                             @foreach ([
         'Full Name' => $BrgyID->name,
         'Date of Birth' => $BrgyID->dob,
-        'Age' => $BrgyID->age . ' years old',
         'Place of Birth' => $BrgyID->place_of_birth,
         'Gender' => $BrgyID->gender,
         'Civil Status' => $BrgyID->civil_status,
