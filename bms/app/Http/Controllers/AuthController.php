@@ -117,14 +117,9 @@ class AuthController extends Controller
 
     public function resendOtp(Request $request)
     {
-        $user = Auth::user();
-
-        if (!$user) {
-            return response()->json(['message' => 'Unauthorized.'], 401);
-        }
-
+        $request->validate(['email' => 'required|email']);
+        $user = User::where('email', $request->email)->firstOrFail();
         $latestOtp = TwoFactorCode::where('user_id', $user->id)->latest()->first();
-
         if ($latestOtp && $latestOtp->created_at->diffInSeconds(now()) < 60) {
             return response()->json(['message' => 'Please wait before requesting another OTP.'], 429);
         }
@@ -133,7 +128,6 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'New OTP has been sent to your email.']);
     }
-
 
 
     public function verifyOtp(Request $request)

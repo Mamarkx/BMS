@@ -90,7 +90,7 @@
                 <div class="mt-4 flex flex-col gap-3">
                     <form action="{{ route('resend.otp') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                        <input type="hidden" name="email" value="{{ session('pending_verification_email') }}">
 
                         <button type="submit"
                             class="w-full py-3 px-4 border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 text-gray-700 hover:text-blue-700 font-medium rounded-xl flex items-center justify-center gap-2 transition duration-200">
