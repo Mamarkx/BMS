@@ -128,26 +128,31 @@
                             </div>
 
                             <!-- Signature -->
-                            <div class="border border-gray-300 rounded-lg p-4 flex flex-col space-y-3">
-                                <label class="block mb-2 text-sm font-medium text-gray-700">Signature *</label>
+                            <div class="bg-white border border-gray-200 rounded-xl p-5 space-y-4 shadow-sm">
+                                <label class="text-sm font-semibold text-gray-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-signature text-blue-600"></i> Digital Signature *
+                                </label>
 
-                                <input type="file" id="upload_signature" accept="image/*"
-                                    class="border bg-white text-black border-gray-300 rounded-lg p-2 w-full">
-
-                                <p class="text-center text-sm text-gray-500">or draw your signature below</p>
+                                <p class="text-xs sm:text-sm text-gray-500">Draw your legal signature below</p>
 
                                 <div id="signature-root"
-                                    class="w-full h-60 bg-white border border-gray-300 rounded-lg"></div>
+                                    class="w-full h-56 bg-white border-2 border-dashed border-gray-300 rounded-lg shadow-inner">
+                                </div>
 
-                                <div class="flex justify-end space-x-2 mt-2">
+                                <div class="flex justify-end gap-2">
                                     <button type="button" id="reset-signature"
-                                        class="px-3 py-1 bg-red-500 text-white rounded-lg text-sm">Clear</button>
+                                        class="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-xs sm:text-sm text-white transition">
+                                        Clear Signature
+                                    </button>
                                     <button type="button" id="save-signature"
-                                        class="px-3 py-1 bg-blue-500 text-white rounded-lg text-sm">Save</button>
+                                        class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm text-white transition">
+                                        Save Signature
+                                    </button>
                                 </div>
 
                                 <input type="hidden" name="e_signature" id="signature_data">
                             </div>
+
                         </div>
                     </div>
 
