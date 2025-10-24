@@ -20,6 +20,23 @@ class BusinessController extends Controller
         return view('AdminSide.viewData.business-permit', compact('business'));
     }
 
+    public function UpdateBusinessPermit(Request $request)
+    {
+        dd($request->all());
+        $record = BusinessPermit::where('id', $request->id)->firstOrFail();
+
+        $record->update([
+            'name_owner'        => $request->name_owner,
+            'name_business'     => $request->name_business,
+            'address_business'  => $request->address_business,
+            'email'             => $request->email,
+            'type'              => $request->type,
+            'amount'            => $request->amount,
+            'purpose'           => $request->purpose,
+        ]);
+
+        return redirect()->back()->with('success', 'Business Record Updated successfully!');
+    }
 
 
 

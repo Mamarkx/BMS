@@ -157,6 +157,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     Route::post('/business-permit/{id}/approveID', [BusinessController::class, 'approveBusinessPermit'])->name('approve.business-permit');
     Route::post('/business-permit/{id}', [BusinessController::class, 'CedulaBusinessPermit'])->name('businessPermit.release');
     Route::get('/business-permit/{id}', [BusinessController::class, 'showbusinesspermit'])->name('Business.show');
+    Route::post('/update/business-permit', [BusinessController::class, 'UpdateBusinessPermit'])->name('UpdateBusiness');
 
     //User Management
 

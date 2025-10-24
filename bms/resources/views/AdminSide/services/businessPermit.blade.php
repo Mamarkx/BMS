@@ -119,6 +119,7 @@
         <div class="mt-4">
             {{ $data->links() }}
         </div>
+        <!-- Edit -->
         <dialog id="editRecordModal" class="modal">
             <div class="modal-box max-w-3xl bg-white rounded-2xl shadow-xl border border-gray-200">
                 <h3 class="font-bold text-2xl mb-6 flex items-center gap-3 text-gray-800">
@@ -126,7 +127,7 @@
                     Edit Business Record
                 </h3>
 
-                <form id="editRecordForm" method="POST" action="{{ route('UpdateGeneralForm') }}"
+                <form id="editRecordForm" method="POST" action="{{ route('UpdateBusiness') }}"
                     class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
@@ -168,24 +169,6 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Purpose</label>
                         <input type="text" id="edit_purpose" name="purpose" class="input input-bordered w-full">
                     </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Issue Date</label>
-                        <input type="date" id="edit_issue_date" name="issue_date"
-                            class="input input-bordered w-full">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Status</label>
-                        <select id="edit_status" name="status" class="select select-bordered w-full">
-                            <option value="">Select status</option>
-                            <option value="Pending">Pending</option>
-                            <option class="Approved">Approved</option>
-                            <option class="To be Release">To be Release</option>
-                            <option class="Declined">Declined</option>
-                        </select>
-                    </div>
-
                     <div class="modal-action col-span-2">
                         <button type="button" class="btn bg-gray-200 hover:bg-gray-300"
                             onclick="editRecordModal.close()">Cancel</button>
