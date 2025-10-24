@@ -1,7 +1,7 @@
 <x-admin-layout>
 
 
-    <div class="max-h-screen  bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-h-screen  bg-gradient-to-br from-gray-50 to-gray-100 p-6">
 
         <div class="w-full">
 
@@ -26,7 +26,7 @@
 
             <!-- Main Card -->
             <div
-                class="bg-white max-h-[700px] h-full w-full overflow-y-auto  rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                class="bg-white max-h-[650px] h-full w-full overflow-y-auto  rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
 
                 <!-- Status Header -->
                 <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
