@@ -66,7 +66,7 @@
                                             </button>
                                             <!-- Delete -->
                                             <form id="deleteForm_{{ $d->id }}"
-                                                action="{{ route('DeleteGeneralForm', $d->id) }}" method="POST"
+                                                action="{{ route('DeleteCedulaForm', $d->id) }}" method="POST"
                                                 class="inline">
                                                 @csrf
                                                 @method('DELETE')
@@ -315,15 +315,51 @@
                 icon: 'success',
                 title: '{{ session('success') }}',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 2000,
                 timerProgressBar: true,
-                iconColor: '#ffffff',
-                background: '#10b981',
-                color: '#ffffff'
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                background: '#ffffff',
+                color: '#16a34a', // green text
             });
         </script>
-    @endif
 
+        <style>
+            .colored-toast {
+                border-left: 6px solid #16a34a !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding-left: 12px !important;
+            }
+        </style>
+    @endif
+    @endif
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').on('click', function() {
+                const id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This employee record will be permanently deleted!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6b7280',
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'Cancel',
+                    background: '#fff',
+                    color: '#333',
+                    customClass: {
+                        popup: 'rounded-2xl shadow-2xl'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deleteForm_' + id).submit();
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         function showApprovalConfirmation(id) {
             Swal.fire({

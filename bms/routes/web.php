@@ -158,6 +158,8 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     Route::post('/cedula/{id}/approveID', [CedulaController::class, 'approveCedula'])->name('approve.cedula');
     Route::post('/cedula/{id}', [CedulaController::class, 'CedulaRelease'])->name('cedula.release');
     Route::get('/cedula/{id}', [CedulaController::class, 'CedulaShow'])->name('cedula.show');
+    Route::post('/update/cedula', [CedulaController::class, 'UpdateCedula'])->name('UpdateCedulaForm');
+    Route::delete('/cedula/{id}/delete', [GeneralFormController::class, 'DeleteCedula'])->name('DeleteCedulaForm');
 
     // Business Permit
     Route::post('/business-permit/{id}/approveID', [BusinessController::class, 'approveBusinessPermit'])->name('approve.business-permit');
