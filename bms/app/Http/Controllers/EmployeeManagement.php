@@ -61,14 +61,13 @@ class EmployeeManagement extends Controller
 
     public function ShowEmp(Request $request)
     {
-
-        $personnel = EmployeeModel::paginate(5);
-        $countEmp = EmployeeModel::all()->count();
+        $personnel = EmployeeModel::latest()->paginate(5); // Orders by created_at DESC
+        $countEmp = EmployeeModel::count();
         $countActive = EmployeeModel::where('status', 'active')->count();
-        $countLeaveEmp = EmployeeModel::where("status", 'On leave')->count();
+        $countLeaveEmp = EmployeeModel::where('status', 'On leave')->count();
+
         return view('AdminSide.EmployeeManage', compact('personnel', 'countEmp', 'countActive', 'countLeaveEmp'));
     }
-
     public function DestroyEmployee($id)
     {
         $personnel = EmployeeModel::find($id);
@@ -81,5 +80,4 @@ class EmployeeManagement extends Controller
 
         return redirect()->back()->with('success', 'Employee deleted successfully.');
     }
- 
 }
