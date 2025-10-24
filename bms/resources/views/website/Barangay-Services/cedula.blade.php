@@ -130,10 +130,14 @@
                             <!-- Signature -->
                             <div class="border border-gray-300 rounded-lg p-4 flex flex-col space-y-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Signature *</label>
-                                <p class="text-center text-sm text-gray-500">draw your signature below</p>
 
-                                <div id="signature-root" class="w-full h-60 bg-white border border-gray-300 rounded-lg">
-                                </div>
+                                <input type="file" id="upload_signature" accept="image/*"
+                                    class="border bg-white text-black border-gray-300 rounded-lg p-2 w-full">
+
+                                <p class="text-center text-sm text-gray-500">or draw your signature below</p>
+
+                                <div id="signature-root"
+                                    class="w-full h-60 bg-white border border-gray-300 rounded-lg"></div>
 
                                 <div class="flex justify-end space-x-2 mt-2">
                                     <button type="button" id="reset-signature"
