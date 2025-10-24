@@ -167,7 +167,7 @@
                             ID Proof
                         </h5>
                         <div x-data="{ open: false }">
-                            @if ($business->id_proof)
+                            @if ($BrgyID->id_proof)
                                 <button @click="open = true"
                                     class="w-full px-4 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition font-semibold text-sm">
                                     View Uploaded ID
@@ -192,7 +192,7 @@
                                         </div>
 
                                         <!-- Image -->
-                                        <img src="{{ asset('storage/' . $business->id_proof) }}"
+                                        <img src="{{ asset('storage/' . $BrgyID->id_proof) }}"
                                             alt="Full Size ID Proof"
                                             class="max-h-[50vh] max-w-full rounded-b-lg shadow-2xl border-2 border-white cursor-pointer"
                                             onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
