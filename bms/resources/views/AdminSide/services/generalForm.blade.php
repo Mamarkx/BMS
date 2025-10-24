@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="w-full p-6">
+    <div class="w-full h-screen p-6">
 
         <!-- Header -->
         <div class="flex justify-between items-center mb-6">

@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="w-full p-4 sm:p-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
+    <div class="w-full p-4 sm:p-6 h-screen overflow-y-auto">
 
         <!-- Header -->
         <div class="flex justify-between items-center mb-6 flex-wrap gap-4">

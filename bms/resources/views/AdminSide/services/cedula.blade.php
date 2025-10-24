@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="w-full p-6 bg-gray-50 min-h-screen">
+    <div class="w-full p-6 bg-gray-50 h-screen">
 
         <!-- Header -->
         <div class="mb-8">
