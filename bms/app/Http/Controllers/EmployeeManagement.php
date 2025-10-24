@@ -61,7 +61,7 @@ class EmployeeManagement extends Controller
 
     public function ShowEmp(Request $request)
     {
-        $personnel = EmployeeModel::orderBy('created_at', 'desc');
+        $personnel = EmployeeModel::orderBy('created_at', 'desc')->paginate(5);
         $countEmp = EmployeeModel::count();
         $countActive = EmployeeModel::where('status', 'active')->count();
         $countLeaveEmp = EmployeeModel::where('status', 'On leave')->count();
