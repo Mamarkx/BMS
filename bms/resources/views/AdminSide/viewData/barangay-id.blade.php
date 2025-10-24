@@ -1,6 +1,6 @@
 <x-admin-layout>
     <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
 
             <!-- Header Section -->
             <div class="mb-6 sm:mb-8">
@@ -21,187 +21,195 @@
                 </div>
             </div>
 
-            <!-- Status Card -->
-            <div class="mb-6 sm:mb-8">
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-                    <div
-                        class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                            <div class="space-y-2">
-                                <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
-                                    {{ $BrgyID->type }} Request
-                                </h2>
-                                <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-300">
-                                    <span class="font-medium">Reference:</span>
-                                    <span class="font-mono bg-white/10 px-3 py-1 rounded-lg">
-                                        {{ $BrgyID->reference_number }}
-                                    </span>
-                                </div>
-                            </div>
+            <!-- Main Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
 
-                            <div class="flex items-center gap-3">
-                                <span
-                                    class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg
-                                    @class([
-                                        'bg-amber-400 text-amber-900' => $BrgyID->status === 'Pending',
-                                        'bg-emerald-500 text-white' => $BrgyID->status === 'Approved',
-                                        'bg-slate-600 text-white' => $BrgyID->status === 'To be Release',
-                                        'bg-blue-600 text-white' => $BrgyID->status === 'Released',
-                                    ])">
-                                    <span
-                                        class="h-2 w-2 rounded-full animate-pulse
-                                        @class([
-                                            'bg-amber-900' => $BrgyID->status === 'Pending',
-                                            'bg-white' => $BrgyID->status !== 'Pending',
-                                        ])"></span>
-                                    <span class="uppercase tracking-wide">{{ ucfirst($BrgyID->status) }}</span>
+                <!-- Status Header -->
+                <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="space-y-2">
+                            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                                {{ $BrgyID->type }} Request
+                            </h2>
+                            <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-300">
+                                <span class="font-medium">Reference:</span>
+                                <span class="font-mono bg-white/10 px-3 py-1 rounded-lg">
+                                    {{ $BrgyID->reference_number }}
                                 </span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Quick Stats Bar -->
-                    <div
-                        class="bg-gradient-to-r from-gray-50 to-white px-4 sm:px-6 lg:px-8 py-4 border-t border-gray-200">
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                            <div class="text-center sm:text-left">
-                                <p class="text-xs text-gray-500 font-medium mb-1">Type</p>
-                                <p class="text-sm sm:text-base font-bold text-gray-900">{{ $BrgyID->type }}</p>
-                            </div>
-                            <div class="text-center sm:text-left">
-                                <p class="text-xs text-gray-500 font-medium mb-1">Amount</p>
-                                <p class="text-sm sm:text-base font-bold text-emerald-600">
-                                    ₱{{ number_format($BrgyID->amount, 2) }}</p>
-                            </div>
-                            <div class="text-center sm:text-left">
-                                <p class="text-xs text-gray-500 font-medium mb-1">Issue Date</p>
-                                <p class="text-sm sm:text-base font-bold text-gray-900">
-                                    {{ $BrgyID->issue_date ?? 'Pending' }}</p>
-                            </div>
-                            <div class="text-center sm:text-left">
-                                <p class="text-xs text-gray-500 font-medium mb-1">Age</p>
-                                <p class="text-sm sm:text-base font-bold text-gray-900">{{ $BrgyID->age }} years</p>
-                            </div>
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg
+                                @class([
+                                    'bg-amber-400 text-amber-900' => $BrgyID->status === 'Pending',
+                                    'bg-emerald-500 text-white' => $BrgyID->status === 'Approved',
+                                    'bg-slate-600 text-white' => $BrgyID->status === 'To be Release',
+                                    'bg-blue-600 text-white' => $BrgyID->status === 'Released',
+                                ])">
+                                <span
+                                    class="h-2 w-2 rounded-full animate-pulse
+                                    @class([
+                                        'bg-amber-900' => $BrgyID->status === 'Pending',
+                                        'bg-white' => $BrgyID->status !== 'Pending',
+                                    ])"></span>
+                                <span class="uppercase tracking-wide">{{ ucfirst($BrgyID->status) }}</span>
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Information Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-
-                @foreach ([
-        [
-            'icon' => 'fas fa-user',
-            'title' => 'Personal Information',
-            'color' => 'blue',
-            'data' => [
-                'Full Name' => $BrgyID->name,
-                'Date of Birth' => $BrgyID->dob,
-                'Age' => $BrgyID->age . ' years old',
-                'Place of Birth' => $BrgyID->place_of_birth,
-                'Gender' => $BrgyID->gender,
-                'Civil Status' => $BrgyID->civil_status,
-                'Address' => $BrgyID->address,
-            ],
-        ],
-        [
-            'icon' => 'fas fa-file-alt',
-            'title' => 'Application Details',
-            'color' => 'emerald',
-            'data' => [
-                'Request Type' => $BrgyID->type,
-                'Purpose' => $BrgyID->purpose,
-                'Current Status' => $BrgyID->status,
-                'Issue Date' => $BrgyID->issue_date ?? 'Not Yet Issued',
-                'Application Fee' => '₱' . number_format($BrgyID->amount, 2),
-                'Reference Number' => $BrgyID->reference_number,
-            ],
-        ],
-        [
-            'icon' => 'fas fa-address-card',
-            'title' => 'Additional Information',
-            'color' => 'violet',
-            'data' => [
-                'Religion' => $BrgyID->religion,
-                'Citizenship' => $BrgyID->citezenship,
-                'Height' => $BrgyID->height,
-                'Weight' => $BrgyID->weight,
-                'Precinct Number' => $BrgyID->precint_number,
-            ],
-        ],
-    ] as $section)
-                    <div
-                        class="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                        <div
-                            class="bg-gradient-to-r from-{{ $section['color'] }}-600 to-{{ $section['color'] }}-700 px-4 sm:px-6 py-4 overflow-hidden">
-                            <h3 class="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-white">
-                                <div
-                                    class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm flex-shrink-0">
-                                    <i class="{{ $section['icon'] }} text-sm sm:text-base"></i>
-                                </div>
-                                <span class="truncate">{{ $section['title'] }}</span>
-                            </h3>
+                <!-- Quick Stats Bar -->
+                <div class="bg-gradient-to-r from-gray-50 to-white px-4 sm:px-6 lg:px-8 py-4 border-b border-gray-200">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="text-center sm:text-left">
+                            <p class="text-xs text-gray-500 font-medium mb-1">Type</p>
+                            <p class="text-sm sm:text-base font-bold text-gray-900">{{ $BrgyID->type }}</p>
                         </div>
-                        <div class="p-4 sm:p-6 space-y-3">
-                            @foreach ($section['data'] as $label => $value)
+                        <div class="text-center sm:text-left">
+                            <p class="text-xs text-gray-500 font-medium mb-1">Amount</p>
+                            <p class="text-sm sm:text-base font-bold text-emerald-600">
+                                ₱{{ number_format($BrgyID->amount, 2) }}</p>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <p class="text-xs text-gray-500 font-medium mb-1">Issue Date</p>
+                            <p class="text-sm sm:text-base font-bold text-gray-900">
+                                {{ $BrgyID->issue_date ?? 'Pending' }}</p>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <p class="text-xs text-gray-500 font-medium mb-1">Age</p>
+                            <p class="text-sm sm:text-base font-bold text-gray-900">{{ $BrgyID->age }} years</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Sections -->
+                <div class="px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+                    <!-- Personal Information -->
+                    <div class="overflow-hidden">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-xl flex-shrink-0">
+                                <i class="fas fa-user text-white text-lg"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-900">Personal Information</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            @foreach ([
+        'Full Name' => $BrgyID->name,
+        'Date of Birth' => $BrgyID->dob,
+        'Age' => $BrgyID->age . ' years old',
+        'Place of Birth' => $BrgyID->place_of_birth,
+        'Gender' => $BrgyID->gender,
+        'Civil Status' => $BrgyID->civil_status,
+        'Address' => $BrgyID->address,
+    ] as $label => $value)
                                 <div
-                                    class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-2 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
-                                    <dt class="text-xs sm:text-sm text-gray-600 font-semibold flex-shrink-0">
-                                        {{ $label }}</dt>
-                                    <dd
-                                        class="text-xs sm:text-sm text-gray-900 font-bold sm:text-right break-words overflow-hidden">
-                                        {{ $value }}</dd>
+                                    class="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-lg p-4 border border-blue-200">
+                                    <p class="text-xs font-semibold text-blue-700 mb-1">{{ $label }}</p>
+                                    <p class="text-sm font-bold text-gray-900 break-words">{{ $value }}</p>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                @endforeach
 
-                <!-- Emergency Contact Card -->
-                <div
-                    class="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-                    <div class="bg-gradient-to-r from-rose-600 to-rose-700 px-4 sm:px-6 py-4">
-                        <h3 class="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-white">
+                    <div class="border-t border-gray-200"></div>
+
+                    <!-- Application Details -->
+                    <div class="overflow-hidden">
+                        <div class="flex items-center gap-3 mb-4">
                             <div
-                                class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm flex-shrink-0">
-                                <i class="fas fa-phone-alt text-sm sm:text-base"></i>
+                                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-emerald-600 rounded-xl flex-shrink-0">
+                                <i class="fas fa-file-alt text-white text-lg"></i>
                             </div>
-                            <span class="truncate">Emergency Contact</span>
-                        </h3>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-900">Application Details</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            @foreach ([
+        'Request Type' => $BrgyID->type,
+        'Purpose' => $BrgyID->purpose,
+        'Current Status' => $BrgyID->status,
+        'Issue Date' => $BrgyID->issue_date ?? 'Not Yet Issued',
+        'Application Fee' => '₱' . number_format($BrgyID->amount, 2),
+        'Reference Number' => $BrgyID->reference_number,
+    ] as $label => $value)
+                                <div
+                                    class="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-lg p-4 border border-emerald-200">
+                                    <p class="text-xs font-semibold text-emerald-700 mb-1">{{ $label }}</p>
+                                    <p class="text-sm font-bold text-gray-900 break-words">{{ $value }}</p>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="p-4 sm:p-6 space-y-3">
-                        @foreach ([
+
+                    <div class="border-t border-gray-200"></div>
+
+                    <!-- Additional Information -->
+                    <div class="overflow-hidden">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-violet-600 rounded-xl flex-shrink-0">
+                                <i class="fas fa-address-card text-white text-lg"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-900">Additional Information</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            @foreach ([
+        'Religion' => $BrgyID->religion,
+        'Citizenship' => $BrgyID->citezenship,
+        'Height' => $BrgyID->height,
+        'Weight' => $BrgyID->weight,
+        'Precinct Number' => $BrgyID->precint_number,
+    ] as $label => $value)
+                                <div
+                                    class="bg-gradient-to-br from-violet-50 to-violet-100/50 rounded-lg p-4 border border-violet-200">
+                                    <p class="text-xs font-semibold text-violet-700 mb-1">{{ $label }}</p>
+                                    <p class="text-sm font-bold text-gray-900 break-words">{{ $value }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200"></div>
+
+                    <!-- Emergency Contact -->
+                    <div class="overflow-hidden">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-rose-600 rounded-xl flex-shrink-0">
+                                <i class="fas fa-phone-alt text-white text-lg"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-900">Emergency Contact</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            @foreach ([
         'Contact Name' => $BrgyID->emergency_name,
         'Phone Number' => $BrgyID->cellphone_number,
         'Address' => $BrgyID->emergency_address,
     ] as $label => $value)
-                            <div
-                                class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-2 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
-                                <dt class="text-xs sm:text-sm text-gray-600 font-semibold flex-shrink-0">
-                                    {{ $label }}</dt>
-                                <dd
-                                    class="text-xs sm:text-sm text-gray-900 font-bold sm:text-right break-words overflow-hidden">
-                                    {{ $value }}</dd>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <!-- ID Proof Card -->
-                <div
-                    class="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group lg:col-span-2">
-                    <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 px-4 sm:px-6 py-4 overflow-hidden">
-                        <h3 class="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-white">
-                            <div
-                                class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm flex-shrink-0">
-                                <i class="fas fa-id-card text-sm sm:text-base"></i>
-                            </div>
-                            <span class="truncate">ID Proof Document</span>
-                        </h3>
+                                <div
+                                    class="bg-gradient-to-br from-rose-50 to-rose-100/50 rounded-lg p-4 border border-rose-200">
+                                    <p class="text-xs font-semibold text-rose-700 mb-1">{{ $label }}</p>
+                                    <p class="text-sm font-bold text-gray-900 break-words">{{ $value }}</p>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
-                    <div x-data="{ idModal: false }" class="p-4 sm:p-6">
+                    <div class="border-t border-gray-200"></div>
+
+                    <!-- ID Proof Document -->
+                    <div x-data="{ idModal: false }" class="overflow-hidden">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-xl flex-shrink-0">
+                                <i class="fas fa-id-card text-white text-lg"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-900">ID Proof Document</h3>
+                        </div>
+
                         @if ($BrgyID->id_proof)
                             <div class="space-y-4">
                                 <div
@@ -261,7 +269,8 @@
                                 </div>
                             </div>
                         @else
-                            <div class="text-center py-8 sm:py-12">
+                            <div
+                                class="text-center py-8 sm:py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
                                 <div
                                     class="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full mb-4">
                                     <i class="fas fa-image-slash text-2xl sm:text-3xl text-gray-400"></i>
@@ -271,8 +280,8 @@
                             </div>
                         @endif
                     </div>
-                </div>
 
+                </div>
             </div>
 
         </div>
