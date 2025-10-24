@@ -44,7 +44,7 @@
                 <div class="lg:hidden text-center mb-10">
                     <img src="{{ asset('images/san-agustin.png') }}" class="mx-auto h-24 w-24 mb-4"
                         alt="Barangay Logo" />
-                    <h2 class="text-3xl font-bold text-gray-800">Barangay Management System</h2>
+                    <h2 class="text-3xl font-bold text-gray-800">Barangay San Agustin</h2>
                 </div>
 
                 <!-- Login Header -->
