@@ -188,29 +188,11 @@
 
         document.getElementById('save-signature').addEventListener('click', () => {
             const imageData = signaturePad.getImage();
-
-            if (!imageData) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'No Signature Found!',
-                    text: 'Please draw your signature first.',
-                    confirmButtonColor: '#3085d6'
-                });
-                return;
-            }
-
+            if (!imageData) return alert('Please draw your signature first.');
             document.getElementById('signature_data').value = imageData;
             document.getElementById('upload_signature').value = '';
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Signature Saved!',
-                text: 'Your signature has been captured successfully.',
-                showConfirmButton: false,
-                timer: 2000
-            });
+            alert('Signature saved!');
         });
-
 
         document.getElementById('upload_signature').addEventListener('change', (e) => {
             if (e.target.files.length > 0) {
