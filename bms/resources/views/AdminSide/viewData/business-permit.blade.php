@@ -109,7 +109,7 @@
                                     class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
                                     @click.away="open = false" @keydown.escape.window="open = false">
                                     <div class="relative max-w-full max-h-full">
-                                        <div class="header bg-white w-ull relative">
+                                        <div class="header bg-white w-full p-6 relative">
                                             <button
                                                 class="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-200 transition"
                                                 @click="open = false">
