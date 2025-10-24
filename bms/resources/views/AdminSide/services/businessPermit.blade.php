@@ -132,12 +132,6 @@
                     <input type="hidden" id="edit_id" name="id">
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Reference Number</label>
-                        <input type="text" id="edit_reference_number" name="reference_number"
-                            class="input input-bordered w-full">
-                    </div>
-
-                    <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Owner Name</label>
                         <input type="text" id="edit_name_owner" name="name_owner"
                             class="input input-bordered w-full">
@@ -151,9 +145,9 @@
 
                     <div class="col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Business Address</label>
-                        <input type="text" id="edit_address_business" name="address_business"
-                            class="input input-bordered w-full">
+                        <textarea id="edit_address_business" name="address_business" class="textarea textarea-bordered w-full h-24 resize-none"></textarea>
                     </div>
+
 
                     <div class="col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
