@@ -232,56 +232,24 @@ class ServiceController extends Controller
             'e_signature' => 'required',
         ]);
 
-        // Store ID proof
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
 
-        // Handle e-signature
+
         if ($request->hasFile('e_signature')) {
-            // File upload
             $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
         } elseif (Str::startsWith($request->e_signature, 'data:image')) {
-            // Base64 signature
             $image = $request->e_signature;
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $imageName = 'signature_' . time() . '.png';
-
-            // Decode base64
-            $decodedImage = base64_decode($image);
-
-            // Create GD image
-            $img = imagecreatefromstring($decodedImage);
-            if (!$img) {
-                return back()->withErrors(['e_signature' => 'Invalid signature image.']);
-            }
-
-            // Create canvas with white background
-            $width = imagesx($img);
-            $height = imagesy($img);
-            $canvas = imagecreatetruecolor($width, $height);
-            $white = imagecolorallocate($canvas, 255, 255, 255);
-            imagefill($canvas, 0, 0, $white);
-
-            // Copy signature onto white canvas
-            imagecopy($canvas, $img, 0, 0, 0, 0, $width, $height);
-
-            // Save to storage
-            $savePath = storage_path('app/public/documents/signatures/' . $imageName);
-            imagepng($canvas, $savePath);
-
-            // Free memory
-            imagedestroy($img);
-            imagedestroy($canvas);
-
+            Storage::disk('public')->put('documents/signatures/' . $imageName, base64_decode($image));
             $signaturePath = 'documents/signatures/' . $imageName;
         } else {
             return back()->withErrors(['e_signature' => 'Invalid signature format.']);
         }
 
-        // Amount based on service
         $amount = strtolower($service_slug) === 'cedula' ? 50 : 0;
 
-        // Create Cedula application
         $application = Cedula::create([
             'user_id' => Auth::id(),
             'reference_number' => Str::random(10),
@@ -310,7 +278,6 @@ class ServiceController extends Controller
         return redirect()->route('Services')
             ->with('success', 'Cedula Application submitted successfully! Reference No: ' . $application->reference_number);
     }
-
     public function submitpermit(Request $request, $service_slug)
     {
         $request->validate([
