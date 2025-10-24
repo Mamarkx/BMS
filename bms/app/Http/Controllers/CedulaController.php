@@ -60,13 +60,6 @@ class CedulaController extends Controller
 
 
 
-
-
-
-
-
-
-
     public function approveCedula(Request $request, $id)
     {
         $document = Cedula::find($id);
