@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Announce;
 use App\Models\Cedula;
 use App\Models\FormID;
+use App\Models\Announce;
 use App\Models\GeneralForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Intervention\Image\Image;
 use App\Models\BusinessPermit;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
@@ -232,21 +233,29 @@ class ServiceController extends Controller
             'e_signature' => 'required',
         ]);
 
+        // Save ID Proof
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
 
-
+        // Handle Signature (with white background)
         if ($request->hasFile('e_signature')) {
-            $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
+
+            $image = Image::make($request->file('e_signature'));
         } elseif (Str::startsWith($request->e_signature, 'data:image')) {
-            $image = $request->e_signature;
-            $image = str_replace('data:image/png;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $imageName = 'signature_' . time() . '.png';
-            Storage::disk('public')->put('documents/signatures/' . $imageName, base64_decode($image));
-            $signaturePath = 'documents/signatures/' . $imageName;
+
+            $imageData = preg_replace('/^data:image\/\w+;base64,/', '', $request->e_signature);
+            $imageData = str_replace(' ', '+', $imageData);
+            $image = Image::make(base64_decode($imageData));
         } else {
             return back()->withErrors(['e_signature' => 'Invalid signature format.']);
         }
+
+        // Force white background behind signature
+        $whiteBg = Image::canvas($image->width(), $image->height(), '#ffffff')
+            ->insert($image, 'center');
+
+        $signatureName = 'signature_' . time() . '.png';
+        $signaturePath = 'documents/signatures/' . $signatureName;
+        Storage::disk('public')->put($signaturePath, (string) $whiteBg->encode('png'));
 
         $amount = strtolower($service_slug) === 'cedula' ? 50 : 0;
 
@@ -278,6 +287,7 @@ class ServiceController extends Controller
         return redirect()->route('Services')
             ->with('success', 'Cedula Application submitted successfully! Reference No: ' . $application->reference_number);
     }
+
     public function submitpermit(Request $request, $service_slug)
     {
         $request->validate([
