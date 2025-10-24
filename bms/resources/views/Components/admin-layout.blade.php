@@ -26,7 +26,7 @@
 
 <body data-theme="light">
 
-    <div class="flex h-screen w-full">
+    <div class="flex h-auto w-full">
         <!-- Sidebar -->
         <aside id="sidebar"
             class="fixed md:static h-auto bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
