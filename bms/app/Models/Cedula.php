@@ -24,7 +24,7 @@ class Cedula extends Model
         'total_gross_receipt_fr_business',
         'total_earning_fr_salaries',
         'total_income_fr_realproperty',
-        'e-signature',
+        'e_signature',
         'email',
         'type',
         'amount',
