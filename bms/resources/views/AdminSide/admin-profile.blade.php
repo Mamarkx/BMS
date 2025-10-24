@@ -72,6 +72,12 @@
                         <input type="email" name="email" value="{{ Auth::user()->email }}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:outline-none">
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-1">Current Password</label>
+                        <input type="password" name="old_password"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:outline-none"
+                            placeholder="Enter current password to change">
+                    </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-600 mb-1">New Password</label>

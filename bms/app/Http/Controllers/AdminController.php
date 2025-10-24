@@ -132,14 +132,22 @@ class AdminController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'old_password' => 'required_with:password|string',
             'password' => 'nullable|string|min:8',
         ]);
 
         $user = Auth::user();
-        $user->email = $request->email;
+
+        // If password is being changed, verify old password
         if ($request->filled('password')) {
+            if (!Hash::check($request->old_password, $user->password)) {
+                return back()->withErrors(['old_password' => 'Current password is incorrect.']);
+            }
+
             $user->password = Hash::make($request->password);
         }
+
+        $user->email = $request->email;
         $user->save();
 
         return back()->with('success', 'Account settings updated.');
