@@ -2,7 +2,6 @@
 
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <!-- Total Residents -->
         <div
             class="bg-white rounded-xl border border-gray-300 p-6 py-10 flex items-center justify-between shadow-sm hover:shadow-md transition">
             <div>
@@ -14,7 +13,6 @@
             </div>
         </div>
 
-        <!-- Barangay Employees -->
         <div
             class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between shadow-sm hover:shadow-md transition">
             <div>
@@ -25,8 +23,6 @@
                 <i class="fa-solid fa-user-tie text-2xl"></i>
             </div>
         </div>
-
-        <!-- Pending Requests -->
         <div
             class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between shadow-sm hover:shadow-md transition">
             <div>
@@ -38,7 +34,6 @@
             </div>
         </div>
 
-        <!-- Certificates Issued -->
         <div
             class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between shadow-sm hover:shadow-md transition">
             <div>
@@ -57,10 +52,11 @@
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div class="bg-white rounded-2xl border border-gray-300 p-6">
             <h3 class="text-lg font-semibold text-gray-800">Employee Demographics</h3>
-            <div class="mt-4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-                <canvas id="employeeDemographicsChart"></canvas>
+            <div class="mt-4 rounded-lg">
+                <canvas id="employeeDemographicsChart" class="w-full h-64 md:h-80 lg:h-96"></canvas>
             </div>
         </div>
+
         <div class="bg-white rounded-2xl border border-gray-300 p-6">
             <h3 class="text-lg font-semibold text-gray-800">Resident Trends</h3>
             <div class="mt-4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
@@ -89,9 +85,13 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'top'
+                        position: 'bottom',
+                        labels: {
+                            padding: 20
+                        }
                     },
                     tooltip: {
                         callbacks: {
@@ -103,6 +103,7 @@
                 }
             }
         });
+
         var ctx = document.getElementById('headcountTrendChart').getContext('2d');
         var residentGrowthChart = new Chart(ctx, {
             type: 'line',
