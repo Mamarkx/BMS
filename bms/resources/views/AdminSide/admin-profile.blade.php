@@ -1,6 +1,6 @@
 <x-admin-layout>
 
-    <div class="max-w-5xl mx-auto mt-10">
+    <div class="w-full h-screen mt-10">
         <div class="bg-white rounded-2xl shadow-lg p-10 border border-gray-200">
 
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Profile Information</h2>
