@@ -108,32 +108,30 @@
                     Edit Request Record
                 </h3>
 
-                <form id="editRecordForm" method="POST" action="#" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form id="editRecordForm" method="POST" action="#" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
 
-                    <div class="col-span-2">
+                    <!-- Full Name -->
+                    <div class="md:col-span-4">
                         <label class="text-sm font-semibold text-gray-700">Full Name</label>
-                        <input type="text" name="name" id="edit_name"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                        <input id="edit_name" name="name" type="text" class="input input-bordered w-full">
                     </div>
 
+                    <!-- Personal Info -->
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Date of Birth</label>
-                        <input type="date" name="dob" id="edit_dob"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_dob" name="dob" type="date" class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Age</label>
-                        <input type="number" name="age" id="edit_age"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_age" name="age" type="number" class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Gender</label>
-                        <select name="gender" id="edit_gender"
-                            class="select select-bordered w-full border-gray-300 focus:border-green-500">
+                        <select id="edit_gender" name="gender" class="select select-bordered w-full">
                             <option value="">Select</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -142,8 +140,7 @@
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Civil Status</label>
-                        <select name="civil_status" id="edit_civil_status"
-                            class="select select-bordered w-full border-gray-300 focus:border-green-500">
+                        <select id="edit_civil_status" name="civil_status" class="select select-bordered w-full">
                             <option value="">Select</option>
                             <option>Single</option>
                             <option>Married</option>
@@ -152,90 +149,93 @@
                         </select>
                     </div>
 
-                    <div class="col-span-2">
+                    <!-- Address -->
+                    <div class="md:col-span-4">
                         <label class="text-sm font-semibold text-gray-700">Address</label>
-                        <input type="text" name="address" id="edit_address"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_address" name="address" type="text" class="input input-bordered w-full">
                     </div>
 
-                    <div class="col-span-2">
+                    <!-- Place of Birth -->
+                    <div class="md:col-span-4">
                         <label class="text-sm font-semibold text-gray-700">Place of Birth</label>
-                        <input type="text" name="place_of_birth" id="edit_place_of_birth"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_place_of_birth" name="place_of_birth" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
+                    <!-- Contact + Other Details -->
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Email</label>
-                        <input type="email" name="email" id="edit_email"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_email" name="email" type="email" class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Religion</label>
-                        <input type="text" name="religion" id="edit_religion"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_religion" name="religion" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Citizenship</label>
-                        <input type="text" name="citezenship" id="edit_citezenship"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_citezenship" name="citezenship" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Height</label>
-                        <input type="text" name="height" id="edit_height"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_height" name="height" type="text" class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Weight</label>
-                        <input type="text" name="weight" id="edit_weight"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_weight" name="weight" type="text" class="input input-bordered w-full">
                     </div>
 
                     <div>
-                        <label class="text-sm font-semibold text-gray-700">Precinct Number</label>
-                        <input type="text" name="precint_number" id="edit_precint_number"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <label class="text-sm font-semibold text-gray-700">Precinct #</label>
+                        <input id="edit_precint_number" name="precint_number" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Amount</label>
-                        <input type="number" name="amount" id="edit_amount"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_amount" name="amount" type="number" class="input input-bordered w-full">
                     </div>
 
                     <!-- Emergency Contact -->
-                    <div class="col-span-2 font-semibold text-gray-800 mt-2">Emergency Contact</div>
+                    <div class="md:col-span-4 font-semibold text-gray-800 mt-2">
+                        Emergency Contact
+                    </div>
 
-                    <div>
+                    <div class="md:col-span-2">
                         <label class="text-sm font-semibold text-gray-700">Contact Name</label>
-                        <input type="text" name="emergency_name" id="edit_emergency_name"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_emergency_name" name="emergency_name" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
-                    <div>
+                    <div class="md:col-span-2">
                         <label class="text-sm font-semibold text-gray-700">Phone Number</label>
-                        <input type="text" name="cellphone_number" id="edit_cellphone_number"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_cellphone_number" name="cellphone_number" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="md:col-span-4">
                         <label class="text-sm font-semibold text-gray-700">Emergency Address</label>
-                        <input type="text" name="emergency_address" id="edit_emergency_address"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
+                        <input id="edit_emergency_address" name="emergency_address" type="text"
+                            class="input input-bordered w-full">
                     </div>
 
-                    <div class="modal-action col-span-2">
+                    <!-- Buttons -->
+                    <div class="modal-action md:col-span-4">
                         <button type="button" class="btn bg-gray-200 hover:bg-gray-300"
                             onclick="editRecordModal.close()">Cancel</button>
-                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white">Save
-                            Changes</button>
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white">
+                            Save Changes
+                        </button>
                     </div>
                 </form>
             </div>
         </dialog>
+
         <script>
             $(document).ready(function() {
                 $('.edit-btn').on('click', function() {
