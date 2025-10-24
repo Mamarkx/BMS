@@ -161,9 +161,9 @@
                         <input type="email" id="edit_email" name="email" class="input input-bordered w-full">
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Type</label>
-                        <input type="text" id="edit_type" name="type" class="input input-bordered w-full">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Purpose</label>
+                        <input type="text" id="edit_purpose" name="purpose" class="input input-bordered w-full">
                     </div>
 
                     <div>
@@ -171,10 +171,7 @@
                         <input type="number" id="edit_amount" name="amount" class="input input-bordered w-full">
                     </div>
 
-                    <div class="col-span-2">
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Purpose</label>
-                        <input type="text" id="edit_purpose" name="purpose" class="input input-bordered w-full">
-                    </div>
+
                     <div class="modal-action col-span-2">
                         <button type="button" class="btn bg-gray-200 hover:bg-gray-300"
                             onclick="editRecordModal.close()">Cancel</button>
@@ -193,16 +190,12 @@
                     const record = $(this).data('record');
 
                     $('#edit_id').val(record.id);
-                    $('#edit_reference_number').val(record.reference_number);
                     $('#edit_name_owner').val(record.name_owner);
                     $('#edit_name_business').val(record.name_business);
                     $('#edit_address_business').val(record.address_business);
                     $('#edit_email').val(record.email);
-                    $('#edit_type').val(record.type);
                     $('#edit_amount').val(record.amount);
                     $('#edit_purpose').val(record.purpose);
-                    $('#edit_issue_date').val(record.issue_date);
-                    $('#edit_status').val(record.status);
 
                     document.getElementById('editRecordModal').showModal();
                 });

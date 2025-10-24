@@ -30,7 +30,6 @@ class BusinessController extends Controller
             'name_business'     => $request->name_business,
             'address_business'  => $request->address_business,
             'email'             => $request->email,
-            'type'              => $request->type,
             'amount'            => $request->amount,
             'purpose'           => $request->purpose,
         ]);
