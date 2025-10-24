@@ -20,6 +20,20 @@ class CedulaController extends Controller
 
 
 
+    public function DeleteCedula($id)
+    {
+        $record = Cedula::find($id);
+
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found.');
+        }
+
+        $record->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully!');
+    }
+
+
 
 
 

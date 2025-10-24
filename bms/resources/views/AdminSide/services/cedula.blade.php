@@ -163,7 +163,8 @@
             @endif
         </div>
         <dialog id="editRecordModal" class="modal">
-            <div class="modal-box max-w-3xl bg-white rounded-2xl shadow-xl border border-gray-200">
+            <div
+                class="modal-box max-w-5xl w-full bg-white rounded-3xl shadow-2xl border border-gray-200 p-6 md:p-8 overflow-y-auto">
                 <h3 class="font-bold text-2xl mb-6 flex items-center gap-3 text-gray-800">
                     <i class="fa-solid fa-user-pen text-green-600"></i>
                     Edit Cedula Record
@@ -171,32 +172,36 @@
 
                 <!-- Edit Form -->
                 <form id="editRecordForm" method="POST" action="{{ route('UpdateCedulaForm') }}"
-                    class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
 
-                    <div class="col-span-2">
+                    <!-- Full Name -->
+                    <div class="col-span-3">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
                         <input type="text" id="edit_name" name="name"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- TIN -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">TIN</label>
                         <input type="text" id="edit_tin" name="tin"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Citizenship -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Citizenship</label>
                         <input type="text" id="edit_citezenship" name="citezenship"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Civil Status -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Civil Status</label>
                         <select id="edit_civil_status" name="civil_status"
-                            class="select select-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="select select-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                             <option value="">Select status</option>
                             <option>Single</option>
                             <option>Married</option>
@@ -205,76 +210,86 @@
                         </select>
                     </div>
 
+                    <!-- DOB -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Date of Birth</label>
                         <input type="date" id="edit_dob" name="dob"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Place of Birth -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Place of Birth</label>
                         <input type="text" id="edit_place_of_birth" name="place_of_birth"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Height -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Height (cm)</label>
                         <input type="number" id="edit_height" name="height"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Weight -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Weight (kg)</label>
                         <input type="number" id="edit_weight" name="weight"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Business Gross Receipt -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Business Gross Receipt</label>
                         <input type="number" id="edit_total_gross_receipt_fr_business"
                             name="total_gross_receipt_fr_business"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3"
                             step="0.01">
                     </div>
 
+                    <!-- Salary Earnings -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Salary Earnings</label>
                         <input type="number" id="edit_total_earning_fr_salaries" name="total_earning_fr_salaries"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3"
                             step="0.01">
                     </div>
 
-                    <div class="col-span-2">
+                    <!-- Real Property Income -->
+                    <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Real Property Income</label>
                         <input type="number" id="edit_total_income_fr_realproperty"
                             name="total_income_fr_realproperty"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3"
                             step="0.01">
                     </div>
 
-                    <div class="col-span-2">
+                    <!-- Address -->
+                    <div class="col-span-3">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Address</label>
                         <input type="text" id="edit_address" name="address"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3">
                     </div>
 
+                    <!-- Amount Paid -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Amount Paid</label>
                         <input type="number" id="edit_amount" name="amount"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg p-3"
                             step="0.01">
                     </div>
 
                     <!-- Modal Actions -->
-                    <div class="modal-action col-span-2">
-                        <button type="button" class="btn bg-gray-200 hover:bg-gray-300"
+                    <div class="modal-action col-span-3 flex justify-end gap-4 mt-4">
+                        <button type="button" class="btn bg-gray-200 hover:bg-gray-300 px-6"
                             onclick="editRecordModal.close()">Cancel</button>
-                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white">Save
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white px-6">Save
                             Changes</button>
                     </div>
                 </form>
             </div>
         </dialog>
+
 
         <script>
             $(document).ready(function() {
