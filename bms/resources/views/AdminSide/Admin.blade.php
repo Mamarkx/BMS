@@ -21,8 +21,8 @@
         <!-- New Hires Card -->
         <div class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between">
             <div>
-                <p class="text-gray-500 text-sm">Barangay Officials</p>
-                <h2 class="text-3xl font-bold text-gray-800 mt-1">30</h2>
+                <p class="text-gray-500 text-sm">Barangay Employees</p>
+                <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalEmpoyees }}</h2>
             </div>
             <div class="p-3 rounded-full bg-green-100 text-green-500">
                 <!-- Add User Icon -->
@@ -39,7 +39,7 @@
         <div class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between">
             <div>
                 <p class="text-gray-500 text-sm">Pending Requests</p>
-                <h2 class="text-3xl font-bold text-gray-800 mt-1">12</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalPending }}</h2>
             </div>
             <div class="p-3 rounded-full bg-red-100 text-red-500">
                 <!-- Trending Down Icon -->
