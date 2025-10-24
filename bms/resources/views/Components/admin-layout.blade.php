@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,7 +29,7 @@
     <div class="flex h-auto w-full">
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="fixed md:static h-screen md:h-auto bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
+            class="fixed md:static h-auto bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
             <div>
                 <!-- Brand and Close Button -->
                 <div class="flex items-center justify-between mb-2 px-6 border-b border-white/40">
@@ -130,25 +130,6 @@
                     </nav>
                 </div>
             </div>
-
-            <!-- Profile and Logout Section -->
-            {{-- <div class="">
-                <div class="flex items-center justify-between p-4 shadow-sm transition-colors duration-200 border-white/40 border-t">
-                    <div class="flex items-center space-x-4">
-                        <img src="https://ui-avatars.com/api/?name=John+Mark&background=7E22CE&color=fff&size=64" alt="Profile Picture" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <p class="text-white font-medium">Shin Ryujin</p>
-                            <p class="text-[#93C5FD] text-sm">Admin</p>
-                        </div>
-                    </div>
-                    <form method="POST" action="{{ route('admin.logout') }}" class="logoutacc">
-                        @csrf
-                        <button type="submit" class="text-[#93C5FD] hover:text-red-500 transition">
-                            <i class="fa-solid fa-right-from-bracket text-xl"></i>
-                        </button>
-                    </form>
-                </div>
-            </div> --}}
         </aside>
 
         <!-- Main Content -->
