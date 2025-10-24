@@ -4,7 +4,7 @@
     <div class="max-h-screen overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100">
 
         <div class="w-full">
-
+            {{-- 
             <!-- Header Section -->
             <div class="mb-6 sm:mb-8">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -22,7 +22,7 @@
                         <span>Back</span>
                     </a>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Main Card -->
             <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
