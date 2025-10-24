@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="w-full p-10  bg-gray-50 ">
+    <div class="w-full h-screen p-10  bg-gray-50 ">
         <!-- Header -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div>
