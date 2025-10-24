@@ -190,7 +190,7 @@
                                 <label for="last_name" class="block text-sm font-semibold text-gray-700 mb-2">Last Name
                                     *</label>
                                 <input type="text" id="last_name" name="last_name"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="Dela Cruz" required>
                             </div>
 
@@ -198,7 +198,7 @@
                                 <label for="middle_name" class="block text-sm font-semibold text-gray-700 mb-2">Middle
                                     Name</label>
                                 <input type="text" id="middle_name" name="middle_name"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="Santos">
                             </div>
 
@@ -206,7 +206,7 @@
                                 <label for="gender"
                                     class="block text-sm font-semibold text-gray-700 mb-2">Gender*</label>
                                 <select id="gender" name="gender"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     required>
                                     <option value="">Select Gender</option>
                                     <option value="Male">Male</option>
@@ -236,7 +236,7 @@
                                 <label for="contact_number"
                                     class="block text-sm font-semibold text-gray-700 mb-2">Contact Number *</label>
                                 <input type="text" id="contact_number" name="contact_number"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="09123456789" required>
                             </div>
 
@@ -244,7 +244,7 @@
                                 <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email
                                     Address *</label>
                                 <input type="email" id="email" name="email"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full px-4 placeholder:text-gray-400   py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="juan.delacruz@example.com" required>
                             </div>
 
@@ -252,7 +252,7 @@
                                 <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">Address
                                     *</label>
                                 <textarea id="address" name="address" rows="3"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="Complete address" required></textarea>
                             </div>
                         </div>
@@ -269,7 +269,7 @@
                                 <label for="position_title"
                                     class="block text-sm font-semibold text-gray-700 mb-2">Position *</label>
                                 <select id="position_title" name="position_title"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     required>
                                     <option value="">Select Position</option>
                                     <option value="Punong Barangay">Punong Barangay</option>
@@ -288,7 +288,7 @@
                                 <label for="department"
                                     class="block text-sm font-semibold text-gray-700 mb-2">Department *</label>
                                 <select id="department" name="department"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full px-4 placeholder:text-gray-400  py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     required>
                                     <option value="">Select Department</option>
                                     <option value="Administrative">Administrative</option>
@@ -304,7 +304,7 @@
                                 <label for="hire_date" class="block text-sm font-semibold text-gray-700 mb-2">Hire
                                     Date *</label>
                                 <input type="date" id="hire_date" name="hire_date"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     required>
                             </div>
                         </div>
