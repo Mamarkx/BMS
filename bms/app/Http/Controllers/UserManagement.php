@@ -11,7 +11,7 @@ class UserManagement extends Controller
 {
     public function ShowUsers()
     {
-        $users = User::paginate(5);
+        $users = User::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.UserManagement', compact('users'));
     }
     public function AddAcc(Request $request)
