@@ -28,7 +28,7 @@ class AdminController extends Controller
         }
 
         // Check password
-        if (Hash::check($request->password, $user->password)) {
+        if (!Hash::check($request->password, $user->password)) {
             return back()->withErrors(['password' => 'Incorrect password.'])->onlyInput('email');
         }
 
