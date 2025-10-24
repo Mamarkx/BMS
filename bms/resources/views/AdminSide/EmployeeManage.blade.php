@@ -180,7 +180,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                             <div>
                                 <label for="first_name"
-                                    class="block text-sm font-semibold text-gray-700 mb-2 placeholder-gray-300">First
+                                    class="block text-sm font-semibold text-gray-200 mb-2 placeholder-gray-300">First
                                     Name *</label>
                                 <input type="text" id="first_name" name="first_name"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
