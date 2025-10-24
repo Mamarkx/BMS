@@ -108,7 +108,7 @@
                                 </tr>
                                 <!-- Release Modal -->
                                 <div id="releaseModal"
-                                    class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+                                    class="fixed inset-0 bg-black/10  flex items-center justify-center z-50 hidden">
                                     <div
                                         class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
                                         <div class="flex items-center justify-between mb-6">
