@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- Sections Grid -->
-                <div class="px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="px-6 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
                     <!-- Personal Info -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border">
@@ -71,7 +71,7 @@
                             </div>
                             <h3 class="font-bold text-lg">Personal Information</h3>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 gap-4">
                             @foreach ([
         'Full Name' => $BrgyID->name,
         'Date of Birth' => $BrgyID->dob,
@@ -89,31 +89,6 @@
                         </div>
                     </div>
 
-                    <!-- Application Info -->
-                    {{-- <div class="bg-white rounded-xl shadow-sm p-6 border">
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-file-alt text-white"></i>
-                            </div>
-                            <h3 class="font-bold text-lg">Application Details</h3>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            @foreach ([
-        'Request Type' => $BrgyID->type,
-        'Purpose' => $BrgyID->purpose,
-        'Current Status' => $BrgyID->status,
-        'Issue Date' => $BrgyID->issue_date ?? 'Not Yet Issued',
-        'Application Fee' => '₱' . number_format($BrgyID->amount, 2),
-        'Reference Number' => $BrgyID->reference_number,
-    ] as $label => $value)
-                                <div class="p-4 bg-emerald-50 rounded-lg border">
-                                    <p class="text-xs font-semibold text-emerald-700">{{ $label }}</p>
-                                    <p class="font-bold break-all">{{ $value }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div> --}}
-
                     <!-- Additional Info -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border">
                         <div class="flex items-center gap-3 mb-5">
@@ -122,7 +97,7 @@
                             </div>
                             <h3 class="font-bold text-lg">Additional Information</h3>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 gap-4">
                             @foreach ([
         'Religion' => $BrgyID->religion,
         'Citizenship' => $BrgyID->citezenship,
@@ -135,28 +110,19 @@
                                     <p class="font-bold">{{ $value }}</p>
                                 </div>
                             @endforeach
-                        </div>
-                    </div>
 
-                    <!-- Emergency Info -->
-                    <div class="bg-white rounded-xl shadow-sm p-6 border">
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="w-12 h-12 bg-rose-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-phone-alt text-white"></i>
-                            </div>
-                            <h3 class="font-bold text-lg">Emergency Contact</h3>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            @foreach ([
+                            <div class="grid grid-cols-1 gap-4">
+                                @foreach ([
         'Contact Name' => $BrgyID->emergency_name,
         'Phone Number' => $BrgyID->cellphone_number,
         'Address' => $BrgyID->emergency_address,
     ] as $label => $value)
-                                <div class="p-4 bg-rose-50 rounded-lg border">
-                                    <p class="text-xs font-semibold text-rose-700">{{ $label }}</p>
-                                    <p class="font-bold break-all">{{ $value }}</p>
-                                </div>
-                            @endforeach
+                                    <div class="p-4 bg-rose-50 rounded-lg border">
+                                        <p class="text-xs font-semibold text-rose-700">{{ $label }}</p>
+                                        <p class="font-bold break-all">{{ $value }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
 
