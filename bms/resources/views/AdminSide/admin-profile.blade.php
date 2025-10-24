@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="w-full h-auto  px-4">
+    <div class="w-full h-screen  px-4">
         <form action="#" method="POST">
             @csrf
             @method('PUT')
