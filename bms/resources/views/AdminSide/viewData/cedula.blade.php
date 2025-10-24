@@ -72,7 +72,7 @@
                             <div class="border-b border-gray-100 pb-2">
                                 <dt class="font-medium text-gray-500">Date of Birth:</dt>
                                 <dd class="text-right font-medium text-gray-800">
-                                    {{ $cedula->dob }} ({{ $cedula->age ?? 'N/A' }} yrs)
+                                    {{ $cedula->dob }}
                                 </dd>
                             </div>
 
