@@ -78,7 +78,7 @@ class AdminController extends Controller
         // Send new OTP
         Mail::to($email)->send(new TwoFactorCodeMail($user, $code));
 
-        return back()->with('success', 'A new OTP has been sent to your email.');
+        return redirect()->back()->with('success', 'A new OTP has been sent to your email.');
     }
 
 
