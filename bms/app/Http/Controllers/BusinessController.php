@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Mail;
 
 class BusinessController extends Controller
 {
+    public function showbusinesspermit($id)
+    {
+        $business = BusinessPermit::find($id);
+
+        if (!$business) {
+            return redirect()->back()->with('error', 'Document not found.');
+        }
+
+        return view('AdminSide.viewData.business-permit', compact('business'));
+    }
+
+
+
+
     public function approveBusinessPermit(Request $request, $id)
     {
         $document = BusinessPermit::find($id);
@@ -18,7 +32,6 @@ class BusinessController extends Controller
             return redirect()->back()->with('error', 'Document not found.');
         }
 
-        // Update the status to 'Approved'
         $document->status = 'Approved';
         $document->approval_date = now();
         $document->approved_by = 'barangay Chairman';
