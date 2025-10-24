@@ -288,7 +288,7 @@ class ServiceController extends Controller
             'name' => Auth::user()->first_name . ' ' . Auth::user()->last_name,
             'address' => Auth::user()->address,
             'tin' => $request->tin,
-            'citizenship' => $request->citizenship,
+            'citezenship' => $request->citizenship,
             'civil_status' => $request->civil_status,
             'dob' => $request->dob,
             'place_of_birth' => $request->place_of_birth,
