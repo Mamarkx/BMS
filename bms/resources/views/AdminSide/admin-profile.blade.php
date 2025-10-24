@@ -10,8 +10,10 @@
         <!-- Profile Forms -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
+
             <!-- Personal Info Form -->
-            <form action="#" method="POST" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+            <form action="{{ route('profile.update.personal') }}" method="POST"
+                class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
                 @csrf
                 @method('PUT')
 
@@ -42,13 +44,12 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:outline-none">
                     </div>
                 </div>
-
                 <div>
-                    <label class="block text-sm font-medium text-gray-600 mb-1">Address</label>
-                    <input type="text" name="address" value="{{ Auth::user()->address }}"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:outline-none">
+                    <label class="block text-sm font-medium text-gray-600 mb-1">Role</label>
+                    <input type="text" name="role" value="{{ Auth::user()->role }}"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 cursor-not-allowed"
+                        readonly>
                 </div>
-
                 <div class="pt-4">
                     <button type="submit"
                         class="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
@@ -56,9 +57,8 @@
                     </button>
                 </div>
             </form>
-
             <!-- Account Info Form -->
-            <form action="#" method="POST"
+            <form action="{{ route('profile.update.account') }}" method="POST"
                 class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
                 @csrf
                 @method('PUT')
@@ -79,12 +79,7 @@
                             placeholder="Leave blank to keep current password">
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-600 mb-1">Role</label>
-                        <input type="text" name="role" value="{{ Auth::user()->role }}"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 cursor-not-allowed"
-                            readonly>
-                    </div>
+
                 </div>
 
                 <div class="pt-4">

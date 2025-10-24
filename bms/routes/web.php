@@ -106,6 +106,14 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     // Logout
     Route::get('/admin/profile', [AdminController::class, 'ShowAdminProfile'])->name('admin.profile');
 
+    Route::put('/profile/personal', [AdminController::class, 'updatePersonal'])->name('profile.update.personal');
+    Route::put('/profile/account', [AdminController::class, 'updateAccount'])->name('profile.update.account');
+
+
+
+
+
+
     // Employee Management
     Route::post('/addEmployee', [EmployeeManagement::class, 'AddEmp'])->name('AddEmployee');
     Route::get('/employee', [EmployeeManagement::class, 'ShowEmp'])->name('ShowEmployee');

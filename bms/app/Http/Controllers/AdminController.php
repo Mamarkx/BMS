@@ -107,4 +107,41 @@ class AdminController extends Controller
         $user = Auth::user();
         return view('AdminSide.admin-profile', compact('user'));
     }
+    public function updatePersonal(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'suffix' => 'nullable|string|max:50',
+            'address' => 'required|string|max:255',
+        ]);
+
+        Auth::user()->update($request->only([
+            'first_name',
+            'middle_name',
+            'last_name',
+            'suffix',
+            'address'
+        ]));
+
+        return back()->with('success', 'Personal information updated.');
+    }
+
+    public function updateAccount(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'password' => 'nullable|string|min:8',
+        ]);
+
+        $user = Auth::user();
+        $user->email = $request->email;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        return back()->with('success', 'Account settings updated.');
+    }
 }
