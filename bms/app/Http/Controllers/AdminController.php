@@ -45,36 +45,42 @@ class AdminController extends Controller
         Mail::to($user->email)->send(new TwoFactorCodeMail($user, $code));
         Auth::logout();
         $request->session()->put('2fa:user:id', $user->id);
+        $request->session()->put('pending_verification_email', $user->email);
 
         return redirect()->route('admin.2fa.form');
     }
 
     public function ResendAdminOtp(Request $request)
     {
-        $email = $request->email;
+        $userId = $request->session()->get('2fa:user:id');
+        $email = $request->session()->get('pending_verification_email');
 
-        $user = User::where('email', $email)->first();
-        if (!$user) {
-            return redirect()->route('LoginAdmin')->withErrors('User not found, please login again.');
+        if (!$userId || !$email) {
+            return redirect()->route('LoginAdmin')->withErrors('Session expired, login again.');
         }
 
-        // Delete existing codes
+        $user = User::find($userId);
+        if (!$user) {
+            return redirect()->route('LoginAdmin')->withErrors('User not found.');
+        }
+
+        // Delete old OTPs
         TwoFactorCode::where('user_id', $user->id)->delete();
 
-        // Generate new code
+        // Create new OTP
         $code = rand(100000, 999999);
-
         TwoFactorCode::create([
             'user_id' => $user->id,
             'code' => $code,
             'expires_at' => now()->addMinutes(10),
         ]);
 
-        // Send email
-        Mail::to($user->email)->send(new TwoFactorCodeMail($user, $code));
+        // Send new OTP
+        Mail::to($email)->send(new TwoFactorCodeMail($user, $code));
 
         return back()->with('success', 'A new OTP has been sent to your email.');
     }
+
 
 
     public function verify2fa(Request $request)
