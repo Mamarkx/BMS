@@ -29,7 +29,7 @@
                 class="bg-white max-h-[650px] h-full w-full overflow-y-auto  rounded-lg shadow-xl border border-gray-200 overflow-hidden">
 
                 <!-- Status Header -->
-                <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div class=" px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <!-- Left Section -->
                         <div class="space-y-2">
