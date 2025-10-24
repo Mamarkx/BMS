@@ -140,7 +140,8 @@
                                                 class="block text-sm font-medium text-gray-700">Select
                                                 Release Date:</label>
                                             <input type="date" name="release_date" id="release_date"
-                                                class="w-full p-2 border border-gray-300 rounded-md mt-2" required>
+                                                class="w-full p-2 border border-gray-300 rounded-md mt-2" required
+                                                min="{{ date('Y-m-d') }}">
                                             <div class="flex justify-end gap-4 mt-4">
                                                 <button type="button" class="text-gray-500"
                                                     onclick="closeReleaseModal()">Cancel</button>
