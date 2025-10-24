@@ -45,22 +45,28 @@
 
                         <div class="flex items-center gap-3">
                             <span
-                                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg
-                                @class([
-                                    'bg-yellow-400 text-yellow-900' => $BrgyID->status === 'Pending',
-                                    'bg-green-500 text-white' => $BrgyID->status === 'Approved',
-                                    'bg-orange-500 text-white' => $BrgyID->status === 'To be Release',
-                                    'bg-red-600 text-white' => $BrgyID->status === 'Released',
-                                ])">
+                                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-md
+        @class([
+            'bg-yellow-400 text-yellow-900' => $BrgyID->status === 'Pending',
+            'bg-green-500 text-white' => $BrgyID->status === 'Approved',
+            'bg-orange-500 text-white' => $BrgyID->status === 'To be Release',
+            'bg-red-600 text-white' => $BrgyID->status === 'Released',
+        ])">
+
                                 <span
                                     class="h-2 w-2 rounded-full animate-pulse
-                                    @class([
-                                        'bg-amber-900' => $BrgyID->status === 'Pending',
-                                        'bg-white' => $BrgyID->status !== 'Pending',
-                                    ])"></span>
-                                <span class="uppercase tracking-wide">{{ ucfirst($BrgyID->status) }}</span>
+            @class([
+                'bg-yellow-900' => $BrgyID->status === 'Pending',
+                'bg-white' => $BrgyID->status !== 'Pending',
+            ])">
+                                </span>
+
+                                <span class="uppercase tracking-wide">
+                                    {{ ucfirst($BrgyID->status) }}
+                                </span>
                             </span>
                         </div>
+
                     </div>
                 </div>
 
