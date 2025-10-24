@@ -230,8 +230,8 @@
                                         <div class="relative max-w-full max-h-full">
                                             <!-- Redesigned Header -->
                                             <div
-                                                class="bg-white w-full px-6 py-4 rounded-t-lg flex items-center justify-between shadow-md">
-                                                <h2 class="text-lg font-semibold text-gray-800">ID Proof Preview</h2>
+                                                class="bg-white w-full px-6 py-4 rounded-t-lg flex items-center justify-between shadow-md border border-gray-400">
+                                                <h2 class="text-lg font-semibold text-gray-800">Signature Preview</h2>
                                                 <button @click="open = false"
                                                     class="text-gray-500 hover:text-gray-900 transition text-3xl leading-none">
                                                     &times;
