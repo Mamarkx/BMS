@@ -121,7 +121,7 @@
                 toast: true,
                 position: 'top-end',
                 icon: 'success',
-                title: '{{ session('success') }}',
+                title: @json(session('success')),
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
@@ -129,7 +129,7 @@
                     popup: 'colored-toast'
                 },
                 background: '#ffffff',
-                color: '#16a34a', // green text
+                color: '#16a34a',
             });
         </script>
 
@@ -141,7 +141,6 @@
             }
         </style>
     @endif
-
 </body>
 
 </html>
