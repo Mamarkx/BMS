@@ -31,8 +31,7 @@
                                 @class([
                                     'bg-amber-900' => $BrgyID->status === 'Pending',
                                     'bg-white' => $BrgyID->status !== 'Pending',
-                                ])">
-                            </span>
+                                ])"></span>
                             {{ ucfirst($BrgyID->status) }}
                         </span>
                     </div>
@@ -60,18 +59,19 @@
                     </div>
                 </div>
 
-                <!-- Sections Grid -->
-                <div class="px-6 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Content Sections Inside One Card -->
+                <div class="p-6 space-y-8">
 
                     <!-- Personal Info -->
-                    <div class="bg-white rounded-xl shadow-sm p-6 border">
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-user text-white"></i>
                             </div>
                             <h3 class="font-bold text-lg">Personal Information</h3>
                         </div>
-                        <div class="grid grid-cols-1 gap-4">
+
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             @foreach ([
         'Full Name' => $BrgyID->name,
         'Date of Birth' => $BrgyID->dob,
@@ -89,15 +89,18 @@
                         </div>
                     </div>
 
+                    <hr class="border-gray-200">
+
                     <!-- Additional Info -->
-                    <div class="bg-white rounded-xl shadow-sm p-6 border">
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-violet-600 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-address-card text-white"></i>
                             </div>
                             <h3 class="font-bold text-lg">Additional Information</h3>
                         </div>
-                        <div class="grid grid-cols-1 gap-4">
+
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             @foreach ([
         'Religion' => $BrgyID->religion,
         'Citizenship' => $BrgyID->citezenship,
@@ -110,29 +113,43 @@
                                     <p class="font-bold">{{ $value }}</p>
                                 </div>
                             @endforeach
+                        </div>
+                    </div>
 
-                            <div class="grid grid-cols-1 gap-4">
-                                @foreach ([
+                    <hr class="border-gray-200">
+
+                    <!-- Emergency Contact -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-rose-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Emergency Contact</h3>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            @foreach ([
         'Contact Name' => $BrgyID->emergency_name,
         'Phone Number' => $BrgyID->cellphone_number,
         'Address' => $BrgyID->emergency_address,
     ] as $label => $value)
-                                    <div class="p-4 bg-rose-50 rounded-lg border">
-                                        <p class="text-xs font-semibold text-rose-700">{{ $label }}</p>
-                                        <p class="font-bold break-all">{{ $value }}</p>
-                                    </div>
-                                @endforeach
-                            </div>
+                                <div class="p-4 bg-rose-50 rounded-lg border">
+                                    <p class="text-xs font-semibold text-rose-700">{{ $label }}</p>
+                                    <p class="font-bold break-all">{{ $value }}</p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
+                    <hr class="border-gray-200">
+
                     <!-- ID Proof -->
-                    <div x-data="{ open: false }" class="bg-white rounded-xl shadow-sm p-6 border">
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center">
+                    <div x-data="{ open: false }">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-id-card text-white"></i>
                             </div>
-                            <h3 class="font-bold text-lg">ID Proof Document</h3>
+                            <h3 class="font-bold text-lg">ID Proof</h3>
                         </div>
 
                         @if ($BrgyID->id_proof)
@@ -141,14 +158,16 @@
                                 View ID Document
                             </button>
 
+                            <!-- Modal -->
                             <div x-show="open" x-transition x-cloak
-                                class="fixed inset-0 flex items-center justify-center bg-black/70 p-4 z-50"
+                                class="fixed inset-0 bg-black/70 flex items-center justify-center p-5"
                                 @click="open = false">
                                 <div @click.stop class="bg-white rounded-xl p-4 max-w-3xl w-full shadow-xl">
                                     <div class="flex justify-end">
                                         <button @click="open = false"
-                                            class="text-gray-700 font-bold text-xl">&times;</button>
+                                            class="text-gray-700 text-2xl font-bold">&times;</button>
                                     </div>
+
                                     <img src="{{ asset('storage/' . $BrgyID->id_proof) }}"
                                         class="w-full rounded-lg shadow">
                                 </div>
@@ -172,5 +191,4 @@
             display: none !important;
         }
     </style>
-
 </x-admin-layout>
