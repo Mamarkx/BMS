@@ -8,7 +8,7 @@ use App\Models\Announce;
 use App\Models\GeneralForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
 use App\Models\BusinessPermit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
