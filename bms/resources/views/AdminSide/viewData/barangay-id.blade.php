@@ -25,7 +25,7 @@
             </div>
 
             <!-- Main Card -->
-            <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+            <div class="bg-white max-h-96 w-full rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
 
                 <!-- Status Header -->
                 <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
