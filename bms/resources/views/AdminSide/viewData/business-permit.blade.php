@@ -115,7 +115,7 @@
                                             class="bg-white w-full px-6 py-4 rounded-t-lg flex items-center justify-between shadow-md">
                                             <h2 class="text-lg font-semibold text-gray-800">ID Proof Preview</h2>
                                             <button @click="open = false"
-                                                class="text-gray-500 hover:text-gray-700 transition text-2xl leading-none">
+                                                class="text-gray-500 hover:text-gray-900 transition text-3xl leading-none">
                                                 &times;
                                             </button>
                                         </div>
