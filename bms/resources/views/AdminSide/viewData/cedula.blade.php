@@ -69,11 +69,9 @@
                                 <dd class="text-right font-medium text-gray-800">{{ $cedula->civil_status }}</dd>
                             </div>
 
-                            <div class="border-b border-gray-100 pb-2">
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
                                 <dt class="font-medium text-gray-500">Date of Birth:</dt>
-                                <dd class="text-right font-medium text-gray-800">
-                                    {{ $cedula->dob }}
-                                </dd>
+                                <dd class="text-right font-medium text-gray-800"> {{ $cedula->dob }}</dd>
                             </div>
 
                             <div class="flex justify-between">
