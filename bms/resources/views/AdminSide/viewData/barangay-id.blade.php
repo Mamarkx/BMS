@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="max-h-[400px] overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-h-(400px) overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100">
 
         <!-- Card Wrapper -->
         <div class="px-4 py-2">
