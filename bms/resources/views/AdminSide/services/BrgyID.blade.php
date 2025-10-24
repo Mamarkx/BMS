@@ -102,7 +102,7 @@
             {{ $data->links() }}
         </div>
         <dialog id="editRecordModal" class="modal">
-            <div class="modal-box max-w-4xl bg-white rounded-2xl shadow-xl border border-gray-200">
+            <div class="modal-box max-w-7xl w-full bg-white rounded-2xl shadow-xl border border-gray-200">
                 <h3 class="font-bold text-2xl mb-6 flex items-center gap-3 text-gray-800">
                     <i class="fa-solid fa-user-pen text-green-600"></i>
                     Edit Request Record
@@ -167,18 +167,6 @@
                     <div>
                         <label class="text-sm font-semibold text-gray-700">Email</label>
                         <input type="email" name="email" id="edit_email"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
-                    </div>
-
-                    <div>
-                        <label class="text-sm font-semibold text-gray-700">Type</label>
-                        <input type="text" name="type" id="edit_type"
-                            class="input input-bordered w-full border-gray-300 focus:border-green-500">
-                    </div>
-
-                    <div class="col-span-2">
-                        <label class="text-sm font-semibold text-gray-700">Purpose</label>
-                        <input type="text" name="purpose" id="edit_purpose"
                             class="input input-bordered w-full border-gray-300 focus:border-green-500">
                     </div>
 
