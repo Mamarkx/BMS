@@ -66,18 +66,15 @@
 
     <!-- Charts and Data Tables -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <!-- Employee Demographics Chart Card -->
         <div class="bg-white rounded-2xl border border-gray-300 p-6">
             <h3 class="text-lg font-semibold text-gray-800">Employee Demographics</h3>
             <div class="mt-4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-                <!-- Pie Chart Placeholder -->
                 <canvas id="employeeDemographicsChart"></canvas>
             </div>
         </div>
             <div class="bg-white rounded-2xl border border-gray-300 p-6">
                 <h3 class="text-lg font-semibold text-gray-800">Headcount Trend</h3>
                 <div class="mt-4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-                    <!-- Line Chart Placeholder -->
                     <canvas id="headcountTrendChart"></canvas>
                 </div>
             </div>
