@@ -58,17 +58,25 @@
                                             </a>
 
                                             <!-- Edit -->
-                                            <button class="text-gray-600 hover:text-green-700 transition-colors"
-                                                title="Edit">
-                                                <i class="fa-solid fa-pen-to-square text-lg"></i>
+                                            <button type="button"
+                                                class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-800 transition duration-200 edit-btn"
+                                                data-record='@json($d)' title="Edit Record">
+                                                <i class="fa-solid fa-pen-to-square text-lg mb-1"></i>
+                                                <span class="text-xs font-semibold">Edit</span>
                                             </button>
-
                                             <!-- Delete -->
-                                            <button class="text-red-600 hover:text-red-800 transition-colors"
-                                                onclick="deleteRecord({{ $d->id }})" title="Delete">
-                                                <i class="fa-solid fa-trash text-lg"></i>
-                                            </button>
-
+                                            <form id="deleteForm_{{ $d->id }}"
+                                                action="{{ route('DeleteGeneralForm', $d->id) }}" method="POST"
+                                                class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button"
+                                                    class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-800 transition duration-200 delete-btn"
+                                                    data-id="{{ $d->id }}" title="Delete Record">
+                                                    <i class="fa-solid fa-trash text-lg mb-1"></i>
+                                                    <span class="text-xs font-semibold">Delete</span>
+                                                </button>
+                                            </form>
                                             <!-- Approve -->
                                             @if ($d->status === 'Pending')
                                                 <form id="approveForm{{ $d->id }}"
@@ -76,19 +84,23 @@
                                                     class="hidden">
                                                     @csrf
                                                 </form>
-                                                <button class="text-green-600 hover:text-green-800 transition-colors"
+                                                <button type="button"
+                                                    class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-yellow-50 text-yellow-600 hover:bg-yellow-100 hover:text-yellow-700 transition duration-200"
                                                     onclick="showApprovalConfirmation({{ $d->id }})"
-                                                    title="Approve">
-                                                    <i class="fa-solid fa-check-circle text-lg"></i>
+                                                    title="Approve Request">
+                                                    <i class="fa-solid fa-circle-check text-lg mb-1"></i>
+                                                    <span class="text-xs font-semibold">Approve</span>
                                                 </button>
                                             @endif
 
                                             <!-- Schedule Release -->
                                             @if ($d->status === 'Approved')
-                                                <button class="text-indigo-600 hover:text-indigo-800 transition-colors"
+                                                <button type="button"
+                                                    class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
                                                     onclick="openReleaseModal({{ $d->id }})"
                                                     title="Schedule Release">
-                                                    <i class="fa-solid fa-calendar-check text-lg"></i>
+                                                    <i class="fa-solid fa-calendar-check text-lg mb-1"></i>
+                                                    <span class="text-xs font-semibold">Schedule</span>
                                                 </button>
                                             @endif
                                         </div>
@@ -150,6 +162,146 @@
                 </div>
             @endif
         </div>
+        <dialog id="editRecordModal" class="modal">
+            <div class="modal-box max-w-3xl bg-white rounded-2xl shadow-xl border border-gray-200">
+                <h3 class="font-bold text-2xl mb-6 flex items-center gap-3 text-gray-800">
+                    <i class="fa-solid fa-user-pen text-green-600"></i>
+                    Edit Cedula Record
+                </h3>
+
+                <!-- Edit Form -->
+                <form id="editRecordForm" method="POST" action="{{ route('UpdateCedulaForm') }}"
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @csrf
+                    <input type="hidden" id="edit_id" name="id">
+
+                    <div class="col-span-2">
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="edit_name" name="name"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">TIN</label>
+                        <input type="text" id="edit_tin" name="tin"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Citizenship</label>
+                        <input type="text" id="edit_citezenship" name="citezenship"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Civil Status</label>
+                        <select id="edit_civil_status" name="civil_status"
+                            class="select select-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                            <option value="">Select status</option>
+                            <option>Single</option>
+                            <option>Married</option>
+                            <option>Widowed</option>
+                            <option>Separated</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Date of Birth</label>
+                        <input type="date" id="edit_dob" name="dob"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Place of Birth</label>
+                        <input type="text" id="edit_place_of_birth" name="place_of_birth"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Height (cm)</label>
+                        <input type="number" id="edit_height" name="height"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Weight (kg)</label>
+                        <input type="number" id="edit_weight" name="weight"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Business Gross Receipt</label>
+                        <input type="number" id="edit_total_gross_receipt_fr_business"
+                            name="total_gross_receipt_fr_business"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            step="0.01">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Salary Earnings</label>
+                        <input type="number" id="edit_total_earning_fr_salaries" name="total_earning_fr_salaries"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            step="0.01">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Real Property Income</label>
+                        <input type="number" id="edit_total_income_fr_realproperty"
+                            name="total_income_fr_realproperty"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            step="0.01">
+                    </div>
+
+                    <div class="col-span-2">
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Address</label>
+                        <input type="text" id="edit_address" name="address"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Amount Paid</label>
+                        <input type="number" id="edit_amount" name="amount"
+                            class="input input-bordered w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                            step="0.01">
+                    </div>
+
+                    <!-- Modal Actions -->
+                    <div class="modal-action col-span-2">
+                        <button type="button" class="btn bg-gray-200 hover:bg-gray-300"
+                            onclick="editRecordModal.close()">Cancel</button>
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white">Save
+                            Changes</button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
+
+        <script>
+            $(document).ready(function() {
+                $('.edit-btn').on('click', function() {
+                    const record = $(this).data('record');
+
+                    // Fill modal fields
+                    $('#edit_id').val(record.id);
+                    $('#edit_name').val(record.name);
+                    $('#edit_tin').val(record.tin);
+                    $('#edit_address').val(record.address);
+                    $('#edit_citezenship').val(record.citezenship);
+                    $('#edit_civil_status').val(record.civil_status);
+                    $('#edit_dob').val(record.dob);
+                    $('#edit_place_of_birth').val(record.place_of_birth);
+                    $('#edit_height').val(record.height);
+                    $('#edit_weight').val(record.weight);
+                    $('#edit_total_gross_receipt_fr_business').val(record.total_gross_receipt_fr_business);
+                    $('#edit_total_earning_fr_salaries').val(record.total_earning_fr_salaries);
+                    $('#edit_total_income_fr_realproperty').val(record.total_income_fr_realproperty);
+                    $('#edit_amount').val(record.amount);
+
+                    // Show modal
+                    document.getElementById('editRecordModal').showModal();
+                });
+            });
+        </script>
 
     </div>
 
