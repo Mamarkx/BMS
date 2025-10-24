@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="w-full h-screen px-4 sm:px-6 lg:px-8 py-10">
         <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
 
             <!-- Header -->
