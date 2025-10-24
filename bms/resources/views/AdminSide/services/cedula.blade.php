@@ -333,7 +333,7 @@
             }
         </style>
     @endif
-    @endif
+
     <script>
         $(document).ready(function() {
             $('.delete-btn').on('click', function() {
