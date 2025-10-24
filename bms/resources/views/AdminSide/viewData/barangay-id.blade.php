@@ -1,7 +1,7 @@
 <x-admin-layout>
 
 
-    <div class="h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-h-screen overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100">
 
         <div class="w-full">
 
