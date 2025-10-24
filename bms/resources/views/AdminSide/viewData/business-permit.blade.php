@@ -123,7 +123,7 @@
                                         <!-- Image -->
                                         <img src="{{ asset('storage/' . $business->id_proof) }}"
                                             alt="Full Size ID Proof"
-                                            class="max-h-[80vh] max-w-full rounded-b-lg shadow-2xl border-2 border-white cursor-pointer"
+                                            class="max-h-[50vh] max-w-full rounded-b-lg shadow-2xl border-2 border-white cursor-pointer"
                                             onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
                                     </div>
                                 </div>
