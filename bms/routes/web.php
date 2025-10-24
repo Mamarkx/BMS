@@ -141,6 +141,11 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     // Barangay ID
     Route::post('/barangay-id/{id}/approveID', [BarangayIDController::class, 'approveID'])->name('approve.formID');
     Route::post('/barangay-id/{id}', [BarangayIDController::class, 'scheduleReleaseID'])->name('schedule.releaseID');
+    Route::get('/barangay-id/{id}', [BarangayIDController::class, 'ShowBarangayID'])->name('barangayID.show');
+
+
+
+
 
     // General Form
     Route::post('/general-form/{id}/approveID', [GeneralFormController::class, 'approveGeneral'])->name('general.formID');

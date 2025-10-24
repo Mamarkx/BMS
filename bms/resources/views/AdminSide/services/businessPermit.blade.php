@@ -79,7 +79,7 @@
                                     class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
                                     onclick="openReleaseModal({{ $d->id }})" title="Schedule Release">
                                     <i class="fa-solid fa-calendar-check text-lg mb-1"></i>
-                                    <span class="text-xs font-semibold">Release</span>
+                                    <span class="text-xs font-semibold">Schedule</span>
                                 </button>
                             </td>
                         </tr>

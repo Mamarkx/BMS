@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Mail;
 
 class BarangayIDController extends Controller
 {
+    public function ShowBarangayID($id)
+    {
+        $BrgyID = FormID::findOrFail($id);
+        return view('AdminSide.viewData.barangay-id', compact('BrgyID'));
+    }
+
+
+
     public function approveID(Request $request, $id)
     {
         $document = FormID::find($id);
@@ -19,7 +27,6 @@ class BarangayIDController extends Controller
             return redirect()->back()->with('error', 'Document not found.');
         }
 
-        // Update the status to 'Approved'
         $document->status = 'Approved';
         $document->approval_date = now();
         $document->approved_by = 'barangay Chairman';
