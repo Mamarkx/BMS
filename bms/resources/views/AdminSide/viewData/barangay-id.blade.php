@@ -48,14 +48,14 @@
                         <div class="flex items-center gap-4 mt-2 sm:mt-0">
                             <span
                                 class="inline-flex items-center rounded-full px-4 py-1 text-sm font-semibold shadow-sm
-                        {{ $business->status === 'Pending' ? 'bg-yellow-300 text-yellow-900' : '' }}
-                        {{ $business->status === 'Approved' ? 'bg-green-500 text-white' : '' }}
-                        {{ $business->status === 'To be Release' ? 'bg-gray-600 text-white' : '' }}
-                        {{ $business->status === 'Released' ? 'bg-blue-600 text-white' : '' }}">
+                        {{ $BrgyID->status === 'Pending' ? 'bg-yellow-300 text-yellow-900' : '' }}
+                        {{ $BrgyID->status === 'Approved' ? 'bg-green-500 text-white' : '' }}
+                        {{ $BrgyID->status === 'To be Release' ? 'bg-gray-600 text-white' : '' }}
+                        {{ $BrgyID->status === 'Released' ? 'bg-blue-600 text-white' : '' }}">
                                 <span
                                     class="h-1.5 w-1.5 rounded-full mr-2
-                            {{ $business->status === 'Pending' ? 'bg-yellow-900' : 'bg-white' }}"></span>
-                                {{ ucfirst($business->status) }}
+                            {{ $BrgyID->status === 'Pending' ? 'bg-yellow-900' : 'bg-white' }}"></span>
+                                {{ ucfirst($BrgyID->status) }}
                             </span>
                         </div>
                     </div>
