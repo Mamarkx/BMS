@@ -16,8 +16,33 @@ class BarangayIDController extends Controller
         return view('AdminSide.viewData.barangay-id', compact('BrgyID'));
     }
 
+    public function UpdateBrgyID(Request $request)
+    {
+        dd($request->all());
+        $record = FormID::where('id', $request->id)->firstOrFail();
 
+        $record->update([
+            'name'              => $request->name,
+            'address'           => $request->address,
+            'dob'               => $request->dob,
+            'age'               => $request->age,
+            'place_of_birth'    => $request->place_of_birth,
+            'civil_status'      => $request->civil_status,
+            'email'             => $request->email,
+            'religion'          => $request->religion,
+            'height'            => $request->height,
+            'weight'            => $request->weight,
+            'amount'            => $request->amount,
+            'gender'            => $request->gender,
+            'citezenship'       => $request->citezenship,
+            'precint_number'    => $request->precint_number,
+            'emergency_name'    => $request->emergency_name,
+            'cellphone_number'  => $request->cellphone_number,
+            'emergency_address' => $request->emergency_address,
+        ]);
 
+        return redirect()->back()->with('success', 'Record updated successfully!');
+    }
     public function approveID(Request $request, $id)
     {
         $document = FormID::find($id);

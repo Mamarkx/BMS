@@ -108,7 +108,7 @@
                     Edit Request Record
                 </h3>
 
-                <form id="editRecordForm" method="POST" action="#" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <form id="editRecordForm" method="POST" action="{{ route('UpdateBrgyID') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
 

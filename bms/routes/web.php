@@ -142,7 +142,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     Route::post('/barangay-id/{id}/approveID', [BarangayIDController::class, 'approveID'])->name('approve.formID');
     Route::post('/barangay-id/{id}', [BarangayIDController::class, 'scheduleReleaseID'])->name('schedule.releaseID');
     Route::get('/barangay-id/{id}', [BarangayIDController::class, 'ShowBarangayID'])->name('barangayID.show');
-
+    Route::post('/update/barangay-id', [BarangayIDController::class, 'UpdateBrgyID'])->name('UpdateBrgyID');
 
 
 
