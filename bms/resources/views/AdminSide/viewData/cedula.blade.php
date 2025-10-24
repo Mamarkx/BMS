@@ -60,11 +60,6 @@
                             </div>
 
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Gender:</dt>
-                                <dd class="text-right font-medium text-gray-800">{{ $cedula->gender ?? 'N/A' }}</dd>
-                            </div>
-
-                            <div class="flex justify-between border-b border-gray-100 pb-2">
                                 <dt class="font-medium text-gray-500">Civil Status:</dt>
                                 <dd class="text-right font-medium text-gray-800">{{ $cedula->civil_status }}</dd>
                             </div>
