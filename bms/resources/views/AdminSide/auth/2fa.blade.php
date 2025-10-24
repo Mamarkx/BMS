@@ -87,22 +87,15 @@
 
 
                 <!-- Actions -->
-                <div class="mt-4 flex flex-col gap-3">
-                    <form action="{{ route('resend.otp') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                <form action="{{ route('resend.otp') }}" method="POST">
+                    @csrf
+                    <button type="submit"
+                        class="w-full py-3 px-4 border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 text-gray-700 hover:text-blue-700 font-medium rounded-xl flex items-center justify-center gap-2 transition duration-200">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Resend Verification Code</span>
+                    </button>
+                </form>
 
-                        <button type="submit"
-                            class="w-full py-3 px-4 border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 text-gray-700 hover:text-blue-700 font-medium rounded-xl flex items-center justify-center gap-2 transition duration-200">
-                            <i class="fa-solid fa-rotate-right"></i>
-                            <span>Resend Verification Code</span>
-                        </button>
-                    </form>
-                    <a href="{{ route('LoginAdmin') }}"
-                        class="w-full py-3 px-4 text-center border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 text-gray-700 hover:text-blue-700 font-medium rounded-xl transition duration-200">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> Back to Login
-                    </a>
-                </div>
 
             </div>
 
