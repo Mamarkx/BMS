@@ -6,7 +6,7 @@
             <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
 
                 <!-- Header -->
-                <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-6 py-8">
+                {{-- <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-6 py-8">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
                             <h2 class="text-2xl lg:text-3xl font-bold text-white">{{ $BrgyID->type }} Request</h2>
@@ -36,7 +36,7 @@
                             {{ ucfirst($BrgyID->status) }}
                         </span>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Quick Stats -->
                 <div class="px-6 py-5 border-b bg-gradient-to-r from-gray-50 to-white">
