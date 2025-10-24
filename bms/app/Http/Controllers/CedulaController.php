@@ -41,7 +41,7 @@ class CedulaController extends Controller
     }
 
 
-    public function DeleteCedula($id)
+    public function DeleteCedulaForm($id)
     {
         $record = Cedula::find($id);
 
