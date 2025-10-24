@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announce;
 use App\Models\Cedula;
 use App\Models\FormID;
-use App\Models\Announce;
 use App\Models\GeneralForm;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManager;
 use App\Models\BusinessPermit;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -222,7 +221,7 @@ class ServiceController extends Controller
             ->with('success', 'Barangay ID Application submitted successfully! Reference No: ' . $application->reference_number);
     }
 
-    public function submitCedula(Request $request, $service_slug, ImageManager $manager)
+    public function submitCedula(Request $request, $service_slug)
     {
         $request->validate([
             'dob' => 'required|date',
@@ -233,40 +232,63 @@ class ServiceController extends Controller
             'e_signature' => 'required',
         ]);
 
-        // Save ID Proof
+        // Store ID proof
         $idProofPath = $request->file('id_proof')->store('documents/id_proofs', 'public');
 
-        // Handle Signature (with white background)
+        // Handle e-signature
         if ($request->hasFile('e_signature')) {
-            $image = $manager->read($request->file('e_signature')->getPathname());
+            // File upload
+            $signaturePath = $request->file('e_signature')->store('documents/signatures', 'public');
         } elseif (Str::startsWith($request->e_signature, 'data:image')) {
-            $imageData = preg_replace('/^data:image\/\w+;base64,/', '', $request->e_signature);
-            $imageData = str_replace(' ', '+', $imageData);
-            $decoded = base64_decode($imageData);
-            $image = $manager->read($decoded);
+            // Base64 signature
+            $image = $request->e_signature;
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = 'signature_' . time() . '.png';
+
+            // Decode base64
+            $decodedImage = base64_decode($image);
+
+            // Create GD image
+            $img = imagecreatefromstring($decodedImage);
+            if (!$img) {
+                return back()->withErrors(['e_signature' => 'Invalid signature image.']);
+            }
+
+            // Create canvas with white background
+            $width = imagesx($img);
+            $height = imagesy($img);
+            $canvas = imagecreatetruecolor($width, $height);
+            $white = imagecolorallocate($canvas, 255, 255, 255);
+            imagefill($canvas, 0, 0, $white);
+
+            // Copy signature onto white canvas
+            imagecopy($canvas, $img, 0, 0, 0, 0, $width, $height);
+
+            // Save to storage
+            $savePath = storage_path('app/public/documents/signatures/' . $imageName);
+            imagepng($canvas, $savePath);
+
+            // Free memory
+            imagedestroy($img);
+            imagedestroy($canvas);
+
+            $signaturePath = 'documents/signatures/' . $imageName;
         } else {
             return back()->withErrors(['e_signature' => 'Invalid signature format.']);
         }
 
-        // Force white background behind signature
-        $whiteBg = $manager->create($image->width(), $image->height(), 'ffffff');
-        $whiteBg->place($image);
-
-        $signatureName = 'signature_' . time() . '.png';
-        $signaturePath = 'documents/signatures/' . $signatureName;
-        Storage::disk('public')->put($signaturePath, (string) $whiteBg->encode('png'));
-
-        // Determine amount
+        // Amount based on service
         $amount = strtolower($service_slug) === 'cedula' ? 50 : 0;
 
-        // Create Cedula record
+        // Create Cedula application
         $application = Cedula::create([
             'user_id' => Auth::id(),
             'reference_number' => Str::random(10),
             'name' => Auth::user()->first_name . ' ' . Auth::user()->last_name,
             'address' => Auth::user()->address,
             'tin' => $request->tin,
-            'citezenship' => $request->citizenship,
+            'citizenship' => $request->citizenship,
             'civil_status' => $request->civil_status,
             'dob' => $request->dob,
             'place_of_birth' => $request->place_of_birth,
@@ -288,7 +310,6 @@ class ServiceController extends Controller
         return redirect()->route('Services')
             ->with('success', 'Cedula Application submitted successfully! Reference No: ' . $application->reference_number);
     }
-
 
     public function submitpermit(Request $request, $service_slug)
     {
