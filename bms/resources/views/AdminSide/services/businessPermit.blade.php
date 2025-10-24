@@ -132,47 +132,52 @@
                     <i class="fa-solid fa-briefcase-pen text-green-600"></i>
                     Edit Business Record
                 </h3>
-
                 <form id="editRecordForm" method="POST" action="{{ route('UpdateBusiness') }}"
-                    class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
 
-                    <div>
+                    <!-- Owner Name -->
+                    <div class="col-span-1">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Owner Name</label>
                         <input type="text" id="edit_name_owner" name="name_owner"
                             class="input input-bordered w-full">
                     </div>
 
-                    <div>
+                    <!-- Business Name -->
+                    <div class="col-span-1">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Business Name</label>
                         <input type="text" id="edit_name_business" name="name_business"
                             class="input input-bordered w-full">
                     </div>
 
-                    <div class="col-span-2">
+                    <!-- Business Address -->
+                    <div class="col-span-1 md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Business Address</label>
-                        <textarea id="edit_address_business" name="address_business" class="textarea textarea-bordered w-full h-24 resize-none"></textarea>
+                        <textarea id="edit_address_business" name="address_business"
+                            class="textarea textarea-bordered w-full h-24 resize-none"></textarea>
                     </div>
 
-
-                    <div class="col-span-2">
+                    <!-- Email -->
+                    <div class="col-span-1 md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
                         <input type="email" id="edit_email" name="email" class="input input-bordered w-full">
                     </div>
 
-                    <div>
+                    <!-- Purpose -->
+                    <div class="col-span-1">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Purpose</label>
                         <input type="text" id="edit_purpose" name="purpose" class="input input-bordered w-full">
                     </div>
 
-                    <div>
+                    <!-- Amount -->
+                    <div class="col-span-1">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Amount</label>
                         <input type="number" id="edit_amount" name="amount" class="input input-bordered w-full">
                     </div>
 
-
-                    <div class="modal-action col-span-2">
+                    <!-- Actions -->
+                    <div class="col-span-1 md:col-span-2 flex justify-end gap-4 mt-4">
                         <button type="button" class="btn bg-gray-200 hover:bg-gray-300"
                             onclick="editRecordModal.close()">Cancel</button>
                         <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white">
