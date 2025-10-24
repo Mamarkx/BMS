@@ -183,7 +183,7 @@
                                     Name *</label>
                                 <input type="text" id="first_name" name="first_name"
                                     class="w-full placeholder:text-gray-400  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                                    placeholder="Your First Name" required>
+                                    placeholder="Juan" required>
                             </div>
 
                             <div>
@@ -322,7 +322,7 @@
                                     class="block text-sm font-semibold text-gray-700 mb-2">Emergency Contact
                                     Name</label>
                                 <input type="text" id="emergency_contact" name="emergency_contact"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full px-4 placeholder:text-gray-400  py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="Maria Dela Cruz">
                             </div>
 
@@ -331,7 +331,7 @@
                                     class="block text-sm font-semibold text-gray-700 mb-2">Emergency Contact
                                     Number</label>
                                 <input type="text" id="emergency_number" name="emergency_number"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    class="w-full px-4 placeholder:text-gray-400 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     placeholder="09123456789">
                             </div>
                         </div>
