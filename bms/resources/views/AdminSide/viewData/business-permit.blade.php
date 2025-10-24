@@ -92,9 +92,8 @@
                 <div class="lg:col-span-1 space-y-6">
                     <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200">
                         <h5 class="font-semibold text-gray-900 mb-4 text-lg flex items-center gap-2">
-                            <i class="fas fa-home text-indigo-600"></i>
+                            <i class="fas fa-id-card text-indigo-600"></i>
                             ID Proof
-                        </h5>roof
                         </h5>
                         <div x-data="{ open: false }">
                             @if ($business->id_proof)
@@ -110,11 +109,14 @@
                                     class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
                                     @click.away="open = false" @keydown.escape.window="open = false">
                                     <div class="relative max-w-full max-h-full">
-                                        <button
-                                            class="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-200 transition"
-                                            @click="open = false">
-                                            &times;
-                                        </button>
+                                        <div class="header bg-white w-ull relative">
+                                            <button
+                                                class="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-200 transition"
+                                                @click="open = false">
+                                                &times;
+                                            </button>
+                                        </div>
+
                                         <img src="{{ asset('storage/' . $business->id_proof) }}"
                                             alt="Full Size ID Proof"
                                             class="max-h-[90vh] max-w-full rounded-lg shadow-2xl border-2 border-white cursor-pointer"
