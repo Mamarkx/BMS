@@ -230,7 +230,7 @@
                                         <div class="relative max-w-full max-h-full border border-gray-400">
                                             <!-- Redesigned Header -->
                                             <div
-                                                class="bg-white w-full px-6 py-4 rounded-t-lg flex items-center justify-between shadow-md border border-gray-400">
+                                                class="bg-white w-full px-6 py-4 flex items-center justify-between shadow-md border border-gray-400">
                                                 <h2 class="text-lg font-semibold text-gray-800">Signature Preview</h2>
                                                 <button @click="open = false"
                                                     class="text-gray-500 hover:text-gray-900 transition text-3xl leading-none">
@@ -241,7 +241,7 @@
                                             <!-- Image -->
                                             <img src="{{ asset('storage/' . $cedula->e_signature) }}"
                                                 alt="Full Size ID Proof"
-                                                class="max-h-[50vh] max-w-full rounded-b-lg shadow-2xl bg-white border-2 border-white cursor-pointer"
+                                                class="max-h-[50vh] max-w-full shadow-2xl bg-white border-2 border-white cursor-pointer"
                                                 onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
                                         </div>
                                     </div>
