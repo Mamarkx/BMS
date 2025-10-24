@@ -153,6 +153,7 @@
                                 <input type="hidden" name="e_signature" id="signature_data">
                             </div>
 
+
                         </div>
                     </div>
 
@@ -190,46 +191,64 @@
             allowInput: true
         });
 
-        const signaturePad = Signature(document.getElementById('signature-root'), {
-            width: document.getElementById('signature-root').offsetWidth,
-            height: 260,
+        const canvas = document.getElementById('signature-root');
+        const signaturePad = Signature(canvas, {
+            width: canvas.offsetWidth,
+            height: 230,
         });
 
         document.getElementById('save-signature').addEventListener('click', () => {
             const imageData = signaturePad.getImage();
-            if (!imageData) return alert('Please draw your signature first.');
-            document.getElementById('signature_data').value = imageData;
-            document.getElementById('upload_signature').value = '';
-            alert('Signature saved!');
-        });
 
-        document.getElementById('upload_signature').addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                signaturePad.value = [];
-                document.getElementById('signature_data').value = '';
+            if (!imageData) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Hold up!',
+                    text: 'Please draw your signature first.',
+                });
+                return;
             }
+
+            document.getElementById('signature_data').value = imageData;
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Signature saved!',
+                showConfirmButton: false,
+                timer: 1200
+            });
         });
 
         document.getElementById('reset-signature').addEventListener('click', () => {
             signaturePad.value = [];
             document.getElementById('signature_data').value = '';
+
+            Swal.fire({
+                icon: 'info',
+                text: 'Signature cleared!',
+                timer: 900,
+                showConfirmButton: false
+            });
         });
 
         $(document).ready(function() {
             $("#previewSummary").click(function() {
-                let sigText = $("#signature_data").val() ? 'Signature drawn' : ($("#upload_signature")[0]
-                    .files.length ? $("#upload_signature")[0].files[0].name : 'No signature provided');
+                let sigText = $("#signature_data").val() ?
+                    'Signature drawn ✅' :
+                    'No signature provided ❌';
+
                 let summaryHtml = `
-            <p><strong>Name:</strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
-            <p><strong>TIN:</strong> ${$("input[name='tin']").val()}</p>
-            <p><strong>Address:</strong> {{ auth()->user()->address }}</p>
-            <p><strong>Citizenship:</strong> ${$("input[name='citizenship']").val()}</p>
-            <p><strong>Civil Status:</strong> ${$("select[name='civil_status']").val()}</p>
-            <p><strong>Date of Birth:</strong> ${$("input[name='dob']").val()}</p>
-            <p><strong>Birth Place:</strong> ${$("input[name='place_of_birth']").val()}</p>
-            <hr>
-            <p><strong>Signature:</strong> ${sigText}</p>
-        `;
+                <p><strong>Name:</strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
+                <p><strong>TIN:</strong> ${$("input[name='tin']").val()}</p>
+                <p><strong>Address:</strong> {{ auth()->user()->address }}</p>
+                <p><strong>Citizenship:</strong> ${$("input[name='citizenship']").val()}</p>
+                <p><strong>Civil Status:</strong> ${$("select[name='civil_status']").val()}</p>
+                <p><strong>Date of Birth:</strong> ${$("input[name='dob']").val()}</p>
+                <p><strong>Birth Place:</strong> ${$("input[name='place_of_birth']").val()}</p>
+                <hr>
+                <p><strong>Signature:</strong> ${sigText}</p>
+            `;
+
                 $("#summaryContent").html(summaryHtml);
                 $("#summaryModal").removeClass("hidden");
             });
@@ -243,4 +262,5 @@
             });
         });
     </script>
+
 </x-layout>
