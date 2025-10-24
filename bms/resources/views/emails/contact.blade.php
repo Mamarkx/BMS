@@ -1,22 +1,26 @@
 <x-mail::message>
-    # 📩 New Contact Message
+    # New Contact Form Submission
 
-    A curious soul has reached out through your website. Here’s the scoop:
-
-    **👤 Name:** {{ $name }}
-    **📧 Email:** {{ $email }}
-    **📝 Subject:** {{ $subjectLine }}
+    A visitor has contacted your website.
 
     ---
 
-    {{ $messageText }}
+    **Full Name:** {{ $name }}
+    **Email Address:** {{ $email }}
+    **Subject:** {{ $subjectLine }}
+
+    ---
+
+    **Message:**
+
+    > {{ $messageText }}
 
     ---
 
     <x-mail::button :url="'mailto:' . $email">
-        Reply to {{ $name }}
+        Respond to Message
     </x-mail::button>
 
-    Kind regards,
+    Thank you,
     {{ config('app.name') }}
 </x-mail::message>
