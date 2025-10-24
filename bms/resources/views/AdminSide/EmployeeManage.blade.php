@@ -323,7 +323,7 @@
                                     Name</label>
                                 <input type="text" id="emergency_contact" name="emergency_contact"
                                     class="w-full px-4 placeholder:text-gray-400  py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                                    placeholder="Maria Dela Cruz">
+                                    placeholder="Maria Dela Cruz" required>
                             </div>
 
                             <div>
@@ -332,7 +332,7 @@
                                     Number</label>
                                 <input type="text" id="emergency_number" name="emergency_number"
                                     class="w-full px-4 placeholder:text-gray-400 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                                    placeholder="09123456789">
+                                    placeholder="09123456789" required>
                             </div>
                         </div>
                     </div>
