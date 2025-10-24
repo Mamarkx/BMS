@@ -22,7 +22,7 @@ class BusinessController extends Controller
 
     public function UpdateBusinessPermit(Request $request)
     {
-        dd($request->all());
+
         $record = BusinessPermit::where('id', $request->id)->firstOrFail();
 
         $record->update([
