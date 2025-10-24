@@ -17,7 +17,6 @@ class DashboardController extends Controller
         $totalUsers = Resident::count();
         $totalEmpoyees = EmployeeModel::count();
 
-        // Pending Requests
         $pendingBusinessPermit = BusinessPermit::where('status', 'Pending')->count();
         $pendingCedula = Cedula::where('status', 'Pending')->count();
         $pendingFormID = FormID::where('status', 'Pending')->count();
@@ -25,7 +24,6 @@ class DashboardController extends Controller
 
         $totalPending = $pendingBusinessPermit + $pendingCedula + $pendingFormID + $pendingGeneralForm;
 
-        // Done Requests (✅ Fix: previously still counting pending)
         $doneBusinessPermit = BusinessPermit::where('status', 'Approved')->count();
         $doneCedula = Cedula::where('status', 'Approved')->count();
         $doneFormID = FormID::where('status', 'Approved')->count();
@@ -33,7 +31,10 @@ class DashboardController extends Controller
 
         $totalCertificate = $doneBusinessPermit + $doneCedula + $doneFormID + $doneGeneralForm;
 
-        // 📊 Monthly Resident Growth Data
+        $maleEmployees = EmployeeModel::where('gender', 'Male')->count();
+        $femaleEmployees = EmployeeModel::where('gender', 'Female')->count();
+        $otherEmployees = EmployeeModel::whereNotIn('gender', ['Male', 'Female'])->count();
+
         $monthlyData = Resident::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
             ->groupBy('month')
             ->orderBy('month')
@@ -51,7 +52,10 @@ class DashboardController extends Controller
             'totalEmpoyees',
             'totalPending',
             'totalCertificate',
-            'residentsPerMonth'
+            'residentsPerMonth',
+            'maleEmployees',
+            'femaleEmployees',
+            'otherEmployees'
         ));
     }
 }

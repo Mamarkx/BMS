@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="bg-white rounded-2xl border border-gray-300 p-6">
-            <h3 class="text-lg font-semibold text-gray-800">Resident Trend</h3>
+            <h3 class="text-lg font-semibold text-gray-800">Resident Trends</h3>
             <div class="mt-4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
                 <canvas id="headcountTrendChart"></canvas>
             </div>
@@ -81,29 +81,28 @@
                 labels: ['Male', 'Female', 'Other'],
                 datasets: [{
                     label: 'Employee Demographics',
-                    data: [60, 35, 5],
-                    backgroundColor: ['#4CAF50', '#FF9800', '#2196F3'],
-                    borderColor: ['#fff', '#fff', '#fff'],
-                    borderWidth: 1
+                    data: [{{ $maleEmployees }}, {{ $femaleEmployees }}, {{ $otherEmployees }}],
+                    backgroundColor: ['#60A5FA', '#F472B6', '#A78BFA'],
+                    borderColor: '#fff',
+                    borderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top',
+                        position: 'top'
                     },
                     tooltip: {
                         callbacks: {
                             label: function(tooltipItem) {
-                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
                             }
                         }
                     }
                 }
             }
         });
-
         var ctx = document.getElementById('headcountTrendChart').getContext('2d');
         var residentGrowthChart = new Chart(ctx, {
             type: 'line',
