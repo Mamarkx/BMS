@@ -201,7 +201,7 @@
 
 
             </nav>
-            <main class="h-screen md:h-auto p-6">
+            <main class="h-screen md:h-auto ">
                 {{ $slot }}
             </main>
         </div>
