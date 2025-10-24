@@ -22,16 +22,27 @@ class DashboardController extends Controller
         $pendingFormID = FormID::where('status', 'Pending')->count();
         $pendingGeneralForm = GeneralForm::where('status', 'Pending')->count();
 
+        $doneBusinessPermit = BusinessPermit::where('status', 'Pending')->count();
+        $doneCedula = Cedula::where('status', 'Pending')->count();
+        $doneFormID = FormID::where('status', 'Pending')->count();
+        $doneGeneralForm = GeneralForm::where('status', 'Pending')->count();
         $totalPending =
             $pendingBusinessPermit +
             $pendingCedula +
             $pendingFormID +
             $pendingGeneralForm;
 
+        $totalCertificate =
+            $doneBusinessPermit +
+            $doneCedula +
+            $doneFormID +
+            $doneGeneralForm;
+
         return view('AdminSide.Admin', compact(
             'totalUsers',
             'totalEmpoyees',
-            'totalPending'
+            'totalPending',
+            'totalCertificate'
         ));
     }
 }
