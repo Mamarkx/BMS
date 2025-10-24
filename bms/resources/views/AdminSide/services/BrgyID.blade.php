@@ -49,9 +49,17 @@
                                     <i class="fa-solid fa-pen-to-square text-lg mb-1"></i>
                                     <span class="text-xs font-semibold">Edit</span>
                                 </button>
-                                <button class="text-red-600 hover:text-red-800"
-                                    onclick="deleteRecord({{ $d->id }})"><i
-                                        class="fa-solid fa-trash"></i></button>
+                                <form id="deleteForm_{{ $d->id }}" action="{{ route('DeleteBrgyID', $d->id) }}"
+                                    method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button"
+                                        class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-800 transition duration-200 delete-btn"
+                                        data-id="{{ $d->id }}" title="Delete Record">
+                                        <i class="fa-solid fa-trash text-lg mb-1"></i>
+                                        <span class="text-xs font-semibold">Delete</span>
+                                    </button>
+                                </form>
 
                                 <form id="approveForm{{ $d->id }}"
                                     action="{{ route('approve.formID', $d->id) }}" method="POST">@csrf</form>
@@ -108,7 +116,8 @@
                     Edit Request Record
                 </h3>
 
-                <form id="editRecordForm" method="POST" action="{{ route('UpdateBrgyID') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <form id="editRecordForm" method="POST" action="{{ route('UpdateBrgyID') }}"
+                    class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     @csrf
                     <input type="hidden" id="edit_id" name="id">
 
@@ -267,8 +276,6 @@
             });
         </script>
     </div>
-
-    <!-- Scripts -->
     @if (session('success'))
         <script>
             Swal.fire({
@@ -279,12 +286,23 @@
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
-                iconColor: '#ffffff',
-                background: '#22c55e',
-                color: '#ffffff'
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                background: '#ffffff',
+                color: '#16a34a', // green text
             });
         </script>
+
+        <style>
+            .colored-toast {
+                border-left: 6px solid #16a34a !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding-left: 12px !important;
+            }
+        </style>
     @endif
+
 
     <script>
         function showApprovalConfirmation(id) {
@@ -309,5 +327,31 @@
         function closeReleaseModal() {
             document.getElementById('releaseModal').classList.add('hidden');
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').on('click', function() {
+                const id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This employee record will be permanently deleted!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6b7280',
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'Cancel',
+                    background: '#fff',
+                    color: '#333',
+                    customClass: {
+                        popup: 'rounded-2xl shadow-2xl'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deleteForm_' + id).submit();
+                    }
+                });
+            });
+        });
     </script>
 </x-admin-layout>

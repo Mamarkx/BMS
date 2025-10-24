@@ -43,6 +43,18 @@ class BarangayIDController extends Controller
 
         return redirect()->back()->with('success', 'Record updated successfully!');
     }
+    public function DeleteBrgyID($id)
+    {
+        $record = FormID::find($id);
+
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found.');
+        }
+
+        $record->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully!');
+    }
     public function approveID(Request $request, $id)
     {
         $document = FormID::find($id);
