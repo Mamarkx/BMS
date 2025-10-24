@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="h-screen overflow-y-auto bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
 
             <!-- Header Section -->
@@ -134,21 +134,23 @@
                     <div
                         class="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
                         <div
-                            class="bg-gradient-to-r from-{{ $section['color'] }}-600 to-{{ $section['color'] }}-700 px-4 sm:px-6 py-4">
+                            class="bg-gradient-to-r from-{{ $section['color'] }}-600 to-{{ $section['color'] }}-700 px-4 sm:px-6 py-4 overflow-hidden">
                             <h3 class="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-white">
                                 <div
-                                    class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm">
+                                    class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm flex-shrink-0">
                                     <i class="{{ $section['icon'] }} text-sm sm:text-base"></i>
                                 </div>
-                                <span>{{ $section['title'] }}</span>
+                                <span class="truncate">{{ $section['title'] }}</span>
                             </h3>
                         </div>
                         <div class="p-4 sm:p-6 space-y-3">
                             @foreach ($section['data'] as $label => $value)
                                 <div
                                     class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-2 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
-                                    <dt class="text-xs sm:text-sm text-gray-600 font-semibold">{{ $label }}</dt>
-                                    <dd class="text-xs sm:text-sm text-gray-900 font-bold sm:text-right break-words">
+                                    <dt class="text-xs sm:text-sm text-gray-600 font-semibold flex-shrink-0">
+                                        {{ $label }}</dt>
+                                    <dd
+                                        class="text-xs sm:text-sm text-gray-900 font-bold sm:text-right break-words overflow-hidden">
                                         {{ $value }}</dd>
                                 </div>
                             @endforeach
@@ -162,10 +164,10 @@
                     <div class="bg-gradient-to-r from-rose-600 to-rose-700 px-4 sm:px-6 py-4">
                         <h3 class="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-white">
                             <div
-                                class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm">
+                                class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm flex-shrink-0">
                                 <i class="fas fa-phone-alt text-sm sm:text-base"></i>
                             </div>
-                            <span>Emergency Contact</span>
+                            <span class="truncate">Emergency Contact</span>
                         </h3>
                     </div>
                     <div class="p-4 sm:p-6 space-y-3">
@@ -176,8 +178,10 @@
     ] as $label => $value)
                             <div
                                 class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-2 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
-                                <dt class="text-xs sm:text-sm text-gray-600 font-semibold">{{ $label }}</dt>
-                                <dd class="text-xs sm:text-sm text-gray-900 font-bold sm:text-right break-words">
+                                <dt class="text-xs sm:text-sm text-gray-600 font-semibold flex-shrink-0">
+                                    {{ $label }}</dt>
+                                <dd
+                                    class="text-xs sm:text-sm text-gray-900 font-bold sm:text-right break-words overflow-hidden">
                                     {{ $value }}</dd>
                             </div>
                         @endforeach
@@ -187,13 +191,13 @@
                 <!-- ID Proof Card -->
                 <div
                     class="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group lg:col-span-2">
-                    <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 px-4 sm:px-6 py-4">
+                    <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 px-4 sm:px-6 py-4 overflow-hidden">
                         <h3 class="flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-bold text-white">
                             <div
-                                class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm">
+                                class="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg backdrop-blur-sm flex-shrink-0">
                                 <i class="fas fa-id-card text-sm sm:text-base"></i>
                             </div>
-                            <span>ID Proof Document</span>
+                            <span class="truncate">ID Proof Document</span>
                         </h3>
                     </div>
 
@@ -201,7 +205,7 @@
                         @if ($BrgyID->id_proof)
                             <div class="space-y-4">
                                 <div
-                                    class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-4 sm:p-6 border-2 border-dashed border-indigo-200">
+                                    class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-4 sm:p-6 border-2 border-dashed border-indigo-200 overflow-hidden">
                                     <div class="flex flex-col sm:flex-row items-center gap-4">
                                         <div class="flex-shrink-0">
                                             <div
@@ -209,7 +213,7 @@
                                                 <i class="fas fa-file-image text-2xl sm:text-3xl text-white"></i>
                                             </div>
                                         </div>
-                                        <div class="flex-1 text-center sm:text-left">
+                                        <div class="flex-1 text-center sm:text-left min-w-0">
                                             <p class="text-sm sm:text-base font-bold text-gray-900 mb-1">ID Document
                                                 Uploaded</p>
                                             <p class="text-xs sm:text-sm text-gray-600">Click the button below to view
