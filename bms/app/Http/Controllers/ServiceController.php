@@ -265,7 +265,7 @@ class ServiceController extends Controller
             'total_gross_receipt_fr_business' => $request->total_gross_receipt_fr_business,
             'total_earning_fr_salaries' => $request->total_earning_fr_salaries,
             'total_income_fr_realproperty' => $request->total_income_fr_realproperty,
-            'e-signature' => $signaturePath,
+            'e_signature' => $signaturePath,
             'email' => Auth::user()->email,
             'type' => $service_slug,
             'purpose' => 'Cedula Application',
