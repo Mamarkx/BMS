@@ -7,9 +7,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserManagement;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CedulaController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\BusinessController;
 
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\EmployeeManagement;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResidentInformation;
@@ -46,6 +47,8 @@ Route::get('/contact', function () {
     return view('website.Contact');
 })->name('Contact');
 
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
 //E-services
 Route::get('/login', [AuthController::class, "ShowLogin"])->name('loginPage');
 Route::get('/register', [AuthController::class, 'ShowRegister'])->name('RegisterPage');
@@ -66,6 +69,8 @@ Route::middleware('CheckUser')->group(function () {
     // Route for viewing applications
     Route::get('/applications', [ApplicationController::class, 'showApplications'])->name('applications');
 });
+
+
 
 
 
