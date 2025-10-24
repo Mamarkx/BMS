@@ -104,7 +104,7 @@ class AdminController extends Controller
     }
     public function ShowAdminProfile()
     {
-        $admin = Auth::user();
-        return view('AdminSide.admin-profile', compact('admin'));
+        $user = Auth::user();
+        return view('AdminSide.admin-profile', compact('user'));
     }
 }
