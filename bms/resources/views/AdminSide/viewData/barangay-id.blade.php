@@ -219,24 +219,6 @@
 
                         @if ($BrgyID->id_proof)
                             <div class="space-y-4">
-                                <div
-                                    class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-4 sm:p-6 border-2 border-dashed border-indigo-200 overflow-hidden">
-                                    <div class="flex flex-col sm:flex-row items-center gap-4">
-                                        <div class="flex-shrink-0">
-                                            <div
-                                                class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                                                <i class="fas fa-file-image text-2xl sm:text-3xl text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 text-center sm:text-left min-w-0">
-                                            <p class="text-sm sm:text-base font-bold text-gray-900 mb-1">ID Document
-                                                Uploaded</p>
-                                            <p class="text-xs sm:text-sm text-gray-600">Click the button below to view
-                                                the uploaded identification</p>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <button @click="idModal = true"
                                     class="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-xl font-bold text-sm sm:text-base hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group">
                                     <i class="fas fa-eye group-hover:scale-110 transition-transform duration-200"></i>
