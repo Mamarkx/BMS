@@ -90,7 +90,7 @@
                     </div>
 
                     <!-- Application Info -->
-                    <div class="bg-white rounded-xl shadow-sm p-6 border">
+                    {{-- <div class="bg-white rounded-xl shadow-sm p-6 border">
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center">
                                 <i class="fas fa-file-alt text-white"></i>
@@ -112,7 +112,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Additional Info -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border">
