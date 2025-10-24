@@ -20,29 +20,46 @@ class AdminController extends Controller
             'password' => 'required|string',
         ]);
 
+        // Check if user exists
         $user = \App\Models\User::where('email', $request->email)->first();
 
         if (!$user) {
-            return back()->with('error', 'No account found with that email address.')->onlyInput('email');
+            return back()->withErrors(['email' => 'No account found with that email address.'])->onlyInput('email');
         }
 
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->with('error', 'Incorrect password.')->onlyInput('email');
+        // Check password
+        if (Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['password' => 'Incorrect password.'])->onlyInput('email');
         }
+
+        // Check role
         if (!in_array($user->role, ['Admin', 'Super Admin'])) {
-            return back()->with('error', 'Access denied. Only Admin and Super Admin can login.');
+            return back()->withErrors(['email' => 'Access denied. Only Admin and Super Admin can login.'])->onlyInput('email');
         }
 
+        // Passed all checks — proceed with login
         Auth::login($user);
+
+        // Remove old 2FA codes
         TwoFactorCode::where('user_id', $user->id)->delete();
+
+        // Generate new code
         $code = rand(100000, 999999);
+
+        // Store code
         TwoFactorCode::create([
             'user_id' => $user->id,
             'code' => $code,
             'expires_at' => now()->addMinutes(10),
         ]);
+
+        // Send 2FA email
         Mail::to($user->email)->send(new TwoFactorCodeMail($user, $code));
+
+        // Log out until verified
         Auth::logout();
+
+        // Save user ID for 2FA verification
         $request->session()->put('2fa:user:id', $user->id);
 
         return redirect()->route('admin.2fa.form');
