@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="bg-white rounded-2xl border border-gray-300 p-6">
-            <h3 class="text-lg font-semibold text-gray-800">Headcount Trend</h3>
+            <h3 class="text-lg font-semibold text-gray-800">Resident Trend</h3>
             <div class="mt-4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
                 <canvas id="headcountTrendChart"></canvas>
             </div>
@@ -105,32 +105,27 @@
         });
 
         var ctx = document.getElementById('headcountTrendChart').getContext('2d');
-        var headcountTrendChart = new Chart(ctx, {
+        var residentGrowthChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'Headcount Trend',
-                    data: [120, 1250, 1300, 130, 1300, 1350],
-                    fill: false,
-                    borderColor: '#4CAF50',
+                    label: 'Residents Added Per Month',
+                    data: @json($residentsPerMonth),
+                    fill: true,
+                    borderColor: '#2563EB',
+                    backgroundColor: 'rgba(37, 99, 235, 0.15)',
                     borderWidth: 2,
-                    tension: 0.1
+                    tension: 0.25,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#1D4ED8'
                 }]
             },
             options: {
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 100
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
+                        beginAtZero: true
                     }
                 }
             }
