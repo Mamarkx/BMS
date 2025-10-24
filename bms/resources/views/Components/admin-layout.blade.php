@@ -29,7 +29,7 @@
     <div class="flex h-auto w-full">
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="fixed md:static h-auto bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
+            class="fixed md:static h-full bg-[#15399b] text-white w-72 -ml-72 lg:ml-0 flex flex-col justify-between z-50">
             <div>
                 <!-- Brand and Close Button -->
                 <div class="flex items-center justify-between mb-2 px-6 border-b border-white/40">
