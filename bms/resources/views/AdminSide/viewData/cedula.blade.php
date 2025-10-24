@@ -241,7 +241,7 @@
                                             <!-- Image -->
                                             <img src="{{ asset('storage/' . $cedula->e_signature) }}"
                                                 alt="Full Size ID Proof"
-                                                class="max-h-[50vh] max-w-full rounded-b-lg shadow-2xl border-2 border-white cursor-pointer"
+                                                class="max-h-[50vh] max-w-full rounded-b-lg shadow-2xl bg-white border-2 border-white cursor-pointer"
                                                 onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
                                         </div>
                                     </div>
