@@ -18,21 +18,21 @@
             <div
                 class="bg-gradient-to-br from-indigo-500 to-blue-600 text-white px-6 py-6 sm:py-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="flex-1">
-                    <h4 class="text-2xl font-bold">{{ $business->type }} Request</h4>
+                    <h4 class="text-2xl font-bold">{{ $BrgyID->type }} Request</h4>
                     <p class="text-sm opacity-90 font-medium mt-1">Reference No: <span
-                            class="font-light">{{ $business->reference_number }}</span></p>
+                            class="font-light">{{ $BrgyID->reference_number }}</span></p>
                 </div>
                 <div class="flex items-center gap-4 mt-2 sm:mt-0">
                     <span
                         class="inline-flex items-center rounded-full px-4 py-1 text-sm font-semibold shadow-sm
-                        {{ $business->status === 'Pending' ? 'bg-yellow-300 text-yellow-900' : '' }}
-                        {{ $business->status === 'Approved' ? 'bg-green-500 text-white' : '' }}
-                        {{ $business->status === 'To be Release' ? 'bg-gray-600 text-white' : '' }}
-                        {{ $business->status === 'Released' ? 'bg-blue-600 text-white' : '' }}">
+                        {{ $BrgyID->status === 'Pending' ? 'bg-yellow-300 text-yellow-900' : '' }}
+                        {{ $BrgyID->status === 'Approved' ? 'bg-green-500 text-white' : '' }}
+                        {{ $BrgyID->status === 'To be Release' ? 'bg-gray-600 text-white' : '' }}
+                        {{ $BrgyID->status === 'Released' ? 'bg-blue-600 text-white' : '' }}">
                         <span
                             class="h-1.5 w-1.5 rounded-full mr-2
-                            {{ $business->status === 'Pending' ? 'bg-yellow-900' : 'bg-white' }}"></span>
-                        {{ ucfirst($business->status) }}
+                            {{ $BrgyID->status === 'Pending' ? 'bg-yellow-900' : 'bg-white' }}"></span>
+                        {{ ucfirst($BrgyID->status) }}
                     </span>
                 </div>
             </div>
@@ -47,20 +47,36 @@
                         </h5>
                         <dl class="space-y-3 text-sm">
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Owner Name:</dt>
-                                <dd class="text-right font-medium text-gray-800">{{ $business->name_owner }} </dd>
+                                <dt class="font-medium text-gray-500">Reference No:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $BrgyID->reference_number }}</dd>
                             </div>
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Business Name:</dt>
-                                <dd class="text-right font-medium text-gray-800">{{ $business->name_business }} </dd>
+                                <dt class="font-medium text-gray-500">Full Name:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $BrgyID->name }}</dd>
                             </div>
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Business Address :</dt>
-                                <dd class="text-right">{{ $business->address_business }}</dd>
+                                <dt class="font-medium text-gray-500">Address:</dt>
+                                <dd class="text-right">{{ $BrgyID->address }}</dd>
                             </div>
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Email :</dt>
-                                <dd class="text-right">{{ $business->email }}</dd>
+                                <dt class="font-medium text-gray-500">Date of Birth:</dt>
+                                <dd class="text-right">{{ $BrgyID->dob }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Age:</dt>
+                                <dd class="text-right">{{ $BrgyID->age }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Place of Birth:</dt>
+                                <dd class="text-right">{{ $BrgyID->place_of_birth }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Civil Status:</dt>
+                                <dd class="text-right">{{ $BrgyID->civil_status }}</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="font-medium text-gray-500">Gender:</dt>
+                                <dd class="text-right">{{ $BrgyID->gender }}</dd>
                             </div>
                         </dl>
                     </div>
@@ -70,24 +86,79 @@
                     <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200">
                         <h5 class="font-semibold text-gray-900 mb-4 text-lg flex items-center gap-2">
                             <i class="fas fa-file-alt text-indigo-600"></i>
-                            Application & Contact
+                            Application Details
                         </h5>
                         <dl class="space-y-3 text-sm">
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Purpose:</dt>
-                                <dd class="text-right font-medium text-gray-800">{{ $business->purpose }}</dd>
+                                <dt class="font-medium text-gray-500">Type:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $BrgyID->type }}</dd>
                             </div>
                             <div class="flex justify-between border-b border-gray-100 pb-2">
-                                <dt class="font-medium text-gray-500">Amount:</dt>
-                                <dd class="text-right">₱{{ number_format($business->amount, 2) }}</dd>
+                                <dt class="font-medium text-gray-500">Purpose:</dt>
+                                <dd class="text-right">{{ $BrgyID->purpose }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Status:</dt>
+                                <dd class="text-right">{{ $BrgyID->status }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Issue Date:</dt>
+                                <dd class="text-right">{{ $BrgyID->issue_date ?? 'Not Issued' }}</dd>
                             </div>
                             <div class="flex justify-between">
-                                <dt class="font-medium text-gray-500">Issue Date:</dt>
-                                <dd class="text-right">{{ $business->issue_date ?? 'Not Issued' }}</dd>
+                                <dt class="font-medium text-gray-500">Amount:</dt>
+                                <dd class="text-right">₱{{ number_format($BrgyID->amount, 2) }}</dd>
                             </div>
                         </dl>
                     </div>
                 </div>
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <h5 class="font-semibold text-gray-900 mb-4 text-lg flex items-center gap-2">
+                            <i class="fas fa-address-card text-indigo-600"></i>
+                            Additional Information
+                        </h5>
+                        <dl class="space-y-3 text-sm">
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Religion:</dt>
+                                <dd class="text-right">{{ $BrgyID->religion }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Citizenship:</dt>
+                                <dd class="text-right">{{ $BrgyID->citezenship }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Height:</dt>
+                                <dd class="text-right">{{ $BrgyID->height }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Weight:</dt>
+                                <dd class="text-right">{{ $BrgyID->weight }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">ID Proof:</dt>
+                                <dd class="text-right">{{ $BrgyID->id_proof }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Precinct No:</dt>
+                                <dd class="text-right">{{ $BrgyID->precint_number }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Emergency Contact:</dt>
+                                <dd class="text-right">{{ $BrgyID->emergency_name }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Emergency Phone:</dt>
+                                <dd class="text-right">{{ $BrgyID->cellphone_number }}</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="font-medium text-gray-500">Emergency Address:</dt>
+                                <dd class="text-right">{{ $BrgyID->emergency_address }}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
 
                 <div class="lg:col-span-1 space-y-6">
                     <div class="p-6 bg-white rounded-xl shadow-sm border border-gray-200">
