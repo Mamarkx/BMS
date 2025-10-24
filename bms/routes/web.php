@@ -99,9 +99,9 @@ Route::post('/admin/2fa', [AdminController::class, 'verify2fa'])->name('admin.2f
 Route::middleware(['admin', 'preventBackHistory'])->group(function () {
 
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('AdminSide.Admin');
-    })->name('dash');
+    // Route::get('/dashboard', function () {
+    //     return view('AdminSide.Admin');
+    // })->name('dash');
     Route::get('/dashboard', [DashboardController::class, 'ShowDashboard'])->name('dash');
     // Logout
 
