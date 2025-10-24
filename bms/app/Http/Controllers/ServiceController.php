@@ -223,7 +223,7 @@ class ServiceController extends Controller
 
     public function submitCedula(Request $request, $service_slug)
     {
-        dd($request->all());
+
         $request->validate([
             'dob' => 'required|date',
             'civil_status' => 'required|string',
