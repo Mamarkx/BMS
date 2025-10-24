@@ -45,7 +45,7 @@
             </div>
 
             <div class="mt-10 flex justify-end gap-4">
-                <a href="{{ route('profile.edit') }}"
+                <a href="{{ route('#') }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition">
                     Edit Profile
                 </a>
