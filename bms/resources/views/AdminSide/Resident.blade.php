@@ -1,144 +1,135 @@
 <x-admin-layout>
-    <div class="h-screen bg-gray-50 p-8">
-        <div class="">
-            <!-- Header Section with Search Bar -->
-            <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="space-y-2">
-                    <h1 class="text-4xl font-extrabold text-gray-900">Resident Management</h1>
-                    <p class="text-lg text-gray-600">Manage and track resident information efficiently</p>
-                </div>
-
-                <!-- Search Bar & Add Resident Button -->
-                <div class="flex items-center gap-4">
-                    <!-- Search Bar -->
-                    <div class="relative w-full md:w-96">
-                        <input type="text" id="search" placeholder="Search residents..."
-                            class="w-full p-3 pl-10 pr-4 rounded-xl bg-white text-gray-700 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                            onkeyup="searchResidents()">
-                        <i
-                            class="fa-solid fa-search absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"></i>
-                    </div>
-
-                    <!-- Add New Resident Button -->
-                    <button id="open-modal-btn" onclick="my_modal_1.showModal()"
-                        class="group relative px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
-                        <i class="fa-solid fa-user-plus text-lg"></i>
-                        <span class="font-medium">Add New Resident</span>
-                    </button>
-                </div>
+    <div class="h-screen  p-8">
+        <!-- Header Section with Search Bar -->
+        <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div class="space-y-2">
+                <h1 class="text-4xl font-extrabold text-gray-900">Resident Management</h1>
+                <p class="text-lg text-gray-600">Manage and track resident information efficiently</p>
             </div>
 
-            <!-- Table Card -->
-            <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+            <!-- Search Bar & Add Resident Button -->
+            <div class="flex items-center gap-4">
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="search" placeholder="Search residents..."
+                        class="w-full p-3 pl-10 pr-4 rounded-xl bg-white text-gray-700 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                        onkeyup="searchResidents()">
+                    <i class="fa-solid fa-search absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"></i>
+                </div>
 
-                <!-- Table -->
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-200">
-                            <tr>
-                                <th
-                                    class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    ID</th>
-                                <th
-                                    class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    Full Name</th>
-                                <th
-                                    class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    Gender</th>
-                                <th
-                                    class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    Civil Status</th>
-                                <th
-                                    class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    Birthday</th>
-                                <th
-                                    class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    Status</th>
-                                <th
-                                    class="px-6 py-4 text-center text-sm font-medium text-gray-600 uppercase tracking-wider">
-                                    Actions</th>
+                <!-- Add New Resident Button -->
+                <button id="open-modal-btn" onclick="my_modal_1.showModal()"
+                    class="group relative px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-user-plus text-lg"></i>
+                    <span class="font-medium">Add New Resident</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                ID</th>
+                            <th class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                Full Name</th>
+                            <th class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                Gender</th>
+                            <th class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                Civil Status</th>
+                            <th class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                Birthday</th>
+                            <th class="px-6 py-4 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                Status</th>
+                            <th
+                                class="px-6 py-4 text-center text-sm font-medium text-gray-600 uppercase tracking-wider">
+                                Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200" id="residentTableBody">
+                        @forelse ($residents as $resident)
+                            <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                    {{ $resident->resident_id }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    {{ $resident->first_name }} {{ $resident->middle_name }}
+                                    {{ $resident->last_name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    {{ $resident->sex }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    {{ $resident->civil_status }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    {{ \Carbon\Carbon::parse($resident->birth_date)->format('F j, Y') }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $resident->status == 'Active' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600' }}">
+                                        {{ $resident->status }}
+                                    </span>
+                                </td>
+                                <td class="px-2 py-4 whitespace-nowrap text-center">
+                                    <div class="flex justify-center gap-4">
+                                        <!-- View Button -->
+                                        <button onclick='viewRecord(@json($resident))'
+                                            class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none transition-all duration-200"
+                                            title="View Details">
+                                            <i class="fa-solid fa-eye text-base"></i>
+                                            <span class="text-sm font-medium">View</span>
+                                        </button>
+
+                                        <!-- Edit Button -->
+                                        <button
+                                            class="EditResidentInfo flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none transition-all duration-200"
+                                            data-id="{{ $resident->resident_id }}" title="Edit Information">
+                                            <i class="fa-solid fa-pen-to-square text-base"></i>
+                                            <span class="text-sm font-medium">Edit</span>
+                                        </button>
+
+                                        <!-- Delete Button -->
+                                        <form id="deleteForm_{{ $resident->resident_id }}"
+                                            action="{{ route('DeleteResident', $resident->resident_id) }}"
+                                            method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button"
+                                                class="delete-btn flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none transition-all duration-200"
+                                                title="Delete Resident" data-id="{{ $resident->resident_id }}">
+                                                <i class="fa-solid fa-trash text-base"></i>
+                                                <span class="text-sm font-medium">Delete</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200" id="residentTableBody">
-                            @forelse ($residents as $resident)
-                                <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                        {{ $resident->resident_id }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                        {{ $resident->first_name }} {{ $resident->middle_name }}
-                                        {{ $resident->last_name }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                        {{ $resident->sex }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                        {{ $resident->civil_status }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                        {{ \Carbon\Carbon::parse($resident->birth_date)->format('F j, Y') }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        <span
-                                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $resident->status == 'Active' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600' }}">
-                                            {{ $resident->status }}
-                                        </span>
-                                    </td>
-                                    <td class="px-2 py-4 whitespace-nowrap text-center">
-                                        <div class="flex justify-center gap-4">
-                                            <!-- View Button -->
-                                            <button onclick='viewRecord(@json($resident))'
-                                                class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none transition-all duration-200"
-                                                title="View Details">
-                                                <i class="fa-solid fa-eye text-base"></i>
-                                                <span class="text-sm font-medium">View</span>
-                                            </button>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="px-6 py-6 text-center text-gray-500 text-sm">
+                                    No Resident Found
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
 
-                                            <!-- Edit Button -->
-                                            <button
-                                                class="EditResidentInfo flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none transition-all duration-200"
-                                                data-id="{{ $resident->resident_id }}" title="Edit Information">
-                                                <i class="fa-solid fa-pen-to-square text-base"></i>
-                                                <span class="text-sm font-medium">Edit</span>
-                                            </button>
+            </div>
 
-                                            <!-- Delete Button -->
-                                            <form id="deleteForm_{{ $resident->resident_id }}"
-                                                action="{{ route('DeleteResident', $resident->resident_id) }}"
-                                                method="POST" class="inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button"
-                                                    class="delete-btn flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none transition-all duration-200"
-                                                    title="Delete Resident" data-id="{{ $resident->resident_id }}">
-                                                    <i class="fa-solid fa-trash text-base"></i>
-                                                    <span class="text-sm font-medium">Delete</span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="px-6 py-6 text-center text-gray-500 text-sm">
-                                        No Resident Found
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+            <!-- No Results Found Message -->
+            <div id="noResults" class="px-6 py-4 text-center text-gray-500 hidden">
+                <p>No results found for your search.</p>
+            </div>
 
-                </div>
-
-                <!-- No Results Found Message -->
-                <div id="noResults" class="px-6 py-4 text-center text-gray-500 hidden">
-                    <p>No results found for your search.</p>
-                </div>
-
-                <!-- Pagination -->
-                <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
-                    {{ $residents->links() }}
-                </div>
+            <!-- Pagination -->
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                {{ $residents->links() }}
             </div>
         </div>
     </div>
