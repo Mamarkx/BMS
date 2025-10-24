@@ -133,7 +133,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div id="main-content" class="flex-1 w-full bg-[#F4F4F4]">
+        <div id="main-content" class="flex-1 w-full h-auto bg-[#F4F4F4]">
             <nav class="h-16 bg-white border-b px-4 flex items-center justify-between border-gray-200">
                 <button id="toggle-btn" class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
                     <i class="fa-solid fa-bars text-xl text-stone-900"></i>
