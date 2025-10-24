@@ -21,10 +21,6 @@
         #main-content {
             transition: all 0.3s ease;
         }
-
-        body {
-            overflow-x: hidden;
-        }
     </style>
 
 </head>
