@@ -108,18 +108,22 @@
                                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                                     class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
                                     @click.away="open = false" @keydown.escape.window="open = false">
+
                                     <div class="relative max-w-full max-h-full">
-                                        <div class="header bg-white w-full p-6 relative">
-                                            <button
-                                                class="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-200 transition"
-                                                @click="open = false">
+                                        <!-- Redesigned Header -->
+                                        <div
+                                            class="bg-white w-full px-6 py-4 rounded-t-lg flex items-center justify-between shadow-md">
+                                            <h2 class="text-lg font-semibold text-gray-800">ID Proof Preview</h2>
+                                            <button @click="open = false"
+                                                class="text-gray-500 hover:text-gray-700 transition text-2xl leading-none">
                                                 &times;
                                             </button>
                                         </div>
 
+                                        <!-- Image -->
                                         <img src="{{ asset('storage/' . $business->id_proof) }}"
                                             alt="Full Size ID Proof"
-                                            class="max-h-[90vh] max-w-full rounded-lg shadow-2xl border-2 border-white cursor-pointer"
+                                            class="max-h-[90vh] max-w-full rounded-b-lg shadow-2xl border-2 border-white cursor-pointer"
                                             onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
                                     </div>
                                 </div>
