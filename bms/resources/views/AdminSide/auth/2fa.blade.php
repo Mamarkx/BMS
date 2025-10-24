@@ -115,33 +115,33 @@
 
         </div>
     </div>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                background: '#ffffff',
+                color: '#16a34a', // green text
+            });
+        </script>
+
+        <style>
+            .colored-toast {
+                border-left: 6px solid #16a34a !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding-left: 12px !important;
+            }
+        </style>
+    @endif
 
 </body>
 
 </html>
-@if (session('success'))
-    <script>
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: '{{ session('success') }}',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            customClass: {
-                popup: 'colored-toast'
-            },
-            background: '#ffffff',
-            color: '#16a34a', // green text
-        });
-    </script>
-
-    <style>
-        .colored-toast {
-            border-left: 6px solid #16a34a !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding-left: 12px !important;
-        }
-    </style>
-@endif
