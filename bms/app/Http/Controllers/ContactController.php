@@ -17,7 +17,14 @@ class ContactController extends Controller
             'message' => 'required|string|max:2000',
         ]);
 
-        Mail::to('johnmarkbalacy3@gmail.com')->send(new ContactMail($request));
+        Mail::to('johnmarkbalacy3@gmail.com')->send(
+            new ContactMail(
+                $request->name,
+                $request->email,
+                $request->subject,
+                $request->message
+            )
+        );
 
         return back()->with('success', 'Message sent successfully! We will contact you soon.');
     }

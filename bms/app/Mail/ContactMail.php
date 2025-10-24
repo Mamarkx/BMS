@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
 class ContactMail extends Mailable
@@ -35,7 +36,7 @@ class ContactMail extends Mailable
     {
         return new Envelope(
             subject: $this->subjectLine,
-            from: $this->email
+            from: new Address($this->email, $this->name)
         );
     }
 
