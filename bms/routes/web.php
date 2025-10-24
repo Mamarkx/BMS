@@ -11,6 +11,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BusinessController;
 
 use App\Http\Controllers\EmployeeManagement;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResidentInformation;
 use App\Http\Controllers\BarangayIDController;
 use App\Http\Controllers\SocialAuthController;
@@ -101,7 +102,7 @@ Route::middleware(['admin', 'preventBackHistory'])->group(function () {
     Route::get('/dashboard', function () {
         return view('AdminSide.Admin');
     })->name('dash');
-
+    Route::get('/dashboard', [DashboardController::class, 'ShowDashboard'])->name('dash');
     // Logout
 
 
