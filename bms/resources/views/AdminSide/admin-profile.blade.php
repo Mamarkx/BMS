@@ -45,11 +45,11 @@
             </div>
 
             <div class="mt-10 flex justify-end gap-4">
-                <a href="{{ route('#') }}"
+                <a href="#"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition">
                     Edit Profile
                 </a>
-                <a href="{{ route('password.request') }}"
+                <a href="#"
                     class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2 rounded-lg font-medium transition">
                     Change Password
                 </a>
