@@ -1,77 +1,63 @@
 <x-admin-layout>
 
     <!-- Dashboard Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <x-admin-layout>
 
-        <!-- Total Residents -->
-        <div class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Total Residents</p>
-                <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalUsers }}</h2>
-            </div>
-            <div class="p-3 rounded-full bg-blue-100 text-blue-500">
-                <!-- Users Group -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-3-3.87M7
-                        21v-2a4 4 0 0 1 3-3.87" />
-                    <circle cx="12" cy="7" r="4" />
-                </svg>
-            </div>
-        </div>
+        <!-- Dashboard Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <!-- Barangay Employees -->
-        <div class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Barangay Employees</p>
-                <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalEmpoyees }}</h2>
+            <!-- Total Residents -->
+            <div
+                class="bg-white rounded-xl border border-gray-300 p-6 py-10 flex items-center justify-between shadow-sm hover:shadow-md transition">
+                <div>
+                    <p class="text-gray-500 text-sm">Total Residents</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalUsers }}</h2>
+                </div>
+                <div class="p-3 rounded-full bg-blue-100 text-blue-500">
+                    <i class="fa-solid fa-users text-2xl"></i>
+                </div>
             </div>
-            <div class="p-3 rounded-full bg-green-100 text-green-600">
-                <!-- Shield Badge -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6
-                        8 10 8 10z" />
-                </svg>
-            </div>
-        </div>
 
-        <!-- Pending Requests -->
-        <div class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Pending Requests</p>
-                <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalPending }}</h2>
+            <!-- Barangay Employees -->
+            <div
+                class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between shadow-sm hover:shadow-md transition">
+                <div>
+                    <p class="text-gray-500 text-sm">Barangay Employees</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalEmpoyees }}</h2>
+                </div>
+                <div class="p-3 rounded-full bg-green-100 text-green-500">
+                    <i class="fa-solid fa-user-tie text-2xl"></i>
+                </div>
             </div>
-            <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
-                <!-- Hourglass / Clock -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 6v6l4 2" />
-                </svg>
-            </div>
-        </div>
 
-        <!-- Certificate Issued -->
-        <div class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between">
-            <div>
-                <p class="text-gray-500 text-sm">Certificate Issued</p>
-                <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalCertificate }}</h2>
+            <!-- Pending Requests -->
+            <div
+                class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between shadow-sm hover:shadow-md transition">
+                <div>
+                    <p class="text-gray-500 text-sm">Pending Requests</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalPending }}</h2>
+                </div>
+                <div class="p-3 rounded-full bg-red-100 text-red-500">
+                    <i class="fa-solid fa-hourglass-half text-2xl"></i>
+                </div>
             </div>
-            <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
-                <!-- Document with Check -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2
-                        2v16a2 2 0 0 0 2 2h12a2
-                        2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <path d="M9 15l2 2 4-4" />
-                </svg>
-            </div>
-        </div>
 
-    </section>
+            <!-- Certificates Issued -->
+            <div
+                class="bg-white rounded-xl border border-gray-300 p-6 flex items-center justify-between shadow-sm hover:shadow-md transition">
+                <div>
+                    <p class="text-gray-500 text-sm">Certificate Issued</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-1">{{ $totalCertificate }}</h2>
+                </div>
+                <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
+                    <i class="fa-solid fa-file-circle-check text-2xl"></i>
+                </div>
+            </div>
+
+        </section>
+
+    </x-admin-layout>
+
 
     <!-- Charts and Data Tables -->
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
