@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 overflow-y-auto">
+    <div class="max-w-8xl mx-auto h-screen px-4 sm:px-6 lg:px-8 space-y-8 overflow-y-auto">
 
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
@@ -7,7 +7,7 @@
                 <p class="text-gray-500">View and manage the full details of this request.</p>
             </div>
             <a href="{{ url()->previous() }}"
-               class="inline-flex items-center gap-2 bg-white text-gray-700 font-semibold px-4 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition">
+                class="inline-flex items-center gap-2 bg-white text-gray-700 font-semibold px-4 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition">
                 <i class="fas fa-arrow-left"></i>
                 Back
             </a>
@@ -15,21 +15,25 @@
 
         <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
 
-            <div class="bg-gradient-to-br from-indigo-500 to-blue-600 text-white px-6 py-6 sm:py-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div
+                class="bg-gradient-to-br from-indigo-500 to-blue-600 text-white px-6 py-6 sm:py-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="flex-1">
                     <h4 class="text-2xl font-bold">{{ $form->type }} Request</h4>
-                    <p class="text-sm opacity-90 font-medium mt-1">Reference No: <span class="font-light">{{ $form->reference_number }}</span></p>
+                    <p class="text-sm opacity-90 font-medium mt-1">Reference No: <span
+                            class="font-light">{{ $form->reference_number }}</span></p>
                 </div>
                 <div class="flex items-center gap-4 mt-2 sm:mt-0">
-                    <span class="inline-flex items-center rounded-full px-4 py-1 text-sm font-semibold shadow-sm
+                    <span
+                        class="inline-flex items-center rounded-full px-4 py-1 text-sm font-semibold shadow-sm
                         {{ $form->status === 'Pending' ? 'bg-yellow-300 text-yellow-900' : '' }}
                         {{ $form->status === 'Approved' ? 'bg-green-500 text-white' : '' }}
                         {{ $form->status === 'Released' ? 'bg-blue-600 text-white' : '' }}">
-                        <span class="h-1.5 w-1.5 rounded-full mr-2
+                        <span
+                            class="h-1.5 w-1.5 rounded-full mr-2
                             {{ $form->status === 'Pending' ? 'bg-yellow-900' : 'bg-white' }}"></span>
                         {{ ucfirst($form->status) }}
                     </span>
-                    </div>
+                </div>
             </div>
 
             <div class="px-6 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8 text-gray-700">
@@ -41,13 +45,35 @@
                             Personal Information
                         </h5>
                         <dl class="space-y-3 text-sm">
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">First Name:</dt><dd class="text-right font-medium text-gray-800">{{ $form->first_name }} </dd></div>
-                             <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Middle Name:</dt><dd class="text-right font-medium text-gray-800">{{ $form->middle_name ? $form->middle_name . ' ' : '' }}</dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Last Name:</dt><dd class="text-right font-medium text-gray-800">{{ $form->last_name }} </dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Suffix:</dt><dd class="text-right font-medium text-gray-800">{{ $form->suffix }}</dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Date of Birth:</dt><dd class="text-right">{{ $form->dob }} ({{ $form->age }} yrs)</dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Civil Status:</dt><dd class="text-right">{{ $form->civil_status }}</dd></div>
-                            <div class="flex justify-between"><dt class="font-medium text-gray-500">Place of Birth:</dt><dd class="text-right">{{ $form->place_of_birth }}</dd></div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">First Name:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $form->first_name }} </dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Middle Name:</dt>
+                                <dd class="text-right font-medium text-gray-800">
+                                    {{ $form->middle_name ? $form->middle_name . ' ' : '' }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Last Name:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $form->last_name }} </dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Suffix:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $form->suffix }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Date of Birth:</dt>
+                                <dd class="text-right">{{ $form->dob }} ({{ $form->age }} yrs)</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Civil Status:</dt>
+                                <dd class="text-right">{{ $form->civil_status }}</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="font-medium text-gray-500">Place of Birth:</dt>
+                                <dd class="text-right">{{ $form->place_of_birth }}</dd>
+                            </div>
                         </dl>
                     </div>
                 </div>
@@ -59,11 +85,26 @@
                             Application & Contact
                         </h5>
                         <dl class="space-y-3 text-sm">
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Purpose:</dt><dd class="text-right font-medium text-gray-800">{{ $form->purpose }}</dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Amount:</dt><dd class="text-right">₱{{ number_format($form->amount, 2) }}</dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Email:</dt><dd class="text-right">{{ $form->email }}</dd></div>
-                            <div class="flex justify-between border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Year of Residency:</dt><dd class="text-right">{{ $form->year_of_residency }}</dd></div>
-                            <div class="flex justify-between"><dt class="font-medium text-gray-500">Issue Date:</dt><dd class="text-right">{{ $form->issue_date ?? 'Not Issued' }}</dd></div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Purpose:</dt>
+                                <dd class="text-right font-medium text-gray-800">{{ $form->purpose }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Amount:</dt>
+                                <dd class="text-right">₱{{ number_format($form->amount, 2) }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Email:</dt>
+                                <dd class="text-right">{{ $form->email }}</dd>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Year of Residency:</dt>
+                                <dd class="text-right">{{ $form->year_of_residency }}</dd>
+                            </div>
+                            <div class="flex justify-between">
+                                <dt class="font-medium text-gray-500">Issue Date:</dt>
+                                <dd class="text-right">{{ $form->issue_date ?? 'Not Issued' }}</dd>
+                            </div>
                         </dl>
                     </div>
                 </div>
@@ -75,38 +116,37 @@
                             Address & ID Proof
                         </h5>
                         <dl class="space-y-3 text-sm mb-6">
-                            <div class="border-b border-gray-100 pb-2"><dt class="font-medium text-gray-500">Full Address:</dt><dd class="mt-1 font-medium text-gray-800">{{ $form->address }}</dd></div>
+                            <div class="border-b border-gray-100 pb-2">
+                                <dt class="font-medium text-gray-500">Full Address:</dt>
+                                <dd class="mt-1 font-medium text-gray-800">{{ $form->address }}</dd>
+                            </div>
                         </dl>
                         <h5 class="font-semibold text-gray-900 mb-4 text-lg flex items-center gap-2">
                             <i class="fas fa-id-card text-indigo-600"></i>
                             ID Proof
                         </h5>
                         <div x-data="{ open: false }">
-                            @if($form->id_proof)
+                            @if ($form->id_proof)
                                 <button @click="open = true"
                                     class="w-full px-4 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition font-semibold text-sm">
                                     View Uploaded ID
                                 </button>
 
-                                <div x-show="open"
-                                     x-transition:enter="transition ease-out duration-300"
-                                     x-transition:enter-start="opacity-0"
-                                     x-transition:enter-end="opacity-100"
-                                     x-transition:leave="transition ease-in duration-200"
-                                     x-transition:leave-start="opacity-100"
-                                     x-transition:leave-end="opacity-0"
-                                     class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-                                     @click.away="open = false"
-                                     @keydown.escape.window="open = false">
+                                <div x-show="open" x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                    x-transition:leave="transition ease-in duration-200"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                    class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+                                    @click.away="open = false" @keydown.escape.window="open = false">
                                     <div class="relative max-w-full max-h-full">
-                                        <button class="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-200 transition"
-                                                @click="open = false">
+                                        <button
+                                            class="absolute top-4 right-4 text-white text-3xl font-light hover:text-gray-200 transition"
+                                            @click="open = false">
                                             &times;
                                         </button>
-                                        <img src="{{ asset('storage/'.$form->id_proof) }}"
-                                             alt="Full Size ID Proof"
-                                             class="max-h-[90vh] max-w-full rounded-lg shadow-2xl border-2 border-white cursor-pointer"
-                                             onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
+                                        <img src="{{ asset('storage/' . $form->id_proof) }}" alt="Full Size ID Proof"
+                                            class="max-h-[90vh] max-w-full rounded-lg shadow-2xl border-2 border-white cursor-pointer"
+                                            onclick="this.classList.toggle('object-contain'); this.classList.toggle('object-cover');">
                                     </div>
                                 </div>
                             @else

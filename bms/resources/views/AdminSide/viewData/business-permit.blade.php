@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 overflow-y-auto">
+    <div class="max-w-8xl h-screen mx-auto px-4 sm:px-6 lg:px-8 space-y-8 overflow-y-auto">
 
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
