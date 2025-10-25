@@ -65,7 +65,18 @@
                 @method('PUT')
 
                 <h2 class="text-lg font-semibold text-gray-800 border-b pb-2">Account Settings</h2>
-
+                @if ($errors->any())
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-800 rounded-lg p-4 mb-4">
+                        <ul class="space-y-2 text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li class="flex items-center gap-3 text-base">
+                                    <i class="fa-solid fa-circle-exclamation text-red-600 text-xl"></i>
+                                    <span class="font-medium text-red-800">{{ $error }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-600 mb-1">Email</label>
@@ -132,4 +143,3 @@
         }
     </style>
 @endif
-    
