@@ -322,25 +322,30 @@
     <script>
         function showApprovalConfirmation(id) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you want to approve this document?",
-                icon: 'warning',
+                title: 'Approve Document?',
+                text: "This will mark the document as approved and ready for release.",
+                icon: 'question',
                 showCancelButton: true,
-                confirmButtonText: 'Approve',
+                confirmButtonColor: '#10b981',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Yes, Approve',
                 cancelButtonText: 'Cancel',
-                preConfirm: () => {
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
                     document.getElementById('approveForm' + id).submit();
                 }
             });
         }
 
         function openReleaseModal(id) {
-            document.getElementById('releaseForm').action = '/barangay-id/' + id;
+            document.getElementById('releaseForm').action = '/cedula/' + id;
             document.getElementById('releaseModal').classList.remove('hidden');
         }
 
         function closeReleaseModal() {
             document.getElementById('releaseModal').classList.add('hidden');
+            document.getElementById('release_date').value = '';
         }
     </script>
     <script>
