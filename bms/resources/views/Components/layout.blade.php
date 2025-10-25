@@ -568,7 +568,7 @@
           });
       }
   </script>
-  {{-- <script>
+  <script>
       let idleTime = 0;
       const maxIdleTime = 600;
       const countdownSeconds = 5;
@@ -627,4 +627,4 @@
               });
           }
       }, 1000);
-  </script> --}}
+  </script>

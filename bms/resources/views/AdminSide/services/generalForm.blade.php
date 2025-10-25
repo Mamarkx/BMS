@@ -166,13 +166,7 @@
                                     </div>
                                 </div>
                             </tr>
-
                         @empty
-                            <tr>
-                                <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
-                                    No requests found.
-                                </td>
-                            </tr>
                             <tr id="noResultsMessage" class="hidden">
                                 <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
                                     No matching results found.
