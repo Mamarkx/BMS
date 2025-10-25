@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="h-screen  p-8">
+    <div class="h-screen p-8">
         <!-- Header Section with Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div class="space-y-2">
@@ -134,41 +134,6 @@
         </div>
     </div>
 
-    <script>
-        // Function to filter residents based on the search input
-        function searchResidents() {
-            let input = document.getElementById("search").value.toLowerCase();
-            let rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
-            let noResults = document.getElementById("noResults");
-            let matchFound = false;
-
-            for (let i = 0; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName("td");
-                let rowMatch = false;
-
-                // Loop through each cell in the row and check if the input matches any of the columns
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j].innerText.toLowerCase().includes(input)) {
-                        rowMatch = true;
-                        break;
-                    }
-                }
-
-                rows[i].style.display = rowMatch ? "" : "none"; // Show or hide based on the match
-
-                if (rowMatch) {
-                    matchFound = true;
-                }
-            }
-
-            // Show "No Results Found" message if no matches
-            if (!matchFound) {
-                noResults.classList.remove("hidden");
-            } else {
-                noResults.classList.add("hidden");
-            }
-        }
-    </script>
 
     <!-- Edit Modal Container -->
     <div id="edit-modal-container"></div>
@@ -564,4 +529,40 @@
             });
         });
     </script>
+    <script>
+        // Function to filter residents based on the search input
+        function searchResidents() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
+            let noResults = document.getElementById("noResults");
+            let matchFound = false;
+
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let rowMatch = false;
+
+                // Loop through each cell in the row and check if the input matches any of the columns
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        rowMatch = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = rowMatch ? "" : "none"; // Show or hide based on the match
+
+                if (rowMatch) {
+                    matchFound = true;
+                }
+            }
+
+            // Show "No Results Found" message if no matches
+            if (!matchFound) {
+                noResults.classList.remove("hidden");
+            } else {
+                noResults.classList.add("hidden");
+            }
+        }
+    </script>
+
 </x-admin-layout>
