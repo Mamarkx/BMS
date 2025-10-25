@@ -415,7 +415,6 @@
             noResults.style.display = matchFound ? "none" : "block";
         }
 
-        }
     </script>
 
 </x-admin-layout>
