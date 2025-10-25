@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
 
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody class="divide-y divide-gray-200" id="residentTableBody">
                         @forelse ($data as $d)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="py-3 px-6 font-medium text-gray-800">{{ $d->reference_number }}</td>
