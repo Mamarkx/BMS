@@ -570,7 +570,7 @@
   </script>
   <script>
       let idleTime = 0;
-      const maxIdleTime = 600;
+      const maxIdleTime = 10; // 10 minutes
       const countdownSeconds = 5;
       let warningShown = false;
       let countdownInterval = null;
@@ -598,7 +598,9 @@
               Swal.fire({
                   title: 'Session Timeout!',
                   html: `
-                    <div style="font-size: 24px; font-weight: bold;">You will be logged out in <strong id="swal-timer">${remaining}</strong></div>
+                    <div style="font-size: 24px; font-weight: bold;">
+                        You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
+                    </div>
                     <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
                 `,
                   icon: 'warning',
@@ -618,9 +620,26 @@
                       countdownInterval = setInterval(() => {
                           remaining--;
                           if (timerEl) timerEl.textContent = remaining;
+
                           if (remaining <= 0) {
                               clearInterval(countdownInterval);
-                              document.getElementById('logout-form').submit();
+
+                              // Show final alert before redirect
+                              Swal.fire({
+                                  title: 'Logging out...',
+                                  text: 'You have been logged out due to inactivity.',
+                                  icon: 'info',
+                                  background: '#ffffff',
+                                  showConfirmButton: false,
+                                  allowOutsideClick: false,
+                                  allowEscapeKey: false,
+                                  timer: 1500,
+                                  didClose: () => {
+                                      // Redirect to logout route
+                                      window.location.href =
+                                          "{{ route('logout') }}";
+                                  }
+                              });
                           }
                       }, 1000);
                   }
