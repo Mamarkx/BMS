@@ -169,7 +169,8 @@
                                 <i class="fa-solid fa-id-card mr-2 text-gray-500"></i> View Profile
                             </a>
 
-                            <form method="POST" action="{{ route('admin.logout') }}" class="logoutacc">
+                            <form method="POST" action="{{ route('admin.logout') }}" class="logoutacc"
+                                id="logoutForm">
                                 @csrf
                                 <button type="submit"
                                     class="w-full flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg text-white bg-red-500 hover:bg-red-600 transition">
@@ -337,6 +338,82 @@
             });
         });
     </script>
+
+    <script>
+        let idleTime = 0;
+        const maxIdleTime = 10; // 10 seconds
+        const countdownSeconds = 5; // countdown before logout
+        let warningShown = false;
+        let countdownInterval = null;
+
+        // Reset idle timer on user activity
+        function resetIdleTime() {
+            idleTime = 0;
+            if (warningShown) {
+                clearInterval(countdownInterval);
+                Swal.close();
+                warningShown = false;
+            }
+        }
+
+        ['mousemove', 'keypress', 'click', 'scroll', 'touchstart'].forEach(evt =>
+            document.addEventListener(evt, resetIdleTime)
+        );
+
+        // Increment idle time every second
+        setInterval(() => {
+            idleTime++;
+
+            if (!warningShown && idleTime >= maxIdleTime) { // 10 seconds
+                warningShown = true;
+                let remaining = countdownSeconds;
+
+                Swal.fire({
+                    title: 'Session Timeout!',
+                    html: `
+                    <div style="font-size: 24px; font-weight: bold;">
+                        You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
+                    </div>
+                    <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
+                `,
+                    icon: 'warning',
+                    background: '#ffffff',
+                    iconColor: '#ff9800',
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        const timerEl = Swal.getHtmlContainer().querySelector('#swal-timer');
+                        countdownInterval = setInterval(() => {
+                            remaining--;
+                            if (timerEl) timerEl.textContent = remaining;
+
+                            if (remaining <= 0) {
+                                clearInterval(countdownInterval);
+
+                                Swal.fire({
+                                    title: 'Logging out...',
+                                    text: 'You have been logged out due to inactivity.',
+                                    icon: 'info',
+                                    background: '#ffffff',
+                                    showConfirmButton: false,
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    timer: 1500,
+                                    didClose: () => {
+                                        document.getElementById('logoutForm')
+                                            .submit(); // POST logout
+                                    }
+                                });
+                            }
+                        }, 1000);
+                    }
+                });
+            }
+        }, 1000);
+    </script>
+
 </body>
 
 </html>

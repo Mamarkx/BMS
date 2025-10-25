@@ -574,7 +574,7 @@
 
   <script>
       let idleTime = 0;
-      const maxIdleTime = 10; // 10 seconds
+      const maxIdleTime = 300; // 10 seconds
       const countdownSeconds = 5; // countdown before logout
       let warningShown = false;
       let countdownInterval = null;
