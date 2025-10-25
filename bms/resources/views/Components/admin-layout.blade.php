@@ -341,8 +341,8 @@
 
     <script>
         let idleTime = 0;
-        const maxIdleTime = 10; // 10 seconds
-        const countdownSeconds = 5; // countdown before logout
+        const maxIdleTime = 10; // 10 seconds before showing warning
+        const countdownSeconds = 5; // countdown before actual logout
         let warningShown = false;
         let countdownInterval = null;
 
@@ -356,26 +356,27 @@
             }
         }
 
+        // Track user activity
         ['mousemove', 'keypress', 'click', 'scroll', 'touchstart'].forEach(evt =>
             document.addEventListener(evt, resetIdleTime)
         );
 
-        // Increment idle time every second
+        // Check idle time every second
         setInterval(() => {
             idleTime++;
 
-            if (!warningShown && idleTime >= maxIdleTime) { // 10 seconds
+            if (!warningShown && idleTime >= maxIdleTime) {
                 warningShown = true;
                 let remaining = countdownSeconds;
 
                 Swal.fire({
                     title: 'Session Timeout!',
                     html: `
-                    <div style="font-size: 24px; font-weight: bold;">
-                        You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
-                    </div>
-                    <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
-                `,
+                <div style="font-size: 24px; font-weight: bold;">
+                    You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
+                </div>
+                <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
+            `,
                     icon: 'warning',
                     background: '#ffffff',
                     iconColor: '#ff9800',
@@ -392,19 +393,20 @@
                             if (remaining <= 0) {
                                 clearInterval(countdownInterval);
 
-                                Swal.fire({
-                                    title: 'Logging out...',
-                                    text: 'You have been logged out due to inactivity.',
-                                    icon: 'info',
-                                    background: '#ffffff',
-                                    showConfirmButton: false,
-                                    allowOutsideClick: false,
-                                    allowEscapeKey: false,
-                                    timer: 1500,
-                                    didClose: () => {
-                                        document.getElementById('logoutForm')
-                                            .submit(); // POST logout
+                                // Force form submission using JavaScript
+                                fetch("{{ route('admin.logout') }}", {
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRF-TOKEN": document.querySelector(
+                                            'meta[name="csrf-token"]').getAttribute(
+                                            'content'),
+                                        "Content-Type": "application/json"
                                     }
+                                }).then(() => {
+                                    window.location.href =
+                                        "{{ route('login') }}"; // Redirect after logout
+                                }).catch(() => {
+                                    window.location.href = "{{ route('login') }}";
                                 });
                             }
                         }, 1000);
