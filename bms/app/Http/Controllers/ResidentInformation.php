@@ -9,7 +9,7 @@ class ResidentInformation extends Controller
 {
     public function ShowResident()
     {
-        $residents = Resident::paginate(10);
+        $residents = Resident::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.Resident', compact('residents'));
     }
     public function StoreResident(Request $request)
