@@ -236,11 +236,48 @@
             altInput: true,
             altFormat: "F j, Y",
             allowInput: true,
+            maxDate: "today",
+            minDate: new Date().getFullYear() - 120 + "-01-01",
+
             onChange: function(selectedDates, dateStr) {
+                if (!dateStr) return;
+
                 let age = calculateAge(dateStr);
+
+                if (age < 0) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Invalid Date of Birth",
+                        text: "The Date of Birth cannot be in the future.",
+                        confirmButtonColor: "#2563eb"
+                    });
+                    $('#dob').val('');
+                    $('input[name="age"]').val('');
+                    return;
+                }
+
+                if (age > 120) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Hold up...",
+                        text: "Please enter a valid date. You cannot be older than 120 years.",
+                        confirmButtonColor: "#2563eb"
+                    });
+                    $('#dob').val('');
+                    $('input[name="age"]').val('');
+                    return;
+                }
+
                 $('input[name="age"]').val(age);
+            },
+
+            onClose: function() {
+                if (!$('#dob').val()) {
+                    $('input[name="age"]').val('');
+                }
             }
         });
     </script>
+
 
 </x-layout>
