@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="h-screen p-8">
+    {{-- <div class="h-screen p-8">
         <!-- Header Section with Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div class="space-y-2">
@@ -563,6 +563,6 @@
                 noResults.classList.add("hidden");
             }
         }
-    </script>
+    </script> --}}
 
 </x-admin-layout>
