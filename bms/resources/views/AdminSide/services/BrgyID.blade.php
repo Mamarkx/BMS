@@ -63,7 +63,7 @@
 
                                 @if ($d->status === 'Pending')
                                     <form id="approveForm{{ $d->id }}"
-                                        action="{{ route('approve.cedula', $d->id) }}" method="POST" class="hidden">
+                                        action="{{ route('approve.formID', $d->id) }}" method="POST" class="hidden">
                                         @csrf
                                     </form>
                                     <button type="button"
@@ -322,30 +322,25 @@
     <script>
         function showApprovalConfirmation(id) {
             Swal.fire({
-                title: 'Approve Document?',
-                text: "This will mark the document as approved and ready for release.",
-                icon: 'question',
+                title: 'Are you sure?',
+                text: "Do you want to approve this document?",
+                icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#10b981',
-                cancelButtonColor: '#6b7280',
-                confirmButtonText: 'Yes, Approve',
+                confirmButtonText: 'Approve',
                 cancelButtonText: 'Cancel',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
+                preConfirm: () => {
                     document.getElementById('approveForm' + id).submit();
                 }
             });
         }
 
         function openReleaseModal(id) {
-            document.getElementById('releaseForm').action = '/cedula/' + id;
+            document.getElementById('releaseForm').action = '/barangay-id/' + id;
             document.getElementById('releaseModal').classList.remove('hidden');
         }
 
         function closeReleaseModal() {
             document.getElementById('releaseModal').classList.add('hidden');
-            document.getElementById('release_date').value = '';
         }
     </script>
     <script>
