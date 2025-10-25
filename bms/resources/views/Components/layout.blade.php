@@ -572,77 +572,78 @@
       }
   </script>
 
-  <script>
-      let idleTime = 0;
-      const maxIdleTime = 300; // 10 seconds
-      const countdownSeconds = 5; // countdown before logout
-      let warningShown = false;
-      let countdownInterval = null;
+  @if (Auth::check())
+      <!-- Only include script if user is logged in -->
+      <script>
+          let idleTime = 0;
+          const maxIdleTime = 10; // 5 minutes
+          const countdownSeconds = 5;
+          let warningShown = false;
+          let countdownInterval = null;
 
-      // Reset idle timer on user activity
-      function resetIdleTime() {
-          idleTime = 0;
-          if (warningShown) {
-              clearInterval(countdownInterval);
-              Swal.close();
-              warningShown = false;
+          function resetIdleTime() {
+              idleTime = 0;
+              if (warningShown) {
+                  clearInterval(countdownInterval);
+                  Swal.close();
+                  warningShown = false;
+              }
           }
-      }
 
-      ['mousemove', 'keypress', 'click', 'scroll', 'touchstart'].forEach(evt =>
-          document.addEventListener(evt, resetIdleTime)
-      );
+          ['mousemove', 'keypress', 'click', 'scroll', 'touchstart'].forEach(evt =>
+              document.addEventListener(evt, resetIdleTime)
+          );
 
-      // Increment idle time every second
-      setInterval(() => {
-          idleTime++;
+          setInterval(() => {
+              idleTime++;
 
-          if (!warningShown && idleTime >= maxIdleTime) { // 10 seconds
-              warningShown = true;
-              let remaining = countdownSeconds;
+              if (!warningShown && idleTime >= maxIdleTime) {
+                  warningShown = true;
+                  let remaining = countdownSeconds;
 
-              Swal.fire({
-                  title: 'Session Timeout!',
-                  html: `
+                  Swal.fire({
+                      title: 'Session Timeout!',
+                      html: `
                     <div style="font-size: 24px; font-weight: bold;">
                         You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
                     </div>
                     <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
                 `,
-                  icon: 'warning',
-                  background: '#ffffff',
-                  iconColor: '#ff9800',
-                  showCancelButton: false,
-                  showConfirmButton: false,
-                  allowOutsideClick: false,
-                  allowEscapeKey: false,
-                  didOpen: () => {
-                      const timerEl = Swal.getHtmlContainer().querySelector('#swal-timer');
-                      countdownInterval = setInterval(() => {
-                          remaining--;
-                          if (timerEl) timerEl.textContent = remaining;
+                      icon: 'warning',
+                      background: '#ffffff',
+                      iconColor: '#ff9800',
+                      showCancelButton: false,
+                      showConfirmButton: false,
+                      allowOutsideClick: false,
+                      allowEscapeKey: false,
+                      didOpen: () => {
+                          const timerEl = Swal.getHtmlContainer().querySelector('#swal-timer');
+                          countdownInterval = setInterval(() => {
+                              remaining--;
+                              if (timerEl) timerEl.textContent = remaining;
 
-                          if (remaining <= 0) {
-                              clearInterval(countdownInterval);
+                              if (remaining <= 0) {
+                                  clearInterval(countdownInterval);
 
-                              Swal.fire({
-                                  title: 'Logging out...',
-                                  text: 'You have been logged out due to inactivity.',
-                                  icon: 'info',
-                                  background: '#ffffff',
-                                  showConfirmButton: false,
-                                  allowOutsideClick: false,
-                                  allowEscapeKey: false,
-                                  timer: 1500,
-                                  didClose: () => {
-                                      document.getElementById('logoutForm')
-                                          .submit(); // POST logout
-                                  }
-                              });
-                          }
-                      }, 1000);
-                  }
-              });
-          }
-      }, 1000);
-  </script>
+                                  Swal.fire({
+                                      title: 'Logging out...',
+                                      text: 'You have been logged out due to inactivity.',
+                                      icon: 'info',
+                                      background: '#ffffff',
+                                      showConfirmButton: false,
+                                      allowOutsideClick: false,
+                                      allowEscapeKey: false,
+                                      timer: 1500,
+                                      didClose: () => {
+                                          document.getElementById('logoutForm')
+                                              .submit();
+                                      }
+                                  });
+                              }
+                          }, 1000);
+                      }
+                  });
+              }
+          }, 1000);
+      </script>
+  @endif
