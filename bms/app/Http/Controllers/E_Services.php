@@ -15,30 +15,28 @@ class E_Services extends Controller
     // Example: show General Form page
     public function generalForm()
     {
-        $data = GeneralForm::paginate(10); // 10 records per page
+        $data = GeneralForm::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.services.generalForm', compact('data'));
     }
 
-    // Example: show Business Permit page
+    // Show Business Permit page
     public function businessPermit()
     {
-        $data = BusinessPermit::paginate(10);
+        $data = BusinessPermit::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.services.businessPermit', compact('data'));
     }
 
-    // Example: show Barangay ID page
+    // Show Barangay ID page
     public function barangayID()
     {
-        // Use paginate instead of all()
-        $data = FormID::paginate(10); // 10 records per page
+        $data = FormID::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.services.BrgyID', compact('data'));
     }
 
-
-    // Example: show Cedula page
+    // Show Cedula page
     public function cedula()
     {
-        $data = Cedula::paginate(10); // 10 records per page
+        $data = Cedula::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.services.cedula', compact('data'));
     }
 }
