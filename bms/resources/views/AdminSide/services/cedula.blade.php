@@ -2,7 +2,7 @@
     <div class="w-full p-6 bg-gray-50 h-screen">
 
         <!-- Header -->
-        <div class="mb-8">
+        <div class="flex justify-between items-center mb-6">
             <h3 class="font-bold text-3xl text-gray-900 mb-2">Cedula Applications</h3>
             <p class="text-gray-600 text-base">Manage and track all resident requests</p>
 
