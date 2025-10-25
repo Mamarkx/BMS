@@ -174,9 +174,10 @@
                                 </td>
                             </tr>
                         @endforelse
-                        <p id="noResultsMessage" class="hidden text-center py-4 text-gray-500">No matching results
-                            found.</p>
-
+                        <tr>
+                            <p id="noResultsMessage" class="hidden text-center py-4 text-gray-500">No matching results
+                                found.</p>
+                        </tr>
                     </tbody>
                 </table>
             </div>
