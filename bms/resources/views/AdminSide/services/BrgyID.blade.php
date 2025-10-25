@@ -126,7 +126,7 @@
                 </tbody>
             </table>
         </div>
-        <div id="noResults" class="px-6 py-4 text-center text-gray-500 hidden">
+        <div id="noResults" class="px-6 py-4 text-center text-gray-500 hidden bg-white">
             <p>No results found for your search.</p>
         </div>
         <!-- Pagination -->
