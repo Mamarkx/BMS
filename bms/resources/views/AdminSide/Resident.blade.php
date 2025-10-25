@@ -379,191 +379,192 @@
         </div>
     </dialog>
 
-    {{-- <script>
-        // Function to open the modal and populate data
-        function viewRecord(resident) {
-            // Populate modal fields with resident data
-            $('#v_full_name_header').text(resident.first_name + ' ' + (resident.middle_name ? resident.middle_name : '') +
-                ' ' + resident.last_name);
 
-            $('#v_first_name').text(resident.first_name);
-            $('#v_middle_name').text(resident.middle_name);
-            $('#v_last_name').text(resident.last_name);
-            $('#v_resident_id').text(resident.resident_id);
-            $('#v_sex').text(resident.sex);
-            $('#v_birth_date').text(resident.birth_date);
-            $('#v_civil_status').text(resident.civil_status);
-            $('#v_address').text(resident.address);
-            $('#v_contact_number').text(resident.contact_number || 'N/A');
-            $('#v_status_badge').text(resident.status);
 
-            // Set status badge color based on resident's status
-            if (resident.status === 'Active') {
-                $('#v_status_badge').addClass('bg-green-100 text-green-700');
-            } else {
-                $('#v_status_badge').addClass('bg-red-100 text-red-700');
-            }
+</x-admin-layout>
+<script>
+    // Function to open the modal and populate data
+    function viewRecord(resident) {
+        // Populate modal fields with resident data
+        $('#v_full_name_header').text(resident.first_name + ' ' + (resident.middle_name ? resident.middle_name : '') +
+            ' ' + resident.last_name);
 
-            // Show the modal
-            $('#viewModal')[0].showModal();
+        $('#v_first_name').text(resident.first_name);
+        $('#v_middle_name').text(resident.middle_name);
+        $('#v_last_name').text(resident.last_name);
+        $('#v_resident_id').text(resident.resident_id);
+        $('#v_sex').text(resident.sex);
+        $('#v_birth_date').text(resident.birth_date);
+        $('#v_civil_status').text(resident.civil_status);
+        $('#v_address').text(resident.address);
+        $('#v_contact_number').text(resident.contact_number || 'N/A');
+        $('#v_status_badge').text(resident.status);
+
+        // Set status badge color based on resident's status
+        if (resident.status === 'Active') {
+            $('#v_status_badge').addClass('bg-green-100 text-green-700');
+        } else {
+            $('#v_status_badge').addClass('bg-red-100 text-red-700');
         }
 
-        // Function to close the modal
-        function closeModal() {
-            $('#viewModal')[0].close();
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.delete-btn').on('click', function() {
-                var id = $(this).data('id'); // Now it gets the correct id from data-id attribute
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "This resident's record will be permanently deleted!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#6b7280',
-                    confirmButtonText: 'Yes, delete it',
-                    cancelButtonText: 'Cancel',
-                    background: '#fff',
-                    color: '#333',
-                    customClass: {
-                        popup: 'rounded-2xl shadow-2xl'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $('#deleteForm_' + id)
-                            .submit(); // Submitting the correct form based on the resident's id
-                    }
-                });
-            });
-        });
-    </script>
+        // Show the modal
+        $('#viewModal')[0].showModal();
+    }
 
-    @if (session('success'))
-        <script>
+    // Function to close the modal
+    function closeModal() {
+        $('#viewModal')[0].close();
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        $('.delete-btn').on('click', function() {
+            var id = $(this).data('id'); // Now it gets the correct id from data-id attribute
             Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                iconColor: '#ffffff',
-                background: '#10b981',
-                color: '#ffffff',
+                title: 'Are you sure?',
+                text: "This resident's record will be permanently deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Yes, delete it',
+                cancelButtonText: 'Cancel',
+                background: '#fff',
+                color: '#333',
                 customClass: {
-                    popup: 'rounded-xl shadow-2xl'
+                    popup: 'rounded-2xl shadow-2xl'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#deleteForm_' + id)
+                        .submit(); // Submitting the correct form based on the resident's id
                 }
             });
-        </script>
-    @endif
+        });
+    });
+</script>
 
+@if (session('success'))
     <script>
-        $(document).ready(function() {
-            $('.EditResidentInfo').click(function() {
-                let residentId = $(this).data('id');
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            iconColor: '#ffffff',
+            background: '#10b981',
+            color: '#ffffff',
+            customClass: {
+                popup: 'rounded-xl shadow-2xl'
+            }
+        });
+    </script>
+@endif
 
-                $.ajax({
-                    url: `/residents/${residentId}/edit`,
-                    type: 'GET',
-                    success: function(response) {
-                        $('#edit-modal-container').html(response);
-                        $('#edit-resident-modal').removeClass('hidden');
-                    }
-                });
+<script>
+    $(document).ready(function() {
+        $('.EditResidentInfo').click(function() {
+            let residentId = $(this).data('id');
+
+            $.ajax({
+                url: `/residents/${residentId}/edit`,
+                type: 'GET',
+                success: function(response) {
+                    $('#edit-modal-container').html(response);
+                    $('#edit-resident-modal').removeClass('hidden');
+                }
             });
+        });
 
-            $(document).on('click', '.closeModal', function() {
-                $('#edit-resident-modal').addClass('hidden');
-                $('#edit-modal-container').empty();
-            });
+        $(document).on('click', '.closeModal', function() {
+            $('#edit-resident-modal').addClass('hidden');
+            $('#edit-modal-container').empty();
+        });
 
-            $(document).on('submit', '#editResidentForm', function(e) {
-                e.preventDefault();
-                let form = $(this);
-                let formData = form.serialize();
+        $(document).on('submit', '#editResidentForm', function(e) {
+            e.preventDefault();
+            let form = $(this);
+            let formData = form.serialize();
 
-                $.ajax({
-                    url: form.attr('action'),
-                    method: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Updated!',
-                                text: response.message,
-                                confirmButtonColor: '#2563eb',
-                                customClass: {
-                                    popup: 'rounded-xl'
-                                }
-                            }).then(() => {
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error!',
-                                text: response.message,
-                                confirmButtonColor: '#dc2626',
-                                customClass: {
-                                    popup: 'rounded-xl'
-                                }
-                            });
-                        }
-                    },
-                    error: function(xhr) {
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Updated!',
+                            text: response.message,
+                            confirmButtonColor: '#2563eb',
+                            customClass: {
+                                popup: 'rounded-xl'
+                            }
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error!',
-                            text: 'Something went wrong.',
+                            text: response.message,
                             confirmButtonColor: '#dc2626',
                             customClass: {
                                 popup: 'rounded-xl'
                             }
                         });
                     }
-                });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Something went wrong.',
+                        confirmButtonColor: '#dc2626',
+                        customClass: {
+                            popup: 'rounded-xl'
+                        }
+                    });
+                }
             });
         });
-    </script>
-    <script>
-        // Function to filter residents based on the search input
-        function searchResidents() {
-            let input = document.getElementById("search").value.toLowerCase();
-            let rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
-            let noResults = document.getElementById("noResults");
-            let matchFound = false;
+    });
+</script>
+<script>
+    // Function to filter residents based on the search input
+    function searchResidents() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
+        let noResults = document.getElementById("noResults");
+        let matchFound = false;
 
-            for (let i = 0; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName("td");
-                let rowMatch = false;
+        for (let i = 0; i < rows.length; i++) {
+            let cells = rows[i].getElementsByTagName("td");
+            let rowMatch = false;
 
-                // Loop through each cell in the row and check if the input matches any of the columns
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j].innerText.toLowerCase().includes(input)) {
-                        rowMatch = true;
-                        break;
-                    }
-                }
-
-                rows[i].style.display = rowMatch ? "" : "none"; // Show or hide based on the match
-
-                if (rowMatch) {
-                    matchFound = true;
+            // Loop through each cell in the row and check if the input matches any of the columns
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j].innerText.toLowerCase().includes(input)) {
+                    rowMatch = true;
+                    break;
                 }
             }
 
-            // Show "No Results Found" message if no matches
-            if (!matchFound) {
-                noResults.classList.remove("hidden");
-            } else {
-                noResults.classList.add("hidden");
+            rows[i].style.display = rowMatch ? "" : "none"; // Show or hide based on the match
+
+            if (rowMatch) {
+                matchFound = true;
             }
         }
-    </script> --}}
 
-</x-admin-layout>
+        // Show "No Results Found" message if no matches
+        if (!matchFound) {
+            noResults.classList.remove("hidden");
+        } else {
+            noResults.classList.add("hidden");
+        }
+    }
+</script>
