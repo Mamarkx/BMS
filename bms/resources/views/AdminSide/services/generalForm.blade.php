@@ -389,18 +389,16 @@
         });
     </script>
     <script>
-        // Function to filter residents based on the search input
         function searchResidents() {
-            let input = document.getElementById("search").value.toLowerCase();
-            let rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
-            let noResults = document.getElementById("noResults");
+            const input = document.getElementById("search").value.toLowerCase();
+            const rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
+            const noResults = document.getElementById("noResults");
             let matchFound = false;
 
             for (let i = 0; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName("td");
+                const cells = rows[i].getElementsByTagName("td");
                 let rowMatch = false;
 
-                // Loop through each cell in the row and check if the input matches any of the columns
                 for (let j = 0; j < cells.length; j++) {
                     if (cells[j].innerText.toLowerCase().includes(input)) {
                         rowMatch = true;
@@ -408,19 +406,15 @@
                     }
                 }
 
-                rows[i].style.display = rowMatch ? "" : "none"; // Show or hide based on the match
+                rows[i].style.display = rowMatch ? "" : "none";
 
-                if (rowMatch) {
-                    matchFound = true;
-                }
+                if (rowMatch) matchFound = true;
             }
 
-            // Show "No Results Found" message if no matches
-            if (!matchFound) {
-                noResults.classList.remove("hidden");
-            } else {
-                noResults.classList.add("hidden");
-            }
+            // Show "No Results Found" if nothing matches
+            noResults.style.display = matchFound ? "none" : "block";
+        }
+
         }
     </script>
 
