@@ -17,11 +17,11 @@
                     General Form Requests
                 </h2>
 
-                <div class="flex items-center gap-2">
-                    <input type="text" id="searchInput"
-                        class="border border-gray-300 rounded-lg px-4 py-2 w-60 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Search name, type, or status...">
-
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="search" placeholder="Search residents..."
+                        class="w-full p-3 pl-10 pr-4 rounded-xl bg-white text-gray-700 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                        onkeyup="searchResidents()">
+                    <i class="fa-solid fa-search absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"></i>
                 </div>
             </div>
 
@@ -174,13 +174,11 @@
                                 </td>
                             </tr>
                         @endforelse
-                        <tr id="noResultsMessage" class="hidden">
-                            <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
-                                No matching results found.
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+            </div>
+            <div id="noResults" class="px-6 py-4 text-center text-gray-500 hidden">
+                <p>No results found for your search.</p>
             </div>
         </div>
 
@@ -391,19 +389,39 @@
         });
     </script>
     <script>
-        $('#searchInput').on('keyup', function() {
-            let searchValue = $(this).val().toLowerCase();
-            let visibleRows = 0;
+        // Function to filter residents based on the search input
+        function searchResidents() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
+            let noResults = document.getElementById("noResults");
+            let matchFound = false;
 
-            $('table tbody tr.data-row').each(function() {
-                let rowText = $(this).text().toLowerCase();
-                let isVisible = rowText.indexOf(searchValue) > -1;
-                $(this).toggle(isVisible);
-                if (isVisible) visibleRows++;
-            });
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let rowMatch = false;
 
-            $('#noResultsMessage').toggle(visibleRows === 0);
-        });
+                // Loop through each cell in the row and check if the input matches any of the columns
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        rowMatch = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = rowMatch ? "" : "none"; // Show or hide based on the match
+
+                if (rowMatch) {
+                    matchFound = true;
+                }
+            }
+
+            // Show "No Results Found" message if no matches
+            if (!matchFound) {
+                noResults.classList.remove("hidden");
+            } else {
+                noResults.classList.add("hidden");
+            }
+        }
     </script>
 
 </x-admin-layout>
