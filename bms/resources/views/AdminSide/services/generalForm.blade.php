@@ -173,12 +173,12 @@
                                     No requests found.
                                 </td>
                             </tr>
+                            <tr id="noResultsMessage" class="hidden">
+                                <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
+                                    No matching results found.
+                                </td>
+                            </tr>
                         @endforelse
-                        <tr id="noResultsMessage" class="hidden">
-                            <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
-                                No matching results found.
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
