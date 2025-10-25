@@ -11,13 +11,20 @@
 
         <!-- Table -->
         <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
                 <h2 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
                     <i class="fa-solid fa-folder-open text-blue-600"></i>
                     General Form Requests
                 </h2>
-                <span class="text-sm text-gray-500">{{ $data->count() }} records found</span>
+
+                <div class="flex items-center gap-2">
+                    <input type="text" id="searchInput"
+                        class="border border-gray-300 rounded-lg px-4 py-2 w-60 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Search name, type, or status...">
+                    <span class="text-sm text-gray-500">{{ $data->count() }} records found</span>
+                </div>
             </div>
+
 
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm text-gray-700">
@@ -378,4 +385,18 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                let searchValue = $(this).val().toLowerCase();
+
+                $('table tbody tr').filter(function() {
+                    $(this).toggle(
+                        $(this).text().toLowerCase().indexOf(searchValue) > -1
+                    );
+                });
+            });
+        });
+    </script>
+
 </x-admin-layout>
