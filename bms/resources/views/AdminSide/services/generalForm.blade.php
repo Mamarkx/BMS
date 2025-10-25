@@ -168,13 +168,17 @@
                             </tr>
 
                         @empty
-                            <tr id="noResultsMessage" class="hidden">
+                            <tr>
                                 <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
-                                    No matching results found.
+                                    No requests found.
                                 </td>
                             </tr>
                         @endforelse
-
+                        <tr id="noResultsMessage" class="hidden">
+                            <td colspan="5" class="py-6 text-center text-gray-500 font-medium">
+                                No matching results found.
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -391,8 +395,9 @@
             let searchValue = $(this).val().toLowerCase();
             let visibleRows = 0;
 
-            $('table tbody tr').not('#noResultsMessage').filter(function() {
-                let isVisible = $(this).text().toLowerCase().indexOf(searchValue) > -1;
+            $('table tbody tr.data-row').each(function() {
+                let rowText = $(this).text().toLowerCase();
+                let isVisible = rowText.indexOf(searchValue) > -1;
                 $(this).toggle(isVisible);
                 if (isVisible) visibleRows++;
             });
