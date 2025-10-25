@@ -267,7 +267,7 @@
         </div>
     </dialog> --}}
 
-    <dialog id="viewModal" class="modal backdrop:bg-black/80 backdrop:backdrop-blur-sm">
+    {{-- <dialog id="viewModal" class="modal backdrop:bg-black/80 backdrop:backdrop-blur-sm">
         <div
             class="modal-box max-w-4xl bg-white rounded-xl shadow-2xl p-0 overflow-hidden transform transition-all duration-300">
 
@@ -376,7 +376,7 @@
             </div>
 
         </div>
-    </dialog>
+    </dialog> --}}
 
     <script>
         // Function to open the modal and populate data
