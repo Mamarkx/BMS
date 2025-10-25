@@ -21,7 +21,7 @@
                     <input type="text" id="searchInput"
                         class="border border-gray-300 rounded-lg px-4 py-2 w-60 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Search name, type, or status...">
-                    <span class="text-sm text-gray-500">{{ $data->count() }} records found</span>
+
                 </div>
             </div>
 
@@ -174,6 +174,9 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <p id="noResultsMessage" class="hidden text-center py-4 text-gray-500">No matching results
+                            found.</p>
+
                     </tbody>
                 </table>
             </div>
