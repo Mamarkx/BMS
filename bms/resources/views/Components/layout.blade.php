@@ -525,6 +525,9 @@
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
       <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+      <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="hidden">
+          @csrf
+      </form>
 
   </body>
 
@@ -575,6 +578,7 @@
       let warningShown = false;
       let countdownInterval = null;
 
+      // Reset idle timer on user activity
       function resetIdleTime() {
           idleTime = 0;
           if (warningShown) {
@@ -588,10 +592,11 @@
           document.addEventListener(evt, resetIdleTime)
       );
 
+      // Increment idle time every second
       setInterval(() => {
           idleTime++;
 
-          if (!warningShown && idleTime >= maxIdleTime) {
+          if (!warningShown && idleTime >= maxIdleTime * 60) { // maxIdleTime in minutes
               warningShown = true;
               let remaining = countdownSeconds;
 
@@ -624,7 +629,6 @@
                           if (remaining <= 0) {
                               clearInterval(countdownInterval);
 
-                              // Show final alert before redirect
                               Swal.fire({
                                   title: 'Logging out...',
                                   text: 'You have been logged out due to inactivity.',
@@ -635,9 +639,8 @@
                                   allowEscapeKey: false,
                                   timer: 1500,
                                   didClose: () => {
-                                      // Redirect to logout route
-                                      window.location.href =
-                                          "{{ route('logout') }}";
+                                      document.getElementById('logoutForm')
+                                          .submit(); // POST logout
                                   }
                               });
                           }
