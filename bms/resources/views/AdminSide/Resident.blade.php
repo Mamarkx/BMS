@@ -235,10 +235,17 @@
                             <label for="contact_number" class="block text-sm font-semibold text-slate-700">
                                 Contact Number <span class="text-red-500">*</span>
                             </label>
-                            <input type="tel" id="contact_number" name="contact_number"
+                            <input type="text" id="contact_number" name="contact_number"
                                 class="w-full placeholder:text-gray-400 px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                                placeholder="091232190" pattern="[0-9]*" inputmode="numeric" required>
+                                placeholder="091232190" required>
                         </div>
+
+                        <script>
+                            document.getElementById('contact_number').addEventListener('input', function(e) {
+                                this.value = this.value.replace(/[^0-9]/g, '');
+                            });
+                        </script>
+
                         <div class="space-y-2">
                             <label for="address" class="block text-sm font-semibold text-slate-700">Complete Address
                                 <span class="text-red-500">*</span></label>
