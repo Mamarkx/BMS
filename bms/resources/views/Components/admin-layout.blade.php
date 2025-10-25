@@ -404,9 +404,10 @@
                                     }
                                 }).then(() => {
                                     window.location.href =
-                                        "{{ route('login') }}"; // Redirect after logout
+                                        "{{ route('admin.login') }}"; // Redirect after logout
                                 }).catch(() => {
-                                    window.location.href = "{{ route('login') }}";
+                                    window.location.href =
+                                        "{{ route('admin.login') }}";
                                 });
                             }
                         }, 1000);
