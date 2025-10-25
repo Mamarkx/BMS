@@ -104,27 +104,33 @@
                                             </button>
                                         </form>
 
-                                        <!-- Approve -->
-                                        <form id="approveForm{{ $d->id }}"
-                                            action="{{ route('general.formID', $d->id) }}" method="POST"
-                                            class="inline">
-                                            @csrf
-                                        </form>
-                                        <button type="button"
-                                            class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-yellow-50 text-yellow-600 hover:bg-yellow-100 hover:text-yellow-700 transition duration-200"
-                                            onclick="showApprovalConfirmation({{ $d->id }})"
-                                            title="Approve Request">
-                                            <i class="fa-solid fa-circle-check text-lg mb-1"></i>
-                                            <span class="text-xs font-semibold">Approve</span>
-                                        </button>
+                                        @if ($d->status === 'Pending')
+                                            <form id="approveForm{{ $d->id }}"
+                                                action="{{ route('general.formID', $d->id) }}" method="POST"
+                                                class="hidden">
+                                                @csrf
+                                            </form>
+                                            <button type="button"
+                                                class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-yellow-50 text-yellow-600 hover:bg-yellow-100 hover:text-yellow-700 transition duration-200"
+                                                onclick="showApprovalConfirmation({{ $d->id }})"
+                                                title="Approve Request">
+                                                <i class="fa-solid fa-circle-check text-lg mb-1"></i>
+                                                <span class="text-xs font-semibold">Approve</span>
+                                            </button>
+                                        @endif
 
                                         <!-- Schedule Release -->
-                                        <button type="button"
-                                            class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
-                                            onclick="openReleaseModal({{ $d->id }})" title="Schedule Release">
-                                            <i class="fa-solid fa-calendar-check text-lg mb-1"></i>
-                                            <span class="text-xs font-semibold">Schedule</span>
-                                        </button>
+                                        @if ($d->status === 'Approved')
+                                            <button type="button"
+                                                class="flex flex-col items-center justify-center w-16 p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-800 transition duration-200"
+                                                onclick="openReleaseModal({{ $d->id }})"
+                                                title="Schedule Release">
+                                                <i class="fa-solid fa-calendar-check text-lg mb-1"></i>
+                                                <span class="text-xs font-semibold">Schedule</span>
+                                            </button>
+                                        @endif
+
+                                        <!-- Approve -->
 
                                     </div>
                                 </td>
