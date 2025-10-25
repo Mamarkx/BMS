@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Mail;
 
 class BarangayIDController extends Controller
 {
-    public function ShowBarangayID()
+    public function ShowBarangayID($id)
     {
-        $BrgyIDs = FormID::orderBy('created_at', 'desc')->paginate(5);
-        return view('AdminSide.viewData.barangay-id', compact('BrgyIDs'));
+        $BrgyID = FormID::findOrFail($id);
+        return view('AdminSide.viewData.barangay-id', compact('BrgyID'));
     }
 
     public function UpdateBrgyID(Request $request)
