@@ -568,3 +568,63 @@
           });
       }
   </script>
+  {{-- <script>
+      let idleTime = 0;
+      const maxIdleTime = 600;
+      const countdownSeconds = 5;
+      let warningShown = false;
+      let countdownInterval = null;
+
+      function resetIdleTime() {
+          idleTime = 0;
+          if (warningShown) {
+              clearInterval(countdownInterval);
+              Swal.close();
+              warningShown = false;
+          }
+      }
+
+      ['mousemove', 'keypress', 'click', 'scroll', 'touchstart'].forEach(evt =>
+          document.addEventListener(evt, resetIdleTime)
+      );
+
+      setInterval(() => {
+          idleTime++;
+
+          if (!warningShown && idleTime >= maxIdleTime) {
+              warningShown = true;
+              let remaining = countdownSeconds;
+
+              Swal.fire({
+                  title: 'Session Timeout!',
+                  html: `
+                    <div style="font-size: 24px; font-weight: bold;">You will be logged out in <strong id="swal-timer">${remaining}</strong></div>
+                    <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
+                `,
+                  icon: 'warning',
+                  background: '#ffffff',
+                  iconColor: '#ff9800',
+                  showCancelButton: false,
+                  showConfirmButton: false,
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                  customClass: {
+                      popup: 'custom-popup',
+                      title: 'custom-title',
+                      htmlContainer: 'custom-html-container'
+                  },
+                  didOpen: () => {
+                      const timerEl = Swal.getHtmlContainer().querySelector('#swal-timer');
+                      countdownInterval = setInterval(() => {
+                          remaining--;
+                          if (timerEl) timerEl.textContent = remaining;
+                          if (remaining <= 0) {
+                              clearInterval(countdownInterval);
+                              document.getElementById('logout-form').submit();
+                          }
+                      }, 1000);
+                  }
+              });
+          }
+      }, 1000);
+  </script> --}}
