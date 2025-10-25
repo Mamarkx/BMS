@@ -341,7 +341,7 @@
 
     <script>
         let idleTime = 0;
-        const maxIdleTime = 10; // 10 seconds before showing warning
+        const maxIdleTime = 10; // seconds before showing warning
         const countdownSeconds = 5; // countdown before actual logout
         let warningShown = false;
         let countdownInterval = null;
@@ -372,11 +372,11 @@
                 Swal.fire({
                     title: 'Session Timeout!',
                     html: `
-                <div style="font-size: 24px; font-weight: bold;">
-                    You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
-                </div>
-                <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
-            `,
+                    <div style="font-size: 24px; font-weight: bold;">
+                        You will be logged out in <strong id="swal-timer">${remaining}</strong> seconds
+                    </div>
+                    <p style="font-size: 16px; color: #333;">Please take action to avoid losing your progress.</p>
+                `,
                     icon: 'warning',
                     background: '#ffffff',
                     iconColor: '#ff9800',
@@ -393,22 +393,14 @@
                             if (remaining <= 0) {
                                 clearInterval(countdownInterval);
 
-                                // Force form submission using JavaScript
-                                fetch("{{ route('admin.logout') }}", {
-                                    method: "POST",
-                                    headers: {
-                                        "X-CSRF-TOKEN": document.querySelector(
-                                            'meta[name="csrf-token"]').getAttribute(
-                                            'content'),
-                                        "Content-Type": "application/json"
-                                    }
-                                }).then(() => {
-                                    window.location.href =
-                                        "{{ route('admin.login') }}"; // Redirect after logout
-                                }).catch(() => {
-                                    window.location.href =
-                                        "{{ route('admin.login') }}";
-                                });
+                                // Submit the existing logout form
+                                const logoutForm = document.getElementById('logoutForm');
+                                if (logoutForm) {
+                                    logoutForm.submit();
+                                } else {
+                                    // Fallback redirect if form not found
+                                    window.location.href = "{{ route('admin.login') }}";
+                                }
                             }
                         }, 1000);
                     }
