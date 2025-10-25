@@ -1,5 +1,5 @@
 <x-admin-layout>
-    {{-- <div class="h-screen p-8">
+    <div class="h-screen p-8">
         <!-- Header Section with Search Bar -->
         <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div class="space-y-2">
@@ -136,10 +136,10 @@
 
 
     <!-- Edit Modal Container -->
-    <div id="edit-modal-container"></div>
+    {{-- <div id="edit-modal-container"></div> --}}
 
     <!-- Add Resident Modal -->
-    <dialog id="my_modal_1" class="modal">
+    {{-- <dialog id="my_modal_1" class="modal">
         <div class="modal-box bg-white rounded-2xl shadow-2xl w-full max-w-5xl p-0 max-h-[90vh] overflow-hidden">
             <!-- Modal Header -->
             <div class="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
@@ -265,7 +265,7 @@
 
 
         </div>
-    </dialog>
+    </dialog> --}}
 
     <dialog id="viewModal" class="modal backdrop:bg-black/80 backdrop:backdrop-blur-sm">
         <div
@@ -298,8 +298,8 @@
                     <div class="flex-grow text-center sm:text-left">
                         <h2 id="v_full_name_header" class="text-3xl font-extrabold text-gray-800 tracking-tight mb-1">
                         </h2>
-                        <p class="text-gray-500 font-mono text-sm mb-2">Resident ID: <span
-                                id="v_resident_id">N/A</span></p>
+                        <p class="text-gray-500 font-mono text-sm mb-2">Resident ID: <span id="v_resident_id">N/A</span>
+                        </p>
 
                         <p id="v_status_badge"
                             class="inline-flex items-center px-4 py-1 text-sm font-semibold rounded-full transition">
@@ -563,6 +563,6 @@
                 noResults.classList.add("hidden");
             }
         }
-    </script> --}}
+    </script>
 
 </x-admin-layout>
