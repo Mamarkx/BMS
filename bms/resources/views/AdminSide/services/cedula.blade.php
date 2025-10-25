@@ -5,6 +5,13 @@
         <div class="mb-8">
             <h3 class="font-bold text-3xl text-gray-900 mb-2">Cedula Applications</h3>
             <p class="text-gray-600 text-base">Manage and track all resident requests</p>
+
+            <div class="relative w-full md:w-96">
+                <input type="text" id="search" placeholder="Search request..."
+                    class="w-full p-3 pl-10 pr-4 rounded-xl bg-white text-gray-700 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                    onkeyup="searchResidents()">
+                <i class="fa-solid fa-search absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"></i>
+            </div>
         </div>
 
         <!-- Table Container -->
@@ -31,7 +38,7 @@
                                     Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
+                        <tbody class="divide-y divide-gray-200" id="residentTableBody">
                             @foreach ($data as $d)
                                 <tr class="hover:bg-gray-50 transition-colors duration-150">
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900">{{ $d->reference_number }}
@@ -149,7 +156,9 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div id="noResults" class="px-6 py-4 text-center text-gray-500 hidden bg-white">
+                    <p>No results found for your search.</p>
+                </div>
                 <!-- Pagination -->
                 <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
                     {{ $data->links() }}
@@ -430,5 +439,31 @@
             }
         });
     </script>
+    <script>
+        function searchResidents() {
+            const input = document.getElementById("search").value.toLowerCase();
+            const rows = document.getElementById("residentTableBody").getElementsByTagName("tr");
+            const noResults = document.getElementById("noResults");
+            let matchFound = false;
 
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName("td");
+                let rowMatch = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(input)) {
+                        rowMatch = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = rowMatch ? "" : "none";
+
+                if (rowMatch) matchFound = true;
+            }
+
+            // Show "No Results Found" if nothing matches
+            noResults.style.display = matchFound ? "none" : "block";
+        }
+    </script>
 </x-admin-layout>

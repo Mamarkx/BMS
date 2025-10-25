@@ -414,7 +414,6 @@
             // Show "No Results Found" if nothing matches
             noResults.style.display = matchFound ? "none" : "block";
         }
-
     </script>
 
 </x-admin-layout>
