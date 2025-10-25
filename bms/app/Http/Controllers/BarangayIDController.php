@@ -12,10 +12,9 @@ class BarangayIDController extends Controller
 {
     public function ShowBarangayID()
     {
-        $BrgyIDs = FormID::orderBy('id', 'desc')->paginate(5);
+        $BrgyIDs = FormID::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.viewData.barangay-id', compact('BrgyIDs'));
     }
-
 
     public function UpdateBrgyID(Request $request)
     {
