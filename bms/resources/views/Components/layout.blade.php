@@ -571,10 +571,11 @@
           });
       }
   </script>
+
   <script>
       let idleTime = 0;
-      const maxIdleTime = 10; // 10 minutes
-      const countdownSeconds = 5;
+      const maxIdleTime = 10; // 10 seconds
+      const countdownSeconds = 5; // countdown before logout
       let warningShown = false;
       let countdownInterval = null;
 
@@ -596,7 +597,7 @@
       setInterval(() => {
           idleTime++;
 
-          if (!warningShown && idleTime >= maxIdleTime * 60) { // maxIdleTime in minutes
+          if (!warningShown && idleTime >= maxIdleTime) { // 10 seconds
               warningShown = true;
               let remaining = countdownSeconds;
 
@@ -615,11 +616,6 @@
                   showConfirmButton: false,
                   allowOutsideClick: false,
                   allowEscapeKey: false,
-                  customClass: {
-                      popup: 'custom-popup',
-                      title: 'custom-title',
-                      htmlContainer: 'custom-html-container'
-                  },
                   didOpen: () => {
                       const timerEl = Swal.getHtmlContainer().querySelector('#swal-timer');
                       countdownInterval = setInterval(() => {
