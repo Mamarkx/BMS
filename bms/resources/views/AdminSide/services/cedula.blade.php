@@ -3,9 +3,10 @@
 
         <!-- Header -->
         <div class="flex justify-between items-center mb-6">
-            <h3 class="font-bold text-3xl text-gray-900 mb-2">Cedula Applications</h3>
-            <p class="text-gray-600 text-base">Manage and track all resident requests</p>
-
+            <div class="div">
+                <h3 class="font-bold text-3xl text-gray-900 mb-2">Cedula Applications</h3>
+                <p class="text-gray-600 text-base">Manage and track all resident requests</p>
+            </div>
             <div class="relative w-full md:w-96">
                 <input type="text" id="search" placeholder="Search request..."
                     class="w-full p-3 pl-10 pr-4 rounded-xl bg-white text-gray-700 border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
