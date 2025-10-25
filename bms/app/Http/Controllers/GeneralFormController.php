@@ -60,7 +60,7 @@ class GeneralFormController extends Controller
     }
     public function show($id)
     {
-        $form = GeneralForm::findOrFail($id);
+        $form = GeneralForm::orderBy('created_at', 'desc')->paginate(5);
         return view('AdminSide.viewData.show-General-ID', compact('form'));
     }
     public function UpdateData(Request $request)
