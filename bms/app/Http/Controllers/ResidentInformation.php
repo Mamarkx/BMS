@@ -51,7 +51,6 @@ class ResidentInformation extends Controller
 
     public function update(Request $request, $id)
     {
-
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
@@ -61,8 +60,8 @@ class ResidentInformation extends Controller
             'civil_status' => 'required|string|in:Single,Married,Widowed',
             'address' => 'required|string|max:500',
             'status' => 'required|string|in:Active,Inactive',
+            'contact_number' => 'required|', // Adjust range as needed
         ]);
-
 
         $resident = Resident::findOrFail($id);
         $resident->update([
@@ -74,10 +73,12 @@ class ResidentInformation extends Controller
             'civil_status' => $validated['civil_status'],
             'address' => $validated['address'],
             'status' => $validated['status'],
+            'contact_number' => $validated['contact_number'],
         ]);
 
         return response()->json(['status' => 'success', 'message' => 'Resident updated successfully']);
     }
+
     public function DestroyResident($id)
     {
         $personnel = Resident::find($id);

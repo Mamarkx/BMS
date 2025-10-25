@@ -93,15 +93,23 @@
                         <h4 class="text-xl font-bold text-slate-800">Contact & Status</h4>
                     </div>
                     <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-700">Contact Number * <span
+                                class="text-red-500">*</span></label>
+                        <input type="string" name="contact_number" value="{{ $resident->contact_number }}"
+                            class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                            required>
+                    </div>
+                    <div class="space-y-2">
                         <label class="block text-sm font-semibold text-slate-700">Status <span
                                 class="text-red-500">*</span></label>
-                        <div class="space-y-2">
-                            <label class="block text-sm font-semibold text-slate-700">Contact Number * <span
-                                    class="text-red-500">*</span></label>
-                            <input type="string" name="contact_number" value="{{ $resident->contact_number }}"
-                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
-                                required>
-                        </div>
+                        <select name="status"
+                            class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                            required>
+                            <option value="Active" {{ $resident->status == 'Active' ? 'selected' : '' }}>Active
+                            </option>
+                            <option value="Inactive" {{ $resident->status == 'Inactive' ? 'selected' : '' }}>Inactive
+                            </option>
+                        </select>
                     </div>
                     <div class="space-y-2">
                         <label class="block text-sm font-semibold text-slate-700">Complete Address <span
