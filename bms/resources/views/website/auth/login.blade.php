@@ -87,14 +87,14 @@
 
 
                 <div>
-                    <div class="flex justify-between">
+                    {{-- <div class="flex justify-between">
                         <label for="password" class="block text-sm font-semibold text-gray-200 mb-2">Password</label>
                         <div class="flex justify-end text-sm">
                             <a href="#"
                                 class="text-blue-200 hover:text-blue-100 hover:underline transition-colors duration-200">Forgot
                                 password?</a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="relative">
                         <input type="password" id="password" name="password"
                             class="w-full pl-10 pr-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-200"
