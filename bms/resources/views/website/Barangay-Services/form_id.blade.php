@@ -112,7 +112,8 @@
                                     required>
                             </div>
                             <div class="">
-                                <label class="block mb-2 text-sm font-medium text-gray-700">Precinct Number</label>
+                                <label class="block mb-2 text-sm font-medium text-gray-700">Precinct Number
+                                    (Optional)</label>
                                 <input type="text" name="precint_number"
                                     class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-500">
                             </div>

@@ -3,8 +3,10 @@
         <div class="container mx-auto px-4 md:px-6">
 
             <div class="flex items-center justify-between mb-8">
-                <a href="{{ route('Services') }}" class="px-4 py-2 text-blue-600 items-center gap-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('Services') }}"
+                    class="px-4 py-2 text-blue-600 items-center gap-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
                     Back
@@ -15,35 +17,39 @@
                 <p class="text-sm text-gray-500">Application Form</p>
             </div>
 
-            <form id="applicationForm" 
-      action="{{ route('submit.general_form', ['service_slug' => $title]) }}" 
-      method="POST" 
-      enctype="multipart/form-data">
+            <form id="applicationForm" action="{{ route('submit.general_form', ['service_slug' => $title]) }}"
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-6">
-  
+
                     <!-- Personal Details Section -->
                     <div class="bg-blue-50 border border-blue-200 p-6 rounded-2xl shadow">
                         <h3 class="text-lg font-semibold text-blue-950 mb-4">Personal Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-    <label class="block mb-2 text-sm font-medium text-gray-700">Date of Birth *</label>
-    <input id="dob" 
-           name="dob" 
-           type="text"
-           class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-           placeholder="Select date of birth"
-           required />
-</div>
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-gray-700">Date of Birth *</label>
+                                <input id="dob" name="dob" type="text"
+                                    class="w-full border border-gray-300 rounded-lg p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Select date of birth" required />
+                            </div>
 
 
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Civil Status *</label>
-                                <select name="civil_status" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 bg-white focus:border-blue-500" required>
-                                    <option value="Single" {{ auth()->user()->civil_status == 'Single' ? 'selected' : '' }}>Single</option>
-                                    <option value="Married" {{ auth()->user()->civil_status == 'Married' ? 'selected' : '' }}>Married</option>
-                                    <option value="Widowed" {{ auth()->user()->civil_status == 'Widowed' ? 'selected' : '' }}>Widowed</option>
-                                    <option value="Divorced" {{ auth()->user()->civil_status == 'Divorced' ? 'selected' : '' }}>Divorced</option>
+                                <select name="civil_status"
+                                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 bg-white focus:border-blue-500"
+                                    required>
+                                    <option value="Single"
+                                        {{ auth()->user()->civil_status == 'Single' ? 'selected' : '' }}>Single</option>
+                                    <option value="Married"
+                                        {{ auth()->user()->civil_status == 'Married' ? 'selected' : '' }}>Married
+                                    </option>
+                                    <option value="Widowed"
+                                        {{ auth()->user()->civil_status == 'Widowed' ? 'selected' : '' }}>Widowed
+                                    </option>
+                                    <option value="Divorced"
+                                        {{ auth()->user()->civil_status == 'Divorced' ? 'selected' : '' }}>Divorced
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -51,18 +57,25 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Age *</label>
-                                <input type="number" name="age" value="{{ auth()->user()->age }}" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 bg-white focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="number" name="age" value="{{ auth()->user()->age }}"
+                                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 bg-white focus:ring-blue-500 focus:border-blue-500"
+                                    required />
                             </div>
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Years of Residency *</label>
-                                <input type="number" name="year_of_residency" value="{{ auth()->user()->year_of_residency }}" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 bg-white focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="number" name="year_of_residency"
+                                    value="{{ auth()->user()->year_of_residency }}"
+                                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 bg-white focus:ring-blue-500 focus:border-blue-500"
+                                    required />
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Place of Birth *</label>
-                                <input type="text" name="place_of_birth" value="{{ auth()->user()->place_of_birth }}" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 bg-white focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="text" name="place_of_birth" value="{{ auth()->user()->place_of_birth }}"
+                                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 bg-white focus:ring-blue-500 focus:border-blue-500"
+                                    required />
                             </div>
                         </div>
                     </div>
@@ -73,11 +86,15 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Certificate Type *</label>
-                                <input type="text" name="type" value="{{ $title }}" readonly class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="text" name="type" value="{{ $title }}" readonly
+                                    class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    required />
                             </div>
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Purpose *</label>
-                                <input type="text" name="purpose"  class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+                                <input type="text" name="purpose"
+                                    class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    required />
                             </div>
                         </div>
                     </div>
@@ -85,22 +102,27 @@
                     <!-- Upload Documents Section -->
                     <div class="bg-blue-50 border border-blue-200 p-6 rounded-2xl shadow">
                         <h3 class="text-lg font-semibold text-blue-950 mb-4">Upload Documents</h3>
-                        <p class="text-sm text-gray-500 mb-4">Please upload the required documents for your application. You can select multiple files.</p>
+                        <p class="text-sm text-gray-500 mb-4">Please upload the required documents for your application.
+                            You can select multiple files.</p>
                         <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-700">Upload ID Proof *</label>
-                                <input type="file" name="id_proof" class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" accept="image/*,application/pdf" required />
+                                <input type="file" name="id_proof"
+                                    class="w-full border border-gray-300 bg-white rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    accept="image/*,application/pdf" required />
                             </div>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="flex justify-end mt-8 space-x-4">
-                        <button type="button" onclick="window.location.href='{{ route('Services') }}'" class="px-6 py-3 text-gray-600 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-200">
+                        <button type="button" onclick="window.location.href='{{ route('Services') }}'"
+                            class="px-6 py-3 text-gray-600 bg-gray-200 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-200">
                             Cancel
                         </button>
-                        
-                        <button type="button" id="reviewBtn" class="px-6 py-3 text-white bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
+
+                        <button type="button" id="reviewBtn"
+                            class="px-6 py-3 text-white bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
                             Review & Submit
                         </button>
                     </div>
@@ -127,10 +149,12 @@
 
             <!-- Footer -->
             <div class="flex justify-end mt-8 space-x-4 border-t pt-4">
-                <button id="editBtn" class="px-5 py-2 text-gray-600 bg-gray-200 rounded-lg font-medium hover:bg-gray-300">
+                <button id="editBtn"
+                    class="px-5 py-2 text-gray-600 bg-gray-200 rounded-lg font-medium hover:bg-gray-300">
                     <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
                 </button>
-                <button id="confirmSubmitBtn" class="px-5 py-2 text-white bg-blue-600 rounded-lg font-medium hover:bg-blue-700 shadow">
+                <button id="confirmSubmitBtn"
+                    class="px-5 py-2 text-white bg-blue-600 rounded-lg font-medium hover:bg-blue-700 shadow">
                     <i class="fa-solid fa-paper-plane mr-1"></i> Confirm & Submit
                 </button>
             </div>
@@ -194,11 +218,29 @@
         });
     </script>
     <script>
-    flatpickr("#dob", {
-        dateFormat: "Y-m-d",
-        altInput: true,
-        altFormat: "F j, Y",
-        allowInput: true
-    });
-</script>
+        function calculateAge(dob) {
+            let birthDate = new Date(dob);
+            let today = new Date();
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        flatpickr("#dob", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "F j, Y",
+            allowInput: true,
+            onChange: function(selectedDates, dateStr) {
+                let age = calculateAge(dateStr);
+                $('input[name="age"]').val(age);
+            }
+        });
+    </script>
+
 </x-layout>
